@@ -11,7 +11,9 @@ pagina successiva:
 decidere se giocare con il bot o con un altro giocatore
 
 
+NOTA:
 Cercare delle immagini/icone appropriate per i simboli delle carte.
-
-l'interfaccia dev'essere responsive, (ad esempio, le carte dalla parte nostra saranno rappresentate dai
-bottoni)
+Per la parte grafica si inizia facendo una piccola pagina HTML fissa, realizzata con bootstrap, che rappresenta un esempio
+di come possa apparire l'interfaccia
+l'interfaccia dev'essere responsive, (ad esempio, le carte dalla parte nostra saranno rappresentate da
+bottoni che indicano quale carta giocare, o le carte stesse possono essere dei bottoni, come in lost city)
