@@ -1,0 +1,17 @@
+pagina di login:
+nome utente:
+password: almeno un carattere minuscolo, almeno un carattere maiuscolo, deve essere lunga almeno 8 caratteri
+ci deve essere almeno una cifra.
+
+Se il nome utente e la password non sono presenti nel database l'utente deve 
+prima registrarsi e poi effettuare l'accesso
+
+
+pagina successiva:
+decidere se giocare con il bot o con un altro giocatore
+
+
+Cercare delle immagini/icone appropriate per i simboli delle carte.
+
+l'interfaccia dev'essere responsive, (ad esempio, le carte dalla parte nostra saranno rappresentate dai
+bottoni)
