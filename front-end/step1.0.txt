@@ -7,6 +7,17 @@ Se il nome utente e la password non sono presenti nel database l'utente deve
 prima registrarsi e poi effettuare l'accesso
 
 
+descrzione del gioco:
+
+
+
+regole:
+
+
+
+
+
+
 pagina successiva:
 decidere se giocare con il bot o con un altro giocatore
 
