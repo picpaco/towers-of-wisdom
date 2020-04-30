@@ -1,0 +1,6 @@
+1)nel log-in ci sarà l'opzione per registrarsi o per loggare
+
+2)la home page contiene anche l'opzione per visualizzare il profilo
+e per visualizzare la leaderbord  
+
+
