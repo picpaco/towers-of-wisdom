@@ -1,3 +1,8 @@
-- Livelli giocatore
+- Livelli giocatore (basati sui punteggi)
 - Punteggi partita (parziale e totale)
 - Leaderboard
+- storico partite
+- diagramma delle classi
+- diagramma flussi dati 
+- diagramma database 
+
