@@ -1,3 +1,3 @@
-- Validazione utente e password: controllo con hashmap (chiave/valore - utente/password)
-- Individuare classi importanti
-- Ciclo di gioco (inizio, turno di gioco, condizioni di fine)
+- Livelli giocatore
+- Punteggi partita (parziale e totale)
+- Leaderboard
