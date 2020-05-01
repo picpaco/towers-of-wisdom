@@ -1,0 +1,5 @@
+CLASSI && METODI:
+* Login (controlloCredenziali) 
+* Registrazione utente
+* Torri di saggezza (scegliGiocatore, aggiornaPunteggi, aggiornaLeaderboard, giocaPartita)
+* Logout
