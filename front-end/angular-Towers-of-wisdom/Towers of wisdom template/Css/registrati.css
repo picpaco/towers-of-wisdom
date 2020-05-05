@@ -1,0 +1,98 @@
+#title {
+    /*stile dei titolo e dei minititoli*/
+    color: #a0b2fd;
+    font-family: sans-serif, monospace, fantasy;
+    text-shadow: 1px 1px 1px #0a39f4,
+        1px 2px 1px #0a39f4,
+        2px 1px 1px #0a39f4,
+        1px -1px 1px #0a39f4,
+        -1px 1px 1px #0a39f4,
+        -1px -1px 1px #0a39f4;
+    transform: skewY(-2deg);
+    font-size: 12mm;
+    font-family: cursive;
+}
+
+#background {
+    /*impostazioni dello sfondo*/
+    background-image: url("../Images/nardeen-hamad-SIs5c2ISvvk-unsplash.jpg");
+    background-size: 1366px 1366px;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+input {
+    /*stile del campo di scrittura tipo il *nome */
+    border: 2px solid transparent;
+    position: relative;
+
+}
+
+#Introduction {
+    /*stile,font,posizione e sfumature dell'introduzione*/
+    font-size: 7.0mm;
+    color: transparent;
+    width: 180mm;
+    text-shadow: 1px 1px 1px #c3c8de,
+        1px 2px 1px#28bef0,
+        2px 1px 1px #28bef0,
+        2px 1px 1px #28bef0;
+    transform: skewY(-1deg);
+    position: relative;
+    top: 10mm;
+    font-family: cursive;
+}
+
+#target {
+    /*sono le scitte che vedi sopra ogni campo qui hanno font,dim e sfumature.*/
+    text-align: left;
+    font-size: 6mm;
+    color: #a0b2fd;
+    text-shadow: 1px 1px 1px #0a39f4,
+        1px 2px 1px #0a39f4,
+        2px 1px 1px #0a39f4,
+        1px -1px 1px #0a39f4,
+        -1px 1px 1px #0a39f4,
+        -1px -1px 1px #0a39f4;
+    font-family: cursive;
+}
+
+button {
+    background: transparent;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 3mm;
+    font-size: 10mm;
+    width: 30mm;
+    font-family: cursive;
+    text-shadow: 1px 1px 1px #799bf0,
+        -1px -1px 1px #799bf0;
+
+
+
+}
+
+button:hover {
+    color: white;
+    box-shadow: 2px 2px 3px #083ab9,
+        2px -2px 3px #083ab9,
+        -2px 2px 3px #083ab9,
+        -2px -2px 3px #083ab9,
+        3px 3px 3px #0e4ae1,
+        -3px 3px 3px #0e4ae1,
+        3px -3px 3px #0e4ae1,
+        -3px -3px 3px #0e4ae1;
+}
+
+#invia {
+    font-size: 5mm;
+    color: #a0b2fd;
+    text-shadow: 1px 1px 1px #0a39f4,
+        1px 2px 1px #0a39f4,
+        2px 1px 1px #0a39f4,
+        1px -1px 1px #0a39f4,
+        -1px 1px 1px #0a39f4,
+        -1px -1px 1px #0a39f4;
+    font-family: cursive;
+
+}

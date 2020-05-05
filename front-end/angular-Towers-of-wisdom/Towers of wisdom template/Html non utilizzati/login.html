@@ -1,0 +1,123 @@
+<!DOCTYPEhtml>
+    <html>
+
+    <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link href="Css/login.css" type="text/css" rel="stylesheet">
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    <script src="Js/prova.js"></script>
+
+
+
+
+</head>
+
+<body id="">
+
+    <div>
+
+        <p id="title-3d" class="text-center">
+            Towers of wisdom
+            <i class="fas fa-fish">
+            </i>
+        </p>
+
+    </div>
+
+    <!-- Flex container con allineamento al centro di tutti gli elementi -->
+    <div id="panel" class="d-flex p-2 justify-content-center ">
+
+        <!--  bordi di bootsrapp rounded e 
+         background-->
+        <div class=" rounded border border-primary" style="background: #d4f4fb">
+
+            <!-- elementi flex in posizione di colonna che contiene gli elementi in maniera ordinata-->
+            <div class="d-flex flex-column">
+
+                <!--elemento flex-->
+                <div class="p-2">
+
+                    <form action="" method="">
+
+                        <h4>Utente</h4>
+
+                        <input type="text" placeholder="Inserisci nome utente" id="input_style" class="form-control-sm">
+
+                    </form>
+
+                </div>
+
+                <!--elemento flex-->
+                <div class="p-2">
+
+                    <form action="" method="">
+
+                        <h4>Password</h4>
+
+                        <input type="password" placeholder="Inserisci la password" id="input_style" class="form-control-sm">
+
+                    </form>
+
+                </div>
+
+                <!--elemento flex-->
+                <div class="p-2">
+
+                    <p style="width: 50mm; text-align: left;font-size: 4.7mm; position: relative;left: 10px; color: #2087ee;">Accedi con il tuo account oppure registrati.</p>
+
+                </div>
+
+                <!-- elementi flex in posizione a righe che contiene gli elementi in maniera ordinata-->
+                <div class="d-flex flex-row">
+
+                    <!--elemento flex-->
+                    <div class="p-2">
+
+                        <button type="submit" id="my" class="btn btn-outline-primary btn-md">Accedi</button>
+
+                    </div>
+
+                    <!--elemento flex-->
+                    <div class="p-2">
+
+                        <button type="button" class="btn btn-outline-primary btn-md" onclick="registrati()">Registrati</button>
+
+                    </div>
+
+                    <script>
+                        
+                        function registrati() {
+                            location.href = "registrati.html";
+                        }
+                        
+                    </script>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="info-icon" class="d-flex p-2 justify-content-end">
+
+        <div class="p-2">
+
+            <i class="fa fa-info-circle" style="color: #1160f2; font-size: 10mm;"></i>
+
+        </div>
+
+    </div>
+
+</body></html>
