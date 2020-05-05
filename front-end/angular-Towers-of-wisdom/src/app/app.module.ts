@@ -1,20 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
-
+import { AppRoutingRoutes } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AppComponent } from './app.component';
+import { ListagiocatoriComponent } from './listagiocatori/listagiocatori.component';
+import { FormgiocatoreComponent } from './formgiocatore/formgiocatore.component';
+import { GiocatoreService } from './service/giocatore-service.service';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegistrationComponent],
-  imports: [
-    BrowserModule,
-    // import HttpClientModule after BrowserModule.
-    HttpClientModule,
-  ],
-  providers: [],
+  declarations: [AppComponent, ListagiocatoriComponent, FormgiocatoreComponent],
+  imports: [BrowserModule, AppRoutingRoutes, HttpClientModule, FormsModule],
+  providers: [GiocatoreService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,7 +8,10 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ConfigService {
-  private urlApplication = 'http://localhost:8080/giocatori';
+  private urlApplication :String;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+this.urlApplication='http://localhost:8080/giocatori';
+
+  }
 }

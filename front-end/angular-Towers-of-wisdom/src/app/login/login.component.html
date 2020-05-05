@@ -1,29 +1,36 @@
-<div class="text-center">
-  <label class="label_font"
-    >Nome Utente:<input
-      type="text"
-      class="form-control"
-      (ngModel)="username"
-      placeholder="username" /></label
-  ><br />
-  <div *ngIf="username.length <= 8">
-    <p class="messaggio_alert" style="margin: 0px;">
-      Attenzione! Il nome utente deve contenere almeno 8 caratteri
-    </p>
-  </div>
+<!DOCTYPE html>
+<html>
+  <head> </head>
 
-  <label class="label_font"
-    >Password:<input
-      type="password"
-      class="form-control"
-      (ngModel)="password"
-      placeholder="password"
-  /></label>
-  <div *ngIf="password.length <= 8">
-    <p class="messaggio_alert">
-      Attenzione! La password deve contenere almeno 8 caratteri
-    </p>
-  </div>
+  <body id="background">
+    <div class="text-center">
+      <label class="label_font"
+        >Nome Utente:<input
+          type="text"
+          class="form-control"
+          (ngModel)="(username)"
+          placeholder="username" /></label
+      ><br />
+      <div *ngIf="username.length <= 8">
+        <p class="messaggio_alert" style="margin: 0px;">
+          Attenzione! Il nome utente deve contenere almeno 8 caratteri
+        </p>
+      </div>
 
-  <button type="submit" class="btn">Invia</button>
-</div>
+      <label class="label_font"
+        >Password:<input
+          type="password"
+          class="form-control"
+          (ngModel)="(password)"
+          placeholder="password"
+      /></label>
+      <div *ngIf="password.length <= 8">
+        <p class="messaggio_alert">
+          Attenzione! La password deve contenere almeno 8 caratteri
+        </p>
+      </div>
+
+      <button type="submit" class="btn">Invia</button>
+    </div>
+  </body>
+</html>

@@ -11,3 +11,16 @@
     font-weight: bolder;
 }
 
+#background{
+    background-image: url("../../assets/Images/sea-background-1980.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1366px 652px;
+    
+}
+
+body{
+    height: 571px;
+    margin: 0%;
+  }
+
