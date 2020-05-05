@@ -3,7 +3,7 @@
     >Nome Utente:<input
       type="text"
       class="form-control"
-      [(ngModel)]="username"
+      (ngModel)="username"
       placeholder="username" /></label
   ><br />
   <div *ngIf="username.length <= 8">
@@ -16,7 +16,7 @@
     >Password:<input
       type="password"
       class="form-control"
-      [(ngModel)]="password"
+      (ngModel)="password"
       placeholder="password"
   /></label>
   <div *ngIf="password.length <= 8">
