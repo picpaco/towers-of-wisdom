@@ -4,5 +4,5 @@
 - storico partite
 - diagramma delle classi
 - diagramma flussi dati 
-- diagramma database 
+- diagramma ER database 
 
