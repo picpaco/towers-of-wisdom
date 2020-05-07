@@ -1,3 +1,4 @@
 - Validazione utente e password: controllo con hashmap (chiave/valore - utente/password)
 - Individuare classi importanti(entità)
 - Ciclo di gioco (inizio, turno di gioco, condizioni di fine)
+- Prova modifica
