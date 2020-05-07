@@ -9,7 +9,6 @@ import { NgModule } from '@angular/core';
 
 
 import { PlayPageComponent } from './play-page/play-page.component';
-import { FinalPageComponent } from './final-page/final-page.component';
 import { DemoComponent } from './demo/demo.component';
 
 
@@ -23,7 +22,6 @@ import { DemoComponent } from './demo/demo.component';
       AppComponent,
       routingComponents,
       PlayPageComponent,
-      FinalPageComponent,
       DemoComponent
    ],
    imports: [
