@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListagiocatoriComponent } from './listagiocatori/listagiocatori.component';
 import { FormgiocatoreComponent } from './landing-page/formgiocatore/formgiocatore.component';
-import { HomePageComponent } from './home-page/home-page.component';
+
 import { LoginPageComponent } from './landing-page/login-page/login-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'demo', component:DemoComponent },
   { path: 'regole', component: RegoleGiocoComponent },
 
-  { path: 'home', component: HomePageComponent },
+
  
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -44,7 +44,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents = [ListagiocatoriComponent, 
                                   FormgiocatoreComponent, 
-                                  HomePageComponent, 
+                           
                                   LoginPageComponent,
                                   PageNotFoundComponent,
                                   LandingPageComponent,
