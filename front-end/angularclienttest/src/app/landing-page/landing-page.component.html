@@ -1,0 +1,81 @@
+<div class="container-fluid sfondo_landing">
+  <section id="title_section">
+    <div class="row container-fluid py-3">
+      <div class="col-12 title">
+
+        <p class="font_title"><img class="allineamento_img1" src="assets/images/pesciolini_title.png"> {{title}} <img
+            class="allineamento_img2" src="assets/images/pesciolini_title.png"></p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="introduzione">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 style="font-size: 30px;">Benvenuti nel fantastico mondo del gioco da tavolo!</h2>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+
+    <!--
+    <div class="d-flex flex-wrap justify-content-around">
+      <div>
+        <button routerLink="/regolegioco" class="btn btn-outline-primary mr-2 button">Regole del gioco</button>
+        <button routerLink="/demo" class="btn btn-outline-secondary mx-2 button">Demo</button>
+      </div>
+    </div>
+      <br>
+        <router-outlet></router-outlet>
+        -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="text-center list-inline py-3">
+          <li class="list-inline-item"><a routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info button"
+              (click)="nascondi()">Login</a></li>
+          <li class="list-inline-item"><a routerLink="/registrazione" *ngIf="bottoneLanding" class="btn btn-info button"
+              (click)="nascondi()">Registrati</a></li>
+          <li class="list-inline-item"><a routerLink="/regole" *ngIf="bottoneLanding" class="btn btn-info button">Regole
+              del gioco</a></li>
+          <li class="list-inline-item"><a routerLink="/demo" *ngIf="bottoneLanding" class="btn btn-info button">Demo</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+
+    <br>
+  </section>
+
+
+  
+      <router-outlet></router-outlet>
+      <div class="text-center">
+        <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button" (click)="visualizza()">Torna alla pagina precedente</a>
+      </div>
+ 
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+ 
+</div>

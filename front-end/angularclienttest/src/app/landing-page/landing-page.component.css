@@ -1,0 +1,54 @@
+.sfondo_landing{
+    background-image:URL("./assets/images/sea-background-1980.jpg");
+    background-size:cover;
+    height: 100%;
+    position: relative;
+  }
+
+@font-face{
+    font-family: 'manicsea';
+    src: url('C:/angularclient/src/assets/fonts/ManicSea.ttf') format('truetype');
+  }
+
+  .font_title{
+    font-size: 100px;
+}
+.title {
+    font-family: 'manicsea';
+    text-align: center;
+    padding: 0px;
+    color:#ee6409;
+    text-shadow: 3px 3px 3px #0c0b0b;
+}
+
+.allineamento_img1{
+     width:150px;
+    height: auto;
+}
+.allineamento_img2{
+     width:150px;
+    height: auto;
+    transform: rotateY(180deg);
+}
+
+.button{
+    text-align: center;
+    color: yellow;
+    box-shadow: 3px 3px 3px #000000;
+    border: solid 3px #0076a3;
+
+}
+
+#introduzione{
+    text-align: center;
+    font-family: 'manicsea';
+    font-weight: bolder;
+    color:#f7b017;
+    text-shadow: 1.5px 1.5px 1px #000000;
+}
+
+
+
+
+
+
