@@ -8,9 +8,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
-import { PlayPageComponent } from './play-page/play-page.component';
+
 import { DemoComponent } from './demo/demo.component';
-import {  GameComponent } from './game-menu/game.component'
+
+
 
 
 
@@ -22,9 +23,7 @@ import {  GameComponent } from './game-menu/game.component'
    declarations: [
       AppComponent,
       routingComponents,
-      PlayPageComponent,
       DemoComponent,
-      GameComponent
    ],
    imports: [
       BrowserModule,

@@ -10,6 +10,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DemoComponent } from './demo/demo.component';
 import { RegoleGiocoComponent } from './regole-gioco/regole-gioco.component';
 import {  GameComponent } from './game-menu/game.component'
+import { MatchPageComponent } from './match-page/match-page.component';
 
 
 
@@ -36,6 +37,7 @@ const routes: Routes = [
 
   { path: 'regole', component: RegoleGiocoComponent },
 
+  { path: 'match', component: MatchPageComponent},
  
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -58,5 +60,6 @@ export const routingComponents = [ListagiocatoriComponent,
                                   PageNotFoundComponent,
                                   LandingPageComponent,
                                   RegoleGiocoComponent,
+                                  MatchPageComponent,
                                   DemoComponent,
                                   ]

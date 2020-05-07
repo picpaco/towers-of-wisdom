@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PlayPageComponent } from './play-page.component';
+import { MatchPageComponent } from './match-page.component';
 
-describe('PlayPageComponent', () => {
-  let component: PlayPageComponent;
-  let fixture: ComponentFixture<PlayPageComponent>;
+describe('MatchPageComponent', () => {
+  let component: MatchPageComponent;
+  let fixture: ComponentFixture<MatchPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayPageComponent ]
+      declarations: [ MatchPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlayPageComponent);
+    fixture = TestBed.createComponent(MatchPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
