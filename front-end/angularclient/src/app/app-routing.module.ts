@@ -36,7 +36,6 @@ const routes: Routes = [
 
   { path: 'regole', component: RegoleGiocoComponent },
 
-
  
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -54,7 +53,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents = [ListagiocatoriComponent, 
                                   FormgiocatoreComponent, 
-                           
+                                  GameComponent,
                                   LoginPageComponent,
                                   PageNotFoundComponent,
                                   LandingPageComponent,
