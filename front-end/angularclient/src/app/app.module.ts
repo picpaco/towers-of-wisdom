@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { PlayPageComponent } from './play-page/play-page.component';
 import { FinalPageComponent } from './final-page/final-page.component';
 import { DemoComponent } from './demo/demo.component';
+import {  GameComponent } from './game-menu/game.component'
 
 
 
@@ -24,7 +25,8 @@ import { DemoComponent } from './demo/demo.component';
       routingComponents,
       PlayPageComponent,
       FinalPageComponent,
-      DemoComponent
+      DemoComponent,
+      GameComponent
    ],
    imports: [
       BrowserModule,

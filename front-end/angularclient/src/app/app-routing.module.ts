@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DemoComponent } from './demo/demo.component';
 import { RegoleGiocoComponent } from './regole-gioco/regole-gioco.component';
+import {  GameComponent } from './game-menu/game.component'
 
 
 
@@ -17,13 +18,22 @@ const routes: Routes = [
   {
     path: '',
     component: LandingPageComponent,
+
     children:[
+
       {path:'login', component: LoginPageComponent}, 
+
       {path:'registrazione', component: FormgiocatoreComponent},
+
     ]
   },
+
   { path: 'giocatori', component: ListagiocatoriComponent },
+
   { path: 'demo', component:DemoComponent },
+
+  { path: 'menu di gioco', component: GameComponent},
+
   { path: 'regole', component: RegoleGiocoComponent },
 
   { path: 'home', component: HomePageComponent },
