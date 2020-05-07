@@ -1,5 +1,5 @@
 export class Giocatore {
-    id: string;
-    name: string;
-    email: string;
+id: string;
+nome: string;
+email: string;
 }
