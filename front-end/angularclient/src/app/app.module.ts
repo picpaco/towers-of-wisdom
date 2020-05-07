@@ -23,13 +23,8 @@ import {  GameComponent } from './game-menu/game.component'
       AppComponent,
       routingComponents,
       PlayPageComponent,
-<<<<<<< HEAD
-      FinalPageComponent,
       DemoComponent,
       GameComponent
-=======
-      DemoComponent
->>>>>>> 8eb47fc73575bc4543b347db474d4dd158a8fb19
    ],
    imports: [
       BrowserModule,
