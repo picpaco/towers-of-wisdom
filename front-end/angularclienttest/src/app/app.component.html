@@ -1,20 +1,46 @@
+<!--
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="card bg-dark my-5">
         <div class="card-body">
+
           <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
           <ul class="text-center list-inline py-3">
-            <li class="list-inline-item">
-              <a routerLink="/giocatori" class="btn btn-info">Elenco giocatori</a>
-                </li>
-            <li class="list-inline-item">
-              <a routerLink="/aggiungigiocatore" class="btn btn-info">Aggiungi giocatore</a>
-                </li>
+            <li class="list-inline-item"><a routerLink="/giocatori" class="btn btn-info">Elencogiocatori</a></li>
+            <li class="list-inline-item"><a routerLink="/aggiungigiocatore" class="btn btninfo">Aggiungi giocatore</a></li>
           </ul>
+
         </div>
-      </div>
+
+    </div>
       <router-outlet></router-outlet>
     </div>
+
   </div>
 </div>
+-->
+
+
+
+
+<!--
+<div class="row">
+  <div class="col-md-12">
+    <ul class="text-center list-inline py-3">
+      <li class="list-inline-item"><a routerLink="/logingiocatore" class="btn btn-info button">Accesso Utente</a></li>
+      <li class="list-inline-item"><a routerLink="/aggiungigiocatore" class="btn btninfo button">Registra Utente</a></li>
+    </ul>
+
+
+
+    <router-outlet></router-outlet>
+
+  </div>
+</div>
+
+-->
+
+
+  <router-outlet></router-outlet>
+
