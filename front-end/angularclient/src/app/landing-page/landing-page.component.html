@@ -21,8 +21,8 @@
     <br>
     <br>
 
-
-    <!--
+  </section>
+  <!--
     <div class="d-flex flex-wrap justify-content-around">
       <div>
         <button routerLink="/regolegioco" class="btn btn-outline-primary mr-2 button">Regole del gioco</button>
@@ -32,7 +32,13 @@
       <br>
         <router-outlet></router-outlet>
         -->
+  <router-outlet></router-outlet>
+  <div class="text-center">
+    <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button" (click)="visualizza()">Torna alla pagina
+      precedente</a>
+  </div>
 
+  <section id='menu'>
     <div class="row">
       <div class="col-md-12">
         <ul class="text-center list-inline py-3">
@@ -50,26 +56,22 @@
 
       </div>
     </div>
-
-
-
-    <br>
-    <br>
-    <br>
-
-
-
-
-    <br>
   </section>
 
+  <br>
+  <br>
+  <br>
 
-  
-      <router-outlet></router-outlet>
-      <div class="text-center">
-        <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button" (click)="visualizza()">Torna alla pagina precedente</a>
-      </div>
- 
+
+
+
+  <br>
+
+
+
+
+
+
 
   <br>
   <br>
@@ -79,5 +81,5 @@
   <br>
   <br>
   <br>
- 
+
 </div>
