@@ -7,9 +7,7 @@
                         name="nome" placeholder="Inserisci il tuo nome" required #name="ngModel" /></label>
 
                 <div class="text-center">
-                    <label>
-                        <p [hidden]="!name.pristine" class="alert alert-danger">E' richiesto l'inserimento del nome</p>
-                    </label>
+                        <label [hidden]="!name.pristine" class="alert alert-danger">E' richiesto l'inserimento del nome</label>
                 </div>
             </div>
 
@@ -17,9 +15,9 @@
                 <label for="email">Email<input type="text" [(ngModel)]="giocatore.email" class="form-control" id="email" name="email" placeholder="Inserisci il tuo indirizzo email" required #email="ngModel" /></label>
 
                 <div class="text-center">
-                   <label><div [hidden]="!email.pristine" class="alert alert-danger">
+                   <label [hidden]="!email.pristine" class="alert alert-danger">
                         E' richiesto l'inserimento della email
-                    </div></label> 
+                    </label> 
                 </div>
 
             </div>

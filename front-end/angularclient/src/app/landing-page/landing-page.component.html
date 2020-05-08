@@ -33,20 +33,20 @@
         <router-outlet></router-outlet>
         -->
   <router-outlet></router-outlet>
-  <div class="text-center">
-    <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button" (click)="visualizza()">Torna alla pagina precedente</a>
+  <div class="text-right">
+    <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button_back" (click)="visualizza()">Torna alla pagina precedente</a>
   </div>
 
   <section id='menu'>
     <div class="row">
       <div class="col-md-12">
         <ul class="text-center list-inline py-3">
-          <li class="list-inline-item"><a routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info button"
+          <li class="list-inline-item"><a routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info button_menu"
               (click)="nascondi()">Login</a></li>
-          <li class="list-inline-item"><a routerLink="/registrazione" *ngIf="bottoneLanding" class="btn btn-info button"
+          <li class="list-inline-item"><a routerLink="/registrazione" *ngIf="bottoneLanding" class="btn btn-info button_menu"
               (click)="nascondi()">Registrati</a></li>
-          <li class="list-inline-item"><a routerLink="/regole" *ngIf="bottoneLanding" class="btn btn-info button">Regole del gioco</a></li>
-          <li class="list-inline-item"><a routerLink="/demo" *ngIf="bottoneLanding" class="btn btn-info button">Demo</a>
+          <li class="list-inline-item"><a routerLink="/regole" *ngIf="bottoneLanding" class="btn btn-info button_menu">Regole del gioco</a></li>
+          <li class="list-inline-item"><a routerLink="/demo" *ngIf="bottoneLanding" class="btn btn-info button_menu">Demo</a>
         </ul>
 
       </div>

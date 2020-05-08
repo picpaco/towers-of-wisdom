@@ -5,25 +5,26 @@
 }
 
 @font-face{
-    font-family: 'manicsea';
-    src: url('../../assets/fonts/ManicSea.ttf') format('truetype');
+    font-family: 'goiabada';
+    src: url('../../assets/fonts/GOIABADA.TTF') format('truetype');
   }
 
 
 .title {
     font-size: 70px;
-    font-family: 'manicsea';
+    font-family: 'goiabada';
     text-align: center;
     padding: 0px;
-    color:#ee6409;
-    text-shadow: 3px 3px 3px #0c0b0b;
+    color:#1407cc;
+    text-shadow: 3px 3px  #ffa4f7;
 }
 
 .font_istruzioni{
+    margin-top: 80px;
     text-justify: auto;
-    font-size: 25px;
+    font-size: 22px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color:#000000;
+    color:#ffa4f7;
 }
 
 .button{

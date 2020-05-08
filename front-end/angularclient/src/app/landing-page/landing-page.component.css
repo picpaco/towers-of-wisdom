@@ -6,6 +6,11 @@
   }
 
 @font-face{
+    font-family: 'goiabada';
+    src: url('../../assets/fonts/GOIABADA.TTF') format('truetype');
+  }
+
+  @font-face{
     font-family: 'manicsea';
     src: url('../../assets/fonts/ManicSea.ttf') format('truetype');
   }
@@ -14,11 +19,12 @@
     font-size: 100px;
 }
 .title {
-    font-family: 'manicsea';
+    font-style: oblique;
+    font-family: 'goiabada';
     text-align: center;
     padding: 0px;
-    color:#ee6409;
-    text-shadow: 3px 3px 3px #0c0b0b;
+    color:#1407cc;
+    text-shadow: 3px 3px  #ffa4f7;
 }
 
 .allineamento_img1{
@@ -31,26 +37,32 @@
     transform: rotateY(180deg);
 }
 
-.button{
+.button_menu{
+    font-size: large;
     text-align: center;
-    color: yellow;
-    box-shadow: 3px 3px 3px #000000;
+    color: #ffa4f7;
+    box-shadow: 1px 1px 3px #000000;
     border: solid 3px #0076a3;
+    margin: 50px;
 
+}
+
+.button_back{
+    margin-top:150px;
 }
 
 #introduzione{
     text-align: center;
-    font-family: 'manicsea';
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bolder;
-    color:#f7b017;
+    color:#ffa4f7;
     text-shadow: 1.5px 1.5px 1px #000000;
 }
 
 
 #menu{
     text-align: center;
-    font-family: 'manicsea';
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bolder;
     color:#f7b017;
     text-shadow: 1.5px 1.5px 1px #000000;

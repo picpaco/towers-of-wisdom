@@ -1,20 +1,46 @@
+<div class="container">
+   <div class="d-flex justify-content-center h-100">
+      <div class="card w-48 button_login">
+
+
+
+         <div class="input-group form-group">
+            <div class="input-group-prepend">
+               <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="username" placeholder="username">
+
+         </div>
+
+
+
+         <div class="input-group form-group">
+            <div class="input-group-prepend">
+               <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input type="password" class="form-control" [(ngModel)]="password" placeholder="password">
+         </div>
+
+
+
+
+      </div>
+   </div>
+</div>
+
+
+
 <div class="text-center">
 
-  <label class="label_font">Nome Utente:<input type="text" class="form-control" [(ngModel)]="username" placeholder="username"></label><br>
-  <div *ngIf="username.length<=8">
-     <p class="messaggio_alert" style="margin: 0px;"> Attenzione! Il nome utente deve contenere almeno 8 caratteri</p>
-  </div>
-
-  <label class="label_font">Password:<input type="password" class="form-control" [(ngModel)]="password" placeholder="password"></label>
-  <div *ngIf="password.length<=8">
-     <p class="messaggio_alert"> Attenzione! La password deve contenere almeno 8 caratteri</p>
-  </div>
-
-  <div class="row">
-     <div class="col-12">
-  <button type="submit" class="btn"> Invia</button>
-</div>
+   <div class="text-center">
+      <div *ngIf="username.length<=8 || password.length<=8">
+            <label class="alert alert-danger"> Attenzione! La username e la password devono contenere almeno 8 caratteri</label>
+         </div>
+      
    </div>
+
+
+   <label>Non hai un account?</label><a type="link" routerLink="/registrazione">Registrati</a>
 
 
 </div>
