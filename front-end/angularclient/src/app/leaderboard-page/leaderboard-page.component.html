@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link
+      href="./leaderboard-page.component.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+
+
+  </head>
+  <body>
+    <div class="table-responsive-md">
+      <table class="table table-lg table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col" >Id giocatore</th>
+            <th scope="col" >Nome</th>
+            <th scope="col" >Email</th>
+            <th scope="col">Punteggio Totale</th>
+          </tr>
+          <tr *ngFor="let giocatore of giocatori " >
+            <th scope="row">{{ giocatore.id }}</th>
+            <td>{{ giocatore.nome }}</td>
+            <td>
+              {{ giocatore.email
+              }}<!--era <a href="mailto:{{ giocatore.email }}">{{ giocatore.email }}</a>-->
+            </td>
+            <td>
+              {{ giocatore.punteggioTotale }}
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+</html>

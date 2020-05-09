@@ -1,0 +1,46 @@
+table {
+  background-image: url("../../assets/underwater-world-cartoon-vector-with-meduse.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+
+  height: 100%;
+}
+
+body, html {
+    height: 20%;
+  }
+
+
+@media only screen and (max-width: 440px) {
+  th {
+    font-size: 3.8mm;
+  }
+
+  td {
+    font-size: 3.5mm;
+  }
+}
+
+th {
+    /*titles of columns*/
+  color: rgb(119, 228, 255);
+  text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
+    -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238),
+    2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
+    -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
+}
+
+td {
+  /*values whithin columns*/
+  color: rgb(119, 228, 255);
+  text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
+    -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238),
+    2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
+    -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
+}
+
+th,
+td {
+  font-family: cursive;
+}
