@@ -7,21 +7,22 @@
       type="text/css"
       rel="stylesheet"
     />
-
-
   </head>
   <body>
-    <div class="table-responsive-md">
-      <table class="table table-lg table-bordered table-hover">
-        <thead>
-          <tr>
-            <th scope="col" >Id giocatore</th>
-            <th scope="col" >Nome</th>
-            <th scope="col" >Email</th>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg justify-content-center ">
+
+      <table class="table table-lg ">
+      
+            <th scope="col">Id giocatore</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
             <th scope="col">Punteggio Totale</th>
-          </tr>
-          <tr *ngFor="let giocatore of giocatori " >
-            <th scope="row">{{ giocatore.id }}</th>
+        
+        <tbody>
+          <tr *ngFor="let giocatore of giocatori">
+            <td scope="row">{{ giocatore.id }}</td>
             <td>{{ giocatore.nome }}</td>
             <td>
               {{ giocatore.email
@@ -31,8 +32,24 @@
               {{ giocatore.punteggioTotale }}
             </td>
           </tr>
-        </thead>
+          </tbody>
+        
       </table>
+      </div>
+      </div>
+    </div>
+
+    <div class="d-flex p-2 justify-content-center">
+      <div class="p-2">
+        <button routerLink="/menu di gioco">
+          Torna al menu
+        </button>
+      </div>
+      <div class="p-2">
+        <button routerLink="/">
+          Disconettiti
+        </button>
+      </div>
     </div>
   </body>
 </html>
