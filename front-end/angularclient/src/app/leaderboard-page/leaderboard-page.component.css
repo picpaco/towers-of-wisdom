@@ -1,5 +1,5 @@
 table {
-  background-image: url("../../assets/underwater-world-cartoon-vector-with-meduse.jpg");
+  background-image: url("../../assets/pictures_of_leaderboard_page/underwater-world-cartoon-vector-with-meduse.jpg");
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
@@ -7,10 +7,10 @@ table {
   height: 100%;
 }
 
-body, html {
-    height: 20%;
-  }
-
+body,
+html {
+  height: 20%;
+}
 
 @media only screen and (max-width: 440px) {
   th {
@@ -23,7 +23,7 @@ body, html {
 }
 
 th {
-    /*titles of columns*/
+  /*titles of columns*/
   color: rgb(119, 228, 255);
   text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
     -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238),
