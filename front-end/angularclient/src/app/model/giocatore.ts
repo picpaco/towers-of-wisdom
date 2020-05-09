@@ -1,5 +1,6 @@
 export class Giocatore {
-id: string;
-nome: string;
-email: string;
+  id: string;
+  nome: string;
+  email: string;
+  punteggioTotale: number;
 }
