@@ -10,9 +10,8 @@ import { getMaxListeners } from "process";
   styleUrls: ["./leaderboard-page.component.css"],
 })
 export class LeaderboardPageComponent implements OnInit {
-  
   public giocatori: Giocatore[];
-
+  public classifica: Giocatore[];
 
   constructor(private giocatoreService: GiocatoreService) {}
 
@@ -20,7 +19,15 @@ export class LeaderboardPageComponent implements OnInit {
     this.giocatoreService.findAll().subscribe((data) => {
       this.giocatori = data;
     });
+  }
 
-
+  public ordinaClassifica() {//funzione per ordinare i giocatori in ordine decrescente
+    this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
+      if (a.punteggioTotale > b.punteggioTotale) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
   }
 }
