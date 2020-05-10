@@ -14,7 +14,8 @@ export class LeaderboardPageComponent implements OnInit {
 
   public classifica: Giocatore[];
 
-  
+
+  public show =false;
 
   constructor(private giocatoreService: GiocatoreService) {}
 
@@ -27,7 +28,7 @@ export class LeaderboardPageComponent implements OnInit {
 
   public ordinaClassifica(): void {
     //funzione per ordinare i giocatori in ordine decrescente
-
+    
     this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
       if (a.punteggioTotale > b.punteggioTotale) {
         return -1;
@@ -45,9 +46,11 @@ export class LeaderboardPageComponent implements OnInit {
       this.giocatori[0].nome !== "" &&
       this.giocatori[0].nome !== null
     ) {
+      this.show=false;
       this.ordinaClassifica();
       return true;
     }else{
+      this.show=true;
       return false;
     }
     }
