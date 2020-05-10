@@ -1,4 +1,8 @@
-table {/*stile tabella*/
+@import url("https://fonts.googleapis.com/css?family=Coda+Caption:800");
+
+
+table {
+  /*stile tabella*/
   background-image: url("../../assets/pictures_of_leaderboard_page/underwater-world-cartoon-vector-with-meduse.jpg");
   background-repeat: no-repeat;
   background-position: top;
@@ -8,10 +12,26 @@ table {/*stile tabella*/
   transition: 0.6s;
 }
 
+
+
+.title {
+  font-size: 15mm;
+  font-family: "Coda Caption", sans-serif;
+  color: #61d5ea;
+  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+    -1px -1px 3px #1871f5;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  transform: perspective(350px) scaleY(1.5) rotateX(-30deg);
+  text-align: center;
+  padding-top: 10mm;
+}
+
 table,
-button {/*posizione della taballa e dei due tasti*/
+button {
+  /*posizione della taballa e dei due tasti*/
   position: relative;
-  top: 100px;
+  top: 50px;
 }
 
 button {
@@ -37,7 +57,8 @@ button:hover {
   color: aquamarine;
 }
 
-body {/*sfondo dell'intero schermo*/
+body {
+  /*sfondo dell'intero schermo*/
   background-image: linear-gradient(
     to top left,
     rgb(52, 73, 255),
@@ -61,14 +82,12 @@ td {
     2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
     -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
   padding: 0.5rem;
-
 }
 
-th{
+th {
   font-size: 6mm;
-  
 }
-td{
+td {
   font-size: 4.5mm;
 }
 
@@ -77,17 +96,15 @@ html {
 }
 
 @media only screen and (max-width: 535px) {
+  button {
+    font-size: 5mm;
+    height: 15mm;
+    width: 50mm;
+  }
 
-button{
-  font-size:5mm;
-  height: 15mm;
-  width: 50mm;
-}
-
-th{
-  font-size: 4.5mm;
-}
-
+  th {
+    font-size: 4.5mm;
+  }
 }
 
 @media only screen and (max-width: 440px) {
@@ -99,12 +116,25 @@ th{
     font-size: 3.5mm;
   }
 
-  button{
-    font-size:4.5mm;
+  button {
+    font-size: 4.5mm;
     height: 12mm;
     width: 40mm;
   }
+
+  .title {
+    font-size: 6mm;
+  }
 }
+
+@media only screen and (max-width: 670px) {
+
+  .title{
+    font-size: 12mm;
+  }
+
+}
+
 
 @media only screen and (max-width: 375px) {
   th {
@@ -119,10 +149,14 @@ th{
     width: 160px;
   }
 
-  button{
-    font-size:4.0mm;
+  button {
+    font-size: 4mm;
     height: 11.5mm;
     width: 35mm;
+  }
+
+  .title {
+    font-size: 8mm;
   }
 }
 
@@ -139,9 +173,12 @@ th{
     width: 140px;
   }
 
-  button{
-    font-size:3.6mm;
-    height: 11.0mm;
+  button {
+    font-size: 3.6mm;
+    height: 11mm;
     width: 30mm;
+  }
+  .title {
+    font-size: 4mm;
   }
 }
