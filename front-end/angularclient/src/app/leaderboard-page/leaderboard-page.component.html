@@ -24,11 +24,11 @@
         </div>
       </div>
     </div>
-
+   {{mostraTabella()}}
     <div class="container">
       <div class="row">
         <div class="col-lg justify-content-center">
-          <div *ngIf="mostraTabella();">
+          <div *ngIf="show">
           <table class="table table-lg" >
             <tr>
               <th scope="col">Nome</th>
@@ -52,7 +52,7 @@
           </table>
           </div>
           
-          <div *ngIf="show"> 
+          <div *ngIf="!(show)"> 
             <h2 style="color: red;">
               Spiacenti non ci sono giocatori registrati al momento.
             </h2>
