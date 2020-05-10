@@ -11,7 +11,10 @@ import { getMaxListeners } from "process";
 })
 export class LeaderboardPageComponent implements OnInit {
   public giocatori: Giocatore[];
+
   public classifica: Giocatore[];
+
+  
 
   constructor(private giocatoreService: GiocatoreService) {}
 
@@ -19,19 +22,34 @@ export class LeaderboardPageComponent implements OnInit {
     this.giocatoreService.findAll().subscribe((data) => {
       this.giocatori = data;
     });
+
   }
 
-  public ordinaClassifica() {
+  public ordinaClassifica(): void {
     //funzione per ordinare i giocatori in ordine decrescente
 
-    if (this.giocatori !== null) {
-      this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
-        if (a.punteggioTotale > b.punteggioTotale) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
+    this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
+      if (a.punteggioTotale > b.punteggioTotale) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  }
+
+
+
+  public mostraTabella(){
+    if (
+      this.giocatori.length > 0 &&
+      this.giocatori[0].nome !== "" &&
+      this.giocatori[0].nome !== null
+    ) {
+      this.ordinaClassifica();
+      return true;
+    }else{
+      return false;
+    }
     }
   }
-}
+

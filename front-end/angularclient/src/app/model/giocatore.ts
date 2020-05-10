@@ -3,4 +3,6 @@ export class Giocatore {
   nome: string;
   email: string;
   punteggioTotale: number;
+  partiteVinte : number;
+  partitePerse : number;
 }
