@@ -11,6 +11,7 @@ import { DemoComponent } from './demo/demo.component';
 import { RegoleGiocoComponent } from './regole-gioco/regole-gioco.component';
 import {  GameComponent } from './game-menu/game.component'
 import { MatchPageComponent } from './match-page/match-page.component';
+import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component'
 
 
 
@@ -38,8 +39,11 @@ const routes: Routes = [
   { path: 'regole', component: RegoleGiocoComponent },
 
   { path: 'match', component: MatchPageComponent},
+
+  { path: 'risultati finali', component: LeaderboardPageComponent},
  
   { path: '**', component: PageNotFoundComponent}
+
 ];
 
 
@@ -61,5 +65,6 @@ export const routingComponents = [ListagiocatoriComponent,
                                   LandingPageComponent,
                                   RegoleGiocoComponent,
                                   MatchPageComponent,
+                                  LeaderboardPageComponent,
                                   DemoComponent,
                                   ]

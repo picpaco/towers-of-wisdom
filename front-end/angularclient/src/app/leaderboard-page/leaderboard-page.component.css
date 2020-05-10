@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css?family=Coda+Caption:800");
+
+
+table {
+  /*stile tabella*/
+  background-image: url("../../assets/pictures_of_leaderboard_page/underwater-world-cartoon-vector-with-meduse.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 2mm;
+  text-align: center;
+  transition: 0.6s;
+}
+
+.title {
+  font-size: 15mm;
+  font-family: "Coda Caption", sans-serif;
+  color: #61d5ea;
+  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+    -1px -1px 3px #1871f5;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  transform: perspective(350px) scaleY(1.5) rotateX(-30deg);
+  text-align: center;
+  padding-top: 10mm;
+}
+
+table,
+button {
+  /*posizione della taballa e dei due tasti*/
+  position: relative;
+  top: 50px;
+}
+
+button {
+  font-family: cursive;
+  color: white;
+  font-size: 6mm;
+  text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
+    -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238);
+  background-image: linear-gradient(
+    to top left,
+    rgb(8, 107, 255),
+    rgb(71, 128, 252)
+  );
+  border-radius: 3mm;
+  border: transparent;
+  height: 15mm;
+  width: 60mm;
+  transition: 0.6s;
+}
+button:hover {
+  box-shadow: 1px 1px 5px white, -1px 1px 5px white, -1px -1px 5px white,
+    1px -1px 5px white;
+  color: aquamarine;
+}
+
+body {
+  /*sfondo dell'intero schermo*/
+  background-image: linear-gradient(
+    to top left,
+    rgb(52, 73, 255),
+    rgb(137, 253, 253),
+    rgb(51, 144, 250)
+  );
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 2200px 2200px;
+  height: 625px;
+}
+
+tr,
+th,
+td {
+  border: 1px solid transparent;
+  font-family: cursive;
+  color: rgb(119, 228, 255);
+  text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
+    -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238),
+    2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
+    -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
+  padding: 0.5rem;
+}
+
+th {
+  font-size: 6.5mm;
+}
+td {
+  font-size: 5mm;
+}
+
+html {
+  height: 100%;
+}
+
+@media only screen and (max-width: 535px) {
+  button {
+    font-size: 5mm;
+    height: 15mm;
+    width: 50mm;
+  }
+
+  th {
+    font-size: 4.5mm;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  th {
+    font-size: 3.8mm;
+  }
+
+  td {
+    font-size: 3.5mm;
+  }
+
+  button {
+    font-size: 4.5mm;
+    height: 12mm;
+    width: 40mm;
+  }
+
+  .title {
+    font-size: 6mm;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+
+  .title{
+    font-size: 12mm;
+  }
+
+}
+
+
+@media only screen and (max-width: 375px) {
+  th {
+    font-size: 3.4mm;
+  }
+
+  td {
+    font-size: 2.9mm;
+  }
+
+  button {
+    font-size: 4mm;
+    height: 11.5mm;
+    width: 35mm;
+  }
+
+  .title {
+    font-size: 8mm;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  th {
+    font-size: 3.0mm;
+  }
+
+  td {
+    font-size: 2.6mm;
+  }
+
+  button {
+    font-size: 3.6mm;
+    height: 11mm;
+    width: 30mm;
+  }
+  .title {
+    font-size: 4mm;
+  }
+}
