@@ -4,6 +4,8 @@ table {/*stile tabella*/
   background-position: top;
   background-size: cover;
   border-radius: 2mm;
+  text-align: center;
+  transition: 0.6s;
 }
 
 table,
@@ -59,6 +61,15 @@ td {
     2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
     -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
   padding: 0.5rem;
+
+}
+
+th{
+  font-size: 6mm;
+  
+}
+td{
+  font-size: 4.5mm;
 }
 
 html {
@@ -71,6 +82,10 @@ button{
   font-size:5mm;
   height: 15mm;
   width: 50mm;
+}
+
+th{
+  font-size: 4.5mm;
 }
 
 }
@@ -102,5 +117,31 @@ button{
 
   table {
     width: 160px;
+  }
+
+  button{
+    font-size:4.0mm;
+    height: 11.5mm;
+    width: 35mm;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  th {
+    font-size: 2.9mm;
+  }
+
+  td {
+    font-size: 2.6mm;
+  }
+
+  table {
+    width: 140px;
+  }
+
+  button{
+    font-size:3.6mm;
+    height: 11.0mm;
+    width: 30mm;
   }
 }

@@ -21,13 +21,17 @@ export class LeaderboardPageComponent implements OnInit {
     });
   }
 
-  public ordinaClassifica() {//funzione per ordinare i giocatori in ordine decrescente
-    this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
-      if (a.punteggioTotale > b.punteggioTotale) {
-        return -1;
-      } else {
-        return 1;
-      }
-    });
+  public ordinaClassifica() {
+    //funzione per ordinare i giocatori in ordine decrescente
+
+    if (this.giocatori !== null) {
+      this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
+        if (a.punteggioTotale > b.punteggioTotale) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+    }
   }
 }
