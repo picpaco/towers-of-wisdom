@@ -20,20 +20,22 @@
     <div class="d-flex p-2 justify-content-center">
       <div class="flex-row">
         <div class="p-2">
-          <p class="title">Towers of wisdom</p>
+          <p class="title">Classifica</p>
         </div>
       </div>
     </div>
-
+   {{mostraTabella()}}
     <div class="container">
       <div class="row">
         <div class="col-lg justify-content-center">
-          <div *ngIf="mostraTabella();">
+          <div *ngIf="show">
           <table class="table table-lg" >
             <tr>
               <th scope="col">Nome</th>
               <th scope="col">Vittorie</th>
               <th scope="col">Sconfitte</th>
+              <th scope="col">Partite giocate</th>
+              <th scope="col">Percentuale Vittorie</th>
               <th scope="col">Punteggio Totale</th>
             </tr>
             <tbody>
@@ -44,6 +46,12 @@
                   {{ giocatore.partitePerse
                   }}<!--era <a href="mailto:{{ giocatore.email }}">{{ giocatore.email }}</a>-->
                 </td>
+                <td>{{ giocatore.partiteGiocate }}
+
+                </td>
+                <td>
+                  {{ giocatore.percentualeVittorie }}
+                </td>
                 <td>
                   {{ giocatore.punteggioTotale }}
                 </td>
@@ -52,8 +60,8 @@
           </table>
           </div>
           
-          <div *ngIf="show"> 
-            <h2 style="color: red;">
+          <div *ngIf="!(show)" class="p-2"> 
+            <h2 style="color: red; font-family: cursive; text-align: center;">
               Spiacenti non ci sono giocatori registrati al momento.
             </h2>
           </div>

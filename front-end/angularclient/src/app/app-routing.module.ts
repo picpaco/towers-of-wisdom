@@ -34,13 +34,13 @@ const routes: Routes = [
 
   { path: 'demo', component:DemoComponent },
 
-  { path: 'menu di gioco', component: GameComponent},
+  { path: 'menu-di-gioco', component: GameComponent},
 
   { path: 'regole', component: RegoleGiocoComponent },
 
   { path: 'match', component: MatchPageComponent},
 
-  { path: 'risultati finali', component: LeaderboardPageComponent},
+  { path: 'risultati-finali', component: LeaderboardPageComponent},
  
   { path: '**', component: PageNotFoundComponent}
 

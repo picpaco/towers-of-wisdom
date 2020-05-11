@@ -14,8 +14,7 @@ export class LeaderboardPageComponent implements OnInit {
 
   public classifica: Giocatore[];
 
-
-  public show =false;
+  public show :Boolean;
 
   constructor(private giocatoreService: GiocatoreService) {}
 
@@ -23,12 +22,12 @@ export class LeaderboardPageComponent implements OnInit {
     this.giocatoreService.findAll().subscribe((data) => {
       this.giocatori = data;
     });
-
+    
   }
 
   public ordinaClassifica(): void {
     //funzione per ordinare i giocatori in ordine decrescente
-    
+
     this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
       if (a.punteggioTotale > b.punteggioTotale) {
         return -1;
@@ -38,21 +37,27 @@ export class LeaderboardPageComponent implements OnInit {
     });
   }
 
-
-
-  public mostraTabella(){
+  public mostraTabella() {
+    
     if (
       this.giocatori.length > 0 &&
-      this.giocatori[0].nome !== "" &&
-      this.giocatori[0].nome !== null
+      typeof this.giocatori!==undefined &&
+      this.giocatori[0]!==null
     ) {
-      this.show=false;
+      this.show = true;
+      this.percentualeVittorie();
       this.ordinaClassifica();
-      return true;
-    }else{
-      this.show=true;
-      return false;
-    }
+    } else {
+      this.show = false;
     }
   }
 
+  public percentualeVittorie(){
+
+    this.giocatori.forEach( giocatore  => {
+      giocatore.percentualeVittorie=((giocatore.partiteVinte/giocatore.partiteGiocate)*100).toFixed()+"%";
+    });
+
+  }
+  
+}
