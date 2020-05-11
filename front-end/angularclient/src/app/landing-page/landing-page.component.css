@@ -6,8 +6,8 @@
   }
 
 @font-face{
-    font-family: 'goiabada';
-    src: url('../../assets/fonts/GOIABADA.TTF') format('truetype');
+    font-family: 'manicSea';
+    src: url('../../assets/fonts/ManicSea.ttf') format('truetype');
   }
 
   @font-face{
@@ -19,12 +19,12 @@
     font-size: 100px;
 }
 .title {
-    font-style: oblique;
-    font-family: 'goiabada';
+    font-style: normal;
+    font-family: 'manicSea';
     text-align: center;
     padding: 0px;
-    color:#1407cc;
-    text-shadow: 3px 3px  #ffa4f7;
+    color:#6af5ff;
+    text-shadow: 3px 3px 3px  #162451, -3px 3px 3px  #162451, 3px -3px 3px  #162451,-3px -3px 3px  #162451;
 }
 
 .allineamento_img1{
@@ -38,14 +38,34 @@
 }
 
 .button_menu{
-    font-size: large;
+    /*settagio dei due tasti-immagini dimensione,stile,effetti*/
+    color: #00a2ff;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
     text-align: center;
-    color: #ffa4f7;
-    box-shadow: 1px 1px 3px #000000;
-    border: solid 3px #0076a3;
+    width: 60mm;
+    height: 30mm;
+    border-radius: 3mm;
     margin: 50px;
-
+    font-family: cursive;
+    font-size: 7.5mm;
+    text-shadow: 1px 1px 3px #1345eb, -1px 1px 3px #1345eb, 1px -1px 3px #1345eb,
+      -1px -1px 3px #1345eb;
+    box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+      -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+      2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+    transition-duration: 0.4s;
 }
+
+.button_menu:hover {
+    box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+      -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+      2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+    color: #16b4f7;
+    background-color:#6af5ff ;
+  }
 
 .button_back{
     margin-top:150px;
@@ -53,10 +73,10 @@
 
 #introduzione{
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'manicSea';
     font-weight: bolder;
-    color:#ffa4f7;
-    text-shadow: 1.5px 1.5px 1px #000000;
+    color:#6af5ff;
+    text-shadow: 1.5px 1.5px 1px #162451;
 }
 
 
@@ -67,6 +87,11 @@
     color:#f7b017;
     text-shadow: 1.5px 1.5px 1px #000000;
 }
+
+
+
+  
+   
 
 
 

@@ -3,8 +3,8 @@
     <div class="row container-fluid py-3">
       <div class="col-12 title">
 
-        <p class="font_title"><img class="allineamento_img1" src="assets/images/pesciolini_title.png"> {{title}} <img
-            class="allineamento_img2" src="assets/images/pesciolini_title.png"></p>
+        <p class="font_title"><img class="allineamento_img1" src="assets/images/stellemarine.png"> {{title}} <img
+            class="allineamento_img2" src="assets/images/stellemarine.png"></p>
 
       </div>
     </div>
@@ -14,9 +14,7 @@
   <section id="introduzione">
     <div class="row">
       <div class="col-md-12">
-        <h2 style="font-size: 30px;">Benvenuti a tutti!</h2>
-        <h2 style="font-size: 25px;">Questo è un gioco di carte che renderà la vostra partita,</h2>
-        <h2 style="font-size: 25px;">un'esperienza estremamente coinvolgente!</h2>
+        <h2 style="font-size: 30px;">Gioco di carte strategico per due persone</h2>
       </div>
     </div>
 
@@ -39,16 +37,17 @@
     <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button_back" (click)="visualizza()">Torna alla pagina precedente</a>
   </div>
 
+
   <section id='menu'>
     <div class="row">
       <div class="col-md-12">
         <ul class="text-center list-inline py-3">
-          <li class="list-inline-item"><a routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info button_menu"
-              (click)="nascondi()">Login</a></li>
-          <li class="list-inline-item"><a routerLink="/registrazione" *ngIf="bottoneLanding" class="btn btn-info button_menu"
-              (click)="nascondi()">Registrati</a></li>
-          <li class="list-inline-item"><a routerLink="/regole" *ngIf="bottoneLanding" class="btn btn-info button_menu">Regole del gioco</a></li>
-          <li class="list-inline-item"><a routerLink="/risultati finali" *ngIf="bottoneLanding" class="btn btn-info button_menu">Demo</a>
+          <li class="list-inline-item"><button routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info button_menu mr-4 "
+              (click)="nascondi()">Login</button></li>
+          <li class="list-inline-item"><button routerLink="/registrazione" *ngIf="bottoneLanding" class="btn btn-info button_menu mr-4"
+              (click)="nascondi()">Registrati</button></li>
+          <li class="list-inline-item"><button routerLink="/regole" *ngIf="bottoneLanding" class="btn btn-info button_menu mr-4">Regole del gioco</button></li>
+          <li class="list-inline-item"><button routerLink="/risultati finali" *ngIf="bottoneLanding" class="btn btn-info button_menu">Demo</button>
         </ul>
 
       </div>
