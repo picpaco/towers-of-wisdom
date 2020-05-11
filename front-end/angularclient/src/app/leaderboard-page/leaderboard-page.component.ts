@@ -45,10 +45,19 @@ export class LeaderboardPageComponent implements OnInit {
       this.giocatori[0]!==null
     ) {
       this.show = true;
+      this.percentualeVittorie();
       this.ordinaClassifica();
     } else {
       this.show = false;
     }
+  }
+
+  public percentualeVittorie(){
+
+    this.giocatori.forEach( giocatore  => {
+      giocatore.percentualeVittorie=((giocatore.partiteVinte/giocatore.partiteGiocate)*100).toFixed()+"%";
+    });
+
   }
   
 }
