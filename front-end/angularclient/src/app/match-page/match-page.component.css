@@ -1,0 +1,59 @@
+body {
+  background-image: url("../../assets/pictures_of_match/caverna-marina.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 1200px;
+}
+
+html {
+  height: 100%;
+}
+
+.title {
+  font-size: 18mm;
+  font-family: cursive;
+  color: #50d9f1;
+  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+    -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
+    2px -2px 3px #1871f5, -2px -2px 3px #1871f5;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding-top: 5mm;
+}
+
+.panel-game {
+  border: 1px solid rgb(0, 255, 213);
+  border-top-left-radius: 3mm;
+  border-bottom-left-radius: 3mm;
+  border-right: 1px solid rgb(0, 255, 213);
+  width: 210mm;
+  height: 160mm;
+  box-shadow: 1px 1px 3px rgb(81, 200, 247),
+  1px -1px 3px rgb(81, 200, 247), -1px 1px 3px rgb(81, 200, 247),
+  -1px -1px 3px rgb(81, 200, 247), 2px 1px 3px rgba(0, 77, 243),
+  2px -2px 3px rgba(0, 77, 243), -2px 2px 3px rgba(0, 77, 243),
+  -2px -2px 3px rgba(0, 77, 243),3px 3px 3px rgb(81, 200, 247),
+  3px -3px 3px rgb(81, 200, 247), -3px 3px 3px rgb(81, 200, 247),
+  -3px -3px 3px rgb(81, 200, 247);
+}
+.panel-chat {
+  border: 1px solid rgb(0, 255, 213);
+  border-top-right-radius: 3mm;
+  border-bottom-right-radius: 3mm;
+  border-left: 1px solid rgb(0, 255, 213);
+  width: 35mm;
+  height: 160mm;
+  box-shadow: 1px 1px 3px rgb(81, 200, 247),
+    1px -1px 3px rgb(81, 200, 247), -1px 1px 3px rgb(81, 200, 247),
+    -1px -1px 3px rgb(81, 200, 247), 2px 1px 3px rgba(25, 93, 240, 0.856),
+    2px -2px 3px rgba(0, 77, 243), -2px 2px 3px rgba(0, 77, 243),
+    -2px -2px 3px rgba(0, 77, 243),3px 3px 3px rgb(81, 200, 247),
+    3px -3px 3px rgb(81, 200, 247), -3px 3px 3px rgb(81, 200, 247),
+    -3px -3px 3px rgb(81, 200, 247);
+}
+
+#contenuto {
+  padding-top: 15mm;
+}
