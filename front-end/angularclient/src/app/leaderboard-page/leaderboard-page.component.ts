@@ -14,7 +14,7 @@ export class LeaderboardPageComponent implements OnInit {
 
   public classifica: Giocatore[];
 
-  public show = true;
+  public show :Boolean;
 
   constructor(private giocatoreService: GiocatoreService) {}
 
@@ -23,7 +23,6 @@ export class LeaderboardPageComponent implements OnInit {
       this.giocatori = data;
     });
     
-    this.mostraTabella();
   }
 
   public ordinaClassifica(): void {
@@ -39,10 +38,11 @@ export class LeaderboardPageComponent implements OnInit {
   }
 
   public mostraTabella() {
+    
     if (
       this.giocatori.length > 0 &&
       typeof this.giocatori!==undefined &&
-      this.giocatori!==null
+      this.giocatori[0]!==null
     ) {
       this.show = true;
       this.ordinaClassifica();
