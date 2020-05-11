@@ -34,7 +34,6 @@
               <th scope="col">Nome</th>
               <th scope="col">Vittorie</th>
               <th scope="col">Sconfitte</th>
-              <th scope="col">Partite giocate</th>
               <th scope="col">Percentuale Vittorie</th>
               <th scope="col">Punteggio Totale</th>
             </tr>
@@ -45,9 +44,6 @@
                 <td>
                   {{ giocatore.partitePerse
                   }}<!--era <a href="mailto:{{ giocatore.email }}">{{ giocatore.email }}</a>-->
-                </td>
-                <td>{{ giocatore.partiteGiocate }}
-
                 </td>
                 <td>
                   {{ giocatore.percentualeVittorie }}
@@ -72,7 +68,7 @@
 
     <div class="d-flex p-2 justify-content-center">
       <div class="p-2">
-        <button routerLink="/menu di gioco">
+        <button routerLink="/menu-di-gioco">
           Torna al menu
         </button>
       </div>
