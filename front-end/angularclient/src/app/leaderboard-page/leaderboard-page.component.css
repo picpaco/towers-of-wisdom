@@ -3,13 +3,21 @@
 
 table {
   /*stile tabella*/
-  background-image: url("../../assets/pictures_of_leaderboard_page/underwater-world-cartoon-vector-with-meduse.jpg");
+  background-image:linear-gradient(to top left,rgb(93, 213, 250),rgb(67, 160, 247),rgb(109, 171, 241));
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
   border-radius: 2mm;
   text-align: center;
   transition: 0.6s;
+  box-shadow: 
+  -1px -1px 3px rgb(126, 243, 247),
+  -1px 1px 3px rgb(126, 243, 247),
+  1px 1px 3px rgb(126, 243, 247),
+  1px -1px 3px rgb(126, 243, 247);
+
+
+  border :0px solid transparent;
 }
 
 .title {
@@ -57,22 +65,17 @@ button:hover {
 
 body {
   /*sfondo dell'intero schermo*/
-  background-image: linear-gradient(
-    to top left,
-    rgb(52, 73, 255),
-    rgb(137, 253, 253),
-    rgb(51, 144, 250)
-  );
+  background-image: url("../../assets/pictures_of_leaderboard_page/underwater-world-cartoon-vector-with-meduse.jpg");
   background-repeat: no-repeat;
   background-position: top;
-  background-size: 2200px 2200px;
+  background-size: cover;
   height: 625px;
 }
 
 tr,
 th,
 td {
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   font-family: cursive;
   color: rgb(119, 228, 255);
   text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
