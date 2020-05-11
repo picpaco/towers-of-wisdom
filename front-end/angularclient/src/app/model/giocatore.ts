@@ -5,4 +5,6 @@ export class Giocatore {
   punteggioTotale: number;
   partiteVinte : number;
   partitePerse : number;
+  percentualeVittorie :number;
+  partiteGiocate : number;
 }

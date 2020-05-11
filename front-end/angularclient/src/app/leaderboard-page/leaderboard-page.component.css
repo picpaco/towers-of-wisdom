@@ -1,36 +1,39 @@
 @import url("https://fonts.googleapis.com/css?family=Coda+Caption:800");
 
-
 table {
   /*stile tabella*/
-  background-image:linear-gradient(to top left,rgb(93, 213, 250),rgb(67, 160, 247),rgb(109, 171, 241));
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
-  border-radius: 2mm;
+  background-image: linear-gradient(
+    to top left,
+    rgba(53, 184, 224, 0.644),
+    rgba(118, 206, 247, 0.644),
+    
+    rgba(53, 184, 224, 0.644)
+  );
+  border-radius: 3mm;
   text-align: center;
   transition: 0.6s;
-  box-shadow: 
-  -1px -1px 3px rgb(126, 243, 247),
-  -1px 1px 3px rgb(126, 243, 247),
-  1px 1px 3px rgb(126, 243, 247),
-  1px -1px 3px rgb(126, 243, 247);
-
-
-  border :0px solid transparent;
+  box-shadow: -1px -1px 3px rgb(126, 243, 247),
+   -1px 1px 3px rgb(126, 243, 247),
+    1px 1px 3px rgb(126, 243, 247),
+     1px -1px 3px rgb(126, 243, 247);
+    width:100%;
+    border:transparent;
 }
 
 .title {
   font-size: 15mm;
-  font-family: "Coda Caption", sans-serif;
+  font-family: "Coda Caption", cursive;
   color: #61d5ea;
   text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
     -1px -1px 3px #1871f5;
   line-height: 1;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.1em;
   transform: perspective(350px) scaleY(1.5) rotateX(-30deg);
   text-align: center;
-  padding-top: 10mm;
+  padding-top: 5mm;
+  position: relative;
+  top:10mm;
+  
 }
 
 table,
@@ -75,7 +78,7 @@ body {
 tr,
 th,
 td {
-  border: 0px solid transparent;
+  border:transparent;
   font-family: cursive;
   color: rgb(119, 228, 255);
   text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
@@ -86,10 +89,13 @@ td {
 }
 
 th {
-  font-size: 6.5mm;
+  font-size: 7mm;
+  
 }
 td {
-  font-size: 5mm;
+  font-size: 5.5mm;
+  border-top: 2px solid rgb(108, 205, 250);
+  
 }
 
 html {
@@ -129,13 +135,10 @@ html {
 }
 
 @media only screen and (max-width: 670px) {
-
-  .title{
+  .title {
     font-size: 12mm;
   }
-
 }
-
 
 @media only screen and (max-width: 375px) {
   th {
@@ -159,7 +162,7 @@ html {
 
 @media only screen and (max-width: 330px) {
   th {
-    font-size: 3.0mm;
+    font-size: 3mm;
   }
 
   td {

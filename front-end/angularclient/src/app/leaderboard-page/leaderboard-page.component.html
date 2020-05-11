@@ -20,7 +20,7 @@
     <div class="d-flex p-2 justify-content-center">
       <div class="flex-row">
         <div class="p-2">
-          <p class="title">Towers of wisdom</p>
+          <p class="title">Classifica</p>
         </div>
       </div>
     </div>
@@ -34,6 +34,8 @@
               <th scope="col">Nome</th>
               <th scope="col">Vittorie</th>
               <th scope="col">Sconfitte</th>
+              <th scope="col">Partite giocate</th>
+              <th scope="col">Percentuale Vittorie</th>
               <th scope="col">Punteggio Totale</th>
             </tr>
             <tbody>
@@ -43,6 +45,12 @@
                 <td>
                   {{ giocatore.partitePerse
                   }}<!--era <a href="mailto:{{ giocatore.email }}">{{ giocatore.email }}</a>-->
+                </td>
+                <td>{{ giocatore.partiteGiocate }}
+
+                </td>
+                <td>
+                  {{ giocatore.percentualeVittorie }}
                 </td>
                 <td>
                   {{ giocatore.punteggioTotale }}
