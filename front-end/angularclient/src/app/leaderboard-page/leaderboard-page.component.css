@@ -6,18 +6,35 @@ table {
     to top left,
     rgba(53, 184, 224, 0.644),
     rgba(118, 206, 247, 0.644),
-    
     rgba(53, 184, 224, 0.644)
   );
   border-radius: 3mm;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
   transition: 0.6s;
-  box-shadow: -1px -1px 3px rgb(126, 243, 247),
-   -1px 1px 3px rgb(126, 243, 247),
-    1px 1px 3px rgb(126, 243, 247),
-     1px -1px 3px rgb(126, 243, 247);
-    width:100%;
-    border:transparent;
+  box-shadow: -1px -1px 3px rgb(126, 243, 247), -1px 1px 3px rgb(126, 243, 247),
+    1px 1px 3px rgb(126, 243, 247), 1px -1px 3px rgb(126, 243, 247);
+  width: auto;
+  height: 87mm;
+}
+.content,
+th {
+  text-align: center;
+  border: transparent;
+  font-family: cursive;
+  color: rgb(119, 228, 255);
+  text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
+    -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238),
+    2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
+    -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
+  width: auto;
+}
+
+.scroll {
+  width: inherit;
+  height: inherit;
+  border: transparent;
+  overflow: auto;
 }
 
 .title {
@@ -30,17 +47,16 @@ table {
   letter-spacing: 0.1em;
   transform: perspective(350px) scaleY(1.5) rotateX(-30deg);
   text-align: center;
-  padding-top: 5mm;
+  padding-top: 3mm;
   position: relative;
-  top:10mm;
-  
+  top: 5mm;
 }
 
 table,
 button {
   /*posizione della taballa e dei due tasti*/
   position: relative;
-  top: 50px;
+  top: 40px;
 }
 
 button {
@@ -75,33 +91,44 @@ body {
   height: 625px;
 }
 
-tr,
-th,
-td {
-  border:transparent;
-  font-family: cursive;
-  color: rgb(119, 228, 255);
-  text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
-    -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238),
-    2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
-    -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
-  padding: 0.5rem;
-}
-
 th {
   font-size: 7mm;
-  
 }
 td {
   font-size: 5.5mm;
   border-top: 2px solid rgb(108, 205, 250);
-  
 }
 
 html {
   height: 100%;
 }
+h1 {
+  color: rgb(68, 211, 236);
+  font-family: cursive;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgb(20, 78, 240), -1px 1px 3px rgb(20, 78, 240),
+    -1px -1px 3px rgb(20, 78, 240), 1px -1px 3px rgb(20, 78, 240);
+  display: flex;
+  flex-direction: row;
+}
+@media only screen and (max-width: 670px) {
+  .title {
+    font-size: 12mm;
+  }
 
+
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scroll {
+    width: inherit;
+    height: inherit;
+    border: transparent;
+    overflow: auto;
+    size: 5mm 30mm;
+  }
+}
 @media only screen and (max-width: 535px) {
   button {
     font-size: 5mm;
@@ -109,15 +136,25 @@ html {
     width: 50mm;
   }
 
+  
+
   th {
+    font-size: 5.5mm;
+  }
+  td {
     font-size: 4.5mm;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
   }
 }
 
 @media only screen and (max-width: 440px) {
   th {
-    font-size: 3.8mm;
+    font-size: 4.5mm;
   }
+
 
   td {
     font-size: 3.5mm;
@@ -131,12 +168,6 @@ html {
 
   .title {
     font-size: 6mm;
-  }
-}
-
-@media only screen and (max-width: 670px) {
-  .title {
-    font-size: 12mm;
   }
 }
 
@@ -155,8 +186,13 @@ html {
     width: 35mm;
   }
 
+
   .title {
     font-size: 8mm;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
   }
 }
 
@@ -174,7 +210,38 @@ html {
     height: 11mm;
     width: 30mm;
   }
+
+
   .title {
     font-size: 4mm;
   }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 2px 2px 10px rgb(49, 155, 255);
+  background-color: rgba(81, 218, 223, 0.904);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: aquamarine;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(23, 149, 207);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
 }
