@@ -39,16 +39,19 @@
 
 .button_menu{
     /*settagio dei due tasti-immagini dimensione,stile,effetti*/
+   
     color: #00a2ff;
     background-position: center;
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-    width: 60mm;
+    width: 30mm;
     height: 30mm;
-    border-radius: 3mm;
+    border-radius: 100px;
     margin: 50px;
+    padding: 25px;
+    padding-bottom: 50px;
     font-family: cursive;
     font-size: 7.5mm;
     text-shadow: 1px 1px 3px #1345eb, -1px 1px 3px #1345eb, 1px -1px 3px #1345eb,
@@ -60,6 +63,14 @@
 }
 
 .button_menu:hover {
+    box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+      -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+      2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+    color: #16b4f7;
+    background-color:#6af5ff ;
+  }
+
+  .button_menu:hover .bolla1 {
     box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
       -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
       2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
@@ -81,12 +92,69 @@
 
 
 #menu{
-    text-align: center;
+    
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bolder;
     color:#f7b017;
     text-shadow: 1.5px 1.5px 1px #000000;
 }
+
+.bolla1{
+  position: relative;
+  border: 0.3mm solid #6af5ff;
+  bottom: 60px;
+  border-radius: 30px;
+  color: #00a2ff;
+  background-position: center;
+  background-color: transparent;    
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+      -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+      2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+    transition-duration: 0.4s;
+  width: 6mm;
+  height: 6mm;
+  margin-left: 30mm;
+  margin-bottom: 40mm;
+}
+
+
+
+.bolla2{
+  position: relative;
+  border: 0.3mm solid red;
+  border-radius: 30px;
+  bottom: 100px;
+  width: 2mm;
+  height: 2mm;
+}
+
+
+a {
+  color: red;
+  }
+  a:hover {
+  color: blue;
+  }
+  #cambiacolor {
+  background-color: gray;
+  }
+  #cambiacolor:hover {
+  background-color: blue;
+  }
+  
+  #cambiacolor a {
+  color: pink;
+  }
+  #cambiacolor:hover a {
+  color: green;
+  }
+  #cambiacolor:hover a:hover {
+  color: red;
+  }
+
+
 
 
 

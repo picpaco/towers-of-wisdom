@@ -27,16 +27,16 @@ html {
   border: 1px solid rgb(0, 255, 213);
   border-top-left-radius: 3mm;
   border-bottom-left-radius: 3mm;
+  border-bottom-right-radius: 3mm;
   border-right: 1px solid rgb(0, 255, 213);
   width: 210mm;
   height: 160mm;
-  box-shadow: 1px 1px 3px rgb(81, 200, 247),
-  1px -1px 3px rgb(81, 200, 247), -1px 1px 3px rgb(81, 200, 247),
-  -1px -1px 3px rgb(81, 200, 247), 2px 1px 3px rgba(0, 77, 243),
-  2px -2px 3px rgba(0, 77, 243), -2px 2px 3px rgba(0, 77, 243),
-  -2px -2px 3px rgba(0, 77, 243),3px 3px 3px rgb(81, 200, 247),
-  3px -3px 3px rgb(81, 200, 247), -3px 3px 3px rgb(81, 200, 247),
-  -3px -3px 3px rgb(81, 200, 247);
+  box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
+    -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
+    2px 1px 3px rgba(0, 77, 243), 2px -2px 3px rgba(0, 77, 243),
+    -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
+    3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
+    -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
 }
 .panel-chat {
   border: 1px solid rgb(0, 255, 213);
@@ -44,16 +44,57 @@ html {
   border-bottom-right-radius: 3mm;
   border-left: 1px solid rgb(0, 255, 213);
   width: 35mm;
-  height: 160mm;
-  box-shadow: 1px 1px 3px rgb(81, 200, 247),
-    1px -1px 3px rgb(81, 200, 247), -1px 1px 3px rgb(81, 200, 247),
-    -1px -1px 3px rgb(81, 200, 247), 2px 1px 3px rgba(25, 93, 240, 0.856),
-    2px -2px 3px rgba(0, 77, 243), -2px 2px 3px rgba(0, 77, 243),
-    -2px -2px 3px rgba(0, 77, 243),3px 3px 3px rgb(81, 200, 247),
-    3px -3px 3px rgb(81, 200, 247), -3px 3px 3px rgb(81, 200, 247),
-    -3px -3px 3px rgb(81, 200, 247);
+  height: 100.4mm;
+  box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
+    -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
+    2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
+    -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
+    3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
+    -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
 }
 
 #contenuto {
-  padding-top: 15mm;
+position: relative;
+top: 10mm;
+}
+
+.panel-chat button {
+  border: transparent;
+  border-bottom: 2px solid rgb(0, 255, 213) ;
+  font-size: 6.5mm;
+  height: 20mm;
+  font-family: cursive;
+  width: 34.4mm;
+  color: aquamarine;
+  background-image: linear-gradient(
+    to top left,
+    rgb(101, 177, 221),
+    rgb(47, 151, 211)
+  );
+  text-shadow: 1px 1px 3px rgb(55, 127, 194), 1px -1px 3px rgb(55, 127, 194),
+    -1px -1px 3px rgb(55, 127, 194), -1px 1px 3px rgb(55, 127, 194);
+}
+
+.panel-chat button:hover {
+  color: rgb(63, 235, 241);
+  background-image: linear-gradient(
+    to top left,
+    rgb(56, 158, 218),
+    rgb(47, 85, 211)
+  );
+}
+
+div .carte{
+  color:white;
+  border-top: 2px solid rgb(0, 255, 213);
+  background-image: linear-gradient(to top left), rgb(49, 168, 238), rgb(60, 147, 197),rgb(117, 177, 212) ;
+  top:120mm;
+  box-shadow: 1px 0px 3px rgb(81, 200, 247);
+  height: 40mm;
+  position: relative;
+  border-bottom-right-radius: 3mm;
+  border-bottom-left-radius: 3mm;
+  border-top-left-radius: 75mm;
+  border-top-right-radius: 75mm;
+
 }

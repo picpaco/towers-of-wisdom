@@ -8,7 +8,7 @@
             <div class="input-group-prepend">
                <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="username" placeholder="username">
+            <input type="text" class="form-control" [(ngModel)]="username" placeholder="nome utente">
 
          </div>
 
@@ -21,7 +21,9 @@
             <input type="password" class="form-control" [(ngModel)]="password" placeholder="password">
          </div>
 
-
+         <div class="input-group form-group justify-content-center">
+            <button  type="button" class="btn btn-info"  [routerLink]="percorso" (click)="controlloCredenziali()">Accedi</button>
+         </div>
 
 
       </div>
@@ -33,8 +35,8 @@
 <div class="text-center">
 
    <div class="text-center">
-      <div *ngIf="username.length<=8 || password.length<=8">
-            <label class="alert alert-danger"> Attenzione! La username e la password devono contenere almeno 8 caratteri</label>
+      <div *ngIf="controllo">
+            <label class="alert alert-danger"> Attenzione! Il nome utente e la password sono errati</label>
          </div>
       
    </div>

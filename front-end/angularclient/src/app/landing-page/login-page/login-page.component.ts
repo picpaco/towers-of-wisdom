@@ -6,14 +6,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  username="";
-  password="";
-  
+  username = "";
+  password = "";
+  controllo: boolean;
+  percorso:string;
 
-  constructor() { }
+  constructor() {
+   
+    
+   }
 
 
   ngOnInit() {
   }
 
+
+  controlloCredenziali() {
+    if (this.username.length < 8 || this.password.length < 8) {
+      this.controllo = true;
+      this.percorso="/login"
+    }else{
+      this.controllo = false;
+      this.percorso="/menu-di-gioco"
+    }
+  }
+
+ 
 }

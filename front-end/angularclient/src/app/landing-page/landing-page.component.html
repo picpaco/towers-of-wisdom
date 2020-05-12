@@ -34,24 +34,68 @@
         -->
   <router-outlet></router-outlet>
   <div class="text-right">
-    <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button_back" (click)="visualizza()">Torna alla pagina precedente</a>
+    <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button_back" (click)="visualizza()">Torna alla pagina
+      precedente</a>
   </div>
 
 
   <section id='menu'>
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="text-center list-inline py-3">
-          <li class="list-inline-item"><button routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info button_menu mr-4 "
-              (click)="nascondi()">Login</button></li>
-          <li class="list-inline-item"><button routerLink="/registrazione" *ngIf="bottoneLanding" class="btn btn-info button_menu mr-4"
-              (click)="nascondi()">Registrati</button></li>
-          <li class="list-inline-item"><button routerLink="/regole" *ngIf="bottoneLanding" class="btn btn-info button_menu mr-4">Regole del gioco</button></li>
-          <li class="list-inline-item"><button routerLink="/risultati finali" *ngIf="bottoneLanding" class="btn btn-info button_menu">Demo</button>
-        </ul>
 
-      </div>
+
+
+    <div id="wrapper">
+      <p> ... <a href="..." title="...">questo e` un link fuori dal cambiacolor</a> ...
+        <br />
+        <br />
+      </p>
+      ...
+      <div id="cambiacolor">
+        <p> ... <a href="..." title="...">questo e` un link dentro il cambiacolor</a> ...
+          <br />
+          <br />
+        </p>
+        <p> ...
+          <br />
+          <br />
+        </p>
+      </div> <!-- cambiacolor -->
     </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="text-center list-inline py-3">
+            <li class="list-inline-item">
+
+              <button routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info  mr-4 button_menu "
+                (click)="nascondi()"><div>Login</div> <div class="bolla1 list-inline-item"></div><div class="bolla2 list-inline-item"></div></button>
+             
+              
+
+            </li>
+
+            <li class="list-inline-item"><button routerLink="/registrazione" *ngIf="bottoneLanding"
+                class="btn btn-info button_menu mr-4" style="font-size:large;" (click)="nascondi()">Registrati</button>
+              <div class="bolla1 list-inline-item" style="bottom: 60px;"></div>
+              <div class="bolla2 list-inline-item" style="bottom: 100px;"></div>
+            </li>
+            <li class="list-inline-item"><button routerLink="/regole" *ngIf="bottoneLanding"
+                class="btn btn-info button_menu mr-4" style="font-size:medium;">
+                <p>Regole</p>
+                <p>del gioco</p>
+              </button>
+              <div class="bolla1 list-inline-item" style="bottom: 60px;"></div>
+              <div class="bolla2 list-inline-item" style="bottom: 100px;"></div>
+            </li>
+            <li class="list-inline-item"><button routerLink="/risultati-finali" *ngIf="bottoneLanding"
+                class="btn btn-info button_menu">Demo</button>
+              <div class="bolla1 list-inline-item" style="bottom: 60px;"></div>
+              <div class="bolla2 list-inline-item" style="bottom: 100px;"></div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
   </section>
 
   <br>
