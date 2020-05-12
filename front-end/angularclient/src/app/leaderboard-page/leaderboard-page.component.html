@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-  <!-- {{ mostraTabella() }}-->
+   {{ mostraTabella() }}
     <div class="container">
       <div class="row">
         <div class="col-lg justify-content-center">
@@ -36,7 +36,7 @@
               <th scope="col" >Vittorie</th>
               <th scope="col">Sconfitte</th>
               <th scope="col">Percentuale Vittorie</th>
-              <th scope="col">Punteggio Totale</th>
+              <th scope="col"  style="border-right: 2px solid rgb(108, 205, 250);">Punteggio Totale</th>
             </tr>
             <tbody>
               <tr *ngFor="let giocatore of classifica" class="content">
@@ -48,7 +48,7 @@
                 <td scope="row">
                   {{ giocatore.percentualeVittorie }}
                 </td>
-                <td scope="row"> 
+                <td scope="row" style="border-right: 2px solid rgb(108, 205, 250);"> 
                   {{ giocatore.punteggioTotale }}
                 </td>
               </tr>
