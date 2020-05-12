@@ -41,7 +41,6 @@ export class LeaderboardPageComponent implements OnInit {
     
     if (
       this.giocatori.length > 0 &&
-      typeof this.giocatori!==undefined &&
       this.giocatori[0]!==null
     ) {
       this.show = true;

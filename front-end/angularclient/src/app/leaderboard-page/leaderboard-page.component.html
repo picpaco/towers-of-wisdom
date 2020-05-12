@@ -24,46 +24,44 @@
         </div>
       </div>
     </div>
-   {{mostraTabella()}}
+  <!-- {{ mostraTabella() }}-->
     <div class="container">
       <div class="row">
         <div class="col-lg justify-content-center">
-          <div *ngIf="show">
-          <table class="table table-lg" >
+          <div *ngIf="show" >
+          <table class="table table-lg ">
+            <div class="scroll">
             <tr>
               <th scope="col">Nome</th>
-              <th scope="col">Vittorie</th>
+              <th scope="col" >Vittorie</th>
               <th scope="col">Sconfitte</th>
-              <th scope="col">Partite giocate</th>
               <th scope="col">Percentuale Vittorie</th>
               <th scope="col">Punteggio Totale</th>
             </tr>
             <tbody>
-              <tr *ngFor="let giocatore of classifica">
+              <tr *ngFor="let giocatore of classifica" class="content">
                 <td scope="row">{{ giocatore.nome }}</td>
-                <td>{{ giocatore.partiteVinte }}</td>
-                <td>
-                  {{ giocatore.partitePerse
-                  }}<!--era <a href="mailto:{{ giocatore.email }}">{{ giocatore.email }}</a>-->
+                <td scope="row">{{ giocatore.partiteVinte }}</td>
+                <td scope="row">
+                  {{ giocatore.partitePerse }}
                 </td>
-                <td>{{ giocatore.partiteGiocate }}
-
-                </td>
-                <td>
+                <td scope="row">
                   {{ giocatore.percentualeVittorie }}
                 </td>
-                <td>
+                <td scope="row"> 
                   {{ giocatore.punteggioTotale }}
                 </td>
               </tr>
             </tbody>
+          </div>
           </table>
           </div>
           
           <div *ngIf="!(show)" class="p-2"> 
-            <h2 style="color: red; font-family: cursive; text-align: center;">
-              Spiacenti non ci sono giocatori registrati al momento.
-            </h2>
+            <h1>
+              Spiacente non ci sono giocatori registrati al momento 
+              <i class="fas fa-frown p-2"></i>
+            </h1>
           </div>
           
         </div>
@@ -72,7 +70,7 @@
 
     <div class="d-flex p-2 justify-content-center">
       <div class="p-2">
-        <button routerLink="/menu di gioco">
+        <button routerLink="/menu-di-gioco">
           Torna al menu
         </button>
       </div>
