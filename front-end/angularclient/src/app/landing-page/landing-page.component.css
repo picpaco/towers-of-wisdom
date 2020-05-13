@@ -1,5 +1,5 @@
 .sfondo_landing {
-  background-image: URL("./assets/images/sea-background-1980.jpg");
+  background-image: URL("./assets/images/sfondosea.jpg");
   background-size: cover;
   height: 100%;
   position: relative;
@@ -87,6 +87,30 @@
   background-color: #6af5ff;
 }
 
+.button_menu:hover .bolla3 {
+  box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+    -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+    2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+  color: #16b4f7;
+  background-color: #6af5ff;
+}
+
+.button_menu:hover .bolla4 {
+  box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+    -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+    2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+  color: #16b4f7;
+  background-color: #6af5ff;
+}
+
+.button_menu:hover .bolla5 {
+  box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+    -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+    2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+  color: #16b4f7;
+  background-color: #6af5ff;
+}
+
 .button_back {
   margin-top: 150px;
 }
@@ -107,6 +131,8 @@
 }
 
 .bolla1 {
+  padding:0px;
+  margin-right: 0px;
   position: relative;
   border: 0.3mm solid #6af5ff;
   bottom: 130px;
@@ -120,18 +146,64 @@
     -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
     2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
   transition-duration: 0.4s;
-  width: 6mm;
-  height: 6mm;
+  width: 10mm;
+  height: 10mm;
   margin-left: 30mm;
 }
 
 .bolla2 {
   position: relative;
-
+  padding:0px;
+  margin: 0px;
   border: 0.3mm solid #6af5ff;
   border-radius: 30px;
-  bottom: 50px;
-  left: 15px;
+  bottom: 45px;
+  left: 4px;
+  width: 6mm;
+  height: 6mm;
+  box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+    -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+    2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+  transition-duration: 0.4s;
+}
+
+.bolla3 {
+  margin: 0px;
+  position: relative;
+  border: 0.3mm solid #6af5ff;
+  border-radius: 30px;
+  bottom: 160px;
+  right: 90px;
+  width: 10mm;
+  height: 10mm;
+  box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+    -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+    2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+  transition-duration: 0.4s;
+}
+
+.bolla4 {
+  
+  position: relative;
+  border: 0.3mm solid #6af5ff;
+  border-radius: 30px;
+  bottom: 30px;
+  
+  width: 2mm;
+  height: 2mm;
+  box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+    -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+    2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+  transition-duration: 0.4s;
+}
+
+.bolla5 {
+  
+  position: relative;
+  border: 0.3mm solid #6af5ff;
+  border-radius: 30px;
+  bottom: 45px;
+  left: 8px;
   width: 2mm;
   height: 2mm;
   box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
