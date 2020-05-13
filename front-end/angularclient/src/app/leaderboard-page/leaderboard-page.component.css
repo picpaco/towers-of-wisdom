@@ -86,7 +86,7 @@ body {
   /*sfondo dell'intero schermo*/
   background-image: url("../../assets/pictures_of_leaderboard_page/underwater.jpg");
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: bottom;
   background-size: cover;
   height: 625px;
 }
