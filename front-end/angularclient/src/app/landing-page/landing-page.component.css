@@ -1,168 +1,141 @@
-.sfondo_landing{
-    background-image:URL("./assets/images/sea-background-1980.jpg");
-    background-size:cover;
-    height: 100%;
-    position: relative;
-  }
+.sfondo_landing {
+  background-image: URL("./assets/images/sea-background-1980.jpg");
+  background-size: cover;
+  height: 100%;
+  position: relative;
+}
 
-@font-face{
-    font-family: 'manicSea';
-    src: url('../../assets/fonts/ManicSea.ttf') format('truetype');
-  }
+@font-face {
+  font-family: "manicSea";
+  src: url("../../assets/fonts/ManicSea.ttf") format("truetype");
+}
 
-  @font-face{
-    font-family: 'manicsea';
-    src: url('../../assets/fonts/ManicSea.ttf') format('truetype');
-  }
+@font-face {
+  font-family: "manicsea";
+  src: url("../../assets/fonts/ManicSea.ttf") format("truetype");
+}
 
-  .font_title{
-    font-size: 100px;
+.font_title {
+  font-size: 100px;
 }
 .title {
-    font-style: normal;
-    font-family: 'manicSea';
-    text-align: center;
-    padding: 0px;
-    color:#6af5ff;
-    text-shadow: 3px 3px 3px  #162451, -3px 3px 3px  #162451, 3px -3px 3px  #162451,-3px -3px 3px  #162451;
+  font-style: normal;
+  font-family: "manicSea";
+  text-align: center;
+  padding: 0px;
+  color: #6af5ff;
+  text-shadow: 3px 3px 3px #162451, -3px 3px 3px #162451, 3px -3px 3px #162451,
+    -3px -3px 3px #162451;
 }
 
-.allineamento_img1{
-     width:150px;
-    height: auto;
+.allineamento_img1 {
+  width: 150px;
+  height: auto;
 }
-.allineamento_img2{
-     width:150px;
-    height: auto;
-    transform: rotateY(180deg);
+.allineamento_img2 {
+  width: 150px;
+  height: auto;
+  transform: rotateY(180deg);
 }
 
-.button_menu{
-    /*settagio dei due tasti-immagini dimensione,stile,effetti*/
-   
-    color: #00a2ff;
-    background-position: center;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    width: 30mm;
-    height: 30mm;
-    border-radius: 100px;
-    margin: 50px;
-    padding: 25px;
-    padding-bottom: 50px;
-    font-family: cursive;
-    font-size: 7.5mm;
-    text-shadow: 1px 1px 3px #1345eb, -1px 1px 3px #1345eb, 1px -1px 3px #1345eb,
-      -1px -1px 3px #1345eb;
-    box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
-      -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
-      2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
-    transition-duration: 0.4s;
+.button_menu {
+  /*settagio dei due tasti-immagini dimensione,stile,effetti*/
+
+  color: #00a2ff;
+  background-position: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  width: 40mm;
+  height: 40mm;
+  border-radius: 100px;
+  margin: 60px;
+  padding: 25px;
+  border: 0.3mm solid #6af5ff;
+  font-family: cursive;
+  font-size: 7.5mm;
+  text-shadow: 1px 1px 3px #051b63, -1px 1px 3px #051b63, 1px -1px 3px #051b63,
+    -1px -1px 3px #1345eb;
+  box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+    -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+    2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+  transition-duration: 0.4s;
 }
 
 .button_menu:hover {
-    box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
-      -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
-      2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
-    color: #16b4f7;
-    background-color:#6af5ff ;
-  }
-
-  .button_menu:hover .bolla1 {
-    box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
-      -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
-      2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
-    color: #16b4f7;
-    background-color:#6af5ff ;
-  }
-
-.button_back{
-    margin-top:150px;
+  box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+    -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+    2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+  color: #16b4f7;
+  background-color: #6af5ff;
 }
 
-#introduzione{
-    text-align: center;
-    font-family: 'manicSea';
-    font-weight: bolder;
-    color:#6af5ff;
-    text-shadow: 1.5px 1.5px 1px #162451;
+.button_menu:hover .bolla1 {
+  box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+    -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+    2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+  color: #16b4f7;
+  background-color: #6af5ff;
 }
 
-
-#menu{
-    
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bolder;
-    color:#f7b017;
-    text-shadow: 1.5px 1.5px 1px #000000;
+.button_menu:hover .bolla2 {
+  box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+    -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+    2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+  color: #16b4f7;
+  background-color: #6af5ff;
 }
 
-.bolla1{
+.button_back {
+  margin-top: 150px;
+}
+
+#introduzione {
+  text-align: center;
+  font-family: "manicSea";
+  font-weight: bolder;
+  color: #6af5ff;
+  text-shadow: 1.5px 1.5px 1px #162451;
+}
+
+#menu {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+  color: #f7b017;
+  text-shadow: 1.5px 1.5px 1px #000000;
+}
+
+.bolla1 {
   position: relative;
   border: 0.3mm solid #6af5ff;
-  bottom: 60px;
+  bottom: 130px;
   border-radius: 30px;
   color: #00a2ff;
   background-position: center;
-  background-color: transparent;    
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
-      -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
-      2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
-    transition-duration: 0.4s;
+    -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+    2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+  transition-duration: 0.4s;
   width: 6mm;
   height: 6mm;
   margin-left: 30mm;
-  margin-bottom: 40mm;
 }
 
-
-
-.bolla2{
+.bolla2 {
   position: relative;
-  border: 0.3mm solid red;
+
+  border: 0.3mm solid #6af5ff;
   border-radius: 30px;
-  bottom: 100px;
+  bottom: 50px;
+  left: 15px;
   width: 2mm;
   height: 2mm;
+  box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+    -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+    2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+  transition-duration: 0.4s;
 }
-
-
-a {
-  color: red;
-  }
-  a:hover {
-  color: blue;
-  }
-  #cambiacolor {
-  background-color: gray;
-  }
-  #cambiacolor:hover {
-  background-color: blue;
-  }
-  
-  #cambiacolor a {
-  color: pink;
-  }
-  #cambiacolor:hover a {
-  color: green;
-  }
-  #cambiacolor:hover a:hover {
-  color: red;
-  }
-
-
-
-
-
-  
-   
-
-
-
-
-
-
