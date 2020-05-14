@@ -13,7 +13,6 @@
          </div>
 
 
-
          <div class="input-group form-group">
             <div class="input-group-prepend">
                <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -42,7 +41,12 @@
    </div>
 
 
-   <label>Non hai un account?</label><a type="link" routerLink="/registrazione"> Registrati</a>
+   <label>Non hai un account?</label><a type="link" routerLink="/registrazione" (click)="aggiornaStringa('Effettua la registrazione')"> Registrati</a>
 
 
+   <div class="text-right">
+      <button type="button" routerLink="/"  class="btn btn-info button_back" (click)="updateData(bottoneLanding)">Torna alla pagina precedente </button>
+    </div>
+
+   
 </div>

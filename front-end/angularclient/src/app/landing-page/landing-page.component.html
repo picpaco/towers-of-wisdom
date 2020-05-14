@@ -14,7 +14,7 @@
   <section id="introduzione">
     <div class="row">
       <div class="col-md-12">
-        <h2 style="font-size: 30px;">Gioco di carte strategico per due persone</h2>
+        <h2 style="font-size: 30px;">{{intro}}</h2>
       </div>
     </div>
 
@@ -33,11 +33,10 @@
         <router-outlet></router-outlet>
         -->
   <router-outlet></router-outlet>
-  <div class="text-right">
-    <a routerLink="/" *ngIf="bottoneIndietro" class="btn btn-info button_back" (click)="visualizza()">Torna alla pagina
-      precedente</a>
-  </div>
-
+  
+  
+ 
+  
 
   <section id='menu'>
 
@@ -48,9 +47,9 @@
         <ul class="text-center list-inline py-3">
           <li class="list-inline-item">
 
-            <button routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info  mr-4 button_menu "
-              (click)="nascondi()">
-              <div class="row justify-content-center py-4">Login</div>
+            <button routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info  mr-4 button_menu " (click)="nascondi()"
+              style="color:#f18296 ;" >
+              <div class="row justify-content-center py-4">Entra</div>
               <div class="bolla1 list-inline-item">
                 <div class="bolla2 list-inline-item">
                   <div class="bolla4 list-inline-item">
@@ -69,93 +68,57 @@
 
           </li>
 
-          <li class="list-inline-item"><button routerLink="/registrazione" *ngIf="bottoneLanding"
-              class="btn btn-info button_menu mr-4" (click)="nascondi()">
-              <div class="row justify-content-center py-4">Registrati</div>
-              <div class="bolla1 list-inline-item">
-                <div class="bolla2 list-inline-item">
-                  <div class="bolla4 list-inline-item">
-                    <div class="bolla5 list-inline-item">
+          <div class="row">
+            <div class="col-md-12">
 
+              <li class="list-inline-item"><button routerLink="/regole" *ngIf="bottoneLanding"
+                  class="btn btn-info button_menu mr-4">
+                  <div class="row justify-content-center">Regole</div>
+                  <div class="row justify-content-center">del gioco</div>
+                  <div class="bolla1 list-inline-item">
+                    <div class="bolla2 list-inline-item">
+                      <div class="bolla4 list-inline-item">
+                        <div class="bolla5 list-inline-item">
+
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="bolla3 list-inline-item">
+                  <div class="bolla3 list-inline-item">
 
-              </div>
-            </button>
+                  </div>
+                </button>
 
+              </li>
+              <li class="list-inline-item"><button routerLink="/risultati-finali" *ngIf="bottoneLanding"
+                  class="btn btn-info button_menu" style="color: #ddbee3;">
+                  <div class="row justify-content-center py-4">Demo</div>
+                  <div class="bolla1 list-inline-item">
+                    <div class="bolla2 list-inline-item">
+                      <div class="bolla4 list-inline-item">
+                        <div class="bolla5 list-inline-item">
 
-          </li>
-          <li class="list-inline-item"><button routerLink="/regole" *ngIf="bottoneLanding"
-              class="btn btn-info button_menu mr-4">
-              <div class="row justify-content-center">Regole</div>
-              <div class="row justify-content-center">del gioco</div>
-              <div class="bolla1 list-inline-item">
-                <div class="bolla2 list-inline-item">
-                  <div class="bolla4 list-inline-item">
-                    <div class="bolla5 list-inline-item">
-
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="bolla3 list-inline-item">
+                  <div class="bolla3 list-inline-item">
 
-              </div>
-            </button>
-
-          </li>
-          <li class="list-inline-item"><button routerLink="/risultati-finali" *ngIf="bottoneLanding"
-              class="btn btn-info button_menu">
-              <div class="row justify-content-center py-4">Demo</div>
-              <div class="bolla1 list-inline-item">
-                <div class="bolla2 list-inline-item">
-                  <div class="bolla4 list-inline-item">
-                    <div class="bolla5 list-inline-item">
-
-                    </div>
                   </div>
-                </div>
-              </div>
+                </button>
 
-              <div class="bolla3 list-inline-item">
+              </li>
 
-              </div>
-            </button>
-
-          </li>
+            </div>
+          </div>
         </ul>
 
       </div>
     </div>
   </section>
 
-  <br>
-  <br>
-  <br>
 
-
-
-
-  <br>
-
-
-
-
-
-
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
 
 </div>

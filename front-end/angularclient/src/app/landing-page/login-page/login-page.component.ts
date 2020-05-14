@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import{ DataService } from '../../data.service'
 
 @Component({
   selector: 'app-login-page',
@@ -10,14 +11,16 @@ export class LoginPageComponent implements OnInit {
   password = "";
   controllo: boolean;
   percorso:string;
+  bottoneLanding:boolean=true;
+ 
 
-  constructor() {
+  constructor(private data:DataService) {
    
-    
    }
 
 
   ngOnInit() {
+    
   }
 
 
@@ -30,6 +33,21 @@ export class LoginPageComponent implements OnInit {
       this.percorso="/menu-di-gioco"
     }
   }
+
+  updateData(bottoneLanding: boolean){
+    this.data.updateData(bottoneLanding);
+    this.aggiornaStringa("Gioco di carte strategico per due persone")
+  }
+
+  aggiornaStringa(intro:string){
+    this.data.aggiornaStringa(intro);
+  }
+
+ 
+  
+
+
+
 
  
 }

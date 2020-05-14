@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+
 
 @Component({
   selector: 'app-landing-page',
@@ -6,28 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-  title:string;
- bottoneLanding:boolean=true;
- bottoneIndietro:boolean=false;
+  title: string;
+  bottoneLanding: boolean
+  intro: string;
 
-  constructor() { 
-    this.title="Towers of wisdom";
+ 
+
+  constructor(private data:DataService ) {
+    this.title = "Towers of wisdom";
   }
 
 
   nascondi() {
-    this.bottoneLanding=false;
-    this.bottoneIndietro=true;
-    
+    this.bottoneLanding = false;
+    this.intro="Accedi per giocare gratis";
   }
 
-  visualizza(){
-    this.bottoneLanding=true;
-    this.bottoneIndietro=false;
+  
 
-  }
+ 
+  
 
   ngOnInit() {
+    this.data.share.subscribe(x=>this.bottoneLanding=x);
+    this.data.stringaCondivisa.subscribe(nuovaStringa=>this.intro=nuovaStringa);
   }
 
 }

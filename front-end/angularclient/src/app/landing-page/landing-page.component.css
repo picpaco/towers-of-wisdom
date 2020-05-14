@@ -1,5 +1,5 @@
 .sfondo_landing {
-  background-image: URL("./assets/images/underwater-background-4774235.jpg");
+  background-image: URL("./assets/images/sfondosea.jpg");
   background-size: cover;
   height: 100%;
   position: relative;
@@ -41,7 +41,7 @@
 .button_menu {
   /*settagio dei due tasti-immagini dimensione,stile,effetti*/
 
-  color: #00a2ff;
+  color: #f5a850;
   background-position: center;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -50,7 +50,8 @@
   width: 40mm;
   height: 40mm;
   border-radius: 100px;
-  margin: 60px;
+  margin: 80px;
+  margin-top: 150px;
   padding: 25px;
   border: 0.3mm solid #6af5ff;
   font-family: cursive;
@@ -68,7 +69,7 @@
     -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
     2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
   color: #16b4f7;
-  background-color: #6af5ff;
+  background-color: #01f6f5;
 }
 
 .button_menu:hover .bolla1 {
@@ -111,16 +112,14 @@
   background-color: #6af5ff;
 }
 
-.button_back {
-  margin-top: 150px;
-}
+
 
 #introduzione {
   text-align: center;
   font-family: "manicSea";
   font-weight: bolder;
-  color: #6af5ff;
-  text-shadow: 1.5px 1.5px 1px #162451;
+  color: #f18397;
+  text-shadow: 1.5px 1px 1px #70406a;
 }
 
 #menu {
