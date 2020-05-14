@@ -3,7 +3,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
-  height: 1200px;
+  height: 980px;
 }
 
 html {
@@ -37,14 +37,15 @@ html {
     -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
     3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
     -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
+    
 }
-.panel-chat {
+.panel-buttons {
   border: 1px solid rgb(0, 255, 213);
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
   border-left: 1px solid rgb(0, 255, 213);
   width: 35mm;
-  height: 100.4mm;
+  height: 80.4mm;
   box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
     -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
     2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
@@ -54,13 +55,13 @@ html {
 }
 
 #contenuto {
-position: relative;
-top: 10mm;
+  position: relative;
+  top: 10mm;
 }
 
-.panel-chat button {
+.panel-buttons button {/*stile dei tasti all'interno del panel buttons*/
   border: transparent;
-  border-bottom: 2px solid rgb(0, 255, 213) ;
+  border-bottom: 2px solid rgb(0, 255, 213);
   font-size: 6.5mm;
   height: 20mm;
   font-family: cursive;
@@ -75,7 +76,7 @@ top: 10mm;
     -1px -1px 3px rgb(55, 127, 194), -1px 1px 3px rgb(55, 127, 194);
 }
 
-.panel-chat button:hover {
+.panel-buttons button:hover {/*effetto dei tasti del panel buttons*/
   color: rgb(63, 235, 241);
   background-image: linear-gradient(
     to top left,
@@ -84,17 +85,42 @@ top: 10mm;
   );
 }
 
-div .carte{
-  color:white;
-  border-top: 2px solid rgb(0, 255, 213);
-  background-image: linear-gradient(to top left), rgb(49, 168, 238), rgb(60, 147, 197),rgb(117, 177, 212) ;
-  top:120mm;
-  box-shadow: 1px 0px 3px rgb(81, 200, 247);
-  height: 40mm;
+div .carte {/*pannello delle carte in basso,all'interno del panel game*/
+  color: white;
+  border-top: 4px solid rgb(83, 232, 243);
+  top: 130mm;
+  height: 29.5mm;
+  border-bottom: transparent;
   position: relative;
-  border-bottom-right-radius: 3mm;
-  border-bottom-left-radius: 3mm;
   border-top-left-radius: 75mm;
   border-top-right-radius: 75mm;
+  border-bottom-left-radius: 4mm;
+  border-bottom-right-radius: 4mm;
+  width: 209.5mm;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(24, 118, 241),
+    rgb(112, 197, 236)
+  );
+}
 
+div.mini-panel {
+  text-align: center;
+  color: white;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(36, 148, 240),
+    rgb(114, 202, 243)
+  );
+  border-top: transparent;
+  border-left: transparent;
+  border-right: 2px solid rgb(83, 232, 243);
+  border-bottom: 2px solid rgb(83, 232, 243);
+  border-top-left-radius: 2mm;
+  border-bottom-right-radius: 4mm;
+  width: 50mm;
+  height: 12mm;
+  position: relative;
+  bottom: 29.5mm;
+  left: 0.1mm;
 }

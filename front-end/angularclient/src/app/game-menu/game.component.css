@@ -4,7 +4,7 @@
   /*impostazione sfondo*/
   background-image:url("../../assets/pictures_of_game_menu/underwater-treasures.jpg");
   height: 625px;/*l'immagine non è responsive al momento con questa opzione*/
-  background-position: bottom;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
 }    
