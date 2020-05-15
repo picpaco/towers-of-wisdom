@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import{ DataService } from '../../data.service'
+import { RestapiService } from '../restapi.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -10,12 +12,11 @@ export class LoginPageComponent implements OnInit {
   username = "";
   password = "";
   controllo: boolean;
-  percorso:string;
   bottoneLanding:boolean=true;
+  message:any; 
  
 
-  constructor(private data:DataService) {
-   
+  constructor(private data:DataService, private service:RestapiService, private router:Router ) {
    }
 
 
@@ -23,16 +24,22 @@ export class LoginPageComponent implements OnInit {
     
   }
 
-
-  controlloCredenziali() {
+  doLogin(){
     if (this.username.length < 8 || this.password.length < 8) {
       this.controllo = true;
-      this.percorso="/login"
     }else{
+      let resp= this.service.login(this.username,this.password);
+      resp.subscribe(data=>{
+        this.message=data;
+        this.router.navigate(["/menu-di-gioco"])
+      });
       this.controllo = false;
-      this.percorso="/menu-di-gioco"
     }
+   
   }
+
+
+  
 
   updateData(bottoneLanding: boolean){
     this.data.updateData(bottoneLanding);
@@ -44,7 +51,7 @@ export class LoginPageComponent implements OnInit {
   }
 
  
-  
+
 
 
 

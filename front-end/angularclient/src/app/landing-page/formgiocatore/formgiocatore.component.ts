@@ -10,6 +10,7 @@ import { Giocatore } from '../../model/giocatore';
 
 export class FormgiocatoreComponent {
   giocatore: Giocatore;
+  comparePassword:string;
   
   constructor(private route: ActivatedRoute, private router: Router, private giocatoreService: GiocatoreService) {
     this.giocatore = new Giocatore();

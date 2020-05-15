@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 
 
 import { DemoComponent } from './demo/demo.component';
+import { RestapiService } from './landing-page/restapi.service';
 
 
 
@@ -32,7 +33,8 @@ import { DemoComponent } from './demo/demo.component';
       FormsModule
    ],
    providers: [
-      GiocatoreService
+      GiocatoreService,
+      RestapiService
    ],
    bootstrap: [
       AppComponent

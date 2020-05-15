@@ -3,28 +3,30 @@
       <div class="card w-48 button_login">
 
 
+         <form action="login" method="post">
+            <div class="input-group form-group">
+               <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+               </div>
+               <input type="text" class="form-control" [(ngModel)]="username" placeholder="nome utente">
 
-         <div class="input-group form-group">
-            <div class="input-group-prepend">
-               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="username" placeholder="nome utente">
-
-         </div>
 
 
-         <div class="input-group form-group">
-            <div class="input-group-prepend">
-               <span class="input-group-text"><i class="fas fa-key"></i></span>
+            <div class="input-group form-group">
+               <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+               </div>
+               <input type="password" class="form-control" [(ngModel)]="password" placeholder="password">
             </div>
-            <input type="password" class="form-control" [(ngModel)]="password" placeholder="password">
-         </div>
 
-         <div class="input-group form-group justify-content-center">
-            <button  type="button" class="btn btn-info"  [routerLink]="percorso" (click)="controlloCredenziali()">Accedi</button>
-         </div>
+            <div class="input-group form-group justify-content-center">
+               <button type="button" class="btn btn-info" (click)="doLogin()">Accedi</button>
+            </div>
 
+   
 
+         </form>
       </div>
    </div>
 </div>
@@ -35,18 +37,20 @@
 
    <div class="text-center">
       <div *ngIf="controllo">
-            <label class="alert alert-danger"> Attenzione! Il nome utente o la password sono errati</label>
-         </div>
-      
+         <label class="alert alert-danger"> Attenzione! Il nome utente o la password sono errati</label>
+      </div>
+
+   </div>
+
+   <label>Non hai un account?</label><a type="link" routerLink="/registrazione" href="/registrazione"
+   (click)="aggiornaStringa('Effettua la registrazione')"> Registrati</a>
+
+
+   
+   <div class="text-right">
+      <button type="button" routerLink="/" class="btn btn-info button_back" (click)="updateData(bottoneLanding)">Torna
+         alla pagina precedente </button>
    </div>
 
 
-   <label>Non hai un account?</label><a type="link" routerLink="/registrazione" (click)="aggiornaStringa('Effettua la registrazione')"> Registrati</a>
-
-
-   <div class="text-right">
-      <button type="button" routerLink="/"  class="btn btn-info button_back" (click)="updateData(bottoneLanding)">Torna alla pagina precedente </button>
-    </div>
-
-   
 </div>
