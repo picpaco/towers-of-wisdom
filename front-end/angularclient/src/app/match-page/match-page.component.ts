@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+ 
 
 @Component({
   selector: 'app-match-page',
@@ -11,6 +11,7 @@ export class MatchPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
