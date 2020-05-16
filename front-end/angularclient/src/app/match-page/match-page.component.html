@@ -8,61 +8,80 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <link href="match-page.component.css" type="text/css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link
+      href="match-page.component.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+
+    <script src="../../assets/Stile-della-partita/jQuery/chat-dinamica.js"></script>
   </head>
 
   <body>
-    <div class="container">
-      <div class="col-md justify-content-center">
-        <p class="title">Tizio <span style="font-size: 25mm;">vs</span> Caio</p>
+    <p class="title">George <span>vs</span> Mark</p>
+
+    <div class="panelli">
+      <div class="ambienti">
+        <div class="distese-di-sabbia">
+          distese di sabbia
+        </div>
+
+        <div class="funghi-del-mare">
+          funghi-del-mare
+        </div>
+
+        <div class="fondali-vulcanici">
+          fondali-vulcanici
+        </div>
+
+        <div class="caverne-luminose">
+          caverne-luminose
+        </div>
+      </div>
+      <div class="pannello-delle-carte">
+        <div class="mazzo">
+          <div class="carta-di-sinistra"></div>
+
+          <div class="carta-centrale"></div>
+
+          <div class="carta-di-destra"></div>
+        </div>
+      </div>
+
+      <div class="pannello-dei-tasti">
+        <button type="button" style="border-top-right-radius: 2mm;">
+          <i class="fas fa-comment-dots p-2" style="font-size: 10mm;"></i>
+        </button>
+        <button type="button">
+          <i class="fas fa-book p-2" style="font-size: 10mm;"></i>
+        </button>
+        <button type="button">
+          <i class="fas fa-cog p-2" style="font-size: 10mm;"></i>
+        </button>
+        <button type="button" style="border-bottom-right-radius: 2mm;">
+          <i class="fas fa-door-open p-2" style="font-size: 10mm;"></i>
+        </button>
       </div>
     </div>
-    <div class="container" id="contenuto">
-      <div class="row justify-content-center">
-        <div class="panel-game">
-          <div class="carte" style="text-align: center;">
-            qui vanno distribuite le carte
-          </div>
-          <div class="mini-panel">
-            <p>consigli e piccole info</p>
-          </div>
 
-          <div class="col-xl">
-            <div class="row">
-              <div class="col-sm" style="border: 2px solid black;">
-                Prima colonna
-              </div>
-              <div class="col-sm" style="border: 2px solid black;">
-                Seconda colonna
-              </div>
-              <div class="col-sm" style="border: 2px solid black;">
-                Terza colonna
-              </div>
-              <div class="col-sm" style="border: 2px solid black;">
-                Quarta colonna
-              </div>
-              <div class="col-sm" style="border: 2px solid black;">
-                Quinta colonna
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel-buttons">
-          <button type="button" style="border-top-right-radius: 2mm;">
-            <i class="fas fa-comment-dots p-2" style="font-size: 10mm;"></i>
-          </button>
-          <button type="button">
-            <i class="fas fa-book p-2" style="font-size: 10mm;"></i>
-          </button>
-          <button type="button">
-            <i class="fas fa-cog p-2" style="font-size: 10mm;"></i>
-          </button>
-          <button type="button" style="border-bottom-right-radius: 2mm;">
-            <i class="fas fa-door-open p-2" style="font-size: 10mm;"></i>
-          </button>
-        </div>
-      </div>
+    <div class="chat">
+      <button class="close-chat"><i class="fas fa-times-circle"></i></button>
     </div>
   </body>
 </html>
