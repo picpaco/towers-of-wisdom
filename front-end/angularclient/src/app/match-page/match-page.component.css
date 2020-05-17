@@ -66,27 +66,34 @@ span {
 
 .distese-di-sabbia {
   /*una delle quattro colonne*/
-  background-image: linear-gradient(to top, #cddd6d, #f5ce6a, #d7c60d);
+  background-image: url("../../assets/Stile-della-partita/Pictures/background-sabbia.jpg");
   border-top-left-radius: 3mm;
   border-bottom-left-radius: 3mm;
   border-right: 2px solid rgb(0, 255, 213);
+  background-position: bottom;
 }
 
 .funghi-del-mare {
   /*una delle quattro colonne*/
-  background-image: linear-gradient(to top, #c9a3e5, #9b42db, #8811dd);
+  background-image:  url("../../assets/Stile-della-partita/Pictures/background-blue-water-coral.jpg");
   border-right: 2px solid rgb(0, 255, 213);
+  background-position: top;
+  background-repeat: no-repeat;
 }
 
 .fondali-vulcanici {
   /*una delle quattro colonne*/
-  background-image: linear-gradient(to top, #dda5a5, #f06a6a, #ea1f1f);
+  background-image: url("../../assets/Stile-della-partita/Pictures/coral-plants.jpg");
   border-right: 2px solid rgb(0, 255, 213);
+  background-repeat: no-repeat;
+  background-size: 220mm;
+  background-position: bottom;
 }
 
 .caverne-luminose {
   /*una delle quattro colonne*/
-  background-image: linear-gradient(to top, #86f2d0, #0ef0d6, #38daa7);
+  background-image:  url("../../assets/Stile-della-partita/Pictures/diving-anemone.jpg");
+  background-position: center;
 }
 
 .panelli {
