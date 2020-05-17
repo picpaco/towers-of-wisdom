@@ -1,5 +1,5 @@
 body {
-  background-image: url("../../assets/pictures_of_match/caverna-marina.jpg");
+  background-image: url("../../assets/Stile-della-partita/Pictures/caverna-marina.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
@@ -10,9 +10,23 @@ html {
   height: 100%;
 }
 
+span {
+  font-size: 25mm;
+}
+
+@font-face {
+  font-family: "friendly_school";
+  src: url("../../assets/Stile-della-partita/Fonts/friendly_schoolmates_regular_font_by_situjuh_7ntypes-webfont.woff2")
+      format("woff2"),
+    url("../../assets/Stile-della-partita/Fonts/friendly_schoolmates_regular_font_by_situjuh_7ntypes-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .title {
-  font-size: 18mm;
-  font-family: cursive;
+  font-size: 22mm;
+  font-family: "friendly_school", cursive;
   color: #50d9f1;
   text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
     -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
@@ -23,29 +37,101 @@ html {
   padding-top: 5mm;
 }
 
-.panel-game {
+.ambienti {
+  /*pannello principalle che contiene le 4 colonne*/
+  display: flex;
+  width: 220mm;
+  height: 160mm;
+  margin: auto;
   border: 1px solid rgb(0, 255, 213);
   border-top-left-radius: 3mm;
   border-bottom-left-radius: 3mm;
   border-bottom-right-radius: 3mm;
   border-right: 1px solid rgb(0, 255, 213);
-  width: 210mm;
-  height: 160mm;
   box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
     -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
     2px 1px 3px rgba(0, 77, 243), 2px -2px 3px rgba(0, 77, 243),
     -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
     3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
     -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
-    
 }
-.panel-buttons {
+
+.ambienti div {
+  /*settaggi comuni a tutte le 4 colonne in un colpo solo*/
+  display: flex;
+  flex-direction: row;
+  width: 55mm;
+  height: inherit;
+}
+
+.distese-di-sabbia {
+  /*una delle quattro colonne*/
+  background-image: linear-gradient(to top, #cddd6d, #f5ce6a, #d7c60d);
+  border-top-left-radius: 3mm;
+  border-bottom-left-radius: 3mm;
+  border-right: 2px solid rgb(0, 255, 213);
+}
+
+.funghi-del-mare {
+  /*una delle quattro colonne*/
+  background-image: linear-gradient(to top, #c9a3e5, #9b42db, #8811dd);
+  border-right: 2px solid rgb(0, 255, 213);
+}
+
+.fondali-vulcanici {
+  /*una delle quattro colonne*/
+  background-image: linear-gradient(to top, #dda5a5, #f06a6a, #ea1f1f);
+  border-right: 2px solid rgb(0, 255, 213);
+}
+
+.caverne-luminose {
+  /*una delle quattro colonne*/
+  background-image: linear-gradient(to top, #86f2d0, #0ef0d6, #38daa7);
+}
+
+.panelli {
+  /*colui che contiente il tutto*/
+  /*border: 2px solid white;
+  da togliere*/
+  height: 0;
+}
+
+.panelli .pannello-delle-carte {
+  /*pannello principale che contiene le carte*/
+  justify-content: center;
+  display: flex;
+  border-top: 4px solid rgb(83, 232, 243);
+  color: white;
+  width: 220mm;
+  height: 29.5mm;
+  margin: auto;
+  position: relative;
+  bottom: 29mm;
+  border-top-left-radius: 75mm;
+  border-top-right-radius: 75mm;
+  border-bottom-left-radius: 4mm;
+  border-bottom-right-radius: 4mm;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(24, 118, 241),
+    rgb(112, 197, 236)
+  );
+}
+
+.panelli .pannello-dei-tasti {
+  /*pannello principale che contiene i tasti*/
+  background-color: aqua;
+  color: aliceblue;
+  width: 35mm;
+  height: 80.4mm;
+  margin: auto;
+  position: relative;
+  left: 128.5mm;
+  bottom: 189.6mm;
   border: 1px solid rgb(0, 255, 213);
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
   border-left: 1px solid rgb(0, 255, 213);
-  width: 35mm;
-  height: 80.4mm;
   box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
     -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
     2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
@@ -54,12 +140,8 @@ html {
     -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
 }
 
-#contenuto {
-  position: relative;
-  top: 10mm;
-}
-
-.panel-buttons button {/*stile dei tasti all'interno del panel buttons*/
+.panelli .pannello-dei-tasti button {
+  /*stile ed effetto per i tasti all'interno del pannello dei tasti*/
   border: transparent;
   border-bottom: 2px solid rgb(0, 255, 213);
   font-size: 6.5mm;
@@ -76,7 +158,8 @@ html {
     -1px -1px 3px rgb(55, 127, 194), -1px 1px 3px rgb(55, 127, 194);
 }
 
-.panel-buttons button:hover {/*effetto dei tasti del panel buttons*/
+.panelli .pannello-dei-tasti button:hover {
+  /*stile ed effetto per i tasti all'interno del pannello dei tasti*/
   color: rgb(63, 235, 241);
   background-image: linear-gradient(
     to top left,
@@ -85,42 +168,195 @@ html {
   );
 }
 
-div .carte {/*pannello delle carte in basso,all'interno del panel game*/
-  color: white;
-  border-top: 4px solid rgb(83, 232, 243);
-  top: 130mm;
-  height: 29.5mm;
-  border-bottom: transparent;
-  position: relative;
-  border-top-left-radius: 75mm;
-  border-top-right-radius: 75mm;
-  border-bottom-left-radius: 4mm;
-  border-bottom-right-radius: 4mm;
-  width: 209.5mm;
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(24, 118, 241),
-    rgb(112, 197, 236)
-  );
+.panelli .mazzo {
+  /*pannello principale delle carte*/
+  /*border: 2px solid white;
+   <-questo và levato*/
+  width: 120mm;
+  height: 27mm;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 30px;
+  padding: 20px;
+  justify-content: center;
 }
 
-div.mini-panel {
-  text-align: center;
-  color: white;
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(36, 148, 240),
-    rgb(114, 202, 243)
-  );
-  border-top: transparent;
-  border-left: transparent;
-  border-right: 2px solid rgb(83, 232, 243);
-  border-bottom: 2px solid rgb(83, 232, 243);
-  border-top-left-radius: 2mm;
-  border-bottom-right-radius: 4mm;
-  width: 50mm;
-  height: 12mm;
+.panelli .mazzo div {
+  /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
+  width: 11mm;
+  height: 18mm;
+  border: 2px solid white;
+  border-radius: 1mm;
+}
+
+.carta-di-sinistra {
+  transform: rotate(-10deg);
   position: relative;
-  bottom: 29.5mm;
-  left: 0.1mm;
+  right: 2mm;
+  animation: carte infinite;
+  animation-duration: 3s;
+}
+
+.carta-centrale {
+  position: relative;
+  bottom: 2mm;
+  animation: carta-centrale infinite;
+  animation-duration: 3s;
+}
+
+.carta-di-destra {
+  transform: rotate(10deg);
+  position: relative;
+  left: 2mm;
+  animation: carte infinite;
+  animation-duration: 3s;
+}
+
+.chat {
+  width: 100mm;
+  height: 50mm;
+  position: relative;
+  left: 2mm;
+  top: 10mm;
+  border: transparent;
+  background-image: linear-gradient(to top right, #0a87e0, #38d2da, #8ef0f5);
+  border-top-right-radius: 20mm;
+  border-bottom-left-radius: 20mm;
+  border-top-left-radius: 8mm;
+  border-bottom-right-radius: 8mm;
+}
+
+.chat button.close-chat {
+  font-size: 8mm;
+  color: #006ed6;
+  background: transparent;
+  position: relative;
+  width: 10mm;
+  height: 10mm;
+  border: transparent;
+}
+
+.chat button.close-chat:hover {
+  color: #003cd6;
+}
+
+@keyframes carte {
+  from {
+    top: 0mm;
+  }
+
+  50% {
+    top: 2mm;
+  }
+
+  to {
+    top: 0mm;
+  }
+}
+
+@keyframes carta-centrale {
+  from {
+    bottom: 0mm;
+  }
+
+  50% {
+    bottom: 2mm;
+  }
+
+  to {
+    bottom: 0mm;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .title {
+    font-size: 20mm;
+  }
+
+  .title span {
+    font-size: 23mm;
+  }
+
+  .ambienti {
+    width: 180mm;
+    height: 150mm;
+  }
+
+  .ambienti div {
+    width: 45mm;
+    height: inherit;
+  }
+
+  .panelli .pannello-dei-tasti {
+    left: 108.5mm;
+    bottom: 175mm;
+  }
+
+  .panelli .pannello-delle-carte {
+    width: 179.5mm;
+    height: 25mm;
+    bottom: 24mm;
+  }
+
+  .panelli .mazzo {
+    /*pannello principale delle carte*/
+    width: 120mm;
+    height: 23mm;
+  }
+
+  .panelli .mazzo div {
+    /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
+    width: 9mm;
+    height: 15mm;
+    position: relative;
+  }
+
+  .carta-di-sinistra {
+    position: relative;
+    bottom: 0.5mm;
+    animation: carte infinite;
+    animation-duration: 2s;
+  }
+
+  .carta-centrale {
+    position: relative;
+    bottom: 2mm;
+    animation: carta-centrale infinite;
+    animation-duration: 3s;
+  }
+
+  .carta-di-destra {
+    position: relative;
+    bottom: 0.5mm;
+    animation: carte infinite;
+    animation-duration: 2s;
+  }
+
+  @keyframes carte {
+    from {
+      top: 0mm;
+    }
+
+    50% {
+      top: 1mm;
+    }
+
+    to {
+      top: 0mm;
+    }
+  }
+
+  @keyframes carta-centrale {
+    from {
+      bottom: 0mm;
+    }
+
+    50% {
+      bottom: 1mm;
+    }
+
+    to {
+      bottom: 0mm;
+    }
+  }
 }
