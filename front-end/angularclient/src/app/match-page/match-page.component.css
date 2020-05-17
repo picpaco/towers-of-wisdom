@@ -220,6 +220,7 @@ span {
 }
 
 .chat {
+  display: none;/*al caricamento della pagina non verrà mostrata questo elemento e i suoi geniti*/
   width: 100mm;
   height: 50mm;
   position: relative;
@@ -231,6 +232,7 @@ span {
   border-bottom-left-radius: 20mm;
   border-top-left-radius: 8mm;
   border-bottom-right-radius: 8mm;
+  
 }
 
 .chat button.close-chat {

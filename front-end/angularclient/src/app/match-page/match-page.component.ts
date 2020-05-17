@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
-declare const chat:any;
-
 
 @Component({
   selector: "app-match-page",
@@ -11,11 +9,15 @@ declare const chat:any;
 export class MatchPageComponent implements OnInit {
   constructor() {}
 
-  jQuerychat(){
-    chat();
+  ngOnInit() {}
+
+  public showMessage() {
+    $(document).ready(function () {
+      $(".chat").toggle();
+    });
   }
 
-  ngOnInit() {
+  public hideMessage() {
     $(document).ready(function () {
       $(".chat").hide();
     });

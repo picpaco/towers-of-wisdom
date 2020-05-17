@@ -14,29 +14,22 @@
 
   <body>
     <p class="title">George <span>vs</span> Mark</p>
-<!-- {{jQuerychat()}} -->
+
     <div class="panelli">
       <div class="ambienti">
+        <div class="distese-di-sabbia"></div>
 
-        <div class="distese-di-sabbia">
-        
-        </div>
+        <div class="funghi-del-mare"></div>
 
-        <div class="funghi-del-mare">
-          
+        <div class="fondali-vulcanici"></div>
 
-        </div>
-
-        <div class="fondali-vulcanici">
-          
-        </div>
-
-        <div class="caverne-luminose">
-          
-        </div>
+        <div class="caverne-luminose"></div>
       </div>
+
       <div class="pannello-delle-carte">
+
         <div class="mazzo">
+
           <div class="carta-di-sinistra"></div>
 
           <div class="carta-centrale"></div>
@@ -46,9 +39,14 @@
       </div>
 
       <div class="pannello-dei-tasti">
-        <button type="button" style="border-top-right-radius: 2mm;">
+        <button
+          type="button"
+          style="border-top-right-radius: 2mm;"
+          (click)="showMessage()"
+        >
           <i class="fas fa-comment-dots p-2" style="font-size: 10mm;"></i>
         </button>
+
         <button type="button">
           <i class="fas fa-book p-2" style="font-size: 10mm;"></i>
         </button>
@@ -62,7 +60,7 @@
     </div>
 
     <div class="chat">
-      <button class="close-chat"><i class="fas fa-times-circle"></i></button>
+      <button class="close-chat" (click)="hideMessage()"><i class="fas fa-times-circle"></i></button>
     </div>
   </body>
 </html>
