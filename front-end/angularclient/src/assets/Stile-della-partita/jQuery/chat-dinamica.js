@@ -1,6 +1,9 @@
-$(document).ready(function () {
 
-    $(".chat").hide();
+
+
+function chat(){
+
+$(document).ready(function () {
 
     $("button i.fa-comment-dots").click(function () {
         $(".chat").show();
@@ -10,5 +13,5 @@ $(document).ready(function () {
         $(".chat").hide();
     });
 
-
 });
+}
