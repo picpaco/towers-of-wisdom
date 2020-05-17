@@ -100,6 +100,29 @@
       </div>
     </div>
 
+    <div class="container">
+      <button type="button" class="btn btn-primary" (click)="getUsers()">FindUsers</button>
+    </div>
+
+    <div class="container">  
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+          </tr>
     
+        </tbody>
+      </table>
+    </div>
+
   </body>
 </html>
