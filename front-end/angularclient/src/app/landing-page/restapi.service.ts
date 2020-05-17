@@ -20,4 +20,4 @@ export class RestapiService {
     const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ":" + password) }) //btoa=binary to ASCII
     return this.http.get("http://localhost:8080/getUsers", { headers });
   }
-}
+} 
