@@ -1,56 +1,70 @@
 <div class="container">
-   <div class="d-flex justify-content-center h-100">
-      <div class="card w-48 button_login">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card w-48 button_login">
+      <form action="login" method="post">
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="username"
+            placeholder="nome utente"
+            name="username"
+          />
+        </div>
 
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>
+          <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="password"
+            placeholder="password"
+            name="password"
+          />
+        </div>
 
-         <form action="login" method="post">
-            <div class="input-group form-group">
-               <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-user"></i></span>
-               </div>
-               <input type="text" class="form-control" [(ngModel)]="username" placeholder="nome utente"[ngModelOptions]="{standalone: true}">
-
-            </div>
-
-
-            <div class="input-group form-group">
-               <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-key"></i></span>
-               </div>
-               <input type="password" class="form-control" [(ngModel)]="password" placeholder="password"[ngModelOptions]="{standalone: true}">
-            </div>
-
-            <div class="input-group form-group justify-content-center">
-               <button type="button" class="btn btn-info" (click)="doLogin()">Accedi</button>
-            </div>
-
-   
-
-         </form>
-      </div>
-   </div>
+        <div class="input-group form-group justify-content-center">
+          <button type="button" class="btn btn-info" (click)="doLogin()">
+            Accedi
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
-
-
 <div class="text-center">
+  <div class="text-center">
+    <div *ngIf="controllo">
+      <label class="alert alert-danger">
+        Attenzione! Il nome utente o la password sono errati</label
+      >
+    </div>
+  </div>
 
-   <div class="text-center">
-      <div *ngIf="controllo">
-         <label class="alert alert-danger"> Attenzione! Il nome utente o la password sono errati</label>
-      </div>
+  <label>Non hai un account?</label
+  ><a
+    type="link"
+    routerLink="/registrazione"
+    href="/registrazione"
+    (click)="aggiornaStringa('Effettua la registrazione')"
+  >
+    Registrati</a
+  >
 
-   </div>
-
-   <label>Non hai un account?</label><a type="link" routerLink="/registrazione" href="/registrazione"
-   (click)="aggiornaStringa('Effettua la registrazione')"> Registrati</a>
-
-
-   
-   <div class="text-right">
-      <button type="button" routerLink="/" class="btn btn-info button_back" (click)="updateData(bottoneLanding)">Torna
-         alla pagina precedente </button>
-   </div>
-
-
+  <div class="text-right">
+    <button
+      type="button"
+      routerLink="/"
+      class="btn btn-info button_back"
+      (click)="updateData(bottoneLanding)"
+    >
+      Torna alla pagina precedente
+    </button>
+  </div>
 </div>
