@@ -3,7 +3,7 @@
       <div class="card w-48 button_login">
 
 
-         <form action="login" method="post">
+     
             <div class="input-group form-group">
                <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -21,12 +21,12 @@
             </div>
 
             <div class="input-group form-group justify-content-center">
-               <button type="button" class="btn btn-info" (click)="doLogin()">Accedi</button>
+               <button type="button" class="btn btn-info" (click)="checkLogin()">Accedi</button>
             </div>
 
    
 
-         </form>
+    
       </div>
    </div>
 </div>
@@ -36,7 +36,7 @@
 <div class="text-center">
 
    <div class="text-center">
-      <div *ngIf="controllo">
+      <div *ngIf="invalidLogin">
          <label class="alert alert-danger"> Attenzione! Il nome utente o la password sono errati</label>
       </div>
 
