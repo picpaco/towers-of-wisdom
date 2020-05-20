@@ -21,15 +21,9 @@ export class LoginPageComponent implements OnInit {
   }
 
 
-<<<<<<< HEAD
   ngOnInit() {
 
   }
-=======
-  ngOnInit() {}
-
- 
->>>>>>> c5c4db1748ba7db8559d20972a36fe1f2804d45a
 
 
   checkLogin() {
