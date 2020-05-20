@@ -14,6 +14,37 @@ span {
   font-size: 25mm;
 }
 
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+[data-tooltip]:before {
+  visibility: hidden;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before {
+  visibility: visible;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 5mm;
+  left: 25mm;
+  width: 20mm;
+  background-image: transparent;
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 6mm;
+  line-height: 1.2;
+  font-family: "friendly_school", cursive;
+  transition: 0.09s;
+}
+
 @font-face {
   font-family: "friendly_school";
   src: url("../../assets/Stile-della-partita/Fonts/friendly_schoolmates_regular_font_by_situjuh_7ntypes-webfont.woff2")
@@ -75,7 +106,7 @@ span {
 
 .funghi-del-mare {
   /*una delle quattro colonne*/
-  background-image:  url("../../assets/Stile-della-partita/Pictures/background-blue-water-coral.jpg");
+  background-image: url("../../assets/Stile-della-partita/Pictures/background-blue-water-coral.jpg");
   border-right: 2px solid rgb(0, 255, 213);
   background-position: top;
   background-repeat: no-repeat;
@@ -92,7 +123,7 @@ span {
 
 .caverne-luminose {
   /*una delle quattro colonne*/
-  background-image:  url("../../assets/Stile-della-partita/Pictures/diving-anemone.jpg");
+  background-image: url("../../assets/Stile-della-partita/Pictures/diving-anemone.jpg");
   background-position: center;
 }
 
@@ -200,39 +231,32 @@ span {
   transform: rotate(-10deg);
   position: relative;
   right: 2mm;
-  animation: carte infinite;
-  animation-duration: 3s;
 }
 
 .carta-centrale {
   position: relative;
   bottom: 2mm;
-  animation: carta-centrale infinite;
-  animation-duration: 3s;
 }
 
 .carta-di-destra {
   transform: rotate(10deg);
   position: relative;
   left: 2mm;
-  animation: carte infinite;
-  animation-duration: 3s;
 }
 
 .chat {
-  display: none;/*al caricamento della pagina non verrà mostrata questo elemento e i suoi geniti*/
+  display: none; /*al caricamento della pagina non verrà mostrata questo elemento e i suoi geniti*/
   width: 100mm;
   height: 50mm;
   position: relative;
-  left: 2mm;
-  top: 10mm;
+  left: 256mm;
+  top: 90mm;
   border: transparent;
   background-image: linear-gradient(to top right, #0a87e0, #38d2da, #8ef0f5);
   border-top-right-radius: 20mm;
   border-bottom-left-radius: 20mm;
   border-top-left-radius: 8mm;
   border-bottom-right-radius: 8mm;
-  
 }
 
 .chat button.close-chat {
@@ -247,34 +271,6 @@ span {
 
 .chat button.close-chat:hover {
   color: #003cd6;
-}
-
-@keyframes carte {
-  from {
-    top: 0mm;
-  }
-
-  50% {
-    top: 2mm;
-  }
-
-  to {
-    top: 0mm;
-  }
-}
-
-@keyframes carta-centrale {
-  from {
-    bottom: 0mm;
-  }
-
-  50% {
-    bottom: 2mm;
-  }
-
-  to {
-    bottom: 0mm;
-  }
 }
 
 @media screen and (max-width: 1140px) {

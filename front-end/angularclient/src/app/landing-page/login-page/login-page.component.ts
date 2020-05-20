@@ -23,6 +23,22 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
 
+<<<<<<< HEAD
+=======
+  doLogin(){
+/*    if (this.username.length < 8 || this.password.length < 8) {
+      this.controllo = true;
+    }else{*/
+      console.log("Username:"+this.username+" Password:"+this.password)
+      let resp= this.service.login(this.username,this.password);
+      resp.subscribe(data=>{
+        this.message=data;
+        this.router.navigate(["/menu-di-gioco"])
+      });
+ /*     this.controllo = false;
+    }
+ */  
+>>>>>>> b6fc0821707aa75288e88959718822402dcd4e6d
   }
 
 

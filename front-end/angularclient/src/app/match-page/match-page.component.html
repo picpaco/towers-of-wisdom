@@ -40,20 +40,29 @@
 
       <div class="pannello-dei-tasti">
         <button
+          data-tooltip="Scrivi messaggio"
           type="button"
           style="border-top-right-radius: 2mm;"
           (click)="showMessage()"
-        >
+        > 
           <i class="fas fa-comment-dots p-2" style="font-size: 10mm;"></i>
-        </button>
 
-        <button type="button">
+        </button>
+      
+
+        <button 
+        data-tooltip="Regole di gioco"
+        type="button">
           <i class="fas fa-book p-2" style="font-size: 10mm;"></i>
         </button>
-        <button type="button">
+        <button 
+        data-tooltip="Opzioni"
+        type="button">
           <i class="fas fa-cog p-2" style="font-size: 10mm;"></i>
         </button>
-        <button type="button" style="border-bottom-right-radius: 2mm;">
+        <button 
+        data-tooltip="Abbandona partita"
+        type="button" style="border-bottom-right-radius: 2mm;">
           <i class="fas fa-door-open p-2" style="font-size: 10mm;"></i>
         </button>
       </div>
