@@ -47,12 +47,15 @@ export class MatchPageComponent implements OnInit {
     this.mazzo.forEach((carta) => {
       if (carta.getPosition() === card && !carta.isSelected()) {
         $(document).ready(function () {
-          $(".carta-di-" + card).css({ animation: "su-e-giù 1s infinite" });
+          $(".carta-di-" + card).css({
+            "box-shadow":
+              "1px 1px 3px white,-1px 1px 3px white,1px -1px 3px white,-1px -1px 3px white"
+          });
         });
         carta.setSelected(true);
       } else {
         $(document).ready(function () {
-          $(".carta-di-" + carta.getPosition()).css({ animation: "none" });
+          $(".carta-di-" + carta.getPosition()).css({ "box-shadow":"none" });
         });
         carta.setSelected(false);
       }
