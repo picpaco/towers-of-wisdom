@@ -26,15 +26,15 @@ export class LeaderboardPageComponent implements OnInit {
   }
 
   public ordinaClassifica(): void {
-    //funzione per ordinare i giocatori in ordine decrescente
+    //funzione per ordinare i giocatori in ordine decrescente in base al punteggioTotale
 
-    this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
+  /*  this.classifica = this.giocatori.sort((a: Giocatore, b: Giocatore) => {
       if (a.punteggioTotale > b.punteggioTotale) {
         return -1;
       } else {
         return 1;
       }
-    });
+    });*/
   }
 
   public mostraTabella() {
@@ -52,11 +52,11 @@ export class LeaderboardPageComponent implements OnInit {
   }
 
   public percentualeVittorie(){
-
-    this.giocatori.forEach( giocatore  => {
+    //funzione che ricava la percentuale di Vittorie,per poi impostarle a tutti i giocatori
+    /*this.giocatori.forEach( giocatore  => {
       giocatore.percentualeVittorie=((giocatore.partiteVinte/giocatore.partiteGiocate)*100).toFixed()+"%";
     });
-
+    */
   }
   
 }

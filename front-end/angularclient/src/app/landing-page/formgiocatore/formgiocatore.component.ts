@@ -13,7 +13,7 @@ export class FormgiocatoreComponent {
   comparePassword:string;
   
   constructor(private route: ActivatedRoute, private router: Router, private giocatoreService: GiocatoreService) {
-    this.giocatore = new Giocatore();
+   //this.giocatore = new Giocatore();
   }
 
   onSubmit() {

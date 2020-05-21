@@ -26,6 +26,7 @@ span {
 
 /* Show tooltip content on hover */
 [data-tooltip]:hover:before {
+  transition-delay: 3.5s;
   visibility: visible;
 }
 
@@ -42,7 +43,6 @@ span {
   font-size: 6mm;
   line-height: 1.2;
   font-family: "friendly_school", cursive;
-  transition: 0.09s;
 }
 
 @font-face {
@@ -75,10 +75,10 @@ span {
   height: 160mm;
   margin: auto;
   border: 1px solid rgb(0, 255, 213);
-  border-top-left-radius: 3mm;
+  border-top-left-radius: 0mm;
+  border-top-right-radius: 0mm;
   border-bottom-left-radius: 3mm;
   border-bottom-right-radius: 3mm;
-  border-right: 1px solid rgb(0, 255, 213);
   box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
     -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
     2px 1px 3px rgba(0, 77, 243), 2px -2px 3px rgba(0, 77, 243),
@@ -98,8 +98,8 @@ span {
 .distese-di-sabbia {
   /*una delle quattro colonne*/
   background-image: url("../../assets/Stile-della-partita/Pictures/background-sabbia.jpg");
-  border-top-left-radius: 3mm;
-  border-bottom-left-radius: 3mm;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
   border-right: 2px solid rgb(0, 255, 213);
   background-position: bottom;
 }
@@ -125,6 +125,8 @@ span {
   /*una delle quattro colonne*/
   background-image: url("../../assets/Stile-della-partita/Pictures/diving-anemone.jpg");
   background-position: center;
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
 }
 
 .panelli {
@@ -138,17 +140,19 @@ span {
   /*pannello principale che contiene le carte*/
   justify-content: center;
   display: flex;
-  border-top: 4px solid rgb(83, 232, 243);
   color: white;
-  width: 220mm;
+  width: 219.5mm;
   height: 29.5mm;
   margin: auto;
   position: relative;
-  bottom: 29mm;
+  bottom: 99mm;
+  left: 0.1mm;
+  border-top: 4px solid rgb(83, 232, 243);
   border-top-left-radius: 75mm;
   border-top-right-radius: 75mm;
   border-bottom-left-radius: 4mm;
   border-bottom-right-radius: 4mm;
+  border-bottom: 1px solid rgb(0, 255, 213);
   background-image: linear-gradient(
     to bottom right,
     rgb(24, 118, 241),
@@ -165,7 +169,7 @@ span {
   margin: auto;
   position: relative;
   left: 128.5mm;
-  bottom: 189.6mm;
+  bottom: 259.6mm;
   border: 1px solid rgb(0, 255, 213);
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
@@ -187,6 +191,7 @@ span {
   font-family: cursive;
   width: 34.4mm;
   color: aquamarine;
+  outline: none;
   background-image: linear-gradient(
     to top left,
     rgb(101, 177, 221),
@@ -206,6 +211,57 @@ span {
   );
 }
 
+
+.pannello-scarti-coperte{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 30mm;
+  height: 70mm;
+  margin: auto;
+  position: relative;
+  bottom: 160mm;
+  right: 126.2mm;
+  border: 1px solid rgb(0, 255, 213);
+  border-top-left-radius: 3mm;
+  border-bottom-left-radius: 3mm;
+  border-left: 1px solid rgb(0, 255, 213);
+  box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
+    -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
+    2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
+    -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
+    3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
+    -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(24, 118, 241),
+    rgb(112, 197, 236)
+  );
+}
+
+.pannello-scarti-coperte button{
+  width: 25mm;
+  height: 30mm;
+  border: 1px solid rgb(3, 111, 184);
+  background: transparent;
+  position: relative;
+  bottom: 3mm;
+  outline: none;
+}
+
+.pannello-scarti-coperte button.mazzo-scarti{
+position: relative;
+top: 2mm;
+  
+  
+}
+/*
+.pannello-scarti-coperte button.mazzo-coperte{
+
+  
+}
+*/
 .panelli .mazzo {
   /*pannello principale delle carte*/
   /*border: 2px solid white;
@@ -219,29 +275,51 @@ span {
   justify-content: center;
 }
 
-.panelli .mazzo div {
+.panelli .mazzo button {
   /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
   width: 11mm;
   height: 18mm;
-  border: 2px solid white;
+  border: 2px solid transparent;
   border-radius: 1mm;
+  outline: none;
+  
+}
+
+.panelli .mazzo button:hover {
+  /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro passando con il cursore*/
+  box-shadow: 1px 1px 3px white, -1px 1px 3px white,
+    1px -1px 3px white, -1px -1px 3px white;
 }
 
 .carta-di-sinistra {
   transform: rotate(-10deg);
   position: relative;
   right: 2mm;
+  background-color: rgb(228, 228, 89);
 }
 
-.carta-centrale {
+.carta-di-centro {
   position: relative;
   bottom: 2mm;
+  background-color: rgb(62, 241, 232);
 }
 
 .carta-di-destra {
   transform: rotate(10deg);
   position: relative;
   left: 2mm;
+  background-color: rgb(235, 101, 223);
+  /*animation: mymove 1s infinite;*/
+}
+
+@keyframes su-e-giù {
+  from {top: 0px;}
+  15% {top:2px;}
+  35% {top:4px;}
+  55% {top:6px;}
+  75% {top:4px;}
+  95% {top:2px;}
+  to {top: 0px;}
 }
 
 .chat {

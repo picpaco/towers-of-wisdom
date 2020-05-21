@@ -10,11 +10,6 @@ import { NgModule } from '@angular/core';
 
 
 import { DemoComponent } from './demo/demo.component';
-import { RestapiService } from './landing-page/restapi.service';
-
-
-
-
 
 
 
@@ -34,7 +29,6 @@ import { RestapiService } from './landing-page/restapi.service';
    ],
    providers: [
       GiocatoreService,
-      RestapiService
    ],
    bootstrap: [
       AppComponent

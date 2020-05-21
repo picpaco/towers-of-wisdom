@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestapiService } from '../landing-page/restapi.service';
+
 
 
 @Component({
@@ -9,15 +9,11 @@ import { RestapiService } from '../landing-page/restapi.service';
 })
 export class GameComponent implements OnInit {
 
-  users:any;
-  constructor(private service: RestapiService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  getUsers(){
-    let resp= this.service.getUsers();
-    resp.subscribe(data=>this.users=data);
-  }
+ 
 
 }
