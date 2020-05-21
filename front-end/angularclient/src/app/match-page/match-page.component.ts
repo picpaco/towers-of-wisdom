@@ -16,7 +16,7 @@ export class MatchPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.player = new Giocatore("Julian");
+    //this.player = new Giocatore("Julian");
     this.mazzo = [
       new Carta("sinistra"),
       new Carta("centro"),
