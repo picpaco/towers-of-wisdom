@@ -1,22 +1,19 @@
 package com.primas.angularspringbootdemo.config;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
 
 @Configuration
-@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors();
 		System.out.println("sto dentro il metodo configure(http)");
 //		http
 //			.authorizeRequests()
@@ -30,24 +27,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //			.logout()
 //				.permitAll();
 		
-		http
-		.csrf().disable()
-		.authorizeRequests()
-			.antMatchers("/**")
-			.fullyAuthenticated()
-			.and()
-			.httpBasic();
+		http.csrf().disable().
+		authorizeRequests().
+		antMatchers(HttpMethod.OPTIONS, "/**").
+		permitAll().
+		anyRequest().
+		authenticated()
+		.and().httpBasic();
 	}
 	
-	@Override
-	protected void configure (AuthenticationManagerBuilder auth) throws Exception{
-		
-		System.out.println("sto dentro il metodo configure(auth)");
-		auth
-		.inMemoryAuthentication()
-		.withUser("john12345")
-		.password("{noop}test12345")
-		.roles("USER");
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		System.out.println("sto dentro il metodo configureGlobal(auth)");
+		auth.inMemoryAuthentication().
+		withUser("stefano89").password("{noop}stefanorusso").roles("USER");
 	}
 
 //	@Bean
