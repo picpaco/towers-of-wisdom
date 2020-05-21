@@ -9,7 +9,6 @@ import { NgModule } from '@angular/core';
 
 
 
-import { DemoComponent } from './demo/demo.component';
 
 
 
@@ -19,7 +18,6 @@ import { DemoComponent } from './demo/demo.component';
    declarations: [
       AppComponent,
       routingComponents,
-      DemoComponent,
    ],
    imports: [
       BrowserModule,

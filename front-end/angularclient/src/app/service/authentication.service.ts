@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { User } from '../model/user';
 
-export class User{
-  constructor(
-    public status:string,
-     ) {}
-  
-}
+
 
 @Injectable({
   providedIn: 'root'
