@@ -18,6 +18,7 @@ import { FormuserComponent } from './landing-page/formuser/formuser.component';
 
 
 const routes: Routes = [
+  
   {
     path: '',
     component: LandingPageComponent,
