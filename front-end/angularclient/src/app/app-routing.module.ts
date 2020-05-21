@@ -12,11 +12,13 @@ import { RegoleGiocoComponent } from './regole-gioco/regole-gioco.component';
 import {  GameComponent } from './game-menu/game.component'
 import { MatchPageComponent } from './match-page/match-page.component';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component'
+import { FormuserComponent } from './landing-page/formuser/formuser.component';
 
 
 
 
 const routes: Routes = [
+  
   {
     path: '',
     component: LandingPageComponent,
@@ -25,7 +27,7 @@ const routes: Routes = [
 
       {path:'login', component: LoginPageComponent}, 
 
-      {path:'registrazione', component: FormgiocatoreComponent},
+      {path:'registrazione', component: FormuserComponent},
 
     ]
   },
@@ -67,4 +69,5 @@ export const routingComponents = [ListagiocatoriComponent,
                                   MatchPageComponent,
                                   LeaderboardPageComponent,
                                   DemoComponent,
+                                  FormuserComponent,
                                   ]

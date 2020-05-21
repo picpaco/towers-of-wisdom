@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GiocatoreService } from '../../service/giocatore-service.service';
 import { Giocatore } from '../../model/giocatore';
-@Component({
-  selector: 'app-formgiocatore',
-  templateUrl: './formgiocatore.component.html',
-  styleUrls: ['./formgiocatore.component.css'],
-})
 
-export class FormgiocatoreComponent {
+@Component({
+  selector: 'app-formuser',
+  templateUrl: './formuser.component.html',
+  styleUrls: ['./formuser.component.css']
+})
+export class FormuserComponent {
+
   giocatore: Giocatore;
   comparePassword:string;
   
@@ -23,4 +24,5 @@ export class FormgiocatoreComponent {
   gotoListaGiocatori() {
     this.router.navigate(['/giocatori']);
   }
+
 }
