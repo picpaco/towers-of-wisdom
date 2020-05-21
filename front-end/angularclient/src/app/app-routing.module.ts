@@ -17,6 +17,7 @@ import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.co
 
 
 const routes: Routes = [
+  
   {
     path: '',
     component: LandingPageComponent,

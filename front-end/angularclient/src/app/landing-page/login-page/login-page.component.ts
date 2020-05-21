@@ -25,16 +25,17 @@ export class LoginPageComponent implements OnInit {
   }
 
   doLogin(){
-    if (this.username.length < 8 || this.password.length < 8) {
+    /*if (this.username.length < 8 || this.password.length < 8) {
       this.controllo = true;
-    }else{
+    }else{*/
       let resp= this.service.login(this.username,this.password);
       resp.subscribe(data=>{
-        this.message=data;
-        this.router.navigate(["/menu-di-gioco"])
+        //this.message=data;
+        //this.router.navigate(["/menu-di-gioco"])
+        console.log(data);
       });
-      this.controllo = false;
-    }
+      //this.controllo = false;
+    //}
    
   }
 
