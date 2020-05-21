@@ -35,10 +35,4 @@ public class GiocatoreController {
 	//aggiungiere una get con parametro giocatore che restituisce le info sul singolo giocatore
 	
 	
-	@GetMapping("/")
-	public String login() {
-//		return "autenticazione OK";
-		return "menu-di-gioco";
-		//deve andare al menu
-	}
 }
