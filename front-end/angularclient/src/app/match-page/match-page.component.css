@@ -1,3 +1,4 @@
+/*ctrl+k+0 per chiudere tutte le classi*/
 body {
   background-image: url("../../assets/Stile-della-partita/Pictures/caverna-marina.jpg");
   background-repeat: no-repeat;
@@ -26,7 +27,7 @@ span {
 
 /* Show tooltip content on hover */
 [data-tooltip]:hover:before {
-  transition-delay: 3.5s;
+  transition-delay: 1s;
   visibility: visible;
 }
 
@@ -142,10 +143,10 @@ span {
   display: flex;
   color: white;
   width: 219.5mm;
-  height: 29.5mm;
+  height: 35mm;
   margin: auto;
   position: relative;
-  bottom: 99mm;
+  bottom: 104.5mm;
   left: 0.1mm;
   border-top: 4px solid rgb(83, 232, 243);
   border-top-left-radius: 75mm;
@@ -169,7 +170,7 @@ span {
   margin: auto;
   position: relative;
   left: 128.5mm;
-  bottom: 259.6mm;
+  bottom: 265.1mm;
   border: 1px solid rgb(0, 255, 213);
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
@@ -211,8 +212,7 @@ span {
   );
 }
 
-
-.pannello-scarti-coperte{
+.pannello-scarti-coperte {
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -240,7 +240,7 @@ span {
   );
 }
 
-.pannello-scarti-coperte button{
+.pannello-scarti-coperte button {
   width: 25mm;
   height: 30mm;
   border: 1px solid rgb(3, 111, 184);
@@ -250,11 +250,9 @@ span {
   outline: none;
 }
 
-.pannello-scarti-coperte button.mazzo-scarti{
-position: relative;
-top: 2mm;
-  
-  
+.pannello-scarti-coperte button.mazzo-scarti {
+  position: relative;
+  top: 2mm;
 }
 /*
 .pannello-scarti-coperte button.mazzo-coperte{
@@ -266,60 +264,64 @@ top: 2mm;
   /*pannello principale delle carte*/
   /*border: 2px solid white;
    <-questo và levato*/
-  width: 120mm;
-  height: 27mm;
+  width: 150mm;
+  height: 37mm;
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 30px;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 40px;
   padding: 20px;
   justify-content: center;
 }
 
-.panelli .mazzo button {
+.panelli .mazzo div {
   /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
-  width: 11mm;
-  height: 18mm;
-  border: 2px solid transparent;
-  border-radius: 1mm;
+  width: 15mm;
+  height: 24mm;
+  border: transparent;
+  border-radius: 2mm;
   outline: none;
-  
+}
+/*
+.panelli .mazzo div:hover {
+  settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro passando con il cursore
+  box-shadow: 1px 1px 3px white, -1px 1px 3px white, 1px -1px 3px white,
+    -1px -1px 3px white;
+}
+*/
+.Quadrato {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 243, 73),
+    rgb(245, 247, 164),
+    rgb(255, 243, 73)
+  );
 }
 
-.panelli .mazzo button:hover {
-  /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro passando con il cursore*/
-  box-shadow: 1px 1px 3px white, -1px 1px 3px white,
-    1px -1px 3px white, -1px -1px 3px white;
+.Triangolo {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(77, 200, 238),
+    rgb(117, 238, 247),
+    rgb(77, 200, 238)
+  );
 }
 
-.carta-di-sinistra {
-  transform: rotate(-10deg);
-  position: relative;
-  right: 2mm;
-  background-color: rgb(228, 228, 89);
+.Cerchio {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(248, 97, 223),
+    rgb(247, 158, 247),
+    rgb(248, 97, 223)
+  );
 }
 
-.carta-di-centro {
-  position: relative;
-  bottom: 2mm;
-  background-color: rgb(62, 241, 232);
-}
-
-.carta-di-destra {
-  transform: rotate(10deg);
-  position: relative;
-  left: 2mm;
-  background-color: rgb(235, 101, 223);
-  /*animation: mymove 1s infinite;*/
-}
-
-@keyframes su-e-giù {
-  from {top: 0px;}
-  15% {top:2px;}
-  35% {top:4px;}
-  55% {top:6px;}
-  75% {top:4px;}
-  95% {top:2px;}
-  to {top: 0px;}
+.Ancora {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(250, 172, 120),
+    rgb(240, 224, 138),
+    rgb(250, 172, 120)
+  );
 }
 
 .chat {

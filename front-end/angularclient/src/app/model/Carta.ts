@@ -1,10 +1,23 @@
 export class Carta {
-  private position: string;
   private selected: boolean;
+  private symbol:string;
+  private Id:number;
 
-  public constructor(pos: string) {
-    this.position = pos;
+  public constructor(symbol:string) {
     this.selected = false;
+    this.symbol=symbol;
+  }
+
+  public getSymbol():string{
+    return this.symbol;
+  }
+
+  public setId(id:number){
+    this.Id=id;
+  }
+
+  public getId():string{
+    return this.Id.toFixed();
   }
 
   public isSelected(): boolean {
@@ -15,7 +28,4 @@ export class Carta {
     this.selected = sel;
   }
 
-  public getPosition(): string {
-    return this.position;
-  }
 }

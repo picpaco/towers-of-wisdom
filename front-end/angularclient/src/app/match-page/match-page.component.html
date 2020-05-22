@@ -33,24 +33,12 @@
 
       <div class="pannello-delle-carte">
         <div class="mazzo">
-          <button
-            class="carta-di-sinistra"
-            (click)="toggleCard('sinistra')"
-          ></button>
-
-          <button
-            class="carta-di-centro"
-            (click)="toggleCard('centro')"
-          ></button>
-
-          <button
-            class="carta-di-destra"
-            (click)="toggleCard('destra')"
-          ></button>
+          <div
+            *ngFor="let carta of this.mazzo"
+            (click)="toggleCard(carta.getId())"
+          ></div>
         </div>
       </div>
-
-
 
       <div class="pannello-dei-tasti">
         <button
