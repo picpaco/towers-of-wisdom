@@ -1,23 +1,35 @@
 export class Carta {
   private selected: boolean;
   private symbol:string;
-  private Id:number;
+  private value:string;
+  private id:number;
 
-  public constructor(symbol:string) {
+
+  public constructor(symbol:string,value:string) {
     this.selected = false;
     this.symbol=symbol;
+    this.value=value;
+  }
+
+  public getValue():string{
+
+    return this.value;
   }
 
   public getSymbol():string{
     return this.symbol;
   }
 
+  public getInitial():string{
+    return this.symbol.slice(0,1);
+  }
+
   public setId(id:number){
-    this.Id=id;
+    this.id=id;
   }
 
   public getId():string{
-    return this.Id.toFixed();
+    return this.id.toFixed();
   }
 
   public isSelected(): boolean {

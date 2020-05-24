@@ -213,10 +213,9 @@ span {
 }
 
 .pannello-scarti-coperte {
+  /*pannello che contiene due pannelli uno degli scarti e uno delle pesche e ne definisce le loro forme */
   justify-content: center;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+  padding: 1mm;
   width: 30mm;
   height: 70mm;
   margin: auto;
@@ -240,26 +239,89 @@ span {
   );
 }
 
-.pannello-scarti-coperte button {
-  width: 25mm;
-  height: 30mm;
-  border: 1px solid rgb(3, 111, 184);
+.pannello-scarti-coperte .mazzo-coperte,
+.pannello-scarti-coperte .mazzo-scarti {
+  /*definisce la forma dei due sottopannelli in comune*/
+  width: 28mm;
+  height: 34mm; /*
+  border: 1px solid rgb(255, 255, 255); <--Il border bianco di mostra i due pannelli*/
   background: transparent;
   position: relative;
-  bottom: 3mm;
   outline: none;
+  padding-top: 4mm;
 }
 
-.pannello-scarti-coperte button.mazzo-scarti {
+.mazzo-scarti div,
+.mazzo-coperte div {
+  /*opzioni comuni per le carte degli scarti e delle pesche*/
+  width: 15mm;
+  height: 24mm;
+  border: transparent;
+  border-radius: 1mm;
+  margin: auto;
+}
+
+.carte-rimaste{
+  /*indica quante carte sono rimaste nel mazzo coperto*/
+  width: 0mm;
+  height: 0mm;
+  font-size: 8mm;
+  font-family: "friendly_school",cursive;
+  border-radius: 2mm;
+  color: #8ef0f5;
   position: relative;
-  top: 2mm;
+  left: 21.4mm;
+  bottom: 3mm;
 }
-/*
-.pannello-scarti-coperte button.mazzo-coperte{
 
-  
+.mazzo-scarti div {
+  /*gestione dei sotto elementi div per questa classe*/
+  position: relative;
+  margin: auto;
+  font-size: 10mm;
+  text-align: center;
+  color: white;
+  font-family: "friendly_school", cursive;
+
 }
-*/
+
+.mazzo-scarti div:hover {
+  box-shadow: 1px 1px 3px white, -1px 1px 3px white, 1px -1px 3px white,
+    -1px -1px 3px white;
+}
+
+.mazzo-coperte div {
+  /*gestione delle carte del mazzo coperto*/
+  position: relative;
+  right: 3mm;
+  transform: rotate(-4deg);
+}
+
+.mazzo-coperte div:hover {
+  box-shadow: 1px 1px 3px white, -1px 1px 3px white, 1px -1px 3px white,
+    -1px -1px 3px white;
+}
+
+.messaggioDiAvviso {
+  /*messaggio di errore che appare quando si tenta di pescare una carta dal mazzo coperto,quando nel
+  mazzo si hanno ancora 4 carte*/
+  font-size: 8mm;
+  font-family: "friendly_school", cursive;
+  color: #50d9f1;
+  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+    -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
+    2px -2px 3px #1871f5, -2px -2px 3px #1871f5;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding-top: 5mm;
+  width: 60mm;
+  position: relative;
+  bottom: 215.5mm;
+  left: 72mm;
+  display: none;
+}
+
 .panelli .mazzo {
   /*pannello principale delle carte*/
   /*border: 2px solid white;
@@ -277,17 +339,14 @@ span {
   /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
   width: 15mm;
   height: 24mm;
-  border: transparent;
-  border-radius: 2mm;
+  border-radius: 1mm;
   outline: none;
+  font-size: 10mm;
+  text-align: center;
+  color: white;
+  font-family: "friendly_school", cursive;
 }
-/*
-.panelli .mazzo div:hover {
-  settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro passando con il cursore
-  box-shadow: 1px 1px 3px white, -1px 1px 3px white, 1px -1px 3px white,
-    -1px -1px 3px white;
-}
-*/
+
 .Quadrato {
   background-image: linear-gradient(
     to bottom,
@@ -324,6 +383,10 @@ span {
   );
 }
 
+.Punta {
+  background-image: radial-gradient(rgb(0, 247, 255), rgb(76, 116, 248));
+}
+
 .chat {
   display: none; /*al caricamento della pagina non verrà mostrata questo elemento e i suoi geniti*/
   width: 100mm;
@@ -351,97 +414,4 @@ span {
 
 .chat button.close-chat:hover {
   color: #003cd6;
-}
-
-@media screen and (max-width: 1140px) {
-  .title {
-    font-size: 20mm;
-  }
-
-  .title span {
-    font-size: 23mm;
-  }
-
-  .ambienti {
-    width: 180mm;
-    height: 150mm;
-  }
-
-  .ambienti div {
-    width: 45mm;
-    height: inherit;
-  }
-
-  .panelli .pannello-dei-tasti {
-    left: 108.5mm;
-    bottom: 175mm;
-  }
-
-  .panelli .pannello-delle-carte {
-    width: 179.5mm;
-    height: 25mm;
-    bottom: 24mm;
-  }
-
-  .panelli .mazzo {
-    /*pannello principale delle carte*/
-    width: 120mm;
-    height: 23mm;
-  }
-
-  .panelli .mazzo div {
-    /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
-    width: 9mm;
-    height: 15mm;
-    position: relative;
-  }
-
-  .carta-di-sinistra {
-    position: relative;
-    bottom: 0.5mm;
-    animation: carte infinite;
-    animation-duration: 2s;
-  }
-
-  .carta-centrale {
-    position: relative;
-    bottom: 2mm;
-    animation: carta-centrale infinite;
-    animation-duration: 3s;
-  }
-
-  .carta-di-destra {
-    position: relative;
-    bottom: 0.5mm;
-    animation: carte infinite;
-    animation-duration: 2s;
-  }
-
-  @keyframes carte {
-    from {
-      top: 0mm;
-    }
-
-    50% {
-      top: 1mm;
-    }
-
-    to {
-      top: 0mm;
-    }
-  }
-
-  @keyframes carta-centrale {
-    from {
-      bottom: 0mm;
-    }
-
-    50% {
-      bottom: 1mm;
-    }
-
-    to {
-      bottom: 0mm;
-    }
-  }
 }
