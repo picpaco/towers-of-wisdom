@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListagiocatoriComponent } from './listagiocatori/listagiocatori.component';
-import { FormgiocatoreComponent } from './landing-page/formgiocatore/formgiocatore.component';
 
 import { LoginPageComponent } from './landing-page/login-page/login-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -9,10 +8,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DemoComponent } from './demo/demo.component';
 import { RegoleGiocoComponent } from './regole-gioco/regole-gioco.component';
-import {  GameComponent } from './game-menu/game.component'
+import { GameComponent } from './game-menu/game.component'
 import { MatchPageComponent } from './match-page/match-page.component';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component'
 import { FormuserComponent } from './landing-page/formuser/formuser.component';
+import { FormgiocatoreComponent } from './formgiocatore/formgiocatore.component';
+import { ListautentiComponent } from './listautenti/listautenti.component';
 
 
 
@@ -32,7 +33,11 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'aggiungigiocatore', component: FormgiocatoreComponent},
+
   { path: 'giocatori', component: ListagiocatoriComponent },
+
+  { path: 'listautenti', component: ListautentiComponent },
 
   { path: 'demo', component:DemoComponent },
 
@@ -70,4 +75,5 @@ export const routingComponents = [ListagiocatoriComponent,
                                   LeaderboardPageComponent,
                                   DemoComponent,
                                   FormuserComponent,
+                                  ListautentiComponent
                                   ]

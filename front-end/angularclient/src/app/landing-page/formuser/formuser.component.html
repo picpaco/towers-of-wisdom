@@ -1,10 +1,10 @@
-<!--<form (ngSubmit)="onSubmit()" #giocatoreform="ngForm">
+<form (ngSubmit)="onSubmit()" #utenteform="ngForm">
     <div class="row">
         <div class="col-6 text-center ">
             <div class="form-group ">
 
-                <label for="nome">Nome Utente<input type="text" [(ngModel)]="giocatore.nome" class="form-control"
-                        id="nome" name="nome" placeholder="Inserisci il tuo nome utente" required
+                <label for="nome">Nome Utente<input type="text" [(ngModel)]="utente.nomeutente" class="form-control"
+                        id="nomeutente" name="nomeutente" placeholder="Inserisci il tuo nome utente" required
                         #name="ngModel" /></label>
 
                 <div class="text-center">
@@ -15,7 +15,7 @@
 
 
             <div class="form-group ">
-                <label for="email">Email<input type="text" [(ngModel)]="giocatore.email" class="form-control" id="email"
+                <label for="email">Email<input type="text" [(ngModel)]="utente.email" class="form-control" id="email"
                         name="email" placeholder="Inserisci il tuo indirizzo email" required #email="ngModel" /></label>
 
                 <div class="text-center">
@@ -29,7 +29,7 @@
 
         <div class="col-6 text-center">
             <div class="form-group ">
-                <label for="password">Password<input type="password" [(ngModel)]="giocatore.password" class="form-control"
+                <label for="password">Password<input type="password" [(ngModel)]="utente.password" class="form-control"
                         id="password" name="password" placeholder="Inserisci la tua password" required
                         #password="ngModel" /></label>
 
@@ -57,8 +57,8 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <button type="submit" [disabled]="!giocatoreform.form.valid" class="btn btn-info"> Submit</button>
+            <button type="submit" [disabled]="!utenteform.form.valid" class="btn btn-info"> Submit</button>
         </div>
     </div>
 
-</form>-->
+</form>

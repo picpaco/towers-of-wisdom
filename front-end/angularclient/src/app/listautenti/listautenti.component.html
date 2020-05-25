@@ -1,0 +1,23 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+        
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">nomeUtente</th>
+          <th scope="col">Password</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let utente of utenti">
+          <td>{{ utente.nomeutente }}</td>
+          <td>{{ utente.password }}</td>
+          <td><a href="mailto:{{ utente.email }}">{{ utente.email }}</a></td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

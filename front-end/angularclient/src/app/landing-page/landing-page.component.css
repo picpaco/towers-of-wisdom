@@ -10,11 +10,6 @@
   src: url("../../assets/fonts/ManicSea.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "manicsea";
-  src: url("../../assets/fonts/ManicSea.ttf") format("truetype");
-}
-
 .font_title {
   font-size: 100px;
 }
