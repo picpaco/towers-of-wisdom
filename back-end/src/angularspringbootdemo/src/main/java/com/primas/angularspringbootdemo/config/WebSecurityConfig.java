@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.csrf().disable().
 		authorizeRequests().
-		antMatchers(HttpMethod.GET,"/giocatori").
+		antMatchers(HttpMethod.OPTIONS,"/").
 		permitAll().
 		anyRequest().
 		authenticated()
