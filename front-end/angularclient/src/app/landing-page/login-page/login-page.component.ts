@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { DataService } from '../../data.service'
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service'
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 
@@ -7,7 +7,7 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent implements OnInit {
   username = '';

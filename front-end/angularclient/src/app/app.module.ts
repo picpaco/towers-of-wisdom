@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { GiocatoreService } from './service/giocatore-service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { DataService } from './landing-page/data.service';
+
+
+
 
 
 
@@ -23,7 +27,7 @@ import { NgModule } from '@angular/core';
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
-      FormsModule
+      FormsModule,
    ],
    providers: [
       GiocatoreService,

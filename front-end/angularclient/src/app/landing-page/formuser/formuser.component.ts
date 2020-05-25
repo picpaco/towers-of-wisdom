@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GiocatoreService } from '../../service/giocatore-service.service';
-import { Giocatore } from '../../model/giocatore';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-formuser',
@@ -10,19 +11,22 @@ import { Giocatore } from '../../model/giocatore';
 })
 export class FormuserComponent {
 
-  giocatore: Giocatore;
+  utente: User;
   comparePassword:string;
   
-  constructor(private route: ActivatedRoute, private router: Router, private giocatoreService: GiocatoreService) {
-   //this.giocatore = new Giocatore();
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
+   this.utente = new User();
   }
 
   onSubmit() {
-    this.giocatoreService.save(this.giocatore).subscribe((result) => this.gotoListaGiocatori());
+    // this.userService.save(this.utente).subscribe((result) => this.gotoListaGiocatori());
+    this.userService.save(this.utente).subscribe((result)=>['/listautenti']);
   }
 
+/*
   gotoListaGiocatori() {
-    this.router.navigate(['/giocatori']);
+    this.router.navigate(['/listautenti']);
   }
+*/
 
 }
