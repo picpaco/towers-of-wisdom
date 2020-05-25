@@ -1,5 +1,7 @@
 package com.primas.angularspringbootdemo.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Configuration;
@@ -8,9 +10,17 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+//	@Autowired
+//	DataSource dataSource;
+//
+//	@Autowired
+//	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.jdbcAuthentication().dataSource(dataSource);
+//	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("sto dentro il metodo configure(http)");
@@ -25,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //				.and()
 //			.logout()
 //				.permitAll();
-		
+
 		http.csrf().disable().
 		authorizeRequests().
 		antMatchers(HttpMethod.OPTIONS,"/**").
@@ -33,13 +43,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		anyRequest().
 		authenticated()
 		.and().httpBasic();
+
+//		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll().antMatchers("/")
+//				.hasAnyRole("USER", "ADMIN").antMatchers("/validateLogin").hasAnyRole("USER", "ADMIN")
+//				.antMatchers("/addNewEmployee").hasAnyRole("ADMIN").anyRequest().authenticated().and().formLogin()
+//				.loginPage("/login").permitAll();
+
 	}
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		System.out.println("sto dentro il metodo configureGlobal(auth)");
-		auth.inMemoryAuthentication().
-		withUser("stefano89").password("{noop}stefanorusso").roles("USER");
+		auth.inMemoryAuthentication().withUser("john").password("{noop}test123").roles("USER");
+		
 	}
 
 //	@Bean
