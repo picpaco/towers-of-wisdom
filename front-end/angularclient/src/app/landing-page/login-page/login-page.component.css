@@ -6,11 +6,71 @@
     font-weight: bolder;
 }
 
-.button_login{
+.form_login{
 background-color: transparent;
 border-color: transparent;
 }
 
 .button_back {
-    margin-top: 150px;
+    margin-top: 75px;
+    color: #f5a850;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    
+    height: 15mm;
+    border-radius: 10px;
+    border: 0.3mm solid #6af5ff;
+    font-family: cursive;
+    font-size: 5mm;
+    text-shadow: 1px 1px 3px #051b63, -1px 1px 3px #051b63, 1px -1px 3px #051b63,
+      -1px -1px 3px #1345eb;
+    box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+      -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+      2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+    transition-duration: 0.4s;
   }
+
+  .button_accedi {
+    /*settagio dei due tasti-immagini dimensione,stile,effetti*/
+  
+    color: #f5a850;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    width: 40mm;
+    height: 15mm;
+    border-radius: 10px;
+    margin: 40px;
+    border: 0.3mm solid #6af5ff;
+    font-family: cursive;
+    font-size: 8mm;
+    text-shadow: 1px 1px 3px #051b63, -1px 1px 3px #051b63, 1px -1px 3px #051b63,
+      -1px -1px 3px #1345eb;
+    box-shadow: 1px 1px 3px #266ee2, -1px 1px 3px #266ee2, 1px -1px 3px #266ee2,
+      -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
+      2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
+    transition-duration: 0.4s;
+  }
+
+  .button_accedi:hover {
+    box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+      -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+      2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+    color: #b5fcf2;
+    background-color: #0059ff;
+  }
+
+  .button_back:hover {
+    box-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+      -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+      2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
+    color: #b5fcf2;
+    background-color: #0059ff;
+  }
+
+  
