@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <p class="title">{{ player.getNome() }} <span>vs</span> Bot</p>
+    <p class="title">Julian <span>vs</span> Bot</p>
 
     <div class="panelli">
       <div class="ambienti">
@@ -26,38 +26,60 @@
       </div>
 
       <div class="pannello-scarti-coperte">
-        <button class="mazzo-coperte"></button>
+        <div class="carte-rimaste">{{this.mazzoCoperto.length}}</div>
+        <div class="mazzo-coperte" (click)="peschaDalMazzoCoperto()">
+          <div *ngIf="mazzoCoperto.length >= 1" class="Cerchio">
+            <div
+              *ngIf="mazzoCoperto.length > 1"
+              class="Ancora"
+              style="
+                position: relative;
+                top: 2mm;
+                left: 2mm;
+                transform: rotate(-5deg);
+              "
+            >
+              <div
+                *ngIf="mazzoCoperto.length > 2"
+                class="Triangolo"
+                style="
+                  position: relative;
+                  top: 2mm;
+                  left: 2mm;
+                  transform: rotate(5deg);
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
 
-        <button class="mazzo-scarti"></button>
+        <div class="mazzo-scarti" (click)="scartaOppurePescaDalMazzoScarti()">
+          <div>
+            <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
+              {{ mazzoScarti[0].getValue() }}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="pannello-delle-carte">
         <div class="mazzo">
-          <button
-            class="carta-di-sinistra"
-            (click)="toggleCard('sinistra')"
-          ></button>
-
-          <button
-            class="carta-di-centro"
-            (click)="toggleCard('centro')"
-          ></button>
-
-          <button
-            class="carta-di-destra"
-            (click)="toggleCard('destra')"
-          ></button>
+          <div
+            *ngFor="let carta of this.mazzo"
+            (click)="selezionaCarta(carta.getId())"
+          >
+            <p>{{ carta.getValue() }}</p>
+            
+          </div>
         </div>
       </div>
-
-
 
       <div class="pannello-dei-tasti">
         <button
           data-tooltip="Scrivi messaggio"
           type="button"
           style="border-top-right-radius: 2mm;"
-          (click)="showMessage()"
+          (click)="mostraChat()"
         >
           <i class="fas fa-comment-dots p-2" style="font-size: 10mm;"></i>
         </button>
@@ -76,10 +98,14 @@
           <i class="fas fa-door-open p-2" style="font-size: 10mm;"></i>
         </button>
       </div>
+
+      <div class="messaggioDiAvviso">
+        <p>Devi prima giocare la tua carta!</p>
+      </div>
     </div>
 
     <div class="chat">
-      <button class="close-chat" (click)="hideMessage()">
+      <button class="close-chat" (click)="nascondiChat()">
         <i class="fas fa-times-circle"></i>
       </button>
     </div>
