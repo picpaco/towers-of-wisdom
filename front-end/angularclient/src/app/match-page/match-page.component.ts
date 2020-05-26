@@ -24,7 +24,7 @@ export class MatchPageComponent implements OnInit {
       new Carta("Cerchio", "4"),
       new Carta("Punta", "P"),
     ];
-    
+
     this.mostraMazzo();
     this.inizializzaMazzoScarti();
     this.riempiMazzoCoperto();
@@ -138,10 +138,7 @@ export class MatchPageComponent implements OnInit {
     /*funzione che viene invocata quando si cerca di scartare una carta selezionata dal mazzo*/
     var scarta = true;
     this.nascondiMessaggioDiAvviso();
-    
-    if(this.mazzoScarti===undefined){
-        this.mostraMessaggioDiAvviso("Non ci sono carte scartate!");
-    }
+
 
 
     if (this.mazzo.length === 3) {
@@ -159,7 +156,6 @@ export class MatchPageComponent implements OnInit {
 
     this.mostraMazzo();
     this.mostraCarteScartate();
-  
   }
 
   private mostraCarteScartate() {
@@ -195,13 +191,6 @@ export class MatchPageComponent implements OnInit {
     });
   }
 
-  private nascondiMessaggioDiAvviso(): void {
-    $(document).ready(function () {
-      $(".messaggioDiAvviso").hide();
-      /*TO DO:animazione del messaggio*/
-    });
-  }
-
   private scartaLaCarta(): void {
     let copiaMazzo: [Carta];
     let nonSelezionati = 0;
@@ -224,7 +213,7 @@ export class MatchPageComponent implements OnInit {
     }
     if (nonSelezionati === 4) {
       //nessuna carta è stata selezionata mostra un messaggio...
-      this.mostraMessaggioDiAvviso("Non hai selezionato una carta!");
+      this.mostraMessaggioDiAvviso("Non hai selezionato la tua carta!");
     }
     this.mazzo = undefined;
     this.mazzo = copiaMazzo;
@@ -250,8 +239,15 @@ export class MatchPageComponent implements OnInit {
 
   private mostraMessaggioDiAvviso(avviso: string): void {
     $(document).ready(function () {
-      $(".messaggioDiAvviso").show();
-      /*TO DO:animazione del messaggio e inserzione del messaggio*/
+      $(".messaggioDiAvviso").text(avviso).show();
+      /*TO DO:animazione del messaggio*/
+    });
+  }
+
+  private nascondiMessaggioDiAvviso(): void {
+    $(document).ready(function () {
+      $(".messaggioDiAvviso").hide();
+      /*TO DO:animazione del messaggio*/
     });
   }
 }

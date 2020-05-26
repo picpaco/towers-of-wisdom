@@ -26,29 +26,32 @@
       </div>
 
       <div class="pannello-scarti-coperte">
-        <div class="carte-rimaste">{{this.mazzoCoperto.length}}</div>
+        <div class="carte-rimaste">{{ this.mazzoCoperto.length }}</div>
         <div class="mazzo-coperte" (click)="peschaDalMazzoCoperto()">
-          <div *ngIf="mazzoCoperto.length >= 1" class="Cerchio">
+          <div *ngIf="mazzoCoperto.length > 0" 
+            class="Carta-misteriosa">
             <div
               *ngIf="mazzoCoperto.length > 1"
-              class="Ancora"
-              style="
-                position: relative;
-                top: 2mm;
-                left: 2mm;
-                transform: rotate(-5deg);
-              "
+              class="Carta-misteriosa"
+              style="position: relative; top: 1mm; left: 1mm;"
             >
               <div
                 *ngIf="mazzoCoperto.length > 2"
-                class="Triangolo"
-                style="
-                  position: relative;
-                  top: 2mm;
-                  left: 2mm;
-                  transform: rotate(5deg);
-                "
-              ></div>
+                class="Carta-misteriosa"
+                style="position: relative; top: 1mm; left: 1mm;"
+              >
+                <div
+                  *ngIf="mazzoCoperto.length > 3"
+                  class="Carta-misteriosa"
+                  style="position: relative; top: 1mm; left: 1mm;"
+                >
+                  <div
+                    *ngIf="mazzoCoperto.length > 4"
+                    class="Carta-misteriosa"
+                    style="position: relative; top: 1mm; left: 1mm;"
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -69,7 +72,6 @@
             (click)="selezionaCarta(carta.getId())"
           >
             <p>{{ carta.getValue() }}</p>
-            
           </div>
         </div>
       </div>

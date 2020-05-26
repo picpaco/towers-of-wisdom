@@ -235,7 +235,8 @@ span {
   background-image: linear-gradient(
     to bottom right,
     rgb(24, 118, 241),
-    rgb(112, 197, 236)
+    rgb(61, 194, 255),
+    rgb(160, 255, 255)
   );
 }
 
@@ -261,12 +262,12 @@ span {
   margin: auto;
 }
 
-.carte-rimaste{
+.carte-rimaste {
   /*indica quante carte sono rimaste nel mazzo coperto*/
   width: 0mm;
   height: 0mm;
   font-size: 8mm;
-  font-family: "friendly_school",cursive;
+  font-family: "friendly_school", cursive;
   border-radius: 2mm;
   color: #8ef0f5;
   position: relative;
@@ -282,7 +283,6 @@ span {
   text-align: center;
   color: white;
   font-family: "friendly_school", cursive;
-
 }
 
 .mazzo-scarti div:hover {
@@ -294,7 +294,6 @@ span {
   /*gestione delle carte del mazzo coperto*/
   position: relative;
   right: 3mm;
-  transform: rotate(-4deg);
 }
 
 .mazzo-coperte div:hover {
@@ -316,6 +315,7 @@ span {
   text-align: center;
   padding-top: 5mm;
   width: 60mm;
+  height: 30mm;
   position: relative;
   bottom: 215.5mm;
   left: 72mm;
@@ -359,9 +359,9 @@ span {
 .Triangolo {
   background-image: linear-gradient(
     to bottom,
-    rgb(77, 200, 238),
+    rgb(30, 135, 255),
     rgb(117, 238, 247),
-    rgb(77, 200, 238)
+    rgb(30, 135, 255)
   );
 }
 
@@ -384,7 +384,18 @@ span {
 }
 
 .Punta {
-  background-image: radial-gradient(rgb(0, 247, 255), rgb(76, 116, 248));
+  background-image: radial-gradient(
+    rgb(0, 247, 255),
+    rgb(76, 116, 248)
+    );
+}
+
+.Carta-misteriosa {
+  background-image: linear-gradient(
+    to top left,
+    rgb(4, 51, 207),
+    rgb(0, 247, 255)
+  );
 }
 
 .chat {
