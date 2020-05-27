@@ -3,6 +3,7 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { delay } from "rxjs/operators";
+import {GiocatoreService} from "../service/giocatore-service.service"
 
 @Component({
   selector: "app-match-page",
@@ -15,15 +16,23 @@ export class MatchPageComponent implements OnInit {
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
 
-  constructor() {}
+  public mazzoProva:[Carta];
+
+  constructor(private giocatoreService:GiocatoreService) {}
 
   ngOnInit() {
-    //this.player = new Giocatore("Julian");
+
+    //this.giocatoreService.getCarte().subscribe(data => { this.mazzoProva = data;});
     this.mazzo = [
       new Carta("Ancora", "1"),
       new Carta("Cerchio", "4"),
       new Carta("Punta", "P"),
     ];
+
+
+    
+
+
 
     this.mostraMazzo();
     this.inizializzaMazzoScarti();
