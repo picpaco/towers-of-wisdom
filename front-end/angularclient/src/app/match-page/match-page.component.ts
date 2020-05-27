@@ -3,7 +3,7 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { delay } from "rxjs/operators";
-import {GiocatoreService} from "../service/giocatore-service.service"
+import { GiocatoreService } from "../service/giocatore-service.service";
 
 @Component({
   selector: "app-match-page",
@@ -11,32 +11,40 @@ import {GiocatoreService} from "../service/giocatore-service.service"
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
+  public mazzoProva: Carta[];
+
   public player: Giocatore;
   public mazzo: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
 
-  public mazzoProva:[Carta];
-
-  constructor(private giocatoreService:GiocatoreService) {}
+  constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
+    this.giocatoreService.getCarte().subscribe((data) => {
+      this.mazzoProva = data;
+    });
+    // this.mazzo = [
+    //   new Carta("Ancora", "1"),
+    //   new Carta("Cerchio", "4"),
+    //   new Carta("Punta", "P"),
+    // ];
 
-    //this.giocatoreService.getCarte().subscribe(data => { this.mazzoProva = data;});
-    this.mazzo = [
-      new Carta("Ancora", "1"),
-      new Carta("Cerchio", "4"),
-      new Carta("Punta", "P"),
-    ];
+    this.provaDati();
 
-
-    
-
-
+    // this.mazzo=this.mazzoProva;
 
     this.mostraMazzo();
     this.inizializzaMazzoScarti();
     this.riempiMazzoCoperto();
+  }
+  private provaDati() {
+    console.log("-----------------------");
+    console.log("Invio richiesta al server....");
+    console.log("Mazzo di prova");
+    console.log(this.mazzoProva);
+    console.log("-----------------------");
+  
   }
 
   private riempiMazzoCoperto(): void {
@@ -173,7 +181,7 @@ export class MatchPageComponent implements OnInit {
     if (this.mazzoScarti.length === 1) {
       let classe = this.mazzoScarti[0].getSymbol();
       $(document).ready(function () {
-       $(".mazzo-scarti >div:eq(0)").css({ border: "transparent" });
+        $(".mazzo-scarti >div:eq(0)").css({ border: "transparent" });
 
         $(".mazzo-scarti div div").addClass(classe);
       });
