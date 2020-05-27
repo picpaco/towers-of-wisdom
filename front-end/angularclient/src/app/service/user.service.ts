@@ -22,6 +22,9 @@ export class UserService {
   }
   
   public save(utente: User) {
-    return this.http.post<User>(this.utentiUrl, utente);
+    let username = "stefano89";
+    let password = "stefanorusso";
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    return this.http.post<User>(this.utentiUrl, utente, {headers});
   }
 }
