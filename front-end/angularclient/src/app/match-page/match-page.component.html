@@ -15,6 +15,31 @@
     <p class="title">Julian <span>vs</span> Bot</p>
 
     <div class="panelli">
+      <div class="pannello-torri-del-giocatore-avversario">
+        <div>funge</div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="pannello-torri-del-giocatore">
+        <div>
+          <div class="Quadrato"></div>
+          <div
+            class="Triangolo"
+            style="
+              margin-left: 1mm;
+              margin-bottom: 5mm;
+              transform: rotate(15deg);
+              grid-area: 1 / 1 / 2 / 2;
+            "
+          ></div>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
       <div class="ambienti">
         <div class="distese-di-sabbia"></div>
 
@@ -28,8 +53,7 @@
       <div class="pannello-scarti-coperte">
         <div class="carte-rimaste">{{ this.mazzoCoperto.length }}</div>
         <div class="mazzo-coperte" (click)="peschaDalMazzoCoperto()">
-          <div *ngIf="mazzoCoperto.length > 0" 
-            class="Carta-misteriosa">
+          <div *ngIf="mazzoCoperto.length > 0" class="Carta-misteriosa">
             <div
               *ngIf="mazzoCoperto.length > 1"
               class="Carta-misteriosa"
@@ -64,6 +88,8 @@
           </div>
         </div>
       </div>
+
+      <div class="pannelo-del-mazzo-scarti"></div>
 
       <div class="pannello-delle-carte">
         <div class="mazzo">

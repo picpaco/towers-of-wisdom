@@ -139,12 +139,10 @@ export class MatchPageComponent implements OnInit {
     var scarta = true;
     this.nascondiMessaggioDiAvviso();
 
-
-
     if (this.mazzo.length === 3) {
       //se nel mazzo ci sono 3 carte
       //vuol dire che il giocatore vuole pescare l'ultima carta scartata.
-      this.pescaUltimaCartaScartata();
+      this.pescaCartaScartata();
       scarta = false;
     }
 
@@ -166,7 +164,7 @@ export class MatchPageComponent implements OnInit {
     if (this.mazzoScarti.length === 1) {
       let classe = this.mazzoScarti[0].getSymbol();
       $(document).ready(function () {
-        $(".mazzo-scarti div").css({ border: "transparent" });
+       $(".mazzo-scarti >div:eq(0)").css({ border: "transparent" });
 
         $(".mazzo-scarti div div").addClass(classe);
       });
@@ -221,7 +219,7 @@ export class MatchPageComponent implements OnInit {
     console.log(this.mazzoScarti);
   }
 
-  private pescaUltimaCartaScartata(): void {
+  private pescaCartaScartata(): void {
     if (this.mazzoScarti.length > 1) {
       let classePrec = this.mazzoScarti[1].getSymbol();
       let classe = this.mazzoScarti[0].getSymbol();

@@ -283,6 +283,7 @@ span {
   text-align: center;
   color: white;
   font-family: "friendly_school", cursive;
+  border: 1px solid white;
 }
 
 .mazzo-scarti div:hover {
@@ -290,10 +291,91 @@ span {
     -1px -1px 3px white;
 }
 
+.pannelo-del-mazzo-scarti {
+  position: absolute;
+  width: 60mm;
+  height: 60mm;
+  top: 107mm;
+  left: 3.5mm;
+  border: transparent;
+  border-radius: 2mm;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(24, 118, 241),
+    rgb(61, 194, 255),
+    rgb(160, 255, 255)
+  );
+  display: grid;
+  visibility: hidden;
+}
+
+.pannello-torri-del-giocatore {
+  /*rappresenta il pannello di gioco del giocatore*/
+  position: absolute;
+  width: 218mm;
+  height: 60mm;
+  /*border: 1px solid white;*/
+  background: transparent;
+  top: 98mm;
+  left: 69.5mm;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+.pannello-torri-del-giocatore-avversario {
+  /*rappresenta il pannello di gioco dell'avversario*/
+  position: absolute;
+  width: 218mm;
+  height: 60mm;
+  /*border: 1px solid white;*/
+  background: transparent;
+  left: 69.5mm;
+  top: 36mm;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.pannello-torri-del-giocatore-avversario div {
+  /*rappresentano le quattro colonne di gioco dell'avversario*/
+  position: relative;
+  width: 53.5mm;
+  height: 58mm;
+  top: 0.8mm;
+  /*border: 1px solid rgb(252, 5, 5);*/
+}
+
+.pannello-torri-del-giocatore div {
+  /*rappresentano le quattro colonne di gioco del giocatore*/
+  position: relative;
+  width: 53.5mm;
+  height: 58mm;
+  top: 0.8mm;
+ /*border: 1px solid rgb(252, 5, 5);*/
+  display: grid;
+ 
+}
+
+.pannello-torri-del-giocatore div div {
+  /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
+  width: 15mm;
+  height: 24mm;
+  border-radius: 1mm;
+  outline: none;
+  font-size: 10mm;
+  text-align: center;
+  color: white;
+  font-family: "friendly_school", cursive;
+  border: 1px solid white;
+  grid-area: 1 / 1 / 2 / 2;
+  position: relative;
+  top: 28mm;
+  left:20mm;
+}
+
 .mazzo-coperte div {
   /*gestione delle carte del mazzo coperto*/
   position: relative;
   right: 3mm;
+  border: 1px solid white;
 }
 
 .mazzo-coperte div:hover {
@@ -345,6 +427,7 @@ span {
   text-align: center;
   color: white;
   font-family: "friendly_school", cursive;
+  border: 1px solid white;
 }
 
 .Quadrato {
@@ -384,17 +467,15 @@ span {
 }
 
 .Punta {
-  background-image: radial-gradient(
-    rgb(0, 247, 255),
-    rgb(76, 116, 248)
-    );
+  background-image: radial-gradient(rgb(0, 247, 255), rgb(76, 116, 248));
 }
 
 .Carta-misteriosa {
   background-image: linear-gradient(
     to top left,
-    rgb(4, 51, 207),
-    rgb(0, 247, 255)
+    rgb(252, 164, 0),
+    rgb(248, 255, 124),
+    rgb(255, 166, 0)
   );
 }
 
@@ -421,6 +502,7 @@ span {
   width: 10mm;
   height: 10mm;
   border: transparent;
+  outline: none;
 }
 
 .chat button.close-chat:hover {
