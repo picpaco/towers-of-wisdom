@@ -7,9 +7,7 @@ export class Giocatore {
   private percentualeVittorie : string;
   private partiteGiocate : number;
 
-  public constructor(){
-   
-  }
+  public constructor(){}
 
 
   public getNome():string{

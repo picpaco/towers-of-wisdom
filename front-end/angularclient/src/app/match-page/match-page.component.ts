@@ -3,6 +3,7 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { delay } from "rxjs/operators";
+import { GiocatoreService } from "../service/giocatore-service.service";
 
 @Component({
   selector: "app-match-page",
@@ -10,24 +11,40 @@ import { delay } from "rxjs/operators";
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
+  public mazzoProva: Carta[];
+
   public player: Giocatore;
   public mazzo: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
 
-  constructor() {}
+  constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
-    //this.player = new Giocatore("Julian");
-    this.mazzo = [
-      new Carta("Ancora", "1"),
-      new Carta("Cerchio", "4"),
-      new Carta("Punta", "P"),
-    ];
-    
+    this.giocatoreService.getCarte().subscribe((data) => {
+      this.mazzoProva = data;
+    });
+    // this.mazzo = [
+    //   new Carta("Ancora", "1"),
+    //   new Carta("Cerchio", "4"),
+    //   new Carta("Punta", "P"),
+    // ];
+
+    this.provaDati();
+
+    // this.mazzo=this.mazzoProva;
+
     this.mostraMazzo();
     this.inizializzaMazzoScarti();
     this.riempiMazzoCoperto();
+  }
+  private provaDati() {
+    console.log("-----------------------");
+    console.log("Invio richiesta al server....");
+    console.log("Mazzo di prova");
+    console.log(this.mazzoProva);
+    console.log("-----------------------");
+  
   }
 
   private riempiMazzoCoperto(): void {
@@ -138,16 +155,11 @@ export class MatchPageComponent implements OnInit {
     /*funzione che viene invocata quando si cerca di scartare una carta selezionata dal mazzo*/
     var scarta = true;
     this.nascondiMessaggioDiAvviso();
-    
-    if(this.mazzoScarti===undefined){
-        this.mostraMessaggioDiAvviso("Non ci sono carte scartate!");
-    }
-
 
     if (this.mazzo.length === 3) {
       //se nel mazzo ci sono 3 carte
       //vuol dire che il giocatore vuole pescare l'ultima carta scartata.
-      this.pescaUltimaCartaScartata();
+      this.pescaCartaScartata();
       scarta = false;
     }
 
@@ -159,7 +171,6 @@ export class MatchPageComponent implements OnInit {
 
     this.mostraMazzo();
     this.mostraCarteScartate();
-  
   }
 
   private mostraCarteScartate() {
@@ -170,7 +181,7 @@ export class MatchPageComponent implements OnInit {
     if (this.mazzoScarti.length === 1) {
       let classe = this.mazzoScarti[0].getSymbol();
       $(document).ready(function () {
-        $(".mazzo-scarti div").css({ border: "transparent" });
+        $(".mazzo-scarti >div:eq(0)").css({ border: "transparent" });
 
         $(".mazzo-scarti div div").addClass(classe);
       });
@@ -192,13 +203,6 @@ export class MatchPageComponent implements OnInit {
     $(document).ready(function () {
       $(".mazzo-scarti div div").removeClass(classePrec);
       $(".mazzo-scarti div div").addClass(classe);
-    });
-  }
-
-  private nascondiMessaggioDiAvviso(): void {
-    $(document).ready(function () {
-      $(".messaggioDiAvviso").hide();
-      /*TO DO:animazione del messaggio*/
     });
   }
 
@@ -224,7 +228,7 @@ export class MatchPageComponent implements OnInit {
     }
     if (nonSelezionati === 4) {
       //nessuna carta è stata selezionata mostra un messaggio...
-      this.mostraMessaggioDiAvviso("Non hai selezionato una carta!");
+      this.mostraMessaggioDiAvviso("Non hai selezionato la tua carta!");
     }
     this.mazzo = undefined;
     this.mazzo = copiaMazzo;
@@ -232,7 +236,7 @@ export class MatchPageComponent implements OnInit {
     console.log(this.mazzoScarti);
   }
 
-  private pescaUltimaCartaScartata(): void {
+  private pescaCartaScartata(): void {
     if (this.mazzoScarti.length > 1) {
       let classePrec = this.mazzoScarti[1].getSymbol();
       let classe = this.mazzoScarti[0].getSymbol();
@@ -250,8 +254,15 @@ export class MatchPageComponent implements OnInit {
 
   private mostraMessaggioDiAvviso(avviso: string): void {
     $(document).ready(function () {
-      $(".messaggioDiAvviso").show();
-      /*TO DO:animazione del messaggio e inserzione del messaggio*/
+      $(".messaggioDiAvviso").text(avviso).show();
+      /*TO DO:animazione del messaggio*/
+    });
+  }
+
+  private nascondiMessaggioDiAvviso(): void {
+    $(document).ready(function () {
+      $(".messaggioDiAvviso").hide();
+      /*TO DO:animazione del messaggio*/
     });
   }
 }
