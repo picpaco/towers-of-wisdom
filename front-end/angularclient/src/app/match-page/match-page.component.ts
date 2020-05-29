@@ -4,6 +4,7 @@ import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
 
+
 @Component({
   selector: "app-match-page",
   templateUrl: "./match-page.component.html",
@@ -20,21 +21,28 @@ export class MatchPageComponent implements OnInit {
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
-    // this.giocatoreService.getCarte().subscribe((data) => {
-    //   this.mazzoProva = data;
-    // });
-    this.mazzo = [
-      new Carta("Ancora", "1"),
-      new Carta("Cerchio", "4"),
-      new Carta("Quadrato", "7"),
-    ];
 
-    //this.provaDati();
+     this.giocatoreService.getCarte().subscribe((data) => {
+       this.mazzoProva =data,
+       console.log("Il mio dato"),
+       console.log(data),
+       this.provaDati();//qui invece l'assegnazzione avviene!
+       
+     });
+     console.log("fuori dalla funzione il mazzo di prova è:");
+     console.log(this.mazzoProva);//qui è undefined
+    // this.mazzo = [
+    //   new Carta("Ancora", "1"),
+    //   new Carta("Cerchio", "4"),
+    //   new Carta("Quadrato", "7"),
+    // ];
 
-    this.mostraMazzo();
-    this.inizializzaMazzoScarti();
-    this.inizializzaTorri();
-    this.riempiMazzoCoperto();
+   // this.provaDati();
+
+    // this.mostraMazzo();
+    // this.inizializzaMazzoScarti();
+    // this.inizializzaTorri();
+    // this.riempiMazzoCoperto();
   }
   private inizializzaTorri() {
     
