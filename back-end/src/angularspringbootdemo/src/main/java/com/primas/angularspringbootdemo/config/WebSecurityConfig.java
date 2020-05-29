@@ -8,18 +8,24 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	DataSource dataSource;
-//
-//	@Autowired
-//	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.jdbcAuthentication().dataSource(dataSource);
-//	}
+	@Autowired
+	DataSource dataSource;
+
+	@Autowired
+	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+		auth.jdbcAuthentication().dataSource(dataSource);
+	}
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/resources/**");
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -44,10 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		authenticated()
 		.and().httpBasic();
 
-//		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll().antMatchers("/")
-//				.hasAnyRole("USER", "ADMIN").antMatchers("/validateLogin").hasAnyRole("USER", "ADMIN")
+//		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll().antMatchers("/welcome")
+//				.hasAnyRole("USER", "ADMIN").antMatchers("/getEmployees").hasAnyRole("USER", "ADMIN")
 //				.antMatchers("/addNewEmployee").hasAnyRole("ADMIN").anyRequest().authenticated().and().formLogin()
-//				.loginPage("/login").permitAll();
+//				.loginPage("/validateLogin").permitAll().and().logout().permitAll().and().httpBasic();
 
 	}
 
