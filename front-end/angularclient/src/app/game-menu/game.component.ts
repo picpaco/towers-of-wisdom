@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { GiocatoreService } from '../service/giocatore-service.service';
+import { Carta } from '../model/Carta';
+import { Giocatore } from '../model/giocatore';
 
 
 
@@ -9,10 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  giocatori:Giocatore[];
+
+  constructor(private giocatoreService:GiocatoreService) { }
 
   ngOnInit() {
+    this.giocatoreService.findAll().subscribe(data => {this.giocatori = data;});
+    console.log('Sto dentro il metodo ngOnInit');
+    console.log(this.giocatori[0].mano);
   }
+
+
 
  
 
