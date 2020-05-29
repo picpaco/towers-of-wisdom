@@ -319,7 +319,8 @@ span {
   top: 98mm;
   left: 69.5mm;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 55mm 55mm 55mm 55mm;
+  padding-top: 35mm;
 }
 .pannello-torri-del-giocatore-avversario {
   /*rappresenta il pannello di gioco dell'avversario*/
@@ -331,31 +332,13 @@ span {
   left: 69.5mm;
   top: 36mm;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 58mm 58mm 82mm 55mm;
+  padding-bottom: 32mm;
 }
-
+.pannello-torri-del-giocatore div,
 .pannello-torri-del-giocatore-avversario div {
-  /*rappresentano le quattro colonne di gioco dell'avversario*/
-  position: relative;
-  width: 53.5mm;
-  height: 58mm;
-  top: 0.8mm;
-  /*border: 1px solid rgb(252, 5, 5);*/
-}
-
-.pannello-torri-del-giocatore div {
-  /*rappresentano le quattro colonne di gioco del giocatore*/
-  position: relative;
-  width: 53.5mm;
-  height: 58mm;
-  top: 0.8mm;
- /*border: 1px solid rgb(252, 5, 5);*/
-  display: grid;
- 
-}
-
-.pannello-torri-del-giocatore div div {
-  /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
+  /**rappresentano le carte in 4 punti delle colonne*/
+  margin: 0;
   width: 15mm;
   height: 24mm;
   border-radius: 1mm;
@@ -365,10 +348,6 @@ span {
   color: white;
   font-family: "friendly_school", cursive;
   border: 1px solid white;
-  grid-area: 1 / 1 / 2 / 2;
-  position: relative;
-  top: 28mm;
-  left:20mm;
 }
 
 .mazzo-coperte div {
@@ -433,9 +412,9 @@ span {
 .Quadrato {
   background-image: linear-gradient(
     to bottom,
-    rgb(255, 243, 73),
-    rgb(245, 247, 164),
-    rgb(255, 243, 73)
+    rgb(212, 198, 0),
+    rgb(253, 255, 108),
+    rgb(212, 198, 0)
   );
 }
 
@@ -473,9 +452,9 @@ span {
 .Carta-misteriosa {
   background-image: linear-gradient(
     to top left,
-    rgb(252, 164, 0),
-    rgb(248, 255, 124),
-    rgb(255, 166, 0)
+    rgb(5, 228, 24),
+    rgb(181, 253, 167),
+    rgb(5, 228, 24)
   );
 }
 

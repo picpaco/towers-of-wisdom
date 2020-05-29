@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
-import { delay } from "rxjs/operators";
 import { GiocatoreService } from "../service/giocatore-service.service";
 
 @Component({
@@ -21,22 +20,75 @@ export class MatchPageComponent implements OnInit {
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
-    this.giocatoreService.getCarte().subscribe((data) => {
-      this.mazzoProva = data;
-    });
-    // this.mazzo = [
-    //   new Carta("Ancora", "1"),
-    //   new Carta("Cerchio", "4"),
-    //   new Carta("Punta", "P"),
-    // ];
+    // this.giocatoreService.getCarte().subscribe((data) => {
+    //   this.mazzoProva = data;
+    // });
+    this.mazzo = [
+      new Carta("Ancora", "1"),
+      new Carta("Cerchio", "4"),
+      new Carta("Quadrato", "7"),
+    ];
 
-    this.provaDati();
-
-    // this.mazzo=this.mazzoProva;
+    //this.provaDati();
 
     this.mostraMazzo();
     this.inizializzaMazzoScarti();
+    this.inizializzaTorri();
     this.riempiMazzoCoperto();
+  }
+  private inizializzaTorri() {
+    
+    var ambienti:string[];
+    ambienti=[".Quadrato",".Triangolo",".Cerchio",".Ancora"];
+    
+
+    ambienti.forEach(valore => {
+      $(document).ready(function () {
+        $(".pannello-torri-del-giocatore div"+valore).css({
+          position: "relative",
+          left: "4mm",
+          transform: "rotate(1deg)",
+        });
+        $(".pannello-torri-del-giocatore div"+valore+" div").css({
+          position: "absolute",
+          left: "10mm",
+          bottom: "-2mm",
+          transform: "rotate(-2deg)",
+        });
+        $(".pannello-torri-del-giocatore div"+valore+" div div").css({
+          position: "absolute",
+          left: "10mm",
+          top: "-1mm",
+          transform: "rotate(3deg)",
+        });
+        $(".pannello-torri-del-giocatore div"+valore+" div div div").css({
+          position: "absolute",
+          left: "10mm",
+          top: "-0.5mm",
+          transform: "rotate(-2deg)",
+        });
+        $(".pannello-torri-del-giocatore div"+valore+" div div div div").css({
+          position: "absolute",
+          left: "2mm",
+          top: "-23mm",
+          transform: "rotate(-4deg)",
+        });
+        $(".pannello-torri-del-giocatore div"+valore+" div div div div div").css({
+          position: "absolute",
+          left: "-12mm",
+          top: "-1mm",
+          transform: "rotate(-2deg)",
+        });
+        $(
+          ".pannello-torri-del-giocatore div"+valore+" div div div div div div div"
+        ).css({
+          position: "absolute",
+          left: "-12mm",
+          top: "-7",
+          transform: "rotate( 1deg)",
+        });
+      });
+    });
   }
   private provaDati() {
     console.log("-----------------------");
@@ -44,7 +96,6 @@ export class MatchPageComponent implements OnInit {
     console.log("Mazzo di prova");
     console.log(this.mazzoProva);
     console.log("-----------------------");
-  
   }
 
   private riempiMazzoCoperto(): void {
