@@ -4,14 +4,13 @@ import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
 
-
 @Component({
   selector: "app-match-page",
   templateUrl: "./match-page.component.html",
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
-  public mazzoProva: Carta[];
+  mazzoProva;
 
   public player: Giocatore;
   public mazzo: Carta[];
@@ -21,23 +20,32 @@ export class MatchPageComponent implements OnInit {
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
+    //  this.giocatoreService.getCarte().subscribe((data) => {
+    //    this.mazzoProva =data,
+    //    console.log("Il mio dato"),
+    //    console.log(data),
+    //    this.provaDati();//qui invece l'assegnazzione avviene!
 
-     this.giocatoreService.getCarte().subscribe((data) => {
-       this.mazzoProva =data,
-       console.log("Il mio dato"),
-       console.log(data),
-       this.provaDati();//qui invece l'assegnazzione avviene!
-       
-     });
-     console.log("fuori dalla funzione il mazzo di prova è:");
-     console.log(this.mazzoProva);//qui è undefined
+    //  });
+    this.giocatoreService.getCarte().subscribe((data) => {
+      data.forEach((carta) => {
+        if (this.mazzoProva === undefined) {
+          this.mazzoProva = [new Carta(carta["simbolo"], carta["valore"])];
+        } else {
+          this.mazzoProva.unshift(new Carta(carta["simbolo"], carta["valore"]));
+        }
+      });
+
+      console.log("Il mazzo di prova nella funzione:");
+      console.log(this.mazzoProva);
+    });
+    console.log("fuori dalla funzione il mazzo di prova è:");
+    console.log(this.mazzoProva); //qui è undefined
     // this.mazzo = [
     //   new Carta("Ancora", "1"),
     //   new Carta("Cerchio", "4"),
     //   new Carta("Quadrato", "7"),
     // ];
-
-   // this.provaDati();
 
     // this.mostraMazzo();
     // this.inizializzaMazzoScarti();
@@ -45,50 +53,54 @@ export class MatchPageComponent implements OnInit {
     // this.riempiMazzoCoperto();
   }
   private inizializzaTorri() {
-    
-    var ambienti:string[];
-    ambienti=[".Quadrato",".Triangolo",".Cerchio",".Ancora"];
-    
+    var ambienti: string[];
+    ambienti = [".Quadrato", ".Triangolo", ".Cerchio", ".Ancora"];
 
-    ambienti.forEach(valore => {
+    ambienti.forEach((valore) => {
       $(document).ready(function () {
-        $(".pannello-torri-del-giocatore div"+valore).css({
+        $(".pannello-torri-del-giocatore div" + valore).css({
           position: "relative",
           left: "4mm",
           transform: "rotate(1deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div").css({
+        $(".pannello-torri-del-giocatore div" + valore + " div").css({
           position: "absolute",
           left: "10mm",
           bottom: "-2mm",
           transform: "rotate(-2deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div div").css({
+        $(".pannello-torri-del-giocatore div" + valore + " div div").css({
           position: "absolute",
           left: "10mm",
           top: "-1mm",
           transform: "rotate(3deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div div div").css({
+        $(".pannello-torri-del-giocatore div" + valore + " div div div").css({
           position: "absolute",
           left: "10mm",
           top: "-0.5mm",
           transform: "rotate(-2deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div div div div").css({
+        $(
+          ".pannello-torri-del-giocatore div" + valore + " div div div div"
+        ).css({
           position: "absolute",
           left: "2mm",
           top: "-23mm",
           transform: "rotate(-4deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div div div div div").css({
+        $(
+          ".pannello-torri-del-giocatore div" + valore + " div div div div div"
+        ).css({
           position: "absolute",
           left: "-12mm",
           top: "-1mm",
           transform: "rotate(-2deg)",
         });
         $(
-          ".pannello-torri-del-giocatore div"+valore+" div div div div div div div"
+          ".pannello-torri-del-giocatore div" +
+            valore +
+            " div div div div div div div"
         ).css({
           position: "absolute",
           left: "-12mm",
@@ -97,13 +109,6 @@ export class MatchPageComponent implements OnInit {
         });
       });
     });
-  }
-  private provaDati() {
-    console.log("-----------------------");
-    console.log("Invio richiesta al server....");
-    console.log("Mazzo di prova");
-    console.log(this.mazzoProva);
-    console.log("-----------------------");
   }
 
   private riempiMazzoCoperto(): void {

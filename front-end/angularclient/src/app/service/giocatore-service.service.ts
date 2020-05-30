@@ -7,7 +7,7 @@ import { Carta } from "../model/Carta";
 @Injectable()
 export class GiocatoreService {
   getCarte(): Observable<Carta[]> {
-    return this.http.get<Carta[]>("http://localhost:8080/carte", {
+    return this.http.get<Carta[]>("http://localhost:8080/match", {
       responseType: "json",
     });
   }
