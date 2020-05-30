@@ -1,9 +1,11 @@
+import { Injectable } from "@angular/core";
+import {Adapter} from "./Adapter";
+
 export class Carta {
   private selected: boolean;
   private symbol:string;
   private value:string;
   private id:number;
-
 
   public constructor(symbol:string,value:string) {
     this.selected = false;
@@ -41,3 +43,12 @@ export class Carta {
   }
 
 }
+
+ @Injectable({
+   providedIn: "root"
+ })
+ export class CartaAdapter implements Adapter<Carta> {
+   adapt(item: any): Carta {
+     return new Carta(item.simbolo,item.valore);
+   }
+ }

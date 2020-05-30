@@ -3,6 +3,7 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
+import { Mazzo } from '../model/Mazzo';
 
 @Component({
   selector: "app-match-page",
@@ -20,37 +21,25 @@ export class MatchPageComponent implements OnInit {
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
-    //  this.giocatoreService.getCarte().subscribe((data) => {
-    //    this.mazzoProva =data,
-    //    console.log("Il mio dato"),
-    //    console.log(data),
-    //    this.provaDati();//qui invece l'assegnazzione avviene!
-
-    //  });
-    this.giocatoreService.getCarte().subscribe((data) => {
-      data.forEach((carta) => {
-        if (this.mazzoProva === undefined) {
-          this.mazzoProva = [new Carta(carta["simbolo"], carta["valore"])];
-        } else {
-          this.mazzoProva.unshift(new Carta(carta["simbolo"], carta["valore"]));
-        }
-      });
-
-      console.log("Il mazzo di prova nella funzione:");
-      console.log(this.mazzoProva);
-    });
-    console.log("fuori dalla funzione il mazzo di prova è:");
-    console.log(this.mazzoProva); //qui è undefined
-    // this.mazzo = [
-    //   new Carta("Ancora", "1"),
-    //   new Carta("Cerchio", "4"),
-    //   new Carta("Quadrato", "7"),
-    // ];
-
-    // this.mostraMazzo();
-    // this.inizializzaMazzoScarti();
-    // this.inizializzaTorri();
-    // this.riempiMazzoCoperto();
+       this.giocatoreService.getCarte().subscribe((data) => {
+         this.mazzoProva=data.slice(),
+     
+         console.log("Il mio dato appena ricevuto"),
+         console.log(data);
+       });
+       console.log("Il mazzo prova fuori dalla funzione:");
+       console.log(this.mazzoProva)
+     this.mazzo = [
+       new Carta("Ancora", "1"),
+       new Carta("Cerchio", "4"),
+       new Carta("Quadrato", "7"),
+     ];
+     console.log("Il mazzo creato manualmente:")
+     console.log(this.mazzo);
+     //this.mostraMazzo();
+     //this.inizializzaMazzoScarti();
+     //this.inizializzaTorri();
+     //this.riempiMazzoCoperto();
   }
   private inizializzaTorri() {
     var ambienti: string[];
@@ -155,7 +144,7 @@ export class MatchPageComponent implements OnInit {
     this.mazzo.forEach((carta, index = 0) => {
       $(document).ready(function () {
         let classe = carta.getSymbol();
-
+        console.log(classe);
         $(".mazzo > div:eq(" + index + ")")
           .addClass(classe)
           .attr("id", "id" + index);
