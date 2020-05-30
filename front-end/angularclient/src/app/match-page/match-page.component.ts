@@ -17,10 +17,13 @@ export class MatchPageComponent implements OnInit {
   public mazzo: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
+  mano:any;
 
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
+
+    this.giocatoreService.findAll().subscribe(data => {this.mano = data[0].mano});
        this.giocatoreService.getCarte().subscribe((data) => {
          this.mazzoProva=data.slice(),
      

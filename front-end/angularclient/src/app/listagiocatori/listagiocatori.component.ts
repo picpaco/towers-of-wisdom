@@ -11,13 +11,13 @@ styleUrls: ['./listagiocatori.component.css']
 
 export class ListagiocatoriComponent implements OnInit {
   giocatori: Giocatore[];
-  mano:any;
+  
 
   
   constructor(private giocatoreService: GiocatoreService) { }
 
   ngOnInit() {
     this.giocatoreService.findAll().subscribe(data => {this.giocatori = data});
-    this.giocatoreService.findAll().subscribe(data => {this.mano = data[0].mano});
+    
   }
 }
