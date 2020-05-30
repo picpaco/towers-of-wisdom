@@ -12,18 +12,10 @@ import { Giocatore } from '../model/giocatore';
 })
 export class GameComponent implements OnInit {
 
-  giocatori:Giocatore[];
-
-  constructor(private giocatoreService:GiocatoreService) { }
-
-  ngOnInit() {
-    this.giocatoreService.findAll().subscribe(data => {this.giocatori = data;});
-    console.log('Sto dentro il metodo ngOnInit');
-    console.log(this.giocatori[0].mano);
+  constructor() { 
   }
 
-
-
+  ngOnInit() {}
  
 
 }

@@ -15,6 +15,12 @@
           <td>{{ giocatore.id }}</td>
           <td>{{ giocatore.nome }}</td>
           <td><a href="mailto:{{ giocatore.email }}">{{ giocatore.email }}</a></td>
+          <td>{{ giocatore.mano}}</td>
+        </tr>
+        <tr *ngFor="let carta of mano">
+          <td>{{ carta.id }}</td>
+          <td>{{ carta.valore }}</td>
+          <td>{{ carta.simbolo }}</td>
         </tr>
       </tbody>
 
