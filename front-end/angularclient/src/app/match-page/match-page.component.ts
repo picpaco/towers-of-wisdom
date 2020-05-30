@@ -3,7 +3,7 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
-
+import { Mazzo } from '../model/Mazzo';
 
 @Component({
   selector: "app-match-page",
@@ -11,7 +11,7 @@ import { GiocatoreService } from "../service/giocatore-service.service";
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
-  public mazzoProva: Carta[];
+  mazzoProva;
 
   public player: Giocatore;
   public mazzo: Carta[];
@@ -21,74 +21,75 @@ export class MatchPageComponent implements OnInit {
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
-
-     this.giocatoreService.getCarte().subscribe((data) => {
-       this.mazzoProva =data,
-       console.log("Il mio dato"),
-       console.log(data),
-       this.provaDati();//qui invece l'assegnazzione avviene!
-       
-     });
-     console.log("fuori dalla funzione il mazzo di prova è:");
-     console.log(this.mazzoProva);//qui è undefined
-    // this.mazzo = [
-    //   new Carta("Ancora", "1"),
-    //   new Carta("Cerchio", "4"),
-    //   new Carta("Quadrato", "7"),
-    // ];
-
-   // this.provaDati();
-
-    // this.mostraMazzo();
-    // this.inizializzaMazzoScarti();
-    // this.inizializzaTorri();
-    // this.riempiMazzoCoperto();
+       this.giocatoreService.getCarte().subscribe((data) => {
+         this.mazzoProva=data.slice(),
+     
+         console.log("Il mio dato appena ricevuto"),
+         console.log(data);
+       });
+       console.log("Il mazzo prova fuori dalla funzione:");
+       console.log(this.mazzoProva)
+     this.mazzo = [
+       new Carta("Ancora", "1"),
+       new Carta("Cerchio", "4"),
+       new Carta("Quadrato", "7"),
+     ];
+     console.log("Il mazzo creato manualmente:")
+     console.log(this.mazzo);
+     //this.mostraMazzo();
+     //this.inizializzaMazzoScarti();
+     //this.inizializzaTorri();
+     //this.riempiMazzoCoperto();
   }
   private inizializzaTorri() {
-    
-    var ambienti:string[];
-    ambienti=[".Quadrato",".Triangolo",".Cerchio",".Ancora"];
-    
+    var ambienti: string[];
+    ambienti = [".Quadrato", ".Triangolo", ".Cerchio", ".Ancora"];
 
-    ambienti.forEach(valore => {
+    ambienti.forEach((valore) => {
       $(document).ready(function () {
-        $(".pannello-torri-del-giocatore div"+valore).css({
+        $(".pannello-torri-del-giocatore div" + valore).css({
           position: "relative",
           left: "4mm",
           transform: "rotate(1deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div").css({
+        $(".pannello-torri-del-giocatore div" + valore + " div").css({
           position: "absolute",
           left: "10mm",
           bottom: "-2mm",
           transform: "rotate(-2deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div div").css({
+        $(".pannello-torri-del-giocatore div" + valore + " div div").css({
           position: "absolute",
           left: "10mm",
           top: "-1mm",
           transform: "rotate(3deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div div div").css({
+        $(".pannello-torri-del-giocatore div" + valore + " div div div").css({
           position: "absolute",
           left: "10mm",
           top: "-0.5mm",
           transform: "rotate(-2deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div div div div").css({
+        $(
+          ".pannello-torri-del-giocatore div" + valore + " div div div div"
+        ).css({
           position: "absolute",
           left: "2mm",
           top: "-23mm",
           transform: "rotate(-4deg)",
         });
-        $(".pannello-torri-del-giocatore div"+valore+" div div div div div").css({
+        $(
+          ".pannello-torri-del-giocatore div" + valore + " div div div div div"
+        ).css({
           position: "absolute",
           left: "-12mm",
           top: "-1mm",
           transform: "rotate(-2deg)",
         });
         $(
-          ".pannello-torri-del-giocatore div"+valore+" div div div div div div div"
+          ".pannello-torri-del-giocatore div" +
+            valore +
+            " div div div div div div div"
         ).css({
           position: "absolute",
           left: "-12mm",
@@ -97,13 +98,6 @@ export class MatchPageComponent implements OnInit {
         });
       });
     });
-  }
-  private provaDati() {
-    console.log("-----------------------");
-    console.log("Invio richiesta al server....");
-    console.log("Mazzo di prova");
-    console.log(this.mazzoProva);
-    console.log("-----------------------");
   }
 
   private riempiMazzoCoperto(): void {
@@ -150,7 +144,7 @@ export class MatchPageComponent implements OnInit {
     this.mazzo.forEach((carta, index = 0) => {
       $(document).ready(function () {
         let classe = carta.getSymbol();
-
+        console.log(classe);
         $(".mazzo > div:eq(" + index + ")")
           .addClass(classe)
           .attr("id", "id" + index);
