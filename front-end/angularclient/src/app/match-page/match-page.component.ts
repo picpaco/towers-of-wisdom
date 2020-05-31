@@ -40,10 +40,10 @@ export class MatchPageComponent implements OnInit {
       new Carta("Cerchio", "4"),
       new Carta("Quadrato", "7"),
     ];
-    this.mostraMazzo();
+   /* this.mostraMazzo();
     this.inizializzaMazzoScarti();
     this.inizializzaTorri();
-    this.riempiMazzoCoperto();
+    this.riempiMazzoCoperto();*/
   }
 
   public giocaSullaTorre() {
@@ -107,7 +107,9 @@ export class MatchPageComponent implements OnInit {
   }
 
   public stampaLunghezza(){
-    console.log(this.mano.length);
+    for (let index = 0; index < this.mano.length; index++) {
+      console.log(this.mano[index]);
+    }
   }
 
 
