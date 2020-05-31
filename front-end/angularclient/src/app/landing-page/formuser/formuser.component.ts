@@ -12,7 +12,7 @@ import { UserService } from 'src/app/service/user.service';
 export class FormuserComponent {
 
   utente: User;
-  comparePassword:string;
+  passwordConfermata:boolean=false;
   
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
    this.utente = new User();
@@ -20,13 +20,14 @@ export class FormuserComponent {
 
   onSubmit() {
     // this.userService.save(this.utente).subscribe((result) => this.gotoListaGiocatori());
-    this.userService.save(this.utente).subscribe((result)=>['/listautenti']);
+
+    this.userService.save(this.utente).subscribe((result)=>this.gotoLogin());
   }
 
-/*
-  gotoListaGiocatori() {
+
+  gotoLogin() {
     this.router.navigate(['/listautenti']);
   }
-*/
+
 
 }

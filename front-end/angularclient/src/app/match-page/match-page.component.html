@@ -1,7 +1,9 @@
- <div *ngFor="let carta of mazzoProva">
-{{carta.symbol}} {{carta.value}}
+ <div *ngFor="let carta of mano">
+{{carta.simbolo}} {{carta.valore}}
 </div>
-<div>{{ mazzoProva.length}}</div> 
+<div>{{ mano.length}}</div> 
+
+<button type="button" class="btn-info" (click)="stampaLunghezza()"> stampa numero di carte su console </button>
 <!--
  <!DOCTYPE html>
 <html>

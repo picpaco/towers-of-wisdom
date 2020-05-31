@@ -4,6 +4,7 @@ import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
 import { Mazzo } from '../model/Mazzo';
+import { mainModule } from 'process';
 
 @Component({
   selector: "app-match-page",
@@ -17,19 +18,14 @@ export class MatchPageComponent implements OnInit {
   public mazzo: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
-  mano:any;
+  mano:any=[];
 
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
 
     this.giocatoreService.findAll().subscribe(data => {this.mano = data[0].mano});
-       this.giocatoreService.getCarte().subscribe((data) => {
-         this.mazzoProva=data.slice(),
-     
-         console.log("Il mio dato appena ricevuto"),
-         console.log(data);
-       });
+       
        console.log("Il mazzo prova fuori dalla funzione:");
        console.log(this.mazzoProva)
      this.mazzo = [
@@ -37,13 +33,18 @@ export class MatchPageComponent implements OnInit {
        new Carta("Cerchio", "4"),
        new Carta("Quadrato", "7"),
      ];
-     console.log("Il mazzo creato manualmente:")
-     console.log(this.mazzo);
      //this.mostraMazzo();
      //this.inizializzaMazzoScarti();
      //this.inizializzaTorri();
      //this.riempiMazzoCoperto();
   }
+
+
+  public stampaLunghezza(){
+    console.log(this.mano.length);
+  }
+
+
   private inizializzaTorri() {
     var ambienti: string[];
     ambienti = [".Quadrato", ".Triangolo", ".Cerchio", ".Ancora"];
