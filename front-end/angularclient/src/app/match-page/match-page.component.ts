@@ -3,7 +3,8 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
-import { Mazzo } from "../model/Mazzo";
+import { Mazzo } from '../model/Mazzo';
+import { mainModule } from 'process';
 
 @Component({
   selector: "app-match-page",
@@ -18,13 +19,14 @@ export class MatchPageComponent implements OnInit {
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
   public torreQuadrato: [Carta];
-  mano: any;
+  mano:any=[];
 
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
-    /*    this.giocatoreService.findAll().subscribe((data) => {
-      this.mano = data[0].mano;
+
+    this.giocatoreService.findAll().subscribe(data => {this.mano = data[0].mano});
+    /*
     });
     this.giocatoreService.getCarte().subscribe((data) => {
       (this.mazzoProva = data.slice()),
@@ -103,6 +105,11 @@ export class MatchPageComponent implements OnInit {
       });
     });
   }
+
+  public stampaLunghezza(){
+    console.log(this.mano.length);
+  }
+
 
   private inizializzaTorri() {
     if (this.torreQuadrato === undefined || this.torreQuadrato.length < 1) {
