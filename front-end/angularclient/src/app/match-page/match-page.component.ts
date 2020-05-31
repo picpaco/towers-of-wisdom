@@ -3,7 +3,7 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
-import { Mazzo } from '../model/Mazzo';
+import { Mazzo } from "../model/Mazzo";
 
 @Component({
   selector: "app-match-page",
@@ -17,37 +17,103 @@ export class MatchPageComponent implements OnInit {
   public mazzo: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
-  mano:any;
+  public torreQuadrato: [Carta];
+  mano: any;
 
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
-
-    this.giocatoreService.findAll().subscribe(data => {this.mano = data[0].mano});
-       this.giocatoreService.getCarte().subscribe((data) => {
-         this.mazzoProva=data.slice(),
-     
-         console.log("Il mio dato appena ricevuto"),
-         console.log(data);
-       });
-       console.log("Il mazzo prova fuori dalla funzione:");
-       console.log(this.mazzoProva)
-     this.mazzo = [
-       new Carta("Ancora", "1"),
-       new Carta("Cerchio", "4"),
-       new Carta("Quadrato", "7"),
-     ];
-     console.log("Il mazzo creato manualmente:")
-     console.log(this.mazzo);
-     //this.mostraMazzo();
-     //this.inizializzaMazzoScarti();
-     //this.inizializzaTorri();
-     //this.riempiMazzoCoperto();
+    /*    this.giocatoreService.findAll().subscribe((data) => {
+      this.mano = data[0].mano;
+    });
+    this.giocatoreService.getCarte().subscribe((data) => {
+      (this.mazzoProva = data.slice()),
+        console.log("Il mio dato appena ricevuto"),
+        console.log(data);
+    });
+    console.log("Il mazzo prova fuori dalla funzione:");
+    console.log(this.mazzoProva);*/
+    this.mazzo = [
+      new Carta("Ancora", "1"),
+      new Carta("Cerchio", "4"),
+      new Carta("Quadrato", "7"),
+    ];
+    this.mostraMazzo();
+    this.inizializzaMazzoScarti();
+    this.inizializzaTorri();
+    this.riempiMazzoCoperto();
   }
-  private inizializzaTorri() {
-    var ambienti: string[];
-    ambienti = [".Quadrato", ".Triangolo", ".Cerchio", ".Ancora"];
 
+  public giocaSullaTorre() {
+    let copiaMazzo: [Carta];
+    this.mazzo.forEach((carta) => {
+      if (carta.isSelected()) {
+        carta.setSelected(false);
+        if (this.torreQuadrato === undefined) {
+          this.torreQuadrato = [carta];
+        } else {
+          this.torreQuadrato.unshift(carta);
+        }
+      } else {
+        if (copiaMazzo === undefined) {
+          copiaMazzo = [carta];
+        } else {
+          copiaMazzo.unshift(carta);
+        }
+      }
+    });
+    this.mazzo = undefined;
+    this.mazzo = copiaMazzo;
+
+    if (this.mazzo.length === 4) {
+      this.mostraMessaggioDiAvviso("Non hai selezionato la tua carta!");
+    } else {
+      console.log("è stata giocata una carta su una torre!");
+      console.log(this.torreQuadrato);
+    }
+    this.mostraMazzo();
+    this.mostraTorri();
+  }
+  private mostraTorri() {
+    const position = [
+      ["relative", "4mm", "none", "none", "rotate(1deg)"],
+      ["absolute", "10mm", "none", "-2mm", "rotate(-2deg)"],
+    ];
+    var div = "";
+    var cartaPrec=this.torreQuadrato[0];
+    this.torreQuadrato.forEach((carta, index = 0) => {
+      let classe = carta.getSymbol();
+      let valore = carta.getValue();
+      
+      $(document).ready(function () {
+        $(".pannello-torri-del-giocatore div.Q " + div)
+          .css({
+            border: "1px solid white",
+            position: position[index][0],
+            left: position[index][1],
+            top: position[index][2],
+            bottom: position[index][3],
+            transform: position[index][4],
+          })
+          .addClass(classe)
+          .text(valore)
+          .append("<div style='width:inherit;height:inherit;'></div>");
+
+        div += "div";
+      });
+    });
+  }
+
+  private inizializzaTorri() {
+    if (this.torreQuadrato === undefined || this.torreQuadrato.length < 1) {
+      $(document).ready(function () {
+        $(".pannello-torri-del-giocatore div:eq(0)").css({
+          border: "2px dashed white",
+        });
+      });
+    }
+    /* var ambienti: string[];
+    ambienti = [".Quadrato", ".Triangolo", ".Cerchio", ".Ancora"];
     ambienti.forEach((valore) => {
       $(document).ready(function () {
         $(".pannello-torri-del-giocatore div" + valore).css({
@@ -100,7 +166,7 @@ export class MatchPageComponent implements OnInit {
           transform: "rotate( 1deg)",
         });
       });
-    });
+    });*/
   }
 
   private riempiMazzoCoperto(): void {
@@ -117,12 +183,6 @@ export class MatchPageComponent implements OnInit {
       new Carta("Punta", "P"),
       new Carta("Ancora", "4"),
       new Carta("Ancora", "5"),
-      new Carta("Ancora", "6"),
-      new Carta("Ancora", "7"),
-      new Carta("Triangolo", "1"),
-      new Carta("Triangolo", "2"),
-      new Carta("Triangolo", "3"),
-      new Carta("Triangolo", "4"),
       new Carta("Triangolo", "5"),
       new Carta("Triangolo", "6"),
       new Carta("Triangolo", "7"),
@@ -147,7 +207,6 @@ export class MatchPageComponent implements OnInit {
     this.mazzo.forEach((carta, index = 0) => {
       $(document).ready(function () {
         let classe = carta.getSymbol();
-        console.log(classe);
         $(".mazzo > div:eq(" + index + ")")
           .addClass(classe)
           .attr("id", "id" + index);
@@ -213,15 +272,15 @@ export class MatchPageComponent implements OnInit {
     this.nascondiMessaggioDiAvviso();
 
     if (this.mazzo.length === 3) {
-      //se nel mazzo ci sono 3 carte
-      //vuol dire che il giocatore vuole pescare l'ultima carta scartata.
+      /*se nel mazzo ci sono 3 carte
+      vuol dire che il giocatore vuole pescare l'ultima carta scartata.*/
       this.pescaCartaScartata();
       scarta = false;
     }
 
     if (this.mazzo.length === 4 && scarta === true) {
-      //se il mazzo é uguale a 4
-      //vuol dire che il giocatore vuole scartare una carta selezionata.
+      /*se il mazzo é uguale a 4
+      vuol dire che il giocatore vuole scartare una carta selezionata.*/
       this.scartaLaCarta();
     }
 
@@ -283,7 +342,7 @@ export class MatchPageComponent implements OnInit {
       }
     }
     if (nonSelezionati === 4) {
-      //nessuna carta è stata selezionata mostra un messaggio...
+      /* nessuna carta è stata selezionata mostra un messaggio...*/
       this.mostraMessaggioDiAvviso("Non hai selezionato la tua carta!");
     }
     this.mazzo = undefined;
