@@ -314,13 +314,12 @@ span {
   position: absolute;
   width: 218mm;
   height: 60mm;
-  /*border: 1px solid white;*/
+ /* border: 1px solid white; */
   background: transparent;
   top: 98mm;
   left: 69.5mm;
   display: grid;
   grid-template-columns: 55mm 55mm 55mm 55mm;
-  padding-top: 35mm;
 }
 .pannello-torri-del-giocatore-avversario {
   /*rappresenta il pannello di gioco dell'avversario*/
@@ -335,26 +334,33 @@ span {
   grid-template-columns: 58mm 58mm 82mm 55mm;
   padding-bottom: 32mm;
 }
-.pannello-torri-del-giocatore div,
-.pannello-torri-del-giocatore-avversario div {
-  /**rappresentano le carte in 4 punti delle colonne*/
-  margin: 0;
-  width: 15mm;
-  height: 24mm;
-  border-radius: 1mm;
-  outline: none;
-  font-size: 10mm;
-  text-align: center;
-  color: white;
-  font-family: "friendly_school", cursive;
- /* border: 1px solid white;*/
-}
 
 .mazzo-coperte div {
   /*gestione delle carte del mazzo coperto*/
   position: relative;
   right: 3mm;
   border: 1px solid white;
+}
+
+.carte-delle-torri {
+  display: flex;
+  flex-flow: wrap-reverse;
+  flex-direction: row;
+  width: 53mm;
+  height: 60mm;
+  padding-left: 2mm;
+ justify-content: space-around;
+}
+
+.carte-delle-torri div {
+  width: 12mm;
+  height: 21mm;
+  border-radius: 1mm;
+  font-size: 8mm;
+  text-align: center;
+  color: white;
+  font-family: "friendly_school", cursive;
+  border: transparent;
 }
 
 .mazzo-coperte div:hover {
@@ -439,9 +445,9 @@ span {
 .Ancora {
   background-image: linear-gradient(
     to bottom,
-    rgb(250, 172, 120),
+    rgb(255, 153, 57),
     rgb(240, 224, 138),
-    rgb(250, 172, 120)
+    rgb(255, 153, 57)
   );
 }
 

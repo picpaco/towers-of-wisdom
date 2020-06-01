@@ -1,11 +1,11 @@
- <div *ngFor="let carta of mano">
+<!-- <div *ngFor="let carta of mano">
 {{carta.simbolo}} {{carta.valore}}
 </div>
 <div>{{ mano.length}}</div> 
 
-<button type="button" class="btn-info" (click)="stampaLunghezza()"> stampa numero di carte su console </button>
-<!--
- <!DOCTYPE html>
+<button type="button" class="btn-info" (click)="stampaLunghezza()"> stampa numero di carte su console </button> -->
+
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -20,89 +20,97 @@
 
   <body>
     <p class="title">Julian <span>vs</span> Bot</p>
-
+    <div
+      id="marker1"
+      style="
+        position: absolute;
+        border: 2px dashed white;
+        width: 15mm;
+        height: 24mm;
+        left: 90mm;
+        top: 130mm;
+        border-radius: 1mm;
+      "
+    ></div>
+    <div
+    id="marker2"
+    style="
+      position: absolute;
+      border: 2px dashed white;
+      width: 15mm;
+      height: 24mm;
+      left: 145mm;
+      top: 130mm;
+      border-radius: 1mm;
+    "
+  ></div>
+  <div
+  id="marker3"
+  style="
+    position: absolute;
+    border: 2px dashed white;
+    width: 15mm;
+    height: 24mm;
+    left: 200mm;
+    top: 130mm;
+    border-radius: 1mm;
+  "
+></div>
+<div
+id="marker4"
+style="
+  position: absolute;
+  border: 2px dashed white;
+  width: 15mm;
+  height: 24mm;
+  left: 255mm;
+  top: 130mm;
+  border-radius: 1mm;
+"
+></div>
     <div class="panelli">
-      <div class="pannello-torri-del-giocatore-avversario">
-        <div class="Quadrato"></div>
-        <div class="Triangolo"></div>
-        <div class="Cerchio"></div>
-        <div class="Ancora"></div>
-      </div>
+      <div class="pannello-torri-del-giocatore-avversario"></div>
 
       <div class="pannello-torri-del-giocatore">
-        <div
-          class="Q"
-          (click)="giocaSullaTorre()"
-          style="position: relative; left: 4mm; transform: rotate(1deg);"
-        ></div>
-
-        <div class="Triangolo">
-          7
-          <div class="Triangolo">
-            6
-            <div class="Triangolo">
-              5
-              <div class="Triangolo">
-                4
-                <div class="Triangolo">
-                  3
-                  <div class="Triangolo">
-                    2
-                    <div class="Triangolo">
-                      1
-                      <div class="Punta">
-                        P
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="carte-delle-torri" (click)="giocaSullaTorre('Quadrato')">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-        <div class="Cerchio">
-          7
-          <div class="Cerchio">
-            6
-            <div class="Cerchio">
-              5
-              <div class="Cerchio">
-                4
-                <div class="Cerchio">
-                  3
-                  <div class="Cerchio">
-                    2
-                    <div class="Cerchio">
-                      1
-                      <div class="Punta">P</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="carte-delle-torri" (click)="giocaSullaTorre('Triangolo')">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-        <div class="Ancora">
-          7
-          <div class="Ancora">
-            6
-            <div class="Ancora">
-              5
-              <div class="Ancora">
-                4
-                <div class="Ancora">
-                  3
-                  <div class="Ancora">
-                    2
-                    <div class="Ancora">
-                      1
-                      <div class="Punta">P</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="carte-delle-torri" (click)="giocaSullaTorre('Cerchio')">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="carte-delle-torri" (click)="giocaSullaTorre('Ancora')">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
       </div>
 
@@ -204,4 +212,4 @@
       </button>
     </div>
   </body>
-</html>-->
+</html>

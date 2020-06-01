@@ -3,8 +3,8 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta } from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
-import { Mazzo } from '../model/Mazzo';
-import { mainModule } from 'process';
+import { Mazzo } from "../model/Mazzo";
+import { mainModule } from "process";
 
 @Component({
   selector: "app-match-page",
@@ -18,177 +18,241 @@ export class MatchPageComponent implements OnInit {
   public mazzo: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
-  public torreQuadrato: [Carta];
-  mano:any=[];
+  public torreQuadrato: [Carta]; //colore giallo 1 colonna da sinistra a destra
+  public torreTriangolo: [Carta]; //colore azzuro aqua 2 colonna
+  public torreCerchio: [Carta]; //colore rosa petalo 3 colonna
+  public torreAncora: [Carta]; //colore arancio chiaro 4 colonna
+  public torriDelGiocatore = [[Carta]];
+  mano: any = [];
 
   constructor(private giocatoreService: GiocatoreService) {}
 
   ngOnInit() {
-
-    this.giocatoreService.findAll().subscribe(data => {this.mano = data[0].mano});
-    /*
+    /*  this.giocatoreService.findAll().subscribe((data) => {
+      this.mano = data[0].mano;
     });
-    this.giocatoreService.getCarte().subscribe((data) => {
-      (this.mazzoProva = data.slice()),
-        console.log("Il mio dato appena ricevuto"),
-        console.log(data);
-    });
-    console.log("Il mazzo prova fuori dalla funzione:");
-    console.log(this.mazzoProva);*/
+*/
     this.mazzo = [
       new Carta("Ancora", "1"),
-      new Carta("Cerchio", "4"),
+      new Carta("Punta", "P"),
       new Carta("Quadrato", "7"),
     ];
-   /* this.mostraMazzo();
+    this.mostraMazzo();
     this.inizializzaMazzoScarti();
-    this.inizializzaTorri();
-    this.riempiMazzoCoperto();*/
+    this.riempiMazzoCoperto();//funzione che riempe il mazzoCoperto
   }
 
-  public giocaSullaTorre() {
-    let copiaMazzo: [Carta];
-    this.mazzo.forEach((carta) => {
-      if (carta.isSelected()) {
-        carta.setSelected(false);
-        if (this.torreQuadrato === undefined) {
-          this.torreQuadrato = [carta];
+  public giocaSullaTorre(torre: string) {
+     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
+    let torreDaVisualizzare;
+    let contaCarteNonSelezionate = 0;
+    if (this.mazzo.length === 4) {
+      for (let indexI = 0; indexI < this.mazzo.length; indexI++) {
+        if (this.mazzo[indexI].isSelected()) {
+          if (this.mazzo[indexI].getSymbol() === torre) {
+            torreDaVisualizzare = this.giocaCartaSullaTorre();
+          } else {
+            this.mostraMessaggioDiAvviso("Non puoi inserire qui questa carta!");
+          }
         } else {
-          this.torreQuadrato.unshift(carta);
+          contaCarteNonSelezionate += 1;
+        }
+      }
+      if (contaCarteNonSelezionate === 4) {
+        this.mostraMessaggioDiAvviso("Non hai selezionato la tua carta!");
+      }
+      this.mostraMazzo();
+      this.mostraTorri(torreDaVisualizzare);
+    } else {
+      this.mostraMessaggioDiAvviso(
+        "Devi pescare dal mazzo scarti o dal mazzo coperto!"
+      );
+    }
+  }
+  private giocaCartaSullaTorre(): string {
+    this.nascondiMessaggioDiAvviso();
+    let copiaMazzo: [Carta];
+    let torreDaVisualizzare;
+    for (let indexI = 0; indexI < this.mazzo.length; indexI++) {
+      if (this.mazzo[indexI].isSelected()) {
+        torreDaVisualizzare = this.mazzo[indexI].getInitial();
+        this.mazzo[indexI].setSelected(false);
+        switch (this.mazzo[indexI].getInitial()) {
+          case "Q":
+            if (this.torreQuadrato === undefined) {
+              this.torreQuadrato = [this.mazzo[indexI]];
+            } else {
+              this.torreQuadrato.push(this.mazzo[indexI]);
+            }
+            break;
+          case "T":
+            if (this.torreTriangolo === undefined) {
+              this.torreTriangolo = [this.mazzo[indexI]];
+            } else {
+              this.torreTriangolo.push(this.mazzo[indexI]);
+            }
+            break;
+          case "C":
+            if (this.torreCerchio === undefined) {
+              this.torreCerchio = [this.mazzo[indexI]];
+            } else {
+              this.torreCerchio.push(this.mazzo[indexI]);
+            }
+            break;
+          case "A":
+            if (this.torreAncora === undefined) {
+              this.torreAncora = [this.mazzo[indexI]];
+            } else {
+              this.torreAncora.push(this.mazzo[indexI]);
+            }
+            break;
+          default:
+            console.log(
+              "sei nel default dello switch: non hai selezionato nessuna carta allora!"
+            );
         }
       } else {
         if (copiaMazzo === undefined) {
-          copiaMazzo = [carta];
+          copiaMazzo = [this.mazzo[indexI]];
         } else {
-          copiaMazzo.unshift(carta);
+          copiaMazzo.push(this.mazzo[indexI]);
         }
       }
-    });
+    }
     this.mazzo = undefined;
     this.mazzo = copiaMazzo;
-
-    if (this.mazzo.length === 4) {
-      this.mostraMessaggioDiAvviso("Non hai selezionato la tua carta!");
-    } else {
-      console.log("è stata giocata una carta su una torre!");
-      console.log(this.torreQuadrato);
+    return torreDaVisualizzare;
+  }
+  private mostraTorri(torredaVisualizzare: string) {
+    this.gestisciMarkers();
+    if (torredaVisualizzare === "Q") {
+      this.mostraTorreQuadrato();
     }
-    this.mostraMazzo();
-    this.mostraTorri();
+    if (torredaVisualizzare === "T") {
+      this.mostraTorreTriangolo();
+    }
+    if (torredaVisualizzare === "C") {
+      this.mostraTorreCerchio();
+    }
+    if (torredaVisualizzare === "A") {
+      this.mostraTorreAncora();
+    }
   }
-  private mostraTorri() {
-    const position = [
-      ["relative", "4mm", "none", "none", "rotate(1deg)"],
-      ["absolute", "10mm", "none", "-2mm", "rotate(-2deg)"],
-    ];
-    var div = "";
-    var cartaPrec=this.torreQuadrato[0];
-    this.torreQuadrato.forEach((carta, index = 0) => {
-      let classe = carta.getSymbol();
-      let valore = carta.getValue();
-      
+  private mostraTorreAncora() {
+    if (this.mostraTorreAncora !== undefined) {
+      for (let index = 0; index < this.torreAncora.length; index++) {
+        let classe = this.torreAncora[index].getSymbol();
+        let valore = this.torreAncora[index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore .carte-delle-torri:eq(3) div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass(classe)
+            .text(valore);
+        });
+      }
+    }
+  }
+  private mostraTorreCerchio() {
+    if (this.mostraTorreCerchio !== undefined) {
+      for (let index = 0; index < this.torreCerchio.length; index++) {
+        let classe = this.torreCerchio[index].getSymbol();
+        let valore = this.torreCerchio[index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore .carte-delle-torri:eq(2) div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass(classe)
+            .text(valore);
+        });
+      }
+    }
+  }
+
+  private mostraTorreTriangolo() {
+    if (this.torreTriangolo !== undefined) {
+      for (let index = 0; index < this.torreTriangolo.length; index++) {
+        let classe = this.torreTriangolo[index].getSymbol();
+        let valore = this.torreTriangolo[index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore .carte-delle-torri:eq(1) div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass(classe)
+            .text(valore);
+        });
+      }
+    }
+  }
+
+ private mostraTorreQuadrato() {
+    if (this.torreQuadrato !== undefined) {
+      for (let index = 0; index < this.torreQuadrato.length; index++) {
+        let classe = this.torreQuadrato[index].getSymbol();
+        let valore = this.torreQuadrato[index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore .carte-delle-torri:eq(0) div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass(classe)
+            .text(valore);
+        });
+      }
+    }
+  }
+
+  private gestisciMarkers() {
+    if (this.torreQuadrato !== undefined) {
       $(document).ready(function () {
-        $(".pannello-torri-del-giocatore div.Q " + div)
-          .css({
-            border: "1px solid white",
-            position: position[index][0],
-            left: position[index][1],
-            top: position[index][2],
-            bottom: position[index][3],
-            transform: position[index][4],
-          })
-          .addClass(classe)
-          .text(valore)
-          .append("<div style='width:inherit;height:inherit;'></div>");
-
-        div += "div";
+        $("#marker1").hide();
       });
-    });
+    }
+    if (this.torreTriangolo !== undefined) {
+      $(document).ready(function () {
+        $("#marker2").hide();
+      });
+    }
+    if (this.torreCerchio !== undefined) {
+      $(document).ready(function () {
+        $("#marker3").hide();
+      });
+    }
+    if (this.torreAncora !== undefined) {
+      $(document).ready(function () {
+        $("#marker4").hide();
+      });
+    }
   }
 
-  public stampaLunghezza(){
+  public stampaLunghezza() {
     for (let index = 0; index < this.mano.length; index++) {
       console.log(this.mano[index]);
     }
   }
 
-
-  private inizializzaTorri() {
-    if (this.torreQuadrato === undefined || this.torreQuadrato.length < 1) {
-      $(document).ready(function () {
-        $(".pannello-torri-del-giocatore div:eq(0)").css({
-          border: "2px dashed white",
-        });
-      });
-    }
-    /* var ambienti: string[];
-    ambienti = [".Quadrato", ".Triangolo", ".Cerchio", ".Ancora"];
-    ambienti.forEach((valore) => {
-      $(document).ready(function () {
-        $(".pannello-torri-del-giocatore div" + valore).css({
-          position: "relative",
-          left: "4mm",
-          transform: "rotate(1deg)",
-        });
-        $(".pannello-torri-del-giocatore div" + valore + " div").css({
-          position: "absolute",
-          left: "10mm",
-          bottom: "-2mm",
-          transform: "rotate(-2deg)",
-        });
-        $(".pannello-torri-del-giocatore div" + valore + " div div").css({
-          position: "absolute",
-          left: "10mm",
-          top: "-1mm",
-          transform: "rotate(3deg)",
-        });
-        $(".pannello-torri-del-giocatore div" + valore + " div div div").css({
-          position: "absolute",
-          left: "10mm",
-          top: "-0.5mm",
-          transform: "rotate(-2deg)",
-        });
-        $(
-          ".pannello-torri-del-giocatore div" + valore + " div div div div"
-        ).css({
-          position: "absolute",
-          left: "2mm",
-          top: "-23mm",
-          transform: "rotate(-4deg)",
-        });
-        $(
-          ".pannello-torri-del-giocatore div" + valore + " div div div div div"
-        ).css({
-          position: "absolute",
-          left: "-12mm",
-          top: "-1mm",
-          transform: "rotate(-2deg)",
-        });
-        $(
-          ".pannello-torri-del-giocatore div" +
-            valore +
-            " div div div div div div div"
-        ).css({
-          position: "absolute",
-          left: "-12mm",
-          top: "-7",
-          transform: "rotate( 1deg)",
-        });
-      });
-    });*/
-  }
-
   private riempiMazzoCoperto(): void {
     this.mazzoCoperto = [
-      new Carta("Quadrato", "1"),
-      new Carta("Triangolo", "2"),
-      new Carta("Cerchio", "3"),
-      new Carta("Triangolo", "4"),
-      new Carta("Punta", "P"),
       new Carta("Quadrato", "6"),
-      new Carta("Triangolo", "7"),
-      new Carta("Ancora", "1"),
+      new Carta("Triangolo", "5"),
+      new Carta("Quadrato", "4"),
+      new Carta("Cerchio", "3"),
       new Carta("Ancora", "2"),
+      new Carta("Ancora", "6"),
+      new Carta("Quadrato", "1"),
+      new Carta("Ancora", "1"),
+      new Carta("Triangolo", "2"),
       new Carta("Punta", "P"),
       new Carta("Ancora", "4"),
       new Carta("Ancora", "5"),
@@ -228,6 +292,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   public mostraChat() {
+     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     //viene invocato quando il tasto con l'icona del messaggio viene premuto
     $(document).ready(function () {
       $(".chat").toggle();
@@ -235,6 +300,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   public nascondiChat() {
+     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     //viene invocato quando il tasto con l'icona della x viene premuto nel pannello del messaggio
     $(document).ready(function () {
       $(".chat").hide();
@@ -242,6 +308,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   public selezionaCarta(cardId: string) {
+     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     //funzione per selezionare/deselezionare graficamente le carte
 
     this.mazzo.forEach((carta, index = 0) => {
@@ -263,6 +330,8 @@ export class MatchPageComponent implements OnInit {
   }
 
   public peschaDalMazzoCoperto() {
+     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
+    this.nascondiMessaggioDiAvviso();
     if (this.mazzo.length < 4 && this.mazzo.length > 2) {
       this.mazzo.unshift(this.mazzoCoperto.shift());
       this.mostraMazzo();
@@ -276,6 +345,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   public scartaOppurePescaDalMazzoScarti() {
+     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     /*funzione che viene invocata quando si cerca di scartare una carta selezionata dal mazzo*/
     var scarta = true;
     this.nascondiMessaggioDiAvviso();
