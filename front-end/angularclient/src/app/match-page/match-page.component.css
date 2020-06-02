@@ -294,7 +294,7 @@ span {
 .pannelo-del-mazzo-scarti {
   position: absolute;
   width: 60mm;
-  height: 60mm;
+  height: 75mm;
   top: 107mm;
   left: 3.5mm;
   border: transparent;
@@ -306,15 +306,32 @@ span {
     rgb(160, 255, 255)
   );
   display: grid;
+  grid-template-columns: 8mm 8mm 8mm 8mm 8mm 8mm;
   visibility: hidden;
+  padding-top: 3mm;
+  padding-left: 2mm;
+}
+.pannelo-del-mazzo-scarti div {
+  width: 12mm;
+  height: 21mm;
+  border-radius: 1mm;
+  font-size: 8mm;
+  text-align: center;
+  color: white;
+  font-family: "friendly_school", cursive;
+  border: 1px solid white;
 }
 
+.pannelo-del-mazzo-scarti div:hover {
+  box-shadow: 1px 1px 2px white, -1px 1px 2px white, 1px -1px 2px white,
+    -1px -1px 2px white;
+}
 .pannello-torri-del-giocatore {
   /*rappresenta il pannello di gioco del giocatore*/
   position: absolute;
   width: 218mm;
   height: 60mm;
- /* border: 1px solid white; */
+  /* border: 1px solid white; */
   background: transparent;
   top: 98mm;
   left: 69.5mm;
@@ -349,7 +366,7 @@ span {
   width: 53mm;
   height: 60mm;
   padding-left: 2mm;
- justify-content: space-around;
+  justify-content: space-around;
 }
 
 .carte-delle-torri div {
@@ -371,7 +388,7 @@ span {
 .messaggioDiAvviso {
   /*messaggio di errore che appare quando si tenta di pescare una carta dal mazzo coperto,quando nel
   mazzo si hanno ancora 4 carte*/
-  font-size: 8mm;
+  font-size: 7mm;
   font-family: "friendly_school", cursive;
   color: #50d9f1;
   text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
@@ -381,11 +398,11 @@ span {
   letter-spacing: 0.1em;
   text-align: center;
   padding-top: 5mm;
-  width: 60mm;
+  width: 58mm;
   height: 30mm;
   position: relative;
   bottom: 215.5mm;
-  left: 72mm;
+  left: 75mm;
   display: none;
 }
 
@@ -465,7 +482,7 @@ span {
 }
 
 .chat {
-  display: none; /*al caricamento della pagina non verrà mostrata questo elemento e i suoi geniti*/
+  display: none; /*al caricamento della pagina non verrà mostrata questo elemento e i suoi sottoelementi*/
   width: 100mm;
   height: 50mm;
   position: relative;

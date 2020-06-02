@@ -163,7 +163,11 @@ style="
         </div>
       </div>
 
-      <div class="pannelo-del-mazzo-scarti"></div>
+      <div class="pannelo-del-mazzo-scarti">
+
+        <div *ngFor="let item of this.mazzoScarti" (click)="selezionaEPescaCartaDalMazzoScarti(item.getId())"></div>
+
+      </div>
 
       <div class="pannello-delle-carte">
         <div class="mazzo">
