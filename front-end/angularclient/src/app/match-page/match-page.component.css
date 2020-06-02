@@ -291,7 +291,7 @@ span {
     -1px -1px 3px white;
 }
 
-.pannelo-del-mazzo-scarti {
+.pannello-degli-scarti {
   position: absolute;
   width: 60mm;
   height: 75mm;
@@ -311,7 +311,7 @@ span {
   padding-top: 3mm;
   padding-left: 2mm;
 }
-.pannelo-del-mazzo-scarti div {
+.pannello-degli-scarti div {
   width: 12mm;
   height: 21mm;
   border-radius: 1mm;
@@ -322,7 +322,7 @@ span {
   border: 1px solid white;
 }
 
-.pannelo-del-mazzo-scarti div:hover {
+.pannello-degli-scarti div:hover {
   box-shadow: 1px 1px 2px white, -1px 1px 2px white, 1px -1px 2px white,
     -1px -1px 2px white;
 }

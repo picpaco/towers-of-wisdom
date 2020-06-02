@@ -43,23 +43,29 @@ export class MatchPageComponent implements OnInit {
   }
 
   public giocaSullaTorre(torre: string) {
-    /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
+    /*questo metodo viene richiamata nel template attraverso l'attributo (click),sono ben 4 riquadri,nelle colonne
+    che se premute richiamano qusta funzione passando il loro la torre a cui ci si riferisce es(Quadrato)*/
     let torreDaVisualizzare;
-    let contaCarteNonSelezionate = 0;
     if (this.mazzo.length === 4) {
-      for (let indexI = 0; indexI < this.mazzo.length; indexI++) {
-        if (this.mazzo[indexI].isSelected()) {
-          if (this.mazzo[indexI].getSymbol() === torre) {
-            torreDaVisualizzare = this.giocaCartaSullaTorre();
-          } else {
-            this.mostraMessaggioDiAvviso("Non puoi inserire qui questa carta!");
-            this.deselezionaLaCartaSelezionata();
+      //per giocare una carta la mano deve essere di 4 carte
+      if (this.isSelectedUnaCartaDalMazzo()) {
+        //si controlla se una carta dal mazzo è stata selezionata
+        for (let indexI = 0; indexI < this.mazzo.length; indexI++) {
+          //si cicla per cercare la carta selezionata
+          if (this.mazzo[indexI].isSelected()) {
+            //si controlla se la carta è selezionata
+            if (this.mazzo[indexI].getSymbol() === torre) {
+              //si controlla se la carta corrisponde alla sua corrispettiva torre
+              torreDaVisualizzare = this.giocaCartaSullaTorre(); //questo metodo permette la giocata su una torre restituendo poi un target
+            } else {
+              this.mostraMessaggioDiAvviso(
+                "Non puoi inserire qui questa carta!"
+              );
+              this.deselezionaLaCartaSelezionata();
+            }
           }
-        } else {
-          contaCarteNonSelezionate += 1;
         }
-      }
-      if (contaCarteNonSelezionate === 4) {
+      } else {
         this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
       }
       this.mostraMazzo();
@@ -73,13 +79,17 @@ export class MatchPageComponent implements OnInit {
   }
   private giocaCartaSullaTorre(): string {
     this.nascondiMessaggioDiAvviso();
-    let copiaMazzo: [Carta];
+    let copiaMazzo: [Carta]; //una copia del mazzo per inserire tutte quelle carte non selezionate
     let torreDaVisualizzare;
     for (let indexI = 0; indexI < this.mazzo.length; indexI++) {
+      //si cicla per cercare la carta selezionata
       if (this.mazzo[indexI].isSelected()) {
-        torreDaVisualizzare = this.mazzo[indexI].getInitial();
-        this.mazzo[indexI].setSelected(false);
-        switch (this.mazzo[indexI].getInitial()) {
+        //se è la carta selezionata la si fà restituire la sua corrispettiva torre
+        torreDaVisualizzare = this.mazzo[indexI].getInitial(); //restiruisce le iniziali della torre es(Quadrato come Q);
+        this.mazzo[indexI].setSelected(false); //la si imposta non più selezionata
+        switch (
+          this.mazzo[indexI].getInitial() //tramite la iniziale,la carta viene inserita nella torre corrispettiva
+        ) {
           case "Q":
             if (this.torreQuadrato === undefined) {
               this.torreQuadrato = [this.mazzo[indexI]];
@@ -110,6 +120,7 @@ export class MatchPageComponent implements OnInit {
             break;
         }
       } else {
+        //in caso la carta nel mazzo non è stata selezionata viene inserita nella copia
         if (copiaMazzo === undefined) {
           copiaMazzo = [this.mazzo[indexI]];
         } else {
@@ -117,11 +128,12 @@ export class MatchPageComponent implements OnInit {
         }
       }
     }
-    this.mazzo = undefined;
+    this.mazzo = undefined; //infine il mazzo nuovo sarà composto solo da tre carte
     this.mazzo = copiaMazzo;
-    return torreDaVisualizzare;
+    return torreDaVisualizzare; //ora bisogna visualizzare da fuori la carta nella torre,e il mazzo.
   }
   private mostraTorri(torredaVisualizzare: string) {
+    //questa funzione serve per visualizzare la torre richiesta ed gestire i markers
     this.gestisciMarkers();
     if (torredaVisualizzare === "Q") {
       this.mostraTorreQuadrato();
@@ -138,6 +150,8 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraTorreAncora() {
+    /*mostraTorreQuadrato,Triangolo,Cerchio;Ancora sono funzioni che in 
+    base agli array corrispettivi mostrano graficamente di quante carte sono composte*/
     if (this.mostraTorreAncora !== undefined) {
       for (let index = 0; index < this.torreAncora.length; index++) {
         let classe = this.torreAncora[index].getSymbol();
@@ -157,6 +171,8 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraTorreCerchio() {
+    /*mostraTorreQuadrato,Triangolo,Cerchio;Ancora sono funzioni che in 
+    base agli array corrispettivi mostrano graficamente di quante carte sono composte*/
     if (this.mostraTorreCerchio !== undefined) {
       for (let index = 0; index < this.torreCerchio.length; index++) {
         let classe = this.torreCerchio[index].getSymbol();
@@ -176,6 +192,8 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraTorreTriangolo() {
+    /*mostraTorreQuadrato,Triangolo,Cerchio;Ancora sono funzioni che in 
+    base agli array corrispettivi mostrano graficamente di quante carte sono composte*/
     if (this.torreTriangolo !== undefined) {
       for (let index = 0; index < this.torreTriangolo.length; index++) {
         let classe = this.torreTriangolo[index].getSymbol();
@@ -195,6 +213,8 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraTorreQuadrato() {
+    /*mostraTorreQuadrato,Triangolo,Cerchio;Ancora sono funzioni che in 
+    base agli array corrispettivi mostrano graficamente di quante carte sono composte*/
     if (this.torreQuadrato !== undefined) {
       for (let index = 0; index < this.torreQuadrato.length; index++) {
         let classe = this.torreQuadrato[index].getSymbol();
@@ -214,6 +234,8 @@ export class MatchPageComponent implements OnInit {
   }
 
   private gestisciMarkers() {
+    /*in caso un arrayTorre avesse una carta,il suo marker o il suo trateggio
+    viene nascosto */
     if (this.torreQuadrato !== undefined) {
       $(document).ready(function () {
         $("#marker1").hide();
@@ -243,6 +265,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   private riempiMazzoCoperto(): void {
+    /*ta togliere...*/
     this.mazzoCoperto = [
       new Carta("Quadrato", "6"),
       new Carta("Quadrato", "5"),
@@ -274,8 +297,10 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraMazzo(): void {
-    /*funzione per proiettare corretamente le carte,
-    nei corrispettivi colori e a associare per una un id*/
+    /*funzione per proiettare correttamente le carte del mazzo/mano,
+    nei corrispettivi colori e valori,viene associata per ogni carta un suo unico ID
+    settandolo nel'oggetto e aggiungendolo come attributo all'elemento div nel 
+    template*/
 
     this.mazzo.forEach((carta, index = 0) => {
       $(document).ready(function () {
@@ -333,7 +358,8 @@ export class MatchPageComponent implements OnInit {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     this.nascondiMessaggioDiAvviso();
     this.deselezionaLaCartaSelezionata();
-    if (this.mazzo.length < 4 && this.mazzo.length > 2) {
+    if (this.mazzo.length === 3) {
+      //per pescare dal mazzo coperto il mazzo deve avere sempre 3 carte
       this.mazzo.unshift(this.mazzoCoperto.shift());
       this.mostraMazzo();
       console.log("é stata pescata una carta dal mazzo coperto!");
@@ -348,33 +374,30 @@ export class MatchPageComponent implements OnInit {
 
   public scartaOppurePescaDalMazzoScarti() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
-    /*funzione che viene invocata quando si cerca di scartare una carta selezionata dal mazzo*/
-    var scarta = true;
+    /*funzione che viene invocata quando si cerca di scartare una carta selezionata 
+    dal mazzo oppure quando si vuole pescare dal mazzo scarti */
+
     this.nascondiMessaggioDiAvviso();
 
     if (this.mazzo.length === 3) {
+      /*se nel mazzo ci sono 3 carte
+      vuol dire che il giocatore vuole pescare una carta scartata,
+      e il giocatore non dovrebbe aver selezionato una carta quando la 
+      si pesca dal mazzo scarti.*/
       if (this.isSelectedUnaCartaDalMazzo()) {
         this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
         this.deselezionaLaCartaSelezionata();
       } else {
-        /*se nel mazzo ci sono 3 carte
-      vuol dire che il giocatore vuole pescare l'ultima carta scartata,
-      e il giocatore non dovrebbe aver selezionato una carta quando la 
-      si pesca dal mazzo scarti.*/
         this.pescaCartaScartata();
-        scarta = false;
       }
     }
 
-    if (this.mazzo.length === 4 && scarta === true) {
-      /*se il mazzo é uguale a 4
-      vuol dire che il giocatore vuole scartare una carta selezionata.*/
-
+    if (this.mazzo.length === 4 && this.isSelectedUnaCartaDalMazzo()) {
+      /*se il mazzo é uguale a 4 vuol dire che il giocatore vuole scartare una carta selezionata.*/
       this.scartaLaCarta();
-
-      /* this.mostraMessaggioDiAvviso(
-          "Il mazzo degli scarti è stato riempito! gioca la tua carta"
-        );*/
+    } else {
+      this.mostraMessaggioDiAvviso("Nessuna carta selezionata");
+      this.deselezionaLaCartaSelezionata();
     }
 
     this.mostraMazzo();
@@ -382,25 +405,25 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraCarteScartate() {
-    /*funzione che mostra corretamente le ultime carte scartate*/
+    /*funzione che mostra corretamente le ultime carte scartate nel pannello*/
     if (this.mazzoScarti != undefined) {
-      if (this.mazzoScarti.length > 1) {
+      if (this.mazzoScarti.length > 1) {//il pannello viene mostrato quando ci sono almeno due carte scartate
         this.mostraInPrimoPianoUltimaCartaScartata();
         $(document).ready(function () {
-          $(".pannelo-del-mazzo-scarti").css({ visibility: "visible" });
+          $(".pannello-degli-scarti").css({ visibility: "visible" });
         });
         this.mostraMazzoScarti();
       }
-      if (this.mazzoScarti.length === 1) {
+      if (this.mazzoScarti.length === 1) {//se c'è solo una carta scartata il pannello si nasconde
         let classe = this.mazzoScarti[0].getSymbol();
         $(document).ready(function () {
           $(".mazzo-scarti >div:eq(0)").css({ border: "transparent" });
 
           $(".mazzo-scarti div div").addClass(classe);
-          $(".pannelo-del-mazzo-scarti").css({ visibility: "hidden" });
+          $(".pannello-degli-scarti").css({ visibility: "hidden" });
         });
       }
-      if (this.mazzoScarti.length === 0) {
+      if (this.mazzoScarti.length === 0) {//in caso vengono pescate tutte le carta scartate riappare il tratteggio
         this.inizializzaMazzoScarti();
       }
     }
@@ -408,24 +431,44 @@ export class MatchPageComponent implements OnInit {
 
   public selezionaEPescaCartaDalMazzoScarti(cartaId: string) {
     if (this.mazzo.length === 3) {
-      let copiaMazzoScarti: [Carta];
-      for (let index = 0; index < this.mazzoScarti.length; index++) {
-        if (this.mazzoScarti[index].getId() === cartaId) {
-          this.mazzo.push(this.mazzoScarti[index]);
-        }else{
-        if (copiaMazzoScarti === undefined) {
-          copiaMazzoScarti = [this.mazzoScarti[index]];
-        } else {
-          copiaMazzoScarti.push(this.mazzoScarti[index]);
+      if (this.isSelectedUnaCartaDalMazzo()) {
+        this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
+        this.deselezionaLaCartaSelezionata();
+      } else {
+        let copiaMazzoScarti: [Carta];
+        for (let index = 0; index < this.mazzoScarti.length; index++) {
+          if (this.mazzoScarti[index].getId() === cartaId) {
+            this.mazzo.push(this.mazzoScarti[index]);
+          } else {
+            if (copiaMazzoScarti === undefined) {
+              copiaMazzoScarti = [this.mazzoScarti[index]];
+            } else {
+              copiaMazzoScarti.push(this.mazzoScarti[index]);
+            }
+          }
         }
-      }
-      }
-      this.mazzoScarti= undefined;
-      this.mazzoScarti=copiaMazzoScarti;
+        this.mazzoScarti = undefined;
+        this.mazzoScarti = copiaMazzoScarti;
 
-      this.mostraMazzo();
-      this.mostraMazzoScarti();
-     
+        this.mostraMazzo();
+        this.mostraMazzoScarti();
+
+        if (this.mazzoScarti.length === 1) {
+          $(document).ready(function () {
+            $(".pannello-degli-scarti").css({ visibility: "hidden" });
+          });
+        }
+        if (this.mazzoScarti.length === 0) {
+          this.inizializzaMazzoScarti();
+        }
+        let classe = this.mazzoScarti[0].getSymbol();
+        $(document).ready(function () {
+          $(".mazzo-scarti div div").removeClass(
+            "Quadrato Triangolo Cerchio Ancora Punta"
+          );
+          $(".mazzo-scarti div div").addClass(classe);
+        });
+      }
     } else {
       this.mostraMessaggioDiAvviso("Gioca una carta");
       this.deselezionaLaCartaSelezionata();
@@ -438,7 +481,7 @@ export class MatchPageComponent implements OnInit {
       let classe = this.mazzoScarti[index].getSymbol();
       let valore = this.mazzoScarti[index].getValue();
       $(document).ready(function () {
-        $(".pannelo-del-mazzo-scarti div:eq(" + index + ")")
+        $(".pannello-degli-scarti div:eq(" + index + ")")
           .addClass(classe)
           .text(valore)
           .css({
