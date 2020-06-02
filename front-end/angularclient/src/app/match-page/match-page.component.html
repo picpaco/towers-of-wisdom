@@ -33,41 +33,41 @@
       "
     ></div>
     <div
-    id="marker2"
-    style="
-      position: absolute;
-      border: 2px dashed white;
-      width: 15mm;
-      height: 24mm;
-      left: 145mm;
-      top: 130mm;
-      border-radius: 1mm;
-    "
-  ></div>
-  <div
-  id="marker3"
-  style="
-    position: absolute;
-    border: 2px dashed white;
-    width: 15mm;
-    height: 24mm;
-    left: 200mm;
-    top: 130mm;
-    border-radius: 1mm;
-  "
-></div>
-<div
-id="marker4"
-style="
-  position: absolute;
-  border: 2px dashed white;
-  width: 15mm;
-  height: 24mm;
-  left: 255mm;
-  top: 130mm;
-  border-radius: 1mm;
-"
-></div>
+      id="marker2"
+      style="
+        position: absolute;
+        border: 2px dashed white;
+        width: 15mm;
+        height: 24mm;
+        left: 145mm;
+        top: 130mm;
+        border-radius: 1mm;
+      "
+    ></div>
+    <div
+      id="marker3"
+      style="
+        position: absolute;
+        border: 2px dashed white;
+        width: 15mm;
+        height: 24mm;
+        left: 200mm;
+        top: 130mm;
+        border-radius: 1mm;
+      "
+    ></div>
+    <div
+      id="marker4"
+      style="
+        position: absolute;
+        border: 2px dashed white;
+        width: 15mm;
+        height: 24mm;
+        left: 255mm;
+        top: 130mm;
+        border-radius: 1mm;
+      "
+    ></div>
     <div class="panelli">
       <div class="pannello-torri-del-giocatore-avversario"></div>
 
@@ -113,7 +113,43 @@ style="
           <div></div>
         </div>
       </div>
-
+      <div class="bolla" style="position: absolute; left:71mm;
+      ">
+        <div><div></div></div>
+      </div>
+      <div id="1" class="punteggio" style="position: absolute; left: 72mm;">
+        0
+      </div>
+      <div class="bolla" style="position: absolute; left:126mm;
+      ">
+        <div><div></div></div>
+      </div>
+      <div id="2" class="punteggio" style="position: absolute; left: 127mm;">
+        0
+        <div>
+          <div><div></div></div>
+        </div>
+      </div>
+      <div class="bolla" style="position: absolute; left:181mm;
+      ">
+        <div><div></div></div>
+      </div>
+      <div id="3" class="punteggio" style="position: absolute; left: 182mm;">
+        0
+        <div>
+          <div><div></div></div>
+        </div>
+      </div>
+      <div class="bolla" style="position: absolute; left:236mm;
+      ">
+        <div><div></div></div>
+      </div>
+      <div id="4" class="punteggio" style="position: absolute; left: 237mm;">
+        0
+        <div>
+          <div><div></div></div>
+        </div>
+      </div>
       <div class="ambienti">
         <div class="distese-di-sabbia"></div>
 
@@ -164,9 +200,10 @@ style="
       </div>
 
       <div class="pannello-degli-scarti">
-
-        <div *ngFor="let item of this.mazzoScarti" (click)="selezionaEPescaCartaDalMazzoScarti(item.getId())"></div>
-
+        <div
+          *ngFor="let item of this.mazzoScarti"
+          (click)="selezionaEPescaCartaDalMazzoScarti(item.getId())"
+        ></div>
       </div>
 
       <div class="pannello-delle-carte">

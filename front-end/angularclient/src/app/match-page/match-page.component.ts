@@ -134,6 +134,7 @@ export class MatchPageComponent implements OnInit {
   }
   private mostraTorri(torredaVisualizzare: string) {
     //questa funzione serve per visualizzare la torre richiesta ed gestire i markers
+    this.calcolaPuntaggio();
     this.gestisciMarkers();
     if (torredaVisualizzare === "Q") {
       this.mostraTorreQuadrato();
@@ -146,6 +147,23 @@ export class MatchPageComponent implements OnInit {
     }
     if (torredaVisualizzare === "A") {
       this.mostraTorreAncora();
+    }
+  }
+
+  private calcolaPuntaggio() {
+    if (this.torreQuadrato != undefined && this.torreQuadrato.length > 0) {
+      let pointsQ = 0;
+      for (let index = 0; index < this.torreQuadrato.length; index++) {
+        pointsQ += +this.torreQuadrato[index].getValue();
+      }
+      if (this.torreQuadrato.length < 3) {
+        $(document).ready(function () {
+          $("#1.punteggio").html("<div><div></div></div>");
+        });
+      }
+      $(document).ready(function () {
+        $("#1.punteggio").text(pointsQ);
+      });
     }
   }
 
@@ -407,14 +425,16 @@ export class MatchPageComponent implements OnInit {
   private mostraCarteScartate() {
     /*funzione che mostra corretamente le ultime carte scartate nel pannello*/
     if (this.mazzoScarti != undefined) {
-      if (this.mazzoScarti.length > 1) {//il pannello viene mostrato quando ci sono almeno due carte scartate
+      if (this.mazzoScarti.length > 1) {
+        //il pannello viene mostrato quando ci sono almeno due carte scartate
         this.mostraInPrimoPianoUltimaCartaScartata();
         $(document).ready(function () {
           $(".pannello-degli-scarti").css({ visibility: "visible" });
         });
         this.mostraMazzoScarti();
       }
-      if (this.mazzoScarti.length === 1) {//se c'è solo una carta scartata il pannello si nasconde
+      if (this.mazzoScarti.length === 1) {
+        //se c'è solo una carta scartata il pannello si nasconde
         let classe = this.mazzoScarti[0].getSymbol();
         $(document).ready(function () {
           $(".mazzo-scarti >div:eq(0)").css({ border: "transparent" });
@@ -423,7 +443,8 @@ export class MatchPageComponent implements OnInit {
           $(".pannello-degli-scarti").css({ visibility: "hidden" });
         });
       }
-      if (this.mazzoScarti.length === 0) {//in caso vengono pescate tutte le carta scartate riappare il tratteggio
+      if (this.mazzoScarti.length === 0) {
+        //in caso vengono pescate tutte le carta scartate riappare il tratteggio
         this.inizializzaMazzoScarti();
       }
     }
