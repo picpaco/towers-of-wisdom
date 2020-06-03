@@ -1,26 +1,24 @@
 package com.primas.angularspringbootdemo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.ArrayList;
 
-@Entity
+
+
+
 public class Giocatore {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private long id;
 	private String nome;
 	private String email;
+	private MazzoCoperto mazzoCoperto = new MazzoCoperto();
+	private ArrayList<Carta> mano = new ArrayList<>(4);
 	
 	public Giocatore(String nome, String email) {
 		this.nome = nome;
 		this.email = email;
 	}
 
-	public
-	Giocatore() {
+	public	Giocatore() {
 	}
 
 	public long getId() {
@@ -40,6 +38,14 @@ public class Giocatore {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public ArrayList<Carta> distribuisciCarte() {
+		for(int i=0; i<3; i++) {
+			mano.add(mazzoCoperto.pescaCarta());
+		}
+		System.out.println("mano dopo distribuzione carte:"+ mano + " " + "dimensione mano: "+mano.size());
+		return mano;
 	}
 	
 	@Override

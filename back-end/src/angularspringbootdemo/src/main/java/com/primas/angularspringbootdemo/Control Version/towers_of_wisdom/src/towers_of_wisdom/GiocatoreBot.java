@@ -2,6 +2,8 @@ package towers_of_wisdom;
 
 import java.util.ArrayList;
 
+import com.primas.angularspringbootdemo.entity.Giocatore;
+
 public class GiocatoreBot extends Giocatore {
 
 	public GiocatoreBot(String nome) {
