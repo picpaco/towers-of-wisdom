@@ -1,4 +1,4 @@
-package com.primas.angularspringbootdemo.entity;
+
 
 public class GiocatoreException extends RuntimeException {
 

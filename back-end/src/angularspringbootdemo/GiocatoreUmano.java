@@ -1,10 +1,12 @@
-package com.primas.angularspringbootdemo.entity;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class GiocatoreUmano extends Giocatore {
+
+	private InsiemeTorri insTorri = new InsiemeTorri();
 
 
 	public GiocatoreUmano(String nome) {
@@ -182,8 +184,8 @@ public class GiocatoreUmano extends Giocatore {
 
 		if(scelta.equals("gioca")) {
 			if(cartaSelezionata.equals("carta1")) {
-				if(getInsTorri().isGiocabile(getMano().get(0))) {
-					getInsTorri().aggiungiCartaATorre(getMano().get(0));
+				if(insTorri.isGiocabile(getMano().get(0))) {
+					insTorri.aggiungiCartaATorre(getMano().get(0));
 					System.out.println("carta giocata: " + getMano().get(0));
 					getMano().remove(getMano().get(0));
 				} else {
@@ -192,8 +194,8 @@ public class GiocatoreUmano extends Giocatore {
 				}
 			}
 			if(cartaSelezionata.equals("carta2")) {
-				if(getInsTorri().isGiocabile(getMano().get(1))) {
-					getInsTorri().aggiungiCartaATorre(getMano().get(1));
+				if(insTorri.isGiocabile(getMano().get(1))) {
+					insTorri.aggiungiCartaATorre(getMano().get(1));
 					System.out.println("carta giocata: " + getMano().get(1));
 					getMano().remove(getMano().get(1));
 				} else {
@@ -202,8 +204,8 @@ public class GiocatoreUmano extends Giocatore {
 				}
 			}
 			if(cartaSelezionata.equals("carta3")) {
-				if(getInsTorri().isGiocabile(getMano().get(2))) {
-					getInsTorri().aggiungiCartaATorre(getMano().get(2));
+				if(insTorri.isGiocabile(getMano().get(2))) {
+					insTorri.aggiungiCartaATorre(getMano().get(2));
 					System.out.println("carta giocata: " + getMano().get(2));
 					getMano().remove(getMano().get(2));
 				} else {
@@ -212,8 +214,8 @@ public class GiocatoreUmano extends Giocatore {
 				}
 			}
 			if(cartaSelezionata.equals("carta4")) {
-				if(getInsTorri().isGiocabile(getMano().get(3))) {
-					getInsTorri().aggiungiCartaATorre(getMano().get(3));
+				if(insTorri.isGiocabile(getMano().get(3))) {
+					insTorri.aggiungiCartaATorre(getMano().get(3));
 					System.out.println("carta giocata: " + getMano().get(3));
 					getMano().remove(getMano().get(3));
 				} else {
@@ -245,7 +247,7 @@ public class GiocatoreUmano extends Giocatore {
 			}
 		}
 		System.out.println("carte mano dopo aver giocato: " + getMano());
-		System.out.println("torri giocatore: " + getInsTorri().getTorriCarte().values());
+		System.out.println("torri giocatore: " + insTorri.getTorriCarte().values());
 		System.out.println("mazzo scarti: " +  getMazzoScarti());
 
 		assert (getMano().size() == 3): "La mano deve contenere 3 carte";
@@ -254,7 +256,7 @@ public class GiocatoreUmano extends Giocatore {
 	}
 
 	public int calcolaPunteggio() {
-		return getInsTorri().getPunteggioTotale();
+		return insTorri.getPunteggioTotale();
 	}
 
 	@Override

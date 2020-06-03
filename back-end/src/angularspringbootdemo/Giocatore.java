@@ -1,4 +1,4 @@
-package com.primas.angularspringbootdemo.entity;
+
 
 import java.util.ArrayList;
 
@@ -9,12 +9,9 @@ public abstract class Giocatore {
 	private MazzoCoperto mazzoCoperto = new MazzoCoperto();
 	private InsiemeTorri insTorri = new InsiemeTorri();
 	private ArrayList<Carta> mano = new ArrayList<>(4);
-	
-	
-	public InsiemeTorri getInsiemeTorri() {
-		return getInsTorri();
-	}
-	
+
+
+
 	public Giocatore(String nome) {
 		this.nome = nome;
 	}
@@ -23,7 +20,6 @@ public abstract class Giocatore {
 		return nome;
 	}
 
-	
 	public ArrayList<Carta> getMano() {
 		return mano;
 	}
@@ -62,7 +58,7 @@ public abstract class Giocatore {
 			Carta c = null;
 			for(int i = 0; i<mazzoScarti.dimensione(); i++) {
 				c = mazzoScarti.getListaCarte().get(i);
-				if(getInsTorri().isGiocabile(c)) {		
+				if(insTorri.isGiocabile(c)) {		
 					mazzoScarti.rimuoviCarta(c);
 					mano.add(c);
 					System.out.println("carta presa da mazzo degli scarti: " + c);
@@ -101,7 +97,7 @@ public abstract class Giocatore {
 
 		if(!(mazzoCoperto.isVuoto())) {
 			for(int i = 0; i < mano.size(); i++) {
-				if(!(getInsTorri().isGiocabile(mano.get(i)))) {
+				if(!(insTorri.isGiocabile(mano.get(i)))) {
 					mazzoScarti.aggiungiCarta(mano.get(i));
 					System.out.println("carta scartata: "+mano.get(i));
 					mano.remove(mano.get(i));
@@ -115,14 +111,14 @@ public abstract class Giocatore {
 	public void giocaCarta() { 
 		assert (mano.size()==4): "La mano prima di giocare deve avere 4 carte";
 
-		System.out.println("torri giocatore: " + getInsTorri().getTorriCarte().values());
+		System.out.println("torri giocatore: " + insTorri.getTorriCarte().values());
 		if(!(mazzoCoperto.isVuoto())) {
-			Carta cartaDaGiocare = decidiCartaDaGiocare(mano, getInsTorri());
+			Carta cartaDaGiocare = decidiCartaDaGiocare(mano, insTorri);
 			System.out.println("carta scelta: " + cartaDaGiocare);
 			if(cartaDaGiocare == null) {
 				scartaCarta();
 			} else {
-				getInsTorri().aggiungiCartaATorre(cartaDaGiocare);
+				insTorri.aggiungiCartaATorre(cartaDaGiocare);
 			}
 			mano.remove(cartaDaGiocare);
 		} else {
@@ -135,20 +131,12 @@ public abstract class Giocatore {
 	public abstract void giocaTurnoUmano();
 
 	public int calcolaPunteggio() {
-		return getInsTorri().getPunteggioTotale();
+		return insTorri.getPunteggioTotale();
 	}
 
 	@Override
 	public String toString() {
 		return "Giocatore [nome=" + nome + "]";
-	}
-
-	public InsiemeTorri getInsTorri() {
-		return insTorri;
-	}
-
-	public void setInsTorri(InsiemeTorri insTorri) {
-		this.insTorri = insTorri;
 	}
 
 }

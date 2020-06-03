@@ -1,19 +1,20 @@
-package tests;
+package com.primas.angularspringbootdemo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import towers_of_wisdom.Carta;
-import towers_of_wisdom.Giocatore;
-import towers_of_wisdom.GiocatoreBot;
-import towers_of_wisdom.InsiemeTorri;
-import towers_of_wisdom.MazzoCoperto;
-import towers_of_wisdom.MazzoScarti;
-import towers_of_wisdom.Simbolo;
-import towers_of_wisdom.Torre;
-import towers_of_wisdom.Valore;
+import com.primas.angularspringbootdemo.entity.Carta;
+import com.primas.angularspringbootdemo.entity.Giocatore;
+import com.primas.angularspringbootdemo.entity.GiocatoreBot;
+import com.primas.angularspringbootdemo.entity.InsiemeTorri;
+import com.primas.angularspringbootdemo.entity.MazzoCoperto;
+import com.primas.angularspringbootdemo.entity.MazzoScarti;
+import com.primas.angularspringbootdemo.entity.Simbolo;
+import com.primas.angularspringbootdemo.entity.Torre;
+import com.primas.angularspringbootdemo.entity.Valore;
+
 
 class TestDiSaggezza {
 

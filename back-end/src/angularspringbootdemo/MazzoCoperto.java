@@ -1,4 +1,4 @@
-package com.primas.angularspringbootdemo.entity;
+
 
 import java.util.Collections;
 
