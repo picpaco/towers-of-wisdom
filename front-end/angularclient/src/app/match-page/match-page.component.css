@@ -260,6 +260,7 @@ span {
   border: transparent;
   border-radius: 1mm;
   margin: auto;
+  cursor: default;
 }
 
 .carte-rimaste {
@@ -312,6 +313,7 @@ span {
   padding-left: 2mm;
 }
 .pannello-degli-scarti div {
+  cursor: default;
   width: 12mm;
   height: 21mm;
   border-radius: 1mm;
@@ -348,8 +350,7 @@ span {
   left: 69.5mm;
   top: 36mm;
   display: grid;
-  grid-template-columns: 58mm 58mm 82mm 55mm;
-  padding-bottom: 32mm;
+  grid-template-columns: 55mm 55mm 55mm 55mm;
 }
 
 .mazzo-coperte div {
@@ -360,19 +361,21 @@ span {
 }
 
 .carte-delle-torri {
-  display: flex;
+  /* display: flex;
   flex-flow: wrap-reverse;
-  flex-direction: row;
-  /* border:2px solid white;*/
+  flex-direction: row; */
+  /* border:2px solid white; */
   width: 53mm;
-  height: 46mm;
+  height: 66mm;
+  bottom: 4.5mm;
   padding-left: 2mm;
-  top: 15mm;
   position: relative;
+  cursor: default;
 }
 
 .carte-delle-torri div {
-  margin: auto;
+  position: absolute;
+  left: 10mm;
   width: 12mm;
   height: 21mm;
   border-radius: 1mm;
@@ -380,7 +383,32 @@ span {
   text-align: center;
   color: white;
   font-family: "friendly_school", cursive;
-  border: transparent;
+  /* border: 1px solid white; */
+  border:transparent;
+}
+
+.carte-delle-torri-avversario{
+  /* border:2px solid red;  */
+  width: 53mm;
+  height: 66mm;
+  bottom: 2mm;
+  padding-left: 2mm;
+  position: relative;
+  cursor: default;
+}
+
+.carte-delle-torri-avversario div {
+  position: absolute;
+  right: 10mm;
+  width: 12mm;
+  height: 21mm;
+  border-radius: 1mm;
+  font-size: 8mm;
+  text-align: center;
+  color: white;
+  font-family: "friendly_school", cursive;
+   /* border: 1px solid red;  */
+  
 }
 
 .mazzo-coperte div:hover {
@@ -433,6 +461,7 @@ span {
   color: white;
   font-family: "friendly_school", cursive;
   border: 1px solid white;
+  cursor: default;
 }
 
 .Quadrato {
@@ -515,10 +544,11 @@ span {
 }
 
 .punteggio {
+  cursor: default;
   position: relative;
   width: 11mm;
   height: 10mm;
-  bottom: 53mm;
+  bottom: 8mm;
   border-top-left-radius: 4.2mm;
   border-top-right-radius: 5mm;
   border-bottom-left-radius: 5mm;
@@ -534,7 +564,7 @@ span {
   );
 }
 .bolla {
-  bottom: 64mm;
+  bottom: 20mm;
   width: 5.5mm;
   height: 6mm;
   border: 1px solid rgb(1, 192, 240);

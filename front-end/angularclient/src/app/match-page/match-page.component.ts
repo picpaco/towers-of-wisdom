@@ -23,6 +23,10 @@ export class MatchPageComponent implements OnInit {
   public torreCerchio: [Carta]; //colore rosa petalo 3 colonna
   public torreAncora: [Carta]; //colore arancio chiaro 4 colonna
   public torriDelGiocatore = [[Carta]];
+  public torreQuadratoAvversario: Carta[];
+  public torreTriangoloAvversario: [Carta];
+  public torreCerchioAvversario: [Carta];
+  public torreAncoraAvversario: [Carta];
   mano: any = [];
 
   constructor(private giocatoreService: GiocatoreService) {}
@@ -37,9 +41,81 @@ export class MatchPageComponent implements OnInit {
       new Carta("Punta", "P"),
       new Carta("Quadrato", "7"),
     ];
+    this.torreQuadratoAvversario = [
+      new Carta("Quadrato", "7"),
+      new Carta("Quadrato", "6"),
+      new Carta("Quadrato", "5"),
+      new Carta("Quadrato", "4"),
+      new Carta("Quadrato", "3"),
+      new Carta("Quadrato", "2"),
+      new Carta("Quadrato", "1"),
+      new Carta("Punta", "P"),
+    ];
+
+    this.mostraTorriAvversario();
     this.mostraMazzo();
     this.inizializzaMazzoScarti();
     this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto
+  }
+  private mostraTorriAvversario() {
+    if (this.torreQuadratoAvversario !== undefined) {
+      for (let index = 0; index < this.torreQuadratoAvversario.length; index++) {
+        let classe = this.torreQuadratoAvversario[index].getSymbol();
+        let valore = this.torreQuadratoAvversario[index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(0) div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass("Quadrato")
+            .text(valore);
+        });
+      }
+      for (let index = 0; index < this.torreQuadratoAvversario.length; index++) {
+        let classe = this.torreQuadratoAvversario[index].getSymbol();
+        let valore = this.torreQuadratoAvversario[index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(1) div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass("Triangolo")
+            .text(valore);
+        });
+      }
+      for (let index = 0; index < this.torreQuadratoAvversario.length; index++) {
+        let classe = this.torreQuadratoAvversario[index].getSymbol();
+        let valore = this.torreQuadratoAvversario[index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(2) div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass("Cerchio")
+            .text(valore);
+        });
+      }
+      for (let index = 0; index < this.torreQuadratoAvversario.length; index++) {
+        let classe = this.torreQuadratoAvversario[index].getSymbol();
+        let valore = this.torreQuadratoAvversario[index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(3) div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass("Ancora")
+            .text(valore);
+        });
+      }
+    }
   }
 
   public giocaSullaTorre(torre: string) {
