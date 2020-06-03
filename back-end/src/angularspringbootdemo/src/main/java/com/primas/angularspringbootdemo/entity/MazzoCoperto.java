@@ -1,8 +1,6 @@
-package com.primas.angularspringbootdemo.entity;
+package towers_of_wisdom;
 
 import java.util.Collections;
-
-
 
 public class MazzoCoperto extends Mazzo {
 
@@ -13,10 +11,18 @@ public class MazzoCoperto extends Mazzo {
 			}
 		}
 		Collections.shuffle(getListaCarte());
+		
+		assert (getListaCarte().size() == 32): "Il mazzo deve contenere 32  carte";
 	}
-
+	
 	public Carta pescaCarta() {
-		return getListaCarte().remove(0);
+		assert (!getListaCarte().isEmpty()): "Il mazzo deve contenere almeno una carta";
+		
+		int vecchiaDimensione = getListaCarte().size();
+		Carta cartaPescata = getListaCarte().remove(0);
+		
+		assert (getListaCarte().size() == vecchiaDimensione-1): "Il mazzo deve avere una carta in meno";
+		return cartaPescata;
 	}
 
 }

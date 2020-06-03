@@ -1,12 +1,8 @@
-package com.primas.angularspringbootdemo.entity;
-
-
-
+package towers_of_wisdom;
 
 public enum Valore {
 
 	UNO("uno", 1), DUE("due", 2), TRE("tre", 3), QUATTRO("quattro", 4), CINQUE("cinque", 5), SEI("sei", 6), SETTE("sette", 7), CIMA("P", 0);
-	
 
 	private String nome;
 	private int val;

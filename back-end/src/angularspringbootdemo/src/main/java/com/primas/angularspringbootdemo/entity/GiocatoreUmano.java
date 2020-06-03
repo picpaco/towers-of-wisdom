@@ -3,6 +3,7 @@ package towers_of_wisdom;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class GiocatoreUmano extends Giocatore {
 
 	private InsiemeTorri insTorri = new InsiemeTorri();
@@ -41,11 +42,16 @@ public class GiocatoreUmano extends Giocatore {
 				System.out.println("Devi selezionare 1 o 2!!!"); 
 			}
 		}
+		assert (mossa != null): "La mossa non deve essere null";
+		
 		return mossa;
 	}
 
 
 	public String scegliDaCheMazzoPescare(String mossaScelta) {
+		assert (mossaScelta != null): "La mossa scelta non deve essere null";
+		assert (getMano().size() == 3): "La mano deve avere 3 carte";
+
 		if(mossaScelta.equals("mazzoC")) {
 			System.out.println("carte mano prima di pescare: " + getMano());
 			getMano().add(getMazzoCoperto().pescaCarta());
@@ -63,10 +69,14 @@ public class GiocatoreUmano extends Giocatore {
 				System.out.println("carte mano dopo aver pescato dal mazzo coperto: " + getMano());
 			}
 		}
+		assert (getMano().size() == 4): "La mano deve avere 4 carte";
+
 		return mossaScelta;
 	}
 
 	public int scegliCartaDaMazzoScarti() {
+		assert (!getMazzoScarti().isVuoto()): "Il  mazzo scarti non deve essere vuoto";
+
 		System.out.println("mazzo scarti: " +  getMazzoScarti());
 		boolean inputNok = true;
 		int cartaSelezionata = 0;
@@ -74,6 +84,9 @@ public class GiocatoreUmano extends Giocatore {
 		Scanner scan = new Scanner(System.in);
 		scan.useDelimiter(System.lineSeparator());
 		cartaSelezionata = getMazzoScarti().dimensione();
+		
+		assert (cartaSelezionata >= 0): "L'indice della carta selezionata deve essere maggiore uguale a 0";
+		
 		while (inputNok) {
 			System.out.println("Digita il numero corrispondente alla carta che vuoi selezionare: ");
 			cartaSelezionata = scan.nextInt();
@@ -88,11 +101,19 @@ public class GiocatoreUmano extends Giocatore {
 	}
 
 	public Carta pescaCartaDaMazzoScarti(int cartaSelezionata) {
+		assert (getMazzoScarti().dimensione() != 0): "Il mazzo degli scarti non può essere vuoto";
+		assert (getMano().size() == 3): "La mano deve avere 3 carte";
+		assert (cartaSelezionata >= 0): "La carta selezionata deve avere indice maggiore o uguale a 0";
+		assert (cartaSelezionata <= getMazzoScarti().getListaCarte().size()): "La carta selezionata deve avere un indice minore o uguale del mazzo degli scarti";
+
 		Carta c = getMazzoScarti().getListaCarte().get(cartaSelezionata);
-		getMano().add(c);
 		getMazzoScarti().rimuoviCarta(c);
+		getMano().add(c);
 		System.out.println("carta pescata dal mazzo degli scarti: " + c);
 		System.out.println("carte mano dopo aver pescato dal mazzo degli scarti: " + getMano());
+
+		assert (c != null): "La carta non deve essere null";
+		assert (getMano().size() == 4): "La mano deve essere di 4 carte";
 		return c;
 	}
 
@@ -116,6 +137,10 @@ public class GiocatoreUmano extends Giocatore {
 				System.out.println("Devi selezionare 1 o 2!"); 
 			}
 		}
+		assert (scelta != null): "La scelta non deve essere null";
+		assert (scelta == "gioca" || scelta == "scarta"): "La scelta deve essere o gioca o scarta";
+		assert (getMano().size() == 4): "La mano deve essere di 4 carte";
+		
 		return scelta;
 	}
 
@@ -146,11 +171,17 @@ public class GiocatoreUmano extends Giocatore {
 			}
 		}
 		scan.close();
+
+		assert (cartaSelezionata != null): "La carta selezionata non deve essere null";
+
 		return cartaSelezionata;
 	}
 
 
 	public String giocaOScarta(String cartaSelezionata, String scelta) {
+		assert (cartaSelezionata != null && scelta != null): "La carta selezionata e la scelta non devono essere null";
+		assert (getMano().size()==4): "La mano deve contenere 4 carte";
+
 		if(scelta.equals("gioca")) {
 			if(cartaSelezionata.equals("carta1")) {
 				if(insTorri.isGiocabile(getMano().get(0))) {
@@ -218,11 +249,15 @@ public class GiocatoreUmano extends Giocatore {
 		System.out.println("carte mano dopo aver giocato: " + getMano());
 		System.out.println("torri giocatore: " + insTorri.getTorriCarte().values());
 		System.out.println("mazzo scarti: " +  getMazzoScarti());
-		
-		insTorri.getPunteggio();
+
+		assert (getMano().size() == 3): "La mano deve contenere 3 carte";
+
 		return cartaSelezionata;
 	}
 
+	public int calcolaPunteggio() {
+		return insTorri.getPunteggioTotale();
+	}
 
 	@Override
 	public Carta decidiCartaDaGiocare(ArrayList<Carta> mano, InsiemeTorri insTorri) {

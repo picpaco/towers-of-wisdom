@@ -2,8 +2,6 @@ package towers_of_wisdom;
 
 import java.util.ArrayList;
 
-import com.primas.angularspringbootdemo.entity.Giocatore;
-
 public class GiocatoreBot extends Giocatore {
 
 	public GiocatoreBot(String nome) {
@@ -12,6 +10,9 @@ public class GiocatoreBot extends Giocatore {
 
 	@Override
 	public Carta decidiCartaDaGiocare(ArrayList<Carta> mano, InsiemeTorri insTorri) {
+		assert (mano != null): "La mano non dovrebbe essere null";
+		assert (mano.size() == 4): "La mano deve contenere 4 carte";
+		
 		for(int i = 0; i < mano.size(); i++) {
 			if(insTorri.isGiocabile(mano.get(i))) {
 				System.out.println("carta che verrà giocata: " + mano.get(i));

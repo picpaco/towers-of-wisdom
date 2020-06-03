@@ -1,8 +1,4 @@
-package com.primas.angularspringbootdemo.entity;
-
-
-
-
+package towers_of_wisdom;
 
 public enum Simbolo { 
 

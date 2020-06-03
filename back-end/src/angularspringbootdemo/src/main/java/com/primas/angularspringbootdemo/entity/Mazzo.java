@@ -1,11 +1,9 @@
-package com.primas.angularspringbootdemo.entity;
+package towers_of_wisdom;
 
 import java.util.ArrayList;
 
-
 public abstract class Mazzo {
 	
-
 	private ArrayList<Carta> listaCarte = new ArrayList<>();
 
 

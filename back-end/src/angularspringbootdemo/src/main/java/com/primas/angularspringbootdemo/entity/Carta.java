@@ -1,9 +1,7 @@
-package com.primas.angularspringbootdemo.entity;
-
+package towers_of_wisdom;
 
 public class Carta {
 	
-
 	private Simbolo simbolo;
 	private Valore valore;
 
