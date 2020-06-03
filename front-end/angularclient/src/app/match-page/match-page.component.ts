@@ -57,9 +57,13 @@ export class MatchPageComponent implements OnInit {
     this.inizializzaMazzoScarti();
     this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto
   }
-  private mostraTorriAvversario() {
+  private mostraTorriAvversario() {//da rifare
     if (this.torreQuadratoAvversario !== undefined) {
-      for (let index = 0; index < this.torreQuadratoAvversario.length; index++) {
+      for (
+        let index = 0;
+        index < this.torreQuadratoAvversario.length;
+        index++
+      ) {
         let classe = this.torreQuadratoAvversario[index].getSymbol();
         let valore = this.torreQuadratoAvversario[index].getValue();
         $(document).ready(function () {
@@ -73,7 +77,11 @@ export class MatchPageComponent implements OnInit {
             .text(valore);
         });
       }
-      for (let index = 0; index < this.torreQuadratoAvversario.length; index++) {
+      for (
+        let index = 0;
+        index < this.torreQuadratoAvversario.length;
+        index++
+      ) {
         let classe = this.torreQuadratoAvversario[index].getSymbol();
         let valore = this.torreQuadratoAvversario[index].getValue();
         $(document).ready(function () {
@@ -87,7 +95,11 @@ export class MatchPageComponent implements OnInit {
             .text(valore);
         });
       }
-      for (let index = 0; index < this.torreQuadratoAvversario.length; index++) {
+      for (
+        let index = 0;
+        index < this.torreQuadratoAvversario.length;
+        index++
+      ) {
         let classe = this.torreQuadratoAvversario[index].getSymbol();
         let valore = this.torreQuadratoAvversario[index].getValue();
         $(document).ready(function () {
@@ -101,7 +113,11 @@ export class MatchPageComponent implements OnInit {
             .text(valore);
         });
       }
-      for (let index = 0; index < this.torreQuadratoAvversario.length; index++) {
+      for (
+        let index = 0;
+        index < this.torreQuadratoAvversario.length;
+        index++
+      ) {
         let classe = this.torreQuadratoAvversario[index].getSymbol();
         let valore = this.torreQuadratoAvversario[index].getValue();
         $(document).ready(function () {
@@ -226,19 +242,59 @@ export class MatchPageComponent implements OnInit {
     }
   }
 
-  private calcolaPuntaggio() {
+  private calcolaPuntaggio() {//da rifare
     if (this.torreQuadrato != undefined && this.torreQuadrato.length > 0) {
-      let pointsQ = 0;
+      let punti = 0;
       for (let index = 0; index < this.torreQuadrato.length; index++) {
-        pointsQ += +this.torreQuadrato[index].getValue();
+        punti += +this.torreQuadrato[index].getValue();
       }
-      if (this.torreQuadrato.length < 3) {
+      $(document).ready(function () {
+        $("#1.punteggio").html("<div><div></div></div>").text(punti);
+      });
+    }
+
+    if (this.torreTriangolo != undefined && this.torreTriangolo.length > 0) {
+      let punti = 0;
+      for (let index = 0; index < this.torreTriangolo.length; index++) {
+        punti += +this.torreTriangolo[index].getValue();
+      }
+      if (this.torreTriangolo.length < 3) {
         $(document).ready(function () {
-          $("#1.punteggio").html("<div><div></div></div>");
+          $("#2.punteggio").html("<div><div></div></div>");
         });
       }
       $(document).ready(function () {
-        $("#1.punteggio").text(pointsQ);
+        $("#2.punteggio").text(punti);
+      });
+    }
+
+    if (this.torreCerchio != undefined && this.torreCerchio.length > 0) {
+      let punti = 0;
+      for (let index = 0; index < this.torreCerchio.length; index++) {
+        punti += +this.torreCerchio[index].getValue();
+      }
+      if (this.torreCerchio.length < 3) {
+        $(document).ready(function () {
+          $("#3.punteggio").html("<div><div></div></div>");
+        });
+      }
+      $(document).ready(function () {
+        $("#3.punteggio").text(punti);
+      });
+    }
+
+    if (this.torreAncora != undefined && this.torreAncora.length > 0) {
+      let punti = 0;
+      for (let index = 0; index < this.torreAncora.length; index++) {
+        punti += +this.torreAncora[index].getValue();
+      }
+      if (this.torreAncora.length < 3) {
+        $(document).ready(function () {
+          $("#4.punteggio").html("<div><div></div></div>");
+        });
+      }
+      $(document).ready(function () {
+        $("#4.punteggio").text(punti);
       });
     }
   }
@@ -368,11 +424,11 @@ export class MatchPageComponent implements OnInit {
       new Carta("Quadrato", "2"),
       new Carta("Quadrato", "1"),
       new Carta("Quadrato", "1"),
-      new Carta("Ancora", "1"),
+      new Carta("Triangolo", "1"),
       new Carta("Triangolo", "2"),
       new Carta("Triangolo", "3"),
       new Carta("Ancora", "4"),
-      new Carta("Ancora", "5"),
+      new Carta("Cerchio", "5"),
       new Carta("Triangolo", "5"),
       new Carta("Triangolo", "6"),
       new Carta("Triangolo", "7"),
@@ -385,8 +441,8 @@ export class MatchPageComponent implements OnInit {
       new Carta("Cerchio", "7"),
       new Carta("Triangolo", "4"),
       new Carta("Triangolo", "1"),
-      new Carta("Quadrato", "3"),
-      new Carta("Quadrato", "5"),
+      new Carta("Ancora", "3"),
+      new Carta("Ancora", "5"),
     ];
   }
 

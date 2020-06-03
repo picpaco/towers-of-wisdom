@@ -383,11 +383,11 @@ span {
   text-align: center;
   color: white;
   font-family: "friendly_school", cursive;
-  /* border: 1px solid white; */
-  border:transparent;
+  /* border: 1px solid white;  */
+  border: transparent;
 }
 
-.carte-delle-torri-avversario{
+.carte-delle-torri-avversario {
   /* border:2px solid red;  */
   width: 53mm;
   height: 66mm;
@@ -407,8 +407,7 @@ span {
   text-align: center;
   color: white;
   font-family: "friendly_school", cursive;
-   /* border: 1px solid red;  */
-  
+  /* border: 1px solid red;  */
 }
 
 .mazzo-coperte div:hover {
