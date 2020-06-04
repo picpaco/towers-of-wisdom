@@ -5,50 +5,98 @@ import java.util.ArrayList;
 public abstract class Giocatore {  
 
 	private String nome;
-	private MazzoScarti mazzoScarti = new MazzoScarti();
-	private MazzoCoperto mazzoCoperto = new MazzoCoperto();
-	private InsiemeTorri insTorri = new InsiemeTorri();
+	private ArrayList<Torre> insTorri2 = new ArrayList<>();
 	private ArrayList<Carta> mano = new ArrayList<>(4);
-	
-	
-	public InsiemeTorri getInsiemeTorri() {
-		return getInsTorri();
-	}
-	
+
+
 	public Giocatore(String nome) {
 		this.nome = nome;
+		insTorri2.add(new Torre(Simbolo.Q));
+		insTorri2.add(new Torre(Simbolo.C));
+		insTorri2.add(new Torre(Simbolo.T));
+		insTorri2.add(new Torre(Simbolo.A));
+	}
+
+	protected ArrayList<Torre> getInsTorri2() {
+		return insTorri2;
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	
 	public ArrayList<Carta> getMano() {
 		return mano;
-	}
-
-	protected MazzoScarti getMazzoScarti() {
-		return mazzoScarti;
-	}
-
-	public void setMazzoScarti(MazzoScarti mazzoScarti) {
-		this.mazzoScarti = mazzoScarti;
-	}
-
-	protected MazzoCoperto getMazzoCoperto() {
-		return mazzoCoperto;
-	}
-
-	public void setMazzoCoperto(MazzoCoperto mazzoCoperto) {
-		this.mazzoCoperto = mazzoCoperto;
 	}
 
 	public void setMano(ArrayList<Carta> mano) {
 		this.mano = mano;
 	}
 
-	public void giocaTurno() { 
+	private Torre getTorre(Simbolo s) {
+		for(Torre t : insTorri2) {
+			if(t.getSimbolo().equals(s)) {
+				return t;
+			}
+		}
+		assert false: "Torre non valida";
+		return null;
+	}
+	
+	public boolean isGiocabile(Carta carta) {
+		assert (carta!=null): "La carta non dovrebbe essere null!";
+
+		Torre torre = getTorre(carta.getSimbolo());
+		if(!(torre.isVuota())) {
+			if(carta.getValore().equals(Valore.CIMA)) {
+				if(torre.guardaLaCartaInCima().getValore().equals(Valore.UNO)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			if(carta.getValore().getVal() < torre.guardaLaCartaInCima().getValore().getVal()) {
+				return true;
+			} 
+		} else {
+			if(!(carta.getValore().equals(Valore.CIMA))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void aggiungiCartaATorre(Carta carta) { 
+		assert (carta!=null):"La carta non dovrebbe essere null!";
+		assert (isGiocabile(carta)): "La carta deve essere giocabile!";
+
+		Torre vecchiaTorre = getTorre(carta.getSimbolo());
+		vecchiaTorre.aggiungiCartaInCima(carta);
+		System.out.println("punteggio carta: " + carta.getValore().getVal());
+
+		aggiornaPunteggioParziale(carta);
+
+		System.out.println("punteggio totale: " + getPunteggioTotale());
+		System.out.println("carta appena aggiunta alla torre: " + vecchiaTorre.guardaLaCartaInCima());
+	}
+
+	public void aggiornaPunteggioParziale(Carta carta) {
+		assert (carta != null): "La carta non deve essere null";
+
+		Torre torreDiSimboli = getTorre(carta.getSimbolo());
+		torreDiSimboli.aggiornaValore(carta.getValore().getVal());
+	}
+	
+	public int getPunteggioTotale() {
+		int somma = 0;
+		for(Torre t : insTorri2) {
+			somma = somma + t.getValoreTorre();
+		}
+		assert (somma != 0): "Il punteggio non deve essere 0";
+		return somma;
+	}
+	
+	public void giocaTurno(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) { 
 		assert (mano.size() == 3): "La mano deve avere 3 carte";
 
 		boolean cartaTrovataInMazzoScarti = false;
@@ -56,17 +104,17 @@ public abstract class Giocatore {
 			System.out.println("carte mano prima di pescare: " + mano);
 			mano.add(mazzoCoperto.pescaCarta());
 			System.out.println("carte mano dopo aver pescato: " + mano);
-			giocaCarta();
+			giocaCarta(mazzoCoperto, mazzoScarti);
 			System.out.println("carte mano dopo aver giocato: " + mano);
 		} else {
 			Carta c = null;
 			for(int i = 0; i<mazzoScarti.dimensione(); i++) {
 				c = mazzoScarti.getListaCarte().get(i);
-				if(getInsTorri().isGiocabile(c)) {		
+				if(isGiocabile(c)) {		
 					mazzoScarti.rimuoviCarta(c);
 					mano.add(c);
 					System.out.println("carta presa da mazzo degli scarti: " + c);
-					giocaCarta();
+					giocaCarta(mazzoCoperto, mazzoScarti);
 					cartaTrovataInMazzoScarti = true;
 					break;
 				}
@@ -74,7 +122,7 @@ public abstract class Giocatore {
 			if(!(cartaTrovataInMazzoScarti)) {
 				mano.add(mazzoCoperto.pescaCarta());
 				System.out.println("carte mano: "+mano);
-				giocaCarta();
+				giocaCarta(mazzoCoperto, mazzoScarti);
 			}
 			if(mazzoCoperto.isVuoto()) {
 				assert (mano.size() == 4): "Se il mazzo coperto è vuoto la mano deve avere 4 carte";
@@ -84,7 +132,7 @@ public abstract class Giocatore {
 		}
 	}
 
-	public ArrayList<Carta> distribuisciCarte() {
+	public ArrayList<Carta> distribuisciCarte(MazzoCoperto mazzoCoperto) {
 		assert (mano.size() == 0): "La mano deve essere vuota";
 
 		for(int i=0; i<3; i++) {
@@ -96,12 +144,12 @@ public abstract class Giocatore {
 		return mano;
 	}
 
-	public void scartaCarta() { 	
+	public void scartaCarta(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) { 	
 		assert (mano.size() == 4): "La mano deve avere 4 carte"; 
 
 		if(!(mazzoCoperto.isVuoto())) {
 			for(int i = 0; i < mano.size(); i++) {
-				if(!(getInsTorri().isGiocabile(mano.get(i)))) {
+				if(!(isGiocabile(mano.get(i)))) {
 					mazzoScarti.aggiungiCarta(mano.get(i));
 					System.out.println("carta scartata: "+mano.get(i));
 					mano.remove(mano.get(i));
@@ -112,17 +160,17 @@ public abstract class Giocatore {
 		assert (mano.size() == 3): "La mano deve essere di 3 carte";
 	}
 
-	public void giocaCarta() { 
+	public void giocaCarta(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) { 
 		assert (mano.size()==4): "La mano prima di giocare deve avere 4 carte";
 
-		System.out.println("torri giocatore: " + getInsTorri().getTorriCarte().values());
+		System.out.println("torri giocatore: " + insTorri2);
 		if(!(mazzoCoperto.isVuoto())) {
-			Carta cartaDaGiocare = decidiCartaDaGiocare(mano, getInsTorri());
+			Carta cartaDaGiocare = decidiCartaDaGiocare(mano);
 			System.out.println("carta scelta: " + cartaDaGiocare);
 			if(cartaDaGiocare == null) {
-				scartaCarta();
+				scartaCarta(mazzoCoperto, mazzoScarti);
 			} else {
-				getInsTorri().aggiungiCartaATorre(cartaDaGiocare);
+				aggiungiCartaATorre(cartaDaGiocare);
 			}
 			mano.remove(cartaDaGiocare);
 		} else {
@@ -131,24 +179,16 @@ public abstract class Giocatore {
 		assert (mano.size() == 3): "La mano deve essere di 3 carte";
 	}
 
-	public abstract Carta decidiCartaDaGiocare(ArrayList<Carta> mano, InsiemeTorri insTorri);
+	public abstract Carta decidiCartaDaGiocare(ArrayList<Carta> mano);
 	public abstract void giocaTurnoUmano();
 
 	public int calcolaPunteggio() {
-		return getInsTorri().getPunteggioTotale();
+		return getPunteggioTotale();
 	}
 
 	@Override
 	public String toString() {
 		return "Giocatore [nome=" + nome + "]";
-	}
-
-	public InsiemeTorri getInsTorri() {
-		return insTorri;
-	}
-
-	public void setInsTorri(InsiemeTorri insTorri) {
-		this.insTorri = insTorri;
 	}
 
 }
