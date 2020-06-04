@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.primas.angularspringbootdemo.entity.Giocatore;
+
 import com.primas.angularspringbootdemo.entity.Partita;
 import com.primas.angularspringbootdemo.repository.RepositoryPartita;
 

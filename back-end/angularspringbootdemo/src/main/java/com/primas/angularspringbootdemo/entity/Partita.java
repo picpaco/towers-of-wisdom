@@ -1,12 +1,24 @@
 package com.primas.angularspringbootdemo.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Partita {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String nomeGiocatore1;
 	private String nomeGiocatore2;
 	private int punteggio1;
 	private int punteggio2;
+	
+	public Partita() {
+		
+	}
 	
 	public Partita(String nomeGiocatore1, String nomeGiocatore2, int punteggio1, int punteggio2) {
 		this.nomeGiocatore1 = nomeGiocatore1;

@@ -2,13 +2,25 @@ package com.primas.angularspringbootdemo.entity;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public abstract class Giocatore {  
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String nome;
 	private ArrayList<Torre> insTorri2 = new ArrayList<>();
 	private ArrayList<Carta> mano = new ArrayList<>(4);
 
-
+	public Giocatore() {
+		
+	}
+	
 	public Giocatore(String nome) {
 		this.nome = nome;
 		insTorri2.add(new Torre(Simbolo.Q));
