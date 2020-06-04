@@ -16,27 +16,27 @@ import com.primas.angularspringbootdemo.repository.RepositoryPartita;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class PartitaController {
-    private final RepositoryPartita repositoryPartita;
+	private final RepositoryPartita repositoryPartita;
 
-    public PartitaController(RepositoryPartita repo) {
-        this.repositoryPartita = repo;
-    }
+	public PartitaController(RepositoryPartita repo) {
+		this.repositoryPartita = repo;
+	}
 
-    @GetMapping("/giocatori")
-    public List<Partita> getGiocatori() {
-        return (List<Partita>) repositoryPartita.findAll();
-        //serve per visualizzare la leaderbord 
-    }
+	@GetMapping("/giocatori")
+	public List<Partita> getGiocatori() {
+		return (List<Partita>) repositoryPartita.findAll();
+		//serve per visualizzare la leaderbord 
+	}
 
-    @PostMapping("/giocatori")
-    void addUser(@RequestBody Partita partita) {
-        repositoryPartita.save(partita);
-        //quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
-    }
-
-
-
-    //aggiungiere una get con parametro giocatore che restituisce le info sul singolo giocatore
-
+	@PostMapping("/giocatori")
+	void addUser(@RequestBody Partita partita) {
+		repositoryPartita.save(partita);
+		//quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
+	}
+	
+	
+	
+	//aggiungiere una get con parametro giocatore che restituisce le info sul singolo giocatore
+	
 
 }
