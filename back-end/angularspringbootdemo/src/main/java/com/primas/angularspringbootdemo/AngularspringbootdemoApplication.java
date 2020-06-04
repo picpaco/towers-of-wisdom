@@ -12,7 +12,7 @@ import com.primas.angularspringbootdemo.entity.Giocatore;
 import com.primas.angularspringbootdemo.entity.GiocatoreBot;
 import com.primas.angularspringbootdemo.entity.Simbolo;
 import com.primas.angularspringbootdemo.entity.Torre;
-import com.primas.angularspringbootdemo.repository.RepositoryGiocatore;
+import com.primas.angularspringbootdemo.repository.RepositoryPartita;
 
 @SpringBootApplication
 public class AngularspringbootdemoApplication {
@@ -22,7 +22,7 @@ public class AngularspringbootdemoApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(RepositoryGiocatore giocatoreRepository) {
+	CommandLineRunner init(RepositoryPartita giocatoreRepository) {
 		return args -> {
 			Giocatore giocatore = new GiocatoreBot("Marco");
 			Torre torreQ = new Torre(Simbolo.Q);
@@ -35,7 +35,7 @@ public class AngularspringbootdemoApplication {
 //				GiocatoreBot giocatore = new GiocatoreBot(name);
 //				giocatoreRepository.save(giocatore);
 //			});
-			giocatoreRepository.save(giocatore);
+			//giocatoreRepository.save(giocatore);
 			giocatoreRepository.findAll().forEach(System.out::println);//i giocaotri vanno salvati a partire dall'interfaccia 
 		};
 	}
