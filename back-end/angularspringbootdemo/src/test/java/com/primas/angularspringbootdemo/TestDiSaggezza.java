@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.Giocatore;
 import com.primas.angularspringbootdemo.entity.GiocatoreBot;
-import com.primas.angularspringbootdemo.entity.InsiemeTorri;
 import com.primas.angularspringbootdemo.entity.MazzoCoperto;
 import com.primas.angularspringbootdemo.entity.MazzoScarti;
 import com.primas.angularspringbootdemo.entity.Simbolo;
@@ -37,15 +36,12 @@ class TestDiSaggezza {
 	Torre torreQ;
 	Torre torreC;
 	Torre torreT;
-	InsiemeTorri insTorri;
 
 	@BeforeEach
 	public void setUp() throws Exception{
 		scarti = new MazzoScarti();
 		coperto = new MazzoCoperto();
 		giocatorebot = new GiocatoreBot("robot");
-		giocatorebot.setMazzoScarti(scarti);
-		giocatorebot.setMazzoCoperto(coperto);
 		cartaA = new Carta(Valore.QUATTRO, Simbolo.A);
 		cartaQ = new Carta(Valore.CINQUE, Simbolo.Q);
 		cartaC = new Carta(Valore.DUE, Simbolo.C);
@@ -62,7 +58,6 @@ class TestDiSaggezza {
 		torreQ = new Torre(Simbolo.Q);
 		torreC = new Torre(Simbolo.C);
 		torreT = new Torre(Simbolo.T);
-		insTorri = new InsiemeTorri();
 	}
 
 	@Test
@@ -77,20 +72,20 @@ class TestDiSaggezza {
 
 	@Test 
 	void distribuzioneCarteAdUnGiocatore(){
-		giocatorebot.distribuisciCarte();
+		giocatorebot.distribuisciCarte(coperto);
 		assertEquals(29, coperto.dimensione(), "il mazzo coperto dovrebbe contenere 29 carte");	
 	}
 
 	@Test
 	void controlloNumeroCarteInMano() {
 		assertEquals(0, giocatorebot.getMano().size(), "la mano dovrebbe essere vuota");
-		giocatorebot.distribuisciCarte();
+		giocatorebot.distribuisciCarte(coperto);
 		assertEquals(3, giocatorebot.getMano().size(), "la mano dovrebbe avere 3 carte");
 	}
 
 	@Test
 	void pescaCarta() {
-		giocatorebot.distribuisciCarte();
+		giocatorebot.distribuisciCarte(coperto);
 		assertEquals(3, giocatorebot.getMano().size(), "la mano dovrebbe avere 3 carte");
 		giocatorebot.getMano().add(coperto.pescaCarta());
 		assertEquals(4, giocatorebot.getMano().size(), "la mano dovrebbe avere 4 carte");
@@ -98,41 +93,41 @@ class TestDiSaggezza {
 
 	@Test
 	void scartaCarta() {
-		giocatorebot.distribuisciCarte();
+		giocatorebot.distribuisciCarte(coperto);
 		giocatorebot.getMano().add(cartaCimaA);
-		giocatorebot.scartaCarta();
+		giocatorebot.scartaCarta(coperto, scarti);
 	}
 
 	@Test
 	void giocaCarta() {
-		giocatorebot.distribuisciCarte();
+		giocatorebot.distribuisciCarte(coperto);
 		assertEquals(3, giocatorebot.getMano().size(), "la mano dovrebbe avere 3 carte");
 		giocatorebot.getMano().add(coperto.pescaCarta());
 		assertEquals(4, giocatorebot.getMano().size(), "la mano dovrebbe avere 4 carte");
-		giocatorebot.giocaCarta();
+		giocatorebot.giocaCarta(coperto, scarti);
 		assertEquals(3, giocatorebot.getMano().size(), "la mano dovrebbe avere 3 carte dopo lo scarto");
 	}
 
 	@Test
 	void pescaDaMazzoCopertoConMAzzoScartiVuoto() {
-		giocatorebot.distribuisciCarte();
-		giocatorebot.giocaTurno();
+		giocatorebot.distribuisciCarte(coperto);
+		giocatorebot.giocaTurno(coperto, scarti);
 		assertEquals(28, coperto.dimensione(), "il mazzo coperto dovrebbe contenere 28 carte");
 	}
 
 	@Test
 	void cartaNonGiocabileDalMazzoScarti() {
-		giocatorebot.distribuisciCarte();
+		giocatorebot.distribuisciCarte(coperto);
 		scarti.aggiungiCarta(cartaCimaT);
-		giocatorebot.giocaTurno();
+		giocatorebot.giocaTurno(coperto, scarti);
 		assertEquals(28, coperto.dimensione(), "il mazzo dovrebbe contenere 31 carte");
 	}
 
 	@Test
 	void pescaCartaGiocabileDaMazzoScarti() {
-		giocatorebot.distribuisciCarte();
+		giocatorebot.distribuisciCarte(coperto);
 		scarti.aggiungiCarta(cartaA);
-		giocatorebot.giocaTurno();
+		giocatorebot.giocaTurno(coperto, scarti);
 		assertEquals(0, scarti.dimensione(), "il mazzo scarti dovrebbe contenere 0 carte");
 	}
 
@@ -202,72 +197,72 @@ class TestDiSaggezza {
 
 	@Test
 	void calcoloPunteggioTotale() {
-		insTorri.aggiungiCartaATorre(cartaA);
-		insTorri.aggiungiCartaATorre(cartaQ);
-		insTorri.aggiungiCartaATorre(cartaC);
-		insTorri.aggiungiCartaATorre(cartaT);
-		assertEquals(17, insTorri.getPunteggioTotale(), "il punteggio totale dovrebbe essere 17");
+		giocatorebot.aggiungiCartaATorre(cartaA);
+		giocatorebot.aggiungiCartaATorre(cartaQ);
+		giocatorebot.aggiungiCartaATorre(cartaC);
+		giocatorebot.aggiungiCartaATorre(cartaT);
+		assertEquals(17, giocatorebot.getPunteggioTotale(), "il punteggio totale dovrebbe essere 17");
 	}
 
 	@Test
 	void calcoloPunteggioTotaleConCimaA() {
-		insTorri.aggiungiCartaATorre(cartaA);
-		insTorri.aggiungiCartaATorre(cartaQ);
-		insTorri.aggiungiCartaATorre(cartaC);
-		insTorri.aggiungiCartaATorre(cartaT);
-		insTorri.aggiungiCartaATorre(cartaUnoA);
-		insTorri.aggiungiCartaATorre(cartaCimaA);
-		assertEquals(23, insTorri.getPunteggioTotale(), "il punteggio totale dovrebbe essere 23");
+		giocatorebot.aggiungiCartaATorre(cartaA);
+		giocatorebot.aggiungiCartaATorre(cartaQ);
+		giocatorebot.aggiungiCartaATorre(cartaC);
+		giocatorebot.aggiungiCartaATorre(cartaT);
+		giocatorebot.aggiungiCartaATorre(cartaUnoA);
+		giocatorebot.aggiungiCartaATorre(cartaCimaA);
+		assertEquals(23, giocatorebot.getPunteggioTotale(), "il punteggio totale dovrebbe essere 23");
 	}
 
 	@Test
 	void calcoloPunteggioTotaleConCimaQ() {
-		insTorri.aggiungiCartaATorre(cartaA);
-		insTorri.aggiungiCartaATorre(cartaQ);
-		insTorri.aggiungiCartaATorre(cartaC);
-		insTorri.aggiungiCartaATorre(cartaT);
-		insTorri.aggiungiCartaATorre(cartaUnoQ);
-		insTorri.aggiungiCartaATorre(cartaCimaQ);
-		assertEquals(24, insTorri.getPunteggioTotale(), "il punteggio totale dovrebbe essere 24");
+		giocatorebot.aggiungiCartaATorre(cartaA);
+		giocatorebot.aggiungiCartaATorre(cartaQ);
+		giocatorebot.aggiungiCartaATorre(cartaC);
+		giocatorebot.aggiungiCartaATorre(cartaT);
+		giocatorebot.aggiungiCartaATorre(cartaUnoQ);
+		giocatorebot.aggiungiCartaATorre(cartaCimaQ);
+		assertEquals(24, giocatorebot.getPunteggioTotale(), "il punteggio totale dovrebbe essere 24");
 	}
 
 	@Test
 	void calcoloPunteggioTotaleConCimaC() {
-		insTorri.aggiungiCartaATorre(cartaA);
-		insTorri.aggiungiCartaATorre(cartaQ);
-		insTorri.aggiungiCartaATorre(cartaC);
-		insTorri.aggiungiCartaATorre(cartaT);
-		insTorri.aggiungiCartaATorre(cartaUnoC);
-		insTorri.aggiungiCartaATorre(cartaCimaC);
-		assertEquals(21, insTorri.getPunteggioTotale(), "il punteggio totale dovrebbe essere 21");
+		giocatorebot.aggiungiCartaATorre(cartaA);
+		giocatorebot.aggiungiCartaATorre(cartaQ);
+		giocatorebot.aggiungiCartaATorre(cartaC);
+		giocatorebot.aggiungiCartaATorre(cartaT);
+		giocatorebot.aggiungiCartaATorre(cartaUnoC);
+		giocatorebot.aggiungiCartaATorre(cartaCimaC);
+		assertEquals(21, giocatorebot.getPunteggioTotale(), "il punteggio totale dovrebbe essere 21");
 	}
 
 	@Test
 	void calcoloPunteggioTotaleConCimaT() {
-		insTorri.aggiungiCartaATorre(cartaA);
-		insTorri.aggiungiCartaATorre(cartaQ);
-		insTorri.aggiungiCartaATorre(cartaC);
-		insTorri.aggiungiCartaATorre(cartaT);
-		insTorri.aggiungiCartaATorre(cartaUnoT);
-		insTorri.aggiungiCartaATorre(cartaCimaT);
-		assertEquals(25, insTorri.getPunteggioTotale(), "il punteggio totale dovrebbe essere 25");
+		giocatorebot.aggiungiCartaATorre(cartaA);
+		giocatorebot.aggiungiCartaATorre(cartaQ);
+		giocatorebot.aggiungiCartaATorre(cartaC);
+		giocatorebot.aggiungiCartaATorre(cartaT);
+		giocatorebot.aggiungiCartaATorre(cartaUnoT);
+		giocatorebot.aggiungiCartaATorre(cartaCimaT);
+		assertEquals(25, giocatorebot.getPunteggioTotale(), "il punteggio totale dovrebbe essere 25");
 	}
 
 	@Test
 	void calcoloPunteggioTotaleConTutteCime() {
-		insTorri.aggiungiCartaATorre(cartaA);
-		insTorri.aggiungiCartaATorre(cartaQ);
-		insTorri.aggiungiCartaATorre(cartaC);
-		insTorri.aggiungiCartaATorre(cartaT);
-		insTorri.aggiungiCartaATorre(cartaUnoA);
-		insTorri.aggiungiCartaATorre(cartaCimaA);
-		insTorri.aggiungiCartaATorre(cartaUnoQ);
-		insTorri.aggiungiCartaATorre(cartaCimaQ);
-		insTorri.aggiungiCartaATorre(cartaUnoC);
-		insTorri.aggiungiCartaATorre(cartaCimaC);
-		insTorri.aggiungiCartaATorre(cartaUnoT);
-		insTorri.aggiungiCartaATorre(cartaCimaT);
-		assertEquals(42, insTorri.getPunteggioTotale(), "il punteggio totale dovrebbe essere 42");
+		giocatorebot.aggiungiCartaATorre(cartaA);
+		giocatorebot.aggiungiCartaATorre(cartaQ);
+		giocatorebot.aggiungiCartaATorre(cartaC);
+		giocatorebot.aggiungiCartaATorre(cartaT);
+		giocatorebot.aggiungiCartaATorre(cartaUnoA);
+		giocatorebot.aggiungiCartaATorre(cartaCimaA);
+		giocatorebot.aggiungiCartaATorre(cartaUnoQ);
+		giocatorebot.aggiungiCartaATorre(cartaCimaQ);
+		giocatorebot.aggiungiCartaATorre(cartaUnoC);
+		giocatorebot.aggiungiCartaATorre(cartaCimaC);
+		giocatorebot.aggiungiCartaATorre(cartaUnoT);
+		giocatorebot.aggiungiCartaATorre(cartaCimaT);
+		assertEquals(42, giocatorebot.getPunteggioTotale(), "il punteggio totale dovrebbe essere 42");
 	}
 
 }

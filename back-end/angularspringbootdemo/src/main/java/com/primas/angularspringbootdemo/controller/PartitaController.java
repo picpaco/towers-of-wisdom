@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.primas.angularspringbootdemo.entity.Giocatore;
 
-import com.primas.angularspringbootdemo.repository.RepositoryGiocatore;
+import com.primas.angularspringbootdemo.entity.Partita;
+import com.primas.angularspringbootdemo.repository.RepositoryPartita;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class GiocatoreController {
-	private final RepositoryGiocatore repositoryGiocatore;
+public class PartitaController {
+	private final RepositoryPartita repositoryPartita;
 
-	public GiocatoreController(RepositoryGiocatore repo) {
-		this.repositoryGiocatore = repo;
+	public PartitaController(RepositoryPartita repo) {
+		this.repositoryPartita = repo;
 	}
 
 	@GetMapping("/giocatori")
-	public List<Giocatore> getGiocatori() {
-		return (List<Giocatore>) repositoryGiocatore.findAll();
+	public List<Partita> getGiocatori() {
+		return (List<Partita>) repositoryPartita.findAll();
 		//serve per visualizzare la leaderbord 
 	}
 
 	@PostMapping("/giocatori")
-	void addUser(@RequestBody Giocatore giocatore) {
-		repositoryGiocatore.save(giocatore);
+	void addUser(@RequestBody Partita partita) {
+		repositoryPartita.save(partita);
 		//quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
 	}
 	

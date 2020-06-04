@@ -3,7 +3,7 @@ package com.primas.angularspringbootdemo.entity;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TorriDiSaggezza { //test unitari
+public class TorriDiSaggezza { 
 
 
 	private Giocatore[] giocatori = new Giocatore[2];
@@ -12,6 +12,22 @@ public class TorriDiSaggezza { //test unitari
 
 	public TorriDiSaggezza() {
 
+	}
+	
+	protected MazzoCoperto getMazzoCoperto() {
+		return mazzoCoperto;
+	}
+
+	protected void setMazzoCoperto(MazzoCoperto mazzoCoperto) {
+		this.mazzoCoperto = mazzoCoperto;
+	}
+
+	protected MazzoScarti getMazzoScarti() {
+		return mazzoScarti;
+	}
+
+	protected void setMazzoScarti(MazzoScarti mazzoScarti) {
+		this.mazzoScarti = mazzoScarti;
 	}
 
 	public String scegliAvversario() {
@@ -49,20 +65,16 @@ public class TorriDiSaggezza { //test unitari
 	public void giocaPartita() {
 		System.out.println("sono in gioca partita");
 		String nomeGiocatore = ottieniNomeGiocatore();
-		giocatori[0] = new GiocatoreUmano(nomeGiocatore);
-//		giocatori[0] = new GiocatoreBot("BOT 0");
-//		giocatori[1] = new GiocatoreBot("BOT 1");
+		//giocatori[0] = new GiocatoreUmano(nomeGiocatore);
+		giocatori[0] = new GiocatoreBot("BOT 0");
+		giocatori[1] = new GiocatoreBot("BOT 1");
 		String tipologiaAvversario = scegliAvversario();
 		System.out.println("tipologia avversario:"+tipologiaAvversario);
-		if(tipologiaAvversario.equals("BOT")) {
-			giocatori[1] = new GiocatoreBot(tipologiaAvversario);
-		} else {
-			giocatori[1] = new GiocatoreUmano(tipologiaAvversario);
-		}	
-		giocatori[0].setMazzoCoperto(mazzoCoperto);
-		giocatori[0].setMazzoScarti(mazzoScarti);
-		giocatori[1].setMazzoCoperto(mazzoCoperto);
-		giocatori[1].setMazzoScarti(mazzoScarti);
+//		if(tipologiaAvversario.equals("BOT")) {
+//			giocatori[1] = new GiocatoreBot(tipologiaAvversario);
+//		} else {
+//			giocatori[1] = new GiocatoreUmano(tipologiaAvversario);
+//		}	
 
 		System.out.println("giocatore 1: " + giocatori[0].getNome());
 		System.out.println("giocatore 2: " + giocatori[1].getNome());
@@ -100,8 +112,8 @@ public class TorriDiSaggezza { //test unitari
 		Giocatore giocatoreCorrente = null;
 
 
-		giocatori[0].distribuisciCarte();
-		giocatori[1].distribuisciCarte();
+		giocatori[0].distribuisciCarte(mazzoCoperto);
+		giocatori[1].distribuisciCarte(mazzoCoperto);
 
 		System.out.println(mazzoCoperto);
 		System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
@@ -109,11 +121,11 @@ public class TorriDiSaggezza { //test unitari
 
 			giocatoreCorrente = giocatori[turnoCorrente];
 			System.out.println("turno: " + giocatoreCorrente.getNome());
-			if(giocatoreCorrente.equals(giocatori[0])) {
-				giocatoreCorrente.giocaTurnoUmano();
-			} else {
-				giocatoreCorrente.giocaTurno();
-			}
+//			if(giocatoreCorrente.equals(giocatori[0])) {
+//				giocatoreCorrente.giocaTurnoUmano();
+//			} else {
+				giocatoreCorrente.giocaTurno(mazzoCoperto, mazzoScarti);
+		//	}
 			turnoCorrente = (turnoCorrente+1)%2;
 			System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
 		}
@@ -144,8 +156,8 @@ public class TorriDiSaggezza { //test unitari
 		int turnoCorrente = turnoIniziale;
 		Giocatore giocatoreCorrente = null;
 
-		giocatori[0].distribuisciCarte();
-		giocatori[1].distribuisciCarte();
+		giocatori[0].distribuisciCarte(mazzoCoperto);
+		giocatori[1].distribuisciCarte(mazzoCoperto);
 
 		System.out.println(mazzoCoperto);
 		System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");

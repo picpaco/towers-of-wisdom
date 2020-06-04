@@ -7,14 +7,15 @@ import java.util.Scanner;
 public class GiocatoreUmano extends Giocatore {
 
 
+
 	public GiocatoreUmano(String nome) {
 		super(nome);
 	}
 
-	public void giocaTurnoUmano() {
-		if(!(getMazzoCoperto().isVuoto())) {
-			scegliDaCheMazzoPescare(scegliMossa());
-			giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare());
+	public void giocaTurnoUmano(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) {
+		if(!(mazzoCoperto.isVuoto())) {
+			scegliDaCheMazzoPescare(scegliMossa(), mazzoCoperto, mazzoScarti);
+			giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare(), mazzoCoperto, mazzoScarti);
 		} else {
 			return;
 		}
@@ -46,24 +47,24 @@ public class GiocatoreUmano extends Giocatore {
 	}
 
 
-	public String scegliDaCheMazzoPescare(String mossaScelta) {
+	public String scegliDaCheMazzoPescare(String mossaScelta, MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) {
 		assert (mossaScelta != null): "La mossa scelta non deve essere null";
 		assert (getMano().size() == 3): "La mano deve avere 3 carte";
 
 		if(mossaScelta.equals("mazzoC")) {
 			System.out.println("carte mano prima di pescare: " + getMano());
-			getMano().add(getMazzoCoperto().pescaCarta());
+			getMano().add(mazzoCoperto.pescaCarta());
 			System.out.println("carte mano dopo aver pescato dal mazzo coperto: " + getMano());
 		} 
 		if(mossaScelta.equals("mazzoS")) {
-			System.out.println("mazzo scarti: " +  getMazzoScarti());
-			if(!(getMazzoScarti().isVuoto())) {
-				pescaCartaDaMazzoScarti(scegliCartaDaMazzoScarti());
+			System.out.println("mazzo scarti: " +  mazzoScarti);
+			if(!(mazzoScarti.isVuoto())) {
+				pescaCartaDaMazzoScarti(scegliCartaDaMazzoScarti(mazzoCoperto, mazzoScarti), mazzoCoperto, mazzoScarti);
 			} else {
 				System.out.println("Il mazzo degli scarti è vuoto, non si può pescare da qui!");
 				System.out.println("Pescherai dal mazzo coperto.");
 				System.out.println("carte mano prima di pescare: " + getMano());
-				getMano().add(getMazzoCoperto().pescaCarta());
+				getMano().add(mazzoCoperto.pescaCarta());
 				System.out.println("carte mano dopo aver pescato dal mazzo coperto: " + getMano());
 			}
 		}
@@ -72,24 +73,24 @@ public class GiocatoreUmano extends Giocatore {
 		return mossaScelta;
 	}
 
-	public int scegliCartaDaMazzoScarti() {
-		assert (!getMazzoScarti().isVuoto()): "Il  mazzo scarti non deve essere vuoto";
+	public int scegliCartaDaMazzoScarti(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) {
+		assert (!mazzoScarti.isVuoto()): "Il  mazzo scarti non deve essere vuoto";
 
-		System.out.println("mazzo scarti: " +  getMazzoScarti());
+		System.out.println("mazzo scarti: " +  mazzoScarti);
 		boolean inputNok = true;
 		int cartaSelezionata = 0;
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		scan.useDelimiter(System.lineSeparator());
-		cartaSelezionata = getMazzoScarti().dimensione();
+		cartaSelezionata = mazzoScarti.dimensione();
 		
 		assert (cartaSelezionata >= 0): "L'indice della carta selezionata deve essere maggiore uguale a 0";
 		
 		while (inputNok) {
 			System.out.println("Digita il numero corrispondente alla carta che vuoi selezionare: ");
 			cartaSelezionata = scan.nextInt();
-			for(int i=0; i<getMazzoScarti().dimensione(); i++) {
-				if(cartaSelezionata == getMazzoScarti().getListaCarte().indexOf(getMazzoScarti().getListaCarte().get(i))) {
+			for(int i=0; i<mazzoScarti.dimensione(); i++) {
+				if(cartaSelezionata == mazzoScarti.getListaCarte().indexOf(mazzoScarti.getListaCarte().get(i))) {
 					inputNok = false;
 					break;
 				}
@@ -98,14 +99,14 @@ public class GiocatoreUmano extends Giocatore {
 		return cartaSelezionata;
 	}
 
-	public Carta pescaCartaDaMazzoScarti(int cartaSelezionata) {
-		assert (getMazzoScarti().dimensione() != 0): "Il mazzo degli scarti non può essere vuoto";
+	public Carta pescaCartaDaMazzoScarti(int cartaSelezionata, MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) {
+		assert (mazzoScarti.dimensione() != 0): "Il mazzo degli scarti non può essere vuoto";
 		assert (getMano().size() == 3): "La mano deve avere 3 carte";
 		assert (cartaSelezionata >= 0): "La carta selezionata deve avere indice maggiore o uguale a 0";
-		assert (cartaSelezionata <= getMazzoScarti().getListaCarte().size()): "La carta selezionata deve avere un indice minore o uguale del mazzo degli scarti";
+		assert (cartaSelezionata <= mazzoScarti.getListaCarte().size()): "La carta selezionata deve avere un indice minore o uguale del mazzo degli scarti";
 
-		Carta c = getMazzoScarti().getListaCarte().get(cartaSelezionata);
-		getMazzoScarti().rimuoviCarta(c);
+		Carta c = mazzoScarti.getListaCarte().get(cartaSelezionata);
+		mazzoScarti.rimuoviCarta(c);
 		getMano().add(c);
 		System.out.println("carta pescata dal mazzo degli scarti: " + c);
 		System.out.println("carte mano dopo aver pescato dal mazzo degli scarti: " + getMano());
@@ -176,77 +177,77 @@ public class GiocatoreUmano extends Giocatore {
 	}
 
 
-	public String giocaOScarta(String cartaSelezionata, String scelta) {
+	public String giocaOScarta(String cartaSelezionata, String scelta, MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) {
 		assert (cartaSelezionata != null && scelta != null): "La carta selezionata e la scelta non devono essere null";
 		assert (getMano().size()==4): "La mano deve contenere 4 carte";
 
 		if(scelta.equals("gioca")) {
 			if(cartaSelezionata.equals("carta1")) {
-				if(getInsTorri().isGiocabile(getMano().get(0))) {
-					getInsTorri().aggiungiCartaATorre(getMano().get(0));
+				if(isGiocabile(getMano().get(0))) {
+					aggiungiCartaATorre(getMano().get(0));
 					System.out.println("carta giocata: " + getMano().get(0));
 					getMano().remove(getMano().get(0));
 				} else {
 					System.out.println("Non è possibile giocare questa carta");
-					giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare());
+					giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare(), mazzoCoperto, mazzoScarti);
 				}
 			}
 			if(cartaSelezionata.equals("carta2")) {
-				if(getInsTorri().isGiocabile(getMano().get(1))) {
-					getInsTorri().aggiungiCartaATorre(getMano().get(1));
+				if(isGiocabile(getMano().get(1))) {
+					aggiungiCartaATorre(getMano().get(1));
 					System.out.println("carta giocata: " + getMano().get(1));
 					getMano().remove(getMano().get(1));
 				} else {
 					System.out.println("Non è possibile giocare questa carta");
-					giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare());
+					giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare(), mazzoCoperto, mazzoScarti);
 				}
 			}
 			if(cartaSelezionata.equals("carta3")) {
-				if(getInsTorri().isGiocabile(getMano().get(2))) {
-					getInsTorri().aggiungiCartaATorre(getMano().get(2));
+				if(isGiocabile(getMano().get(2))) {
+					aggiungiCartaATorre(getMano().get(2));
 					System.out.println("carta giocata: " + getMano().get(2));
 					getMano().remove(getMano().get(2));
 				} else {
 					System.out.println("Non è possibile giocare questa carta");
-					giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare());
+					giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare(), mazzoCoperto, mazzoScarti);
 				}
 			}
 			if(cartaSelezionata.equals("carta4")) {
-				if(getInsTorri().isGiocabile(getMano().get(3))) {
-					getInsTorri().aggiungiCartaATorre(getMano().get(3));
+				if(isGiocabile(getMano().get(3))) {
+					aggiungiCartaATorre(getMano().get(3));
 					System.out.println("carta giocata: " + getMano().get(3));
 					getMano().remove(getMano().get(3));
 				} else {
 					System.out.println("Non è possibile giocare questa carta");
-					giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare());
+					giocaOScarta(selezionaCarta(), scegliSeGiocareOScartare(), mazzoCoperto, mazzoScarti);
 				}
 			}
 		}	
 		if(scelta.equals("scarta")) {
 			if(cartaSelezionata.equals("carta1")) {
-				getMazzoScarti().aggiungiCarta(getMano().get(0));
+				mazzoScarti.aggiungiCarta(getMano().get(0));
 				System.out.println("carta rimossa: " + getMano().get(0));
 				getMano().remove(getMano().get(0));	
 			}
 			if(cartaSelezionata.equals("carta2")) {
-				getMazzoScarti().aggiungiCarta(getMano().get(1));
+				mazzoScarti.aggiungiCarta(getMano().get(1));
 				System.out.println("carta rimossa: " + getMano().get(1));
 				getMano().remove(getMano().get(1));
 			}
 			if(cartaSelezionata.equals("carta3")) {
-				getMazzoScarti().aggiungiCarta(getMano().get(2));
+				mazzoScarti.aggiungiCarta(getMano().get(2));
 				System.out.println("carta rimossa: " + getMano().get(2));
 				getMano().remove(getMano().get(2));
 			}
 			if(cartaSelezionata.equals("carta4")) {
-				getMazzoScarti().aggiungiCarta(getMano().get(3));
+				mazzoScarti.aggiungiCarta(getMano().get(3));
 				System.out.println("carta rimossa: " + getMano().get(3));
 				getMano().remove(getMano().get(3));
 			}
 		}
 		System.out.println("carte mano dopo aver giocato: " + getMano());
-		System.out.println("torri giocatore: " + getInsTorri().getTorriCarte().values());
-		System.out.println("mazzo scarti: " +  getMazzoScarti());
+		System.out.println("torri giocatore: " + getInsTorri2());
+		System.out.println("mazzo scarti: " +  mazzoScarti);
 
 		assert (getMano().size() == 3): "La mano deve contenere 3 carte";
 
@@ -254,12 +255,16 @@ public class GiocatoreUmano extends Giocatore {
 	}
 
 	public int calcolaPunteggio() {
-		return getInsTorri().getPunteggioTotale();
+		return getPunteggioTotale();
 	}
 
 	@Override
-	public Carta decidiCartaDaGiocare(ArrayList<Carta> mano, InsiemeTorri insTorri) {
+	public Carta decidiCartaDaGiocare(ArrayList<Carta> mano) {
 		return null;
+	}
+
+	@Override
+	public void giocaTurnoUmano() {
 	}
 
 }

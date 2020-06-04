@@ -9,12 +9,12 @@ public class GiocatoreBot extends Giocatore {
 	}
 
 	@Override
-	public Carta decidiCartaDaGiocare(ArrayList<Carta> mano, InsiemeTorri insTorri) {
+	public Carta decidiCartaDaGiocare(ArrayList<Carta> mano) {
 		assert (mano != null): "La mano non dovrebbe essere null";
 		assert (mano.size() == 4): "La mano deve contenere 4 carte";
 		
 		for(int i = 0; i < mano.size(); i++) {
-			if(insTorri.isGiocabile(mano.get(i))) {
+			if(isGiocabile(mano.get(i))) {
 				System.out.println("carta che verrà giocata: " + mano.get(i));
 				return mano.get(i);
 			}
