@@ -1,5 +1,6 @@
 package com.primas.angularspringbootdemo.entity;
 
+
 public class Partita {
 
 	private String nomeGiocatore1;
