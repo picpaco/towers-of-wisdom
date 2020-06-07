@@ -16,11 +16,12 @@ export class MatchPageComponent implements OnInit {
   public mazzo: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
-  public torreQuadrato: [Carta];
-  public torreTriangolo: [Carta];
-  public torreCerchio: [Carta];
-  public torreAncora: [Carta];
-  public torriAvversario: Array<Carta[]>;
+  public torriAvversario: Carta[][] = [
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+  ];
   public torriGiocatore: Carta[][] = [
     undefined,
     undefined,
