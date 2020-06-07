@@ -137,7 +137,7 @@ span {
   height: 0;
 }
 
-.panelli .pannello-delle-carte {
+.pannello-delle-carte {
   /*pannello principale che contiene le carte*/
   justify-content: center;
   display: flex;
@@ -146,7 +146,7 @@ span {
   height: 35mm;
   margin: auto;
   position: relative;
-  bottom: 104.5mm;
+  bottom: 79.6mm;
   left: 0.1mm;
   border-top: 4px solid rgb(83, 232, 243);
   border-top-left-radius: 75mm;
@@ -169,8 +169,8 @@ span {
   height: 80.4mm;
   margin: auto;
   position: relative;
-  left: 128.5mm;
-  bottom: 265.1mm;
+  left: 128.8mm;
+  bottom: 193.1mm;
   border: 1px solid rgb(0, 255, 213);
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
@@ -212,26 +212,12 @@ span {
   );
 }
 
-.pannello-scarti-coperte {
-  /*pannello che contiene due pannelli uno degli scarti e uno delle pesche e ne definisce le loro forme */
-  justify-content: center;
-  padding: 1mm;
-  width: 30mm;
-  height: 70mm;
-  margin: auto;
+.pannello-scarti {
   position: relative;
   bottom: 160mm;
   right: 126.2mm;
-  border: 1px solid rgb(0, 255, 213);
   border-top-left-radius: 3mm;
   border-bottom-left-radius: 3mm;
-  border-left: 1px solid rgb(0, 255, 213);
-  box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
-    -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
-    2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
-    -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
-    3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
-    -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
   background-image: linear-gradient(
     to bottom right,
     rgb(24, 118, 241),
@@ -240,16 +226,48 @@ span {
   );
 }
 
-.pannello-scarti-coperte .mazzo-coperte,
-.pannello-scarti-coperte .mazzo-scarti {
+.pannello-coperte,.pannello-scarti{
+  justify-content: center;
+  padding: 1mm;
+  padding-top: 5mm;
+  width: 30mm;
+  height: 45mm;
+  margin: auto;
+  border: 1px solid rgb(0, 255, 213);
+  box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
+  -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
+  2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
+  -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
+  3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
+  -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
+}
+
+.pannello-coperte {
+  position: absolute;
+  bottom: 86.3mm;
+  left: 289.8mm;
+  border-top-right-radius: 3mm;
+  border-bottom-right-radius: 3mm;
+  background-image: linear-gradient(
+    to top left,
+    rgb(160, 255, 255),
+    rgb(61, 194, 255),
+    rgb(24, 118, 241)
+  );
+
+}
+
+.pannello-coperte .mazzo-coperte,
+.pannello-scarti .mazzo-scarti {
   /*definisce la forma dei due sottopannelli in comune*/
-  width: 28mm;
-  height: 34mm; /*
-  border: 1px solid rgb(255, 255, 255); <--Il border bianco di mostra i due pannelli*/
+  width: 23mm;
+  height: 34mm; 
+  /* border: 1px solid rgb(255, 255, 255);  */
   background: transparent;
   position: relative;
+  left: 3mm;
+  top:4mm;
   outline: none;
-  padding-top: 4mm;
 }
 
 .mazzo-scarti div,
@@ -272,8 +290,8 @@ span {
   border-radius: 2mm;
   color: #8ef0f5;
   position: relative;
-  left: 21.4mm;
-  bottom: 3mm;
+  left: 1.4mm;
+  bottom: 6mm;
 }
 
 .mazzo-scarti div {
@@ -295,8 +313,8 @@ span {
 .pannello-degli-scarti {
   position: absolute;
   width: 60mm;
-  height: 75mm;
-  top: 107mm;
+  height: 95mm;
+  top: 88mm;
   left: 3.5mm;
   border: transparent;
   border-radius: 2mm;
@@ -431,7 +449,7 @@ span {
   width: 58mm;
   height: 30mm;
   position: relative;
-  bottom: 215.5mm;
+  bottom: 189.5mm;
   left: 75mm;
   display: none;
 }
@@ -500,7 +518,7 @@ span {
 }
 
 .Punta {
-  background-image: radial-gradient(rgb(0, 247, 255), rgb(76, 116, 248));
+  background-image: radial-gradient(rgb(0, 247, 255), rgb(120, 65, 247));
 }
 
 .Carta-misteriosa {
@@ -516,7 +534,7 @@ span {
   display: none; /*al caricamento della pagina non verrà mostrata questo elemento e i suoi sottoelementi*/
   width: 100mm;
   height: 50mm;
-  position: relative;
+  position: absolute;
   left: 256mm;
   top: 90mm;
   border: transparent;

@@ -197,7 +197,20 @@
         <div class="caverne-luminose"></div>
       </div>
 
-      <div class="pannello-scarti-coperte">
+    
+
+      <div class="pannello-scarti">
+        <div class="mazzo-scarti" (click)="scartaOppurePescaDalMazzoScarti()">
+          <div>
+            <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
+              {{ mazzoScarti[0].getValue() }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pannello-coperte ">
+
         <div class="carte-rimaste">{{ this.mazzoCoperto.length }}</div>
         <div class="mazzo-coperte" (click)="peschaDalMazzoCoperto()">
           <div *ngIf="mazzoCoperto.length > 0" class="Carta-misteriosa">
@@ -227,13 +240,6 @@
           </div>
         </div>
 
-        <div class="mazzo-scarti" (click)="scartaOppurePescaDalMazzoScarti()">
-          <div>
-            <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
-              {{ mazzoScarti[0].getValue() }}
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="pannello-degli-scarti">

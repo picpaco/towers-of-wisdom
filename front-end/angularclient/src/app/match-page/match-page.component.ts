@@ -37,18 +37,27 @@ export class MatchPageComponent implements OnInit {
   ngOnInit() {
     /*  this.giocatoreService.findAll().subscribe((data) => {
       this.mano = data[0].mano;
-    });
-*/
+    });*/
+
     this.mazzo = [
       new Carta("Ancora", "1"),
       new Carta("Punta", "P"),
       new Carta("Quadrato", "7"),
     ];
 
-    this.mostraTorriAvversario();//dovrà essere invocata quando opportuno...
+    this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
     this.mostraMazzo();
     this.inizializzaMazzoScarti();
     this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
+    //this.stampaLunghezza();
+  }
+
+  public stampaLunghezza() {
+    console.log("--------Prova-Dati-0-Mano-------");
+    console.log(this.mano);
+    for (let index = 0; index < this.mano.length; index++) {
+      console.log(this.mano[index].simbolo);
+    }
   }
 
   private getNumeroDellaTorre(torre: string): number {
@@ -65,7 +74,6 @@ export class MatchPageComponent implements OnInit {
   }
 
   private controlloDisposizioneDelleCarteNelleTorri(
-    //TO DO refactor controlloDisposizioneDelleCarteNelleTorri
     torre: string,
     carta: Carta
   ): boolean {
@@ -101,8 +109,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraTorriAvversario() {
-    //TO DO refactor  mostraTorriAvversario
-    //da rifare
+    //solo per prova ma è da levare in futuro
 
     let Quadrato = [
       new Carta("Quadrato", "7"),
@@ -159,7 +166,6 @@ export class MatchPageComponent implements OnInit {
   }
 
   public giocaSullaTorre(torre: string) {
-    //TO DO refactor giocaSullaTorre
     /*questo metodo viene richiamata nel template attraverso l'attributo (click),sono ben 4 riquadri,nelle colonne
     che se premute richiamano questa funzione passando il loro la torre a cui ci si riferisce es(Quadrato)*/
     if (this.mazzo.length === 4) {
@@ -186,7 +192,7 @@ export class MatchPageComponent implements OnInit {
                 this.giocaCartaSullaTorre(torre);
                 //questo metodo permette la giocata su una torre restituendo poi un target
               } else {
-                this.mostraMessaggioDiAvviso("Questa giocata non è valida");
+                this.mostraMessaggioDiAvviso("Giocata non valida!");
                 this.deselezionaLaCartaSelezionata();
               }
             } else {
@@ -313,12 +319,6 @@ export class MatchPageComponent implements OnInit {
     }
   }
 
-  public stampaLunghezza() {
-    for (let index = 0; index < this.mano.length; index++) {
-      console.log(this.mano[index]);
-    }
-  }
-
   private riempiMazzoCoperto(): void {
     /*ta togliere...*/
     this.mazzoCoperto = [
@@ -440,19 +440,21 @@ export class MatchPageComponent implements OnInit {
       e il giocatore non dovrebbe aver selezionato una carta quando la 
       si pesca dal mazzo scarti.*/
       if (this.isSelectedUnaCartaDalMazzo()) {
-        this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
+        this.mostraMessaggioDiAvviso("Non puoi scartare con tre carte!");
         this.deselezionaLaCartaSelezionata();
       } else {
         this.pescaCartaScartata();
       }
     }
 
-    if (this.mazzo.length === 4 && this.isSelectedUnaCartaDalMazzo()) {
+    if (this.mazzo.length === 4) {
       /*se il mazzo é uguale a 4 vuol dire che il giocatore vuole scartare una carta selezionata.*/
-      this.scartaLaCarta();
-    } else {
-      this.mostraMessaggioDiAvviso("Nessuna carta selezionata");
-      this.deselezionaLaCartaSelezionata();
+      if (this.isSelectedUnaCartaDalMazzo()) {
+        this.scartaLaCarta();
+      } else {
+        this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
+        this.deselezionaLaCartaSelezionata();
+      }
     }
 
     this.mostraMazzo();
@@ -575,9 +577,9 @@ export class MatchPageComponent implements OnInit {
           if (this.mazzoScarti === undefined) {
             this.mazzoScarti = [this.mazzo[index]];
           } else {
-            if (this.mazzoScarti.length === 18) {
+            if (this.mazzoScarti.length === 24) {
               this.mostraMessaggioDiAvviso(
-                "Il mazzo degli scarti è stato riempito! gioca la tua carta"
+                "Il mazzo degli scarti è pieno! gioca la tua carta"
               );
               this.deselezionaLaCartaSelezionata();
               if (copiaMazzo === undefined) {
