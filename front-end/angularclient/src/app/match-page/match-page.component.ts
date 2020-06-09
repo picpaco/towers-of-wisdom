@@ -12,21 +12,24 @@ import { mainModule } from "process";
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
-  mazzoProva;
-
   public player: Giocatore;
   public mazzo: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
-  public torreQuadrato: [Carta]; //colore giallo 1 colonna da sinistra a destra
-  public torreTriangolo: [Carta]; //colore azzuro aqua 2 colonna
-  public torreCerchio: [Carta]; //colore rosa petalo 3 colonna
-  public torreAncora: [Carta]; //colore arancio chiaro 4 colonna
-  public torriDelGiocatore = [[Carta]];
+  public torriAvversario: Carta[][] = [
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+  ];
+  public torriGiocatore: Carta[][] = [
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+  ]; /*Quadrato,Torre,Cerchi,Ancora */
   public torreQuadratoAvversario: Carta[];
-  public torreTriangoloAvversario: [Carta];
-  public torreCerchioAvversario: [Carta];
-  public torreAncoraAvversario: [Carta];
+
   mano: any = [];
 
   constructor(private giocatoreService: GiocatoreService) {}
@@ -34,152 +37,137 @@ export class MatchPageComponent implements OnInit {
   ngOnInit() {
     /*  this.giocatoreService.findAll().subscribe((data) => {
       this.mano = data[0].mano;
-    });
-*/
+    });*/
+
     this.mazzo = [
       new Carta("Ancora", "1"),
       new Carta("Punta", "P"),
       new Carta("Quadrato", "7"),
     ];
-    this.torreQuadratoAvversario = [
-      new Carta("Quadrato", "7"),
-      new Carta("Quadrato", "6"),
-      new Carta("Quadrato", "5"),
-      new Carta("Quadrato", "4"),
-      new Carta("Quadrato", "3"),
-      new Carta("Quadrato", "2"),
-      new Carta("Quadrato", "1"),
-      new Carta("Punta", "P"),
-    ];
 
-    this.mostraTorriAvversario();
+    this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
     this.mostraMazzo();
     this.inizializzaMazzoScarti();
-    this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto
+    this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
+    //this.stampaLunghezza();
   }
-  private controlloDisposizioneDelleCarteNelleTorri(//TO DO refactor controlloDisposizioneDelleCarteNelleTorri
-    torreDaControllare: string,
+
+  public stampaLunghezza() {
+    console.log("--------Prova-Dati-0-Mano-------");
+    console.log(this.mano);
+    for (let index = 0; index < this.mano.length; index++) {
+      console.log(this.mano[index].simbolo);
+    }
+  }
+
+  private getNumeroDellaTorre(torre: string): number {
+    switch (torre) {
+      case "Quadrato":
+        return 0;
+      case "Triangolo":
+        return 1;
+      case "Cerchio":
+        return 2;
+      case "Ancora":
+        return 3;
+    }
+  }
+
+  private controlloDisposizioneDelleCarteNelleTorri(
+    torre: string,
     carta: Carta
   ): boolean {
     let sicuro = false;
-    switch (torreDaControllare) {
-      case "Quadrato":
-        if (this.torreQuadrato !== undefined) {
-          console.log(
-            "carta attuale da controllare e prima carta della torre quadrato"
-          );
-          console.log(
-            carta.getSymbol(),
-              this.torreQuadrato[this.torreQuadrato.length - 1].getValue()
-          );
-          if (carta.getSymbol() === "Punta") {
-            if (
-              +this.torreQuadrato[this.torreQuadrato.length - 1].getValue() ===
-              1
-            ) {
-              sicuro = true;
-            }
-          } else {
-            if (
-              +carta.getValue() <
-                +this.torreQuadrato[this.torreQuadrato.length - 1].getValue() &&
-              carta.getSymbol() !== "Punta"
-            ) {
-              sicuro = true;
-            }
-          }
-        } else {
-          if (carta.getSymbol() !== "Punta") {
-            sicuro = true;
-          }
-        }
-        break;
+    let index = this.getNumeroDellaTorre(torre); //esempio: la torre Triangolo si trova nella seconda posizione di torriGiocatore
+    let torreCopia: Carta[];
+
+    if (this.torriGiocatore[index] !== undefined) {
+      //se una delle torri esiste ne prendi tutto il contenuto in una copia
+      torreCopia = this.torriGiocatore[index];
     }
+    if (torreCopia === undefined) {
+      /*se la torreCopia è vuota vuol dire che la torre che mi serve non esiste ancora,
+      e che quindi si può inserisce qualsiasi carta che non sia una Punta*/
+      if (carta.getSymbol() !== "Punta") {
+        sicuro = true;
+      }
+    } else {
+      /*se la torreCopia ha dei valori vuol dire che la torre esiste e bisogna controllare l'ordine delle carte*/
+
+      if (carta.getSymbol() === "Punta") {
+        if (+torreCopia[torreCopia.length - 1].getValue() === 1) {
+          sicuro = true;
+        }
+      } else {
+        if (+carta.getValue() < +torreCopia[torreCopia.length - 1].getValue()) {
+          sicuro = true;
+        }
+      }
+    }
+
     return sicuro;
   }
 
-  private mostraTorriAvversario() {//TO DO refactor  mostraTorriAvversario
-    //da rifare
-    if (this.torreQuadratoAvversario !== undefined) {
+  private mostraTorriAvversario() {
+    //solo per prova ma è da levare in futuro
+
+    let Quadrato = [
+      new Carta("Quadrato", "7"),
+      new Carta("Quadrato", "4"),
+      new Carta("Quadrato", "3"),
+      new Carta("Quadrato", "2"),
+    ];
+    let Triangolo = [new Carta("Triangolo", "7"), new Carta("Triangolo", "5")];
+    let Cerchio = [
+      new Carta("Cerchio", "7"),
+      new Carta("Cerchio", "5"),
+      new Carta("Cerchio", "4"),
+      new Carta("Cerchio", "3"),
+      new Carta("Cerchio", "1"),
+    ];
+    let Ancora = [
+      new Carta("Ancora", "7"),
+      new Carta("Ancora", "6"),
+      new Carta("Ancora", "5"),
+      new Carta("Ancora", "3"),
+      new Carta("Ancora", "2"),
+      new Carta("Ancora", "1"),
+      new Carta("Punta", "P"),
+    ];
+
+    this.torriAvversario = [Quadrato, Triangolo, Cerchio, Ancora];
+
+    for (
+      let indexTorre = 0;
+      indexTorre < this.torriAvversario.length;
+      indexTorre++
+    ) {
       for (
         let index = 0;
-        index < this.torreQuadratoAvversario.length;
+        index < this.torriAvversario[indexTorre].length;
         index++
       ) {
-        let classe = this.torreQuadratoAvversario[index].getSymbol();
-        let valore = this.torreQuadratoAvversario[index].getValue();
+        let classe = this.torriAvversario[indexTorre][index].getSymbol();
+        let valore = this.torriAvversario[indexTorre][index].getValue();
         $(document).ready(function () {
           $(
-            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(0) div:eq(" +
+            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(" +
+              indexTorre +
+              ") div:eq(" +
               index +
               ")"
           )
             .css({ border: "1px solid white" })
-            .addClass("Quadrato")
-            .text(valore);
-        });
-      }
-      for (
-        let index = 0;
-        index < this.torreQuadratoAvversario.length;
-        index++
-      ) {
-        let classe = this.torreQuadratoAvversario[index].getSymbol();
-        let valore = this.torreQuadratoAvversario[index].getValue();
-        $(document).ready(function () {
-          $(
-            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(1) div:eq(" +
-              index +
-              ")"
-          )
-            .css({ border: "1px solid white" })
-            .addClass("Triangolo")
-            .text(valore);
-        });
-      }
-      for (
-        let index = 0;
-        index < this.torreQuadratoAvversario.length;
-        index++
-      ) {
-        let classe = this.torreQuadratoAvversario[index].getSymbol();
-        let valore = this.torreQuadratoAvversario[index].getValue();
-        $(document).ready(function () {
-          $(
-            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(2) div:eq(" +
-              index +
-              ")"
-          )
-            .css({ border: "1px solid white" })
-            .addClass("Cerchio")
-            .text(valore);
-        });
-      }
-      for (
-        let index = 0;
-        index < this.torreQuadratoAvversario.length;
-        index++
-      ) {
-        let classe = this.torreQuadratoAvversario[index].getSymbol();
-        let valore = this.torreQuadratoAvversario[index].getValue();
-        $(document).ready(function () {
-          $(
-            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(3) div:eq(" +
-              index +
-              ")"
-          )
-            .css({ border: "1px solid white" })
-            .addClass("Ancora")
+            .addClass(classe)
             .text(valore);
         });
       }
     }
   }
 
-  public giocaSullaTorre(torre: string) {//TO DO refactor giocaSullaTorre
+  public giocaSullaTorre(torre: string) {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click),sono ben 4 riquadri,nelle colonne
-    che se premute richiamano qusta funzione passando il loro la torre a cui ci si riferisce es(Quadrato)*/
-    let torreDaVisualizzare;
+    che se premute richiamano questa funzione passando il loro la torre a cui ci si riferisce es(Quadrato)*/
     if (this.mazzo.length === 4) {
       //per giocare una carta la mano deve essere di 4 carte
       if (this.isSelectedUnaCartaDalMazzo()) {
@@ -192,18 +180,19 @@ export class MatchPageComponent implements OnInit {
               this.mazzo[indexI].getSymbol() === torre ||
               this.mazzo[indexI].getSymbol() === "Punta"
             ) {
-              //si controlla se la carta corrisponde alla sua corrispettiva torre
+              //si controlla se la carta corrisponde alla sua corrispettiva torre o una Punta
               if (
                 this.controlloDisposizioneDelleCarteNelleTorri(
                   torre,
                   this.mazzo[indexI]
                 )
               ) {
+                //in caso la carta sia una Punta bisogna tener conto della torre
                 console.log("gioca carta sulla torre");
-                torreDaVisualizzare = this.giocaCartaSullaTorre(torre);
+                this.giocaCartaSullaTorre(torre);
                 //questo metodo permette la giocata su una torre restituendo poi un target
               } else {
-                this.mostraMessaggioDiAvviso("Questa giocata non è valida");
+                this.mostraMessaggioDiAvviso("Giocata non valida!");
                 this.deselezionaLaCartaSelezionata();
               }
             } else {
@@ -218,7 +207,7 @@ export class MatchPageComponent implements OnInit {
         this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
       }
       this.mostraMazzo();
-      this.mostraTorri(torreDaVisualizzare);
+      this.mostraTorri(torre);
     } else {
       this.mostraMessaggioDiAvviso(
         "Pesca dal mazzo scarti o dal mazzo coperto!"
@@ -227,49 +216,22 @@ export class MatchPageComponent implements OnInit {
     }
   }
 
-  private giocaCartaSullaTorre(torreDaVisualizzare:string): string {//TO DO refactor giocaCartaSullaTorre
+  private giocaCartaSullaTorre(torreDaVisualizzare: string) {
     this.nascondiMessaggioDiAvviso();
     let copiaMazzo: [Carta]; //una copia del mazzo per inserire tutte quelle carte non selezionate
-  
+    let indexTorre = this.getNumeroDellaTorre(torreDaVisualizzare);
     for (let indexI = 0; indexI < this.mazzo.length; indexI++) {
       //si cicla per cercare la carta selezionata
       if (this.mazzo[indexI].isSelected()) {
-        //se è la carta selezionata la si fà restituire la sua corrispettiva torre
+        //se è la carta selezionata la si inserisce alla sua corrispettiva torre
         this.mazzo[indexI].setSelected(false); //la si imposta non più selezionata
-        switch (
-          torreDaVisualizzare 
-        ) {
-          case "Quadrato":
-            if (this.torreQuadrato === undefined) {
-              this.torreQuadrato = [this.mazzo[indexI]];
-            } else {
-              this.torreQuadrato.push(this.mazzo[indexI]);
-            }
-            break;
-          case "Triangolo":
-            if (this.torreTriangolo === undefined) {
-              this.torreTriangolo = [this.mazzo[indexI]];
-            } else {
-              this.torreTriangolo.push(this.mazzo[indexI]);
-            }
-            break;
-          case "Cerchio":
-            if (this.torreCerchio === undefined) {
-              this.torreCerchio = [this.mazzo[indexI]];
-            } else {
-              this.torreCerchio.push(this.mazzo[indexI]);
-            }
-            break;
-          case "Ancora":
-            if (this.torreAncora === undefined) {
-              this.torreAncora = [this.mazzo[indexI]];
-            } else {
-              this.torreAncora.push(this.mazzo[indexI]);
-            }
-            break;
+        if (this.torriGiocatore[indexTorre] === undefined) {
+          this.torriGiocatore[indexTorre] = [this.mazzo[indexI]];
+        } else {
+          this.torriGiocatore[indexTorre].push(this.mazzo[indexI]);
         }
       } else {
-        //in caso la carta nel mazzo non è stata selezionata viene inserita nella copia
+        //le tre carte non selezionata saranno memorizzate nella copia
         if (copiaMazzo === undefined) {
           copiaMazzo = [this.mazzo[indexI]];
         } else {
@@ -277,218 +239,83 @@ export class MatchPageComponent implements OnInit {
         }
       }
     }
+    console.log("inserita carta nella torre :" + torreDaVisualizzare);
+    console.log(this.torriGiocatore);
     this.mazzo = undefined; //infine il mazzo nuovo sarà composto solo da tre carte
     this.mazzo = copiaMazzo;
-    return torreDaVisualizzare; //ora bisogna visualizzare da fuori la carta nella torre,e il mazzo.
   }
 
-  private mostraTorri(torredaVisualizzare: string) {
-    //questa funzione serve per visualizzare la torre richiesta ed gestire i markers
+  private mostraTorri(torre: string) {
+    //questa funzione serve per calcolare il punteggio di ogni torre,gestire i markers e visualizzare la torre.
     this.calcolaPuntaggio();
     this.gestisciMarkers();
-    if (torredaVisualizzare === "Quadrato") {
-      this.mostraTorreQuadrato();
-    }
-    if (torredaVisualizzare === "Triangolo") {
-      this.mostraTorreTriangolo();
-    }
-    if (torredaVisualizzare === "Cerchio") {
-      this.mostraTorreCerchio();
-    }
-    if (torredaVisualizzare === "Ancora") {
-      this.mostraTorreAncora();
+    this.mostraTorre(torre);
+  }
+  private mostraTorre(torre: string) {
+    let indexTorre = this.getNumeroDellaTorre(torre);
+    console.log("sono dentro mostraTorre" + indexTorre);
+    if (this.torriGiocatore[indexTorre] != undefined) {
+      for (
+        let index = 0;
+        index < this.torriGiocatore[indexTorre].length;
+        index++
+      ) {
+        let classe = this.torriGiocatore[indexTorre][index].getSymbol();
+        let valore = this.torriGiocatore[indexTorre][index].getValue();
+        $(document).ready(function () {
+          $(
+            ".pannello-torri-del-giocatore .carte-delle-torri:eq(" +
+              indexTorre +
+              ") div:eq(" +
+              index +
+              ")"
+          )
+            .css({ border: "1px solid white" })
+            .addClass(classe)
+            .text(valore);
+        });
+      }
     }
   }
 
-  private hasAPuntaLaMiaTorre(torre:string):boolean{//TO DO refactor hasAPuntaLaMiaTorre
-    let verita=false;
-    if(torre==="Quadrato"){
-      for (let index = 0; index < this.torreQuadrato.length; index++) {
-        if(this.torreQuadrato[index].getSymbol()==="Punta"){
-          verita=true;
+  private calcolaPuntaggio() {
+    for (
+      let indexTorre = 0;
+      indexTorre < this.torriGiocatore.length;
+      indexTorre++
+    ) {
+      if (this.torriGiocatore[indexTorre] != undefined) {
+        let punti = 0;
+        for (
+          let indexCarta = 0;
+          indexCarta < this.torriGiocatore[indexTorre].length;
+          indexCarta++
+        ) {
+          if (
+            this.torriGiocatore[indexTorre][indexCarta].getSymbol() === "Punta"
+          ) {
+            punti = punti * 2;
+          } else {
+            punti += +this.torriGiocatore[indexTorre][indexCarta].getValue();
+          }
         }
-        
-      }
-      return verita;
-    }
-
-  }
-
-  private calcolaPuntaggio() {//TO DO refactor calcolaPuntaggio
-    //da rifare
-    if (this.torreQuadrato != undefined && this.torreQuadrato.length > 0) {
-      let punti = 0;
-      for (let index = 0; index < this.torreQuadrato.length; index++) {
-        if(this.torreQuadrato[index].getSymbol() !=="Punta"){
-        punti += +this.torreQuadrato[index].getValue();
-        }
-      }
-      if(this.hasAPuntaLaMiaTorre("Quadrato")){
-        punti = punti *2;
-      }
-      $(document).ready(function () {
-        $("#1.punteggio").html("<div><div></div></div>").text(punti);
-      });
-    }
-
-    if (this.torreTriangolo != undefined && this.torreTriangolo.length > 0) {
-      let punti = 0;
-      for (let index = 0; index < this.torreTriangolo.length; index++) {
-        punti += +this.torreTriangolo[index].getValue();
-      }
-      if (this.torreTriangolo.length < 3) {
         $(document).ready(function () {
-          $("#2.punteggio").html("<div><div></div></div>");
-        });
-      }
-      $(document).ready(function () {
-        $("#2.punteggio").text(punti);
-      });
-    }
-
-    if (this.torreCerchio != undefined && this.torreCerchio.length > 0) {
-      let punti = 0;
-      for (let index = 0; index < this.torreCerchio.length; index++) {
-        punti += +this.torreCerchio[index].getValue();
-      }
-      if (this.torreCerchio.length < 3) {
-        $(document).ready(function () {
-          $("#3.punteggio").html("<div><div></div></div>");
-        });
-      }
-      $(document).ready(function () {
-        $("#3.punteggio").text(punti);
-      });
-    }
-
-    if (this.torreAncora != undefined && this.torreAncora.length > 0) {
-      let punti = 0;
-      for (let index = 0; index < this.torreAncora.length; index++) {
-        punti += +this.torreAncora[index].getValue();
-      }
-      if (this.torreAncora.length < 3) {
-        $(document).ready(function () {
-          $("#4.punteggio").html("<div><div></div></div>");
-        });
-      }
-      $(document).ready(function () {
-        $("#4.punteggio").text(punti);
-      });
-    }
-  }
-
-  private mostraTorreAncora() {// FIXME 
-    /*mostraTorreQuadrato,Triangolo,Cerchio;Ancora sono funzioni che in 
-    base agli array corrispettivi mostrano graficamente di quante carte sono composte*/
-    if (this.mostraTorreAncora !== undefined) {
-      for (let index = 0; index < this.torreAncora.length; index++) {
-        let classe = this.torreAncora[index].getSymbol();
-        let valore = this.torreAncora[index].getValue();
-        $(document).ready(function () {
-          $(
-            ".pannello-torri-del-giocatore .carte-delle-torri:eq(3) div:eq(" +
-              index +
-              ")"
-          )
-            .css({ border: "1px solid white" })
-            .addClass(classe)
-            .text(valore);
-        });
-      }
-    }
-  }
-
-  private mostraTorreCerchio() {// FIXME 
-    /*mostraTorreQuadrato,Triangolo,Cerchio;Ancora sono funzioni che in 
-    base agli array corrispettivi mostrano graficamente di quante carte sono composte*/
-    if (this.mostraTorreCerchio !== undefined) {
-      for (let index = 0; index < this.torreCerchio.length; index++) {
-        let classe = this.torreCerchio[index].getSymbol();
-        let valore = this.torreCerchio[index].getValue();
-        $(document).ready(function () {
-          $(
-            ".pannello-torri-del-giocatore .carte-delle-torri:eq(2) div:eq(" +
-              index +
-              ")"
-          )
-            .css({ border: "1px solid white" })
-            .addClass(classe)
-            .text(valore);
-        });
-      }
-    }
-  }
-
-  private mostraTorreTriangolo() {// FIXME 
-    /*mostraTorreQuadrato,Triangolo,Cerchio;Ancora sono funzioni che in 
-    base agli array corrispettivi mostrano graficamente di quante carte sono composte*/
-    if (this.torreTriangolo !== undefined) {
-      for (let index = 0; index < this.torreTriangolo.length; index++) {
-        let classe = this.torreTriangolo[index].getSymbol();
-        let valore = this.torreTriangolo[index].getValue();
-        $(document).ready(function () {
-          $(
-            ".pannello-torri-del-giocatore .carte-delle-torri:eq(1) div:eq(" +
-              index +
-              ")"
-          )
-            .css({ border: "1px solid white" })
-            .addClass(classe)
-            .text(valore);
-        });
-      }
-    }
-  }
-
-  private mostraTorreQuadrato() {// FIXME 
-    /*mostraTorreQuadrato,Triangolo,Cerchio;Ancora sono funzioni che in 
-    base agli array corrispettivi mostrano graficamente di quante carte sono composte*/
-    if (this.torreQuadrato !== undefined) {
-      for (let index = 0; index < this.torreQuadrato.length; index++) {
-        let classe = this.torreQuadrato[index].getSymbol();
-        let valore = this.torreQuadrato[index].getValue();
-        $(document).ready(function () {
-          $(
-            ".pannello-torri-del-giocatore .carte-delle-torri:eq(0) div:eq(" +
-              index +
-              ")"
-          )
-            .css({ border: "1px solid white" })
-            .addClass(classe)
-            .text(valore);
+          $("#" + indexTorre + ".punteggio").html("<div><div></div></div>");
+          $("#" + indexTorre + ".punteggio").text(punti);
         });
       }
     }
   }
 
   private gestisciMarkers() {
-    /*in caso un arrayTorre avesse una carta,il suo marker o il suo trateggio
+    /*in caso un Torre avesse una carta,il suo marker o il suo trateggio
     viene nascosto */
-    if (this.torreQuadrato !== undefined) {
-      $(document).ready(function () {
-        $("#marker1").hide();
-      });
-    }
-    if (this.torreTriangolo !== undefined) {
-      $(document).ready(function () {
-        $("#marker2").hide();
-      });
-    }
-    if (this.torreCerchio !== undefined) {
-      $(document).ready(function () {
-        $("#marker3").hide();
-      });
-    }
-    if (this.torreAncora !== undefined) {
-      $(document).ready(function () {
-        $("#marker4").hide();
-      });
-    }
-  }
-
-  public stampaLunghezza() {
-    for (let index = 0; index < this.mano.length; index++) {
-      console.log(this.mano[index]);
+    for (let index = 0; index < this.torriGiocatore.length; index++) {
+      if (this.torriGiocatore[index] !== undefined) {
+        $(document).ready(function () {
+          $("#marker" + index).hide();
+        });
+      }
     }
   }
 
@@ -508,18 +335,18 @@ export class MatchPageComponent implements OnInit {
       new Carta("Ancora", "4"),
       new Carta("Cerchio", "5"),
       new Carta("Triangolo", "5"),
-      new Carta("Triangolo", "6"),
+      new Carta("Punta", "P"),
       new Carta("Triangolo", "7"),
       new Carta("Cerchio", "1"),
       new Carta("Cerchio", "2"),
       new Carta("Cerchio", "3"),
       new Carta("Cerchio", "4"),
       new Carta("Cerchio", "5"),
-      new Carta("Cerchio", "6"),
+      new Carta("Punta", "P"),
       new Carta("Cerchio", "7"),
       new Carta("Triangolo", "4"),
       new Carta("Triangolo", "1"),
-      new Carta("Ancora", "3"),
+      new Carta("Punta", "P"),
       new Carta("Ancora", "5"),
     ];
   }
@@ -540,8 +367,8 @@ export class MatchPageComponent implements OnInit {
       this.mazzo[index].setId(index);
     });
 
-    console.log("Il mio mazzo:");
-    console.log(this.mazzo);
+    /* console.log("Il mio mazzo:");
+    console.log(this.mazzo);*/
   }
 
   public mostraChat() {
@@ -613,19 +440,21 @@ export class MatchPageComponent implements OnInit {
       e il giocatore non dovrebbe aver selezionato una carta quando la 
       si pesca dal mazzo scarti.*/
       if (this.isSelectedUnaCartaDalMazzo()) {
-        this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
+        this.mostraMessaggioDiAvviso("Non puoi scartare con tre carte!");
         this.deselezionaLaCartaSelezionata();
       } else {
         this.pescaCartaScartata();
       }
     }
 
-    if (this.mazzo.length === 4 && this.isSelectedUnaCartaDalMazzo()) {
+    if (this.mazzo.length === 4) {
       /*se il mazzo é uguale a 4 vuol dire che il giocatore vuole scartare una carta selezionata.*/
-      this.scartaLaCarta();
-    } else {
-      this.mostraMessaggioDiAvviso("Nessuna carta selezionata");
-      this.deselezionaLaCartaSelezionata();
+      if (this.isSelectedUnaCartaDalMazzo()) {
+        this.scartaLaCarta();
+      } else {
+        this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
+        this.deselezionaLaCartaSelezionata();
+      }
     }
 
     this.mostraMazzo();
@@ -748,9 +577,9 @@ export class MatchPageComponent implements OnInit {
           if (this.mazzoScarti === undefined) {
             this.mazzoScarti = [this.mazzo[index]];
           } else {
-            if (this.mazzoScarti.length === 18) {
+            if (this.mazzoScarti.length === 24) {
               this.mostraMessaggioDiAvviso(
-                "Il mazzo degli scarti è stato riempito! gioca la tua carta"
+                "Il mazzo degli scarti è pieno! gioca la tua carta"
               );
               this.deselezionaLaCartaSelezionata();
               if (copiaMazzo === undefined) {

@@ -21,7 +21,7 @@
   <body>
     <p class="title">Julian <span>vs</span> Bot</p>
     <div
-      id="marker1"
+      id="marker0"
       style="
         position: absolute;
         border: 2px dashed white;
@@ -33,7 +33,7 @@
       "
     ></div>
     <div
-      id="marker2"
+      id="marker1"
       style="
         position: absolute;
         border: 2px dashed white;
@@ -45,7 +45,7 @@
       "
     ></div>
     <div
-      id="marker3"
+      id="marker2"
       style="
         position: absolute;
         border: 2px dashed white;
@@ -57,7 +57,7 @@
       "
     ></div>
     <div
-      id="marker4"
+      id="marker3"
       style="
         position: absolute;
         border: 2px dashed white;
@@ -157,13 +157,13 @@
       <div class="bolla" style="position: absolute; left: 71mm;">
         <div><div></div></div>
       </div>
-      <div id="1" class="punteggio" style="position: absolute; left: 72mm;">
+      <div id="0" class="punteggio" style="position: absolute; left: 72mm;">
         0
       </div>
       <div class="bolla" style="position: absolute; left: 126mm;">
         <div><div></div></div>
       </div>
-      <div id="2" class="punteggio" style="position: absolute; left: 127mm;">
+      <div id="1" class="punteggio" style="position: absolute; left: 127mm;">
         0
         <div>
           <div><div></div></div>
@@ -172,7 +172,7 @@
       <div class="bolla" style="position: absolute; left: 181mm;">
         <div><div></div></div>
       </div>
-      <div id="3" class="punteggio" style="position: absolute; left: 182mm;">
+      <div id="2" class="punteggio" style="position: absolute; left: 182mm;">
         0
         <div>
           <div><div></div></div>
@@ -181,7 +181,7 @@
       <div class="bolla" style="position: absolute; left: 236mm;">
         <div><div></div></div>
       </div>
-      <div id="4" class="punteggio" style="position: absolute; left: 237mm;">
+      <div id="3" class="punteggio" style="position: absolute; left: 237mm;">
         0
         <div>
           <div><div></div></div>
@@ -197,7 +197,20 @@
         <div class="caverne-luminose"></div>
       </div>
 
-      <div class="pannello-scarti-coperte">
+    
+
+      <div class="pannello-scarti">
+        <div class="mazzo-scarti" (click)="scartaOppurePescaDalMazzoScarti()">
+          <div>
+            <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
+              {{ mazzoScarti[0].getValue() }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pannello-coperte ">
+
         <div class="carte-rimaste">{{ this.mazzoCoperto.length }}</div>
         <div class="mazzo-coperte" (click)="peschaDalMazzoCoperto()">
           <div *ngIf="mazzoCoperto.length > 0" class="Carta-misteriosa">
@@ -227,13 +240,6 @@
           </div>
         </div>
 
-        <div class="mazzo-scarti" (click)="scartaOppurePescaDalMazzoScarti()">
-          <div>
-            <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
-              {{ mazzoScarti[0].getValue() }}
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="pannello-degli-scarti">
