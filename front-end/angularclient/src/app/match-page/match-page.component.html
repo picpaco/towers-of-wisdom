@@ -252,7 +252,7 @@
       <div class="pannello-delle-carte">
         <div class="mazzo">
           <div
-            *ngFor="let carta of this.mazzo"
+            *ngFor="let carta of this.mano"
             (click)="selezionaCarta(carta.getId())"
           >
             <p>{{ carta.getValue() }}</p>

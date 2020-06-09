@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
-import { Carta } from "../model/Carta";
+import { Carta ,CartaAdapter} from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
-import { Mazzo } from "../model/Mazzo";
 import { mainModule } from "process";
 
 @Component({
@@ -13,33 +12,34 @@ import { mainModule } from "process";
 })
 export class MatchPageComponent implements OnInit {
   public player: Giocatore;
-  public mazzo: Carta[];
+  public mano: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
-  public torriAvversario: Carta[][] = [
+  public torriAvversario:Array<Carta[]>=[
     undefined,
     undefined,
     undefined,
     undefined,
   ];
-  public torriGiocatore: Carta[][] = [
+  public torriGiocatore:Array<Carta[]> = [
     undefined,
     undefined,
     undefined,
     undefined,
-  ]; /*Quadrato,Torre,Cerchi,Ancora */
-  public torreQuadratoAvversario: Carta[];
+  ]; /*Quadrato,Triangolo,Cerchio,Ancora */
 
-  mano: any = [];
+  manoProva: any = [];
+
 
   constructor(private giocatoreService: GiocatoreService) {}
 
-  ngOnInit() {
-    /*  this.giocatoreService.findAll().subscribe((data) => {
-      this.mano = data[0].mano;
+  ngOnInit() {/*
+      this.giocatoreService.findAll().subscribe((data) => {
+      this.manoProva = data[0].mano;
     });*/
 
-    this.mazzo = [
+
+    this.mano = [
       new Carta("Ancora", "1"),
       new Carta("Punta", "P"),
       new Carta("Quadrato", "7"),
@@ -54,9 +54,9 @@ export class MatchPageComponent implements OnInit {
 
   public stampaLunghezza() {
     console.log("--------Prova-Dati-0-Mano-------");
-    console.log(this.mano);
-    for (let index = 0; index < this.mano.length; index++) {
-      console.log(this.mano[index].simbolo);
+    console.log(this.manoProva);
+    for (let index = 0; index < this.manoProva.length; index++) {
+      console.log(this.manoProva[index].simbolo);
     }
   }
 
@@ -168,23 +168,23 @@ export class MatchPageComponent implements OnInit {
   public giocaSullaTorre(torre: string) {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click),sono ben 4 riquadri,nelle colonne
     che se premute richiamano questa funzione passando il loro la torre a cui ci si riferisce es(Quadrato)*/
-    if (this.mazzo.length === 4) {
+    if (this.mano.length === 4) {
       //per giocare una carta la mano deve essere di 4 carte
       if (this.isSelectedUnaCartaDalMazzo()) {
         //si controlla se una carta dal mazzo è stata selezionata
-        for (let indexI = 0; indexI < this.mazzo.length; indexI++) {
+        for (let indexI = 0; indexI < this.mano.length; indexI++) {
           //si cicla per cercare la carta selezionata
-          if (this.mazzo[indexI].isSelected()) {
+          if (this.mano[indexI].isSelected()) {
             //si controlla se la carta è selezionata
             if (
-              this.mazzo[indexI].getSymbol() === torre ||
-              this.mazzo[indexI].getSymbol() === "Punta"
+              this.mano[indexI].getSymbol() === torre ||
+              this.mano[indexI].getSymbol() === "Punta"
             ) {
               //si controlla se la carta corrisponde alla sua corrispettiva torre o una Punta
               if (
                 this.controlloDisposizioneDelleCarteNelleTorri(
                   torre,
-                  this.mazzo[indexI]
+                  this.mano[indexI]
                 )
               ) {
                 //in caso la carta sia una Punta bisogna tener conto della torre
@@ -220,29 +220,29 @@ export class MatchPageComponent implements OnInit {
     this.nascondiMessaggioDiAvviso();
     let copiaMazzo: [Carta]; //una copia del mazzo per inserire tutte quelle carte non selezionate
     let indexTorre = this.getNumeroDellaTorre(torreDaVisualizzare);
-    for (let indexI = 0; indexI < this.mazzo.length; indexI++) {
+    for (let indexI = 0; indexI < this.mano.length; indexI++) {
       //si cicla per cercare la carta selezionata
-      if (this.mazzo[indexI].isSelected()) {
+      if (this.mano[indexI].isSelected()) {
         //se è la carta selezionata la si inserisce alla sua corrispettiva torre
-        this.mazzo[indexI].setSelected(false); //la si imposta non più selezionata
+        this.mano[indexI].setSelected(false); //la si imposta non più selezionata
         if (this.torriGiocatore[indexTorre] === undefined) {
-          this.torriGiocatore[indexTorre] = [this.mazzo[indexI]];
+          this.torriGiocatore[indexTorre] = [this.mano[indexI]];
         } else {
-          this.torriGiocatore[indexTorre].push(this.mazzo[indexI]);
+          this.torriGiocatore[indexTorre].push(this.mano[indexI]);
         }
       } else {
         //le tre carte non selezionata saranno memorizzate nella copia
         if (copiaMazzo === undefined) {
-          copiaMazzo = [this.mazzo[indexI]];
+          copiaMazzo = [this.mano[indexI]];
         } else {
-          copiaMazzo.push(this.mazzo[indexI]);
+          copiaMazzo.push(this.mano[indexI]);
         }
       }
     }
     console.log("inserita carta nella torre :" + torreDaVisualizzare);
     console.log(this.torriGiocatore);
-    this.mazzo = undefined; //infine il mazzo nuovo sarà composto solo da tre carte
-    this.mazzo = copiaMazzo;
+    this.mano = undefined; //infine il mazzo nuovo sarà composto solo da tre carte
+    this.mano = copiaMazzo;
   }
 
   private mostraTorri(torre: string) {
@@ -357,14 +357,14 @@ export class MatchPageComponent implements OnInit {
     settandolo nel'oggetto e aggiungendolo come attributo all'elemento div nel 
     template*/
 
-    this.mazzo.forEach((carta, index = 0) => {
+    this.mano.forEach((carta, index = 0) => {
       $(document).ready(function () {
         let classe = carta.getSymbol();
         $(".mazzo > div:eq(" + index + ")")
           .addClass(classe)
           .attr("id", "id" + index);
       });
-      this.mazzo[index].setId(index);
+      this.mano[index].setId(index);
     });
 
     /* console.log("Il mio mazzo:");
@@ -391,7 +391,7 @@ export class MatchPageComponent implements OnInit {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     //funzione per selezionare/deselezionare graficamente le carte
 
-    this.mazzo.forEach((carta, index = 0) => {
+    this.mano.forEach((carta, index = 0) => {
       if (carta.getId() === cardId && !carta.isSelected()) {
         $(document).ready(function () {
           $(".mazzo > div:eq(" + index + ")").css({
@@ -413,9 +413,9 @@ export class MatchPageComponent implements OnInit {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     this.nascondiMessaggioDiAvviso();
     this.deselezionaLaCartaSelezionata();
-    if (this.mazzo.length === 3) {
+    if (this.mano.length === 3) {
       //per pescare dal mazzo coperto il mazzo deve avere sempre 3 carte
-      this.mazzo.unshift(this.mazzoCoperto.shift());
+      this.mano.unshift(this.mazzoCoperto.shift());
       this.mostraMazzo();
       console.log("é stata pescata una carta dal mazzo coperto!");
       /*TO DO:animazione della carta che viene passata*/
@@ -434,7 +434,7 @@ export class MatchPageComponent implements OnInit {
 
     this.nascondiMessaggioDiAvviso();
 
-    if (this.mazzo.length === 3) {
+    if (this.mano.length === 3) {
       /*se nel mazzo ci sono 3 carte
       vuol dire che il giocatore vuole pescare una carta scartata,
       e il giocatore non dovrebbe aver selezionato una carta quando la 
@@ -447,7 +447,7 @@ export class MatchPageComponent implements OnInit {
       }
     }
 
-    if (this.mazzo.length === 4) {
+    if (this.mano.length === 4) {
       /*se il mazzo é uguale a 4 vuol dire che il giocatore vuole scartare una carta selezionata.*/
       if (this.isSelectedUnaCartaDalMazzo()) {
         this.scartaLaCarta();
@@ -490,7 +490,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   public selezionaEPescaCartaDalMazzoScarti(cartaId: string) {
-    if (this.mazzo.length === 3) {
+    if (this.mano.length === 3) {
       if (this.isSelectedUnaCartaDalMazzo()) {
         this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
         this.deselezionaLaCartaSelezionata();
@@ -498,7 +498,7 @@ export class MatchPageComponent implements OnInit {
         let copiaMazzoScarti: [Carta];
         for (let index = 0; index < this.mazzoScarti.length; index++) {
           if (this.mazzoScarti[index].getId() === cartaId) {
-            this.mazzo.push(this.mazzoScarti[index]);
+            this.mano.push(this.mazzoScarti[index]);
           } else {
             if (copiaMazzoScarti === undefined) {
               copiaMazzoScarti = [this.mazzoScarti[index]];
@@ -571,11 +571,11 @@ export class MatchPageComponent implements OnInit {
   private scartaLaCarta(): void {
     let copiaMazzo: [Carta];
     if (this.isSelectedUnaCartaDalMazzo()) {
-      for (let index = 0; index < this.mazzo.length; index++) {
-        if (this.mazzo[index].isSelected()) {
-          this.mazzo[index].setSelected(false);
+      for (let index = 0; index < this.mano.length; index++) {
+        if (this.mano[index].isSelected()) {
+          this.mano[index].setSelected(false);
           if (this.mazzoScarti === undefined) {
-            this.mazzoScarti = [this.mazzo[index]];
+            this.mazzoScarti = [this.mano[index]];
           } else {
             if (this.mazzoScarti.length === 24) {
               this.mostraMessaggioDiAvviso(
@@ -583,24 +583,24 @@ export class MatchPageComponent implements OnInit {
               );
               this.deselezionaLaCartaSelezionata();
               if (copiaMazzo === undefined) {
-                copiaMazzo = [this.mazzo[index]];
+                copiaMazzo = [this.mano[index]];
               } else {
-                copiaMazzo.push(this.mazzo[index]);
+                copiaMazzo.push(this.mano[index]);
               }
             } else {
-              this.mazzoScarti.unshift(this.mazzo[index]);
+              this.mazzoScarti.unshift(this.mano[index]);
             }
           }
         } else {
           if (copiaMazzo === undefined) {
-            copiaMazzo = [this.mazzo[index]];
+            copiaMazzo = [this.mano[index]];
           } else {
-            copiaMazzo.push(this.mazzo[index]);
+            copiaMazzo.push(this.mano[index]);
           }
         }
       }
-      this.mazzo = undefined;
-      this.mazzo = copiaMazzo;
+      this.mano = undefined;
+      this.mano = copiaMazzo;
       console.log("é stata scartata una carta!");
       console.log(this.mazzoScarti);
     } else {
@@ -611,8 +611,8 @@ export class MatchPageComponent implements OnInit {
 
   private isSelectedUnaCartaDalMazzo(): boolean {
     let selezionato = false;
-    for (let index = 0; index < this.mazzo.length; index++) {
-      if (this.mazzo[index].isSelected()) {
+    for (let index = 0; index < this.mano.length; index++) {
+      if (this.mano[index].isSelected()) {
         selezionato = true;
       }
     }
@@ -620,9 +620,9 @@ export class MatchPageComponent implements OnInit {
   }
 
   private deselezionaLaCartaSelezionata() {
-    for (let index = 0; index < this.mazzo.length; index++) {
-      if (this.mazzo[index].isSelected()) {
-        this.mazzo[index].setSelected(false);
+    for (let index = 0; index < this.mano.length; index++) {
+      if (this.mano[index].isSelected()) {
+        this.mano[index].setSelected(false);
       }
       $(document).ready(function () {
         $(".mazzo > div:eq(" + index + ")").css({ "box-shadow": "none" });
@@ -643,7 +643,7 @@ export class MatchPageComponent implements OnInit {
 
       let carta = this.mazzoScarti.shift();
       carta.setSelected(false);
-      this.mazzo.push(carta);
+      this.mano.push(carta);
       console.log("é stata pescata una carta dal mazzo scarti!");
       console.log(this.mazzoScarti);
     } else {
