@@ -38,7 +38,7 @@ public class AngularspringbootdemoApplication {
 //				GiocatoreBot giocatore = new GiocatoreBot(name);
 //				giocatoreRepository.save(giocatore);
 //			});
-			Partita partita = new Partita("Marco", "Tizio", giocatore.calcolaPunteggio(), giocatore2.calcolaPunteggio());
+			Partita partita = new Partita("Marco", "Tizio");
 			
 			partitaRepository.save(partita);
 			partitaRepository.findAll().forEach(System.out::println);//i giocaotri vanno salvati a partire dall'interfaccia 

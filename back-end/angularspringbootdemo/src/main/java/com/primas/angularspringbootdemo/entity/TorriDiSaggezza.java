@@ -121,11 +121,7 @@ public class TorriDiSaggezza {
 
 			giocatoreCorrente = giocatori[turnoCorrente];
 			System.out.println("turno: " + giocatoreCorrente.getNome());
-//			if(giocatoreCorrente.equals(giocatori[0])) {
-//				giocatoreCorrente.giocaTurnoUmano();
-//			} else {
 				giocatoreCorrente.giocaTurno(mazzoCoperto, mazzoScarti);
-		//	}
 			turnoCorrente = (turnoCorrente+1)%2;
 			System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
 		}
@@ -165,7 +161,7 @@ public class TorriDiSaggezza {
 
 			giocatoreCorrente = giocatori[turnoCorrente];
 			System.out.println("turno: " + giocatoreCorrente.getNome());
-			giocatoreCorrente.giocaTurnoUmano();
+			giocatoreCorrente.giocaTurno(mazzoCoperto, mazzoScarti);
 			turnoCorrente = (turnoCorrente+1)%2;
 			System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
 		}

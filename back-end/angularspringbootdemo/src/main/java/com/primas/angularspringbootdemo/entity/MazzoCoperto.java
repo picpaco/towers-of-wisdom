@@ -2,6 +2,7 @@ package com.primas.angularspringbootdemo.entity;
 
 import java.util.Collections;
 
+
 public class MazzoCoperto extends Mazzo {
 
 	public MazzoCoperto() {
@@ -15,6 +16,12 @@ public class MazzoCoperto extends Mazzo {
 		assert (getListaCarte().size() == 32): "Il mazzo deve contenere 32  carte";
 	}
 	
+	/**
+	 * elimina dal mazzo coperto la carta in cima ad esso
+	 * @param carta carta pescata dal mazzo coperto
+	 * 
+	 * @return carta pescata
+	 */
 	public Carta pescaCarta() {
 		assert (!getListaCarte().isEmpty()): "Il mazzo deve contenere almeno una carta";
 		
