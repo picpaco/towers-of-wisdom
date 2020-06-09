@@ -12,9 +12,8 @@ public class Torre {
 		this.simbolo = s;
 	}
 
-	public void aggiungiCarta(Carta c) {
-		assert c != null: "la carta deve esistere";
-		carte.push(c);
+	public int numeroCarte() {
+		return carte.size();
 	}
 
 	public int getValoreTorre() {
@@ -25,11 +24,12 @@ public class Torre {
 		return simbolo;
 	}
 
-	public int aggiornaValore(int valoreDaAggiungere) {
+	public void aggiornaValore(int valoreDaAggiungere) {
 		if(guardaLaCartaInCima().getValore().equals(Valore.CIMA)) {
 			valoreTotale= valoreTotale*2;
-		}
-		return valoreTotale += valoreDaAggiungere;
+		} else {
+			valoreTotale += valoreDaAggiungere;
+		}	
 	}
 
 	public boolean isVuota() {
@@ -41,6 +41,7 @@ public class Torre {
 	}
 
 	public Carta aggiungiCartaInCima(Carta c) {
+		assert c != null: "la carta deve esistere";
 		return carte.push(c);
 	}
 
@@ -50,10 +51,3 @@ public class Torre {
 	}
 
 }
-
-
-
-
-
-
-

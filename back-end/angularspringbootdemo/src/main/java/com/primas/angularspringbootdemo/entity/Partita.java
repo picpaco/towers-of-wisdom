@@ -20,11 +20,9 @@ public class Partita {
 		
 	}
 	
-	public Partita(String nomeGiocatore1, String nomeGiocatore2, int punteggio1, int punteggio2) {
+	public Partita(String nomeGiocatore1, String nomeGiocatore2) {
 		this.nomeGiocatore1 = nomeGiocatore1;
 		this.nomeGiocatore2 = nomeGiocatore2;
-		this.punteggio1 = punteggio1;
-		this.punteggio2 = punteggio2;
 	}
 
 	public String getGiocatore1() {
@@ -33,6 +31,14 @@ public class Partita {
 
 	public String getGiocatore2() {
 		return nomeGiocatore2;
+	}
+
+	public void setPunteggio1(int punteggio1) {
+		this.punteggio1 = punteggio1;
+	}
+
+	public void setPunteggio2(int punteggio2) {
+		this.punteggio2 = punteggio2;
 	}
 
 	public int getPunteggio1() {

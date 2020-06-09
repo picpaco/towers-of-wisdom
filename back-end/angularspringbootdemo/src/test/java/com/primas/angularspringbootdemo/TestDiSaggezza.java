@@ -95,7 +95,7 @@ class TestDiSaggezza {
 	void scartaCarta() {
 		giocatorebot.distribuisciCarte(coperto);
 		giocatorebot.getMano().add(cartaCimaA);
-		giocatorebot.scartaCarta(coperto, scarti);
+		giocatorebot.scartaCarta(scarti);
 	}
 
 	@Test
@@ -104,7 +104,7 @@ class TestDiSaggezza {
 		assertEquals(3, giocatorebot.getMano().size(), "la mano dovrebbe avere 3 carte");
 		giocatorebot.getMano().add(coperto.pescaCarta());
 		assertEquals(4, giocatorebot.getMano().size(), "la mano dovrebbe avere 4 carte");
-		giocatorebot.giocaCarta(coperto, scarti);
+		giocatorebot.giocaCarta(scarti);
 		assertEquals(3, giocatorebot.getMano().size(), "la mano dovrebbe avere 3 carte dopo lo scarto");
 	}
 
