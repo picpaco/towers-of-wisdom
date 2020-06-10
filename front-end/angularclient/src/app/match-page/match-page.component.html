@@ -5,7 +5,7 @@
 
 <button type="button" class="btn-info" (click)="stampaLunghezza()"> stampa numero di carte su console </button> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -295,5 +295,31 @@
         <i class="fas fa-times-circle"></i>
       </button>
     </div>
+
+
   </body>
-</html>
+</html> -->
+
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+        
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">simbolo</th>
+          <th scope="col">valore</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let carta of manoProva">
+         
+          <td>{{ carta.simbolo }}</td>
+          <td>{{ carta.valore }}</td>
+          
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

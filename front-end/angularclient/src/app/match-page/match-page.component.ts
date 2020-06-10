@@ -4,6 +4,9 @@ import { Giocatore } from "../model/giocatore";
 import { Carta ,CartaAdapter} from "../model/Carta";
 import { GiocatoreService } from "../service/giocatore-service.service";
 import { mainModule } from "process";
+import { MazzoService } from '../service/mazzo.service';
+import { async } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-match-page",
@@ -28,36 +31,41 @@ export class MatchPageComponent implements OnInit {
     undefined,
   ]; /*Quadrato,Triangolo,Cerchio,Ancora */
 
-  manoProva: any = [];
+  manoProva: Carta[]=[]; //cambiare nome a manoProva
 
 
-  constructor(private giocatoreService: GiocatoreService) {}
+  constructor(private giocatoreService: GiocatoreService, private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {/*
-      this.giocatoreService.findAll().subscribe((data) => {
-      this.manoProva = data[0].mano;
-    });*/
-
-
+  ngOnInit() {
+    console.log("sono dentro ngOnInit");
+      
+  this.activatedRoute.data.subscribe((data: { manoProva: any}) => {
+      this.manoProva = data.manoProva;
+      console.log("sono dentro subscribe");
+      console.log(data);
+    });
+   
+    console.log("sono dentro ngOnInit dopo subscribe");
+    console.log(this.manoProva);
     this.mano = [
       new Carta("Ancora", "1"),
       new Carta("Punta", "P"),
       new Carta("Quadrato", "7"),
     ];
 
-    this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
-    this.mostraMazzo();
-    this.inizializzaMazzoScarti();
-    this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
-    //this.stampaLunghezza();
+    // this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
+    // this.mostraMazzo();
+    // this.inizializzaMazzoScarti();
+    // this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
+    // this.stampaLunghezza();
   }
 
   public stampaLunghezza() {
     console.log("--------Prova-Dati-0-Mano-------");
     console.log(this.manoProva);
-    for (let index = 0; index < this.manoProva.length; index++) {
-      console.log(this.manoProva[index].simbolo);
-    }
+    // for (let index = 0; index < this.manoProva.length; index++) {
+    //   console.log(this.manoProva[index].simbolo);
+    // }
   }
 
   private getNumeroDellaTorre(torre: string): number {

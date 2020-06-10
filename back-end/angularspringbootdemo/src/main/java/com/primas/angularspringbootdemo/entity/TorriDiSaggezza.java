@@ -65,16 +65,16 @@ public class TorriDiSaggezza {
 	public void giocaPartita() {
 		System.out.println("sono in gioca partita");
 		String nomeGiocatore = ottieniNomeGiocatore();
-		//giocatori[0] = new GiocatoreUmano(nomeGiocatore);
-		giocatori[0] = new GiocatoreBot("BOT 0");
-		giocatori[1] = new GiocatoreBot("BOT 1");
+		giocatori[0] = new GiocatoreUmano(nomeGiocatore);
+		//giocatori[0] = new GiocatoreBot("BOT 0");
+		//giocatori[1] = new GiocatoreBot("BOT 1");
 		String tipologiaAvversario = scegliAvversario();
 		System.out.println("tipologia avversario:"+tipologiaAvversario);
-//		if(tipologiaAvversario.equals("BOT")) {
-//			giocatori[1] = new GiocatoreBot(tipologiaAvversario);
-//		} else {
-//			giocatori[1] = new GiocatoreUmano(tipologiaAvversario);
-//		}	
+		if(tipologiaAvversario.equals("BOT")) {
+			giocatori[1] = new GiocatoreBot(tipologiaAvversario);
+		} else {
+			giocatori[1] = new GiocatoreUmano(tipologiaAvversario);
+		}	
 
 		System.out.println("giocatore 1: " + giocatori[0].getNome());
 		System.out.println("giocatore 2: " + giocatori[1].getNome());

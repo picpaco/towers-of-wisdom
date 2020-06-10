@@ -7,7 +7,7 @@ public abstract class Mazzo {
 	private ArrayList<Carta> listaCarte = new ArrayList<>();
 
 
-	protected ArrayList<Carta> getListaCarte() {
+	public ArrayList<Carta> getListaCarte() {
 		return listaCarte;
 	}
 
