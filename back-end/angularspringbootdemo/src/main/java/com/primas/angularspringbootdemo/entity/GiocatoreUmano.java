@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class GiocatoreUmano extends Giocatore {
 
-	public GiocatoreUmano(String nome) {
-		super(nome);
-	}
+//	public GiocatoreUmano(String nome) {
+//		super(nome);
+//	}
 
 	private String scegliMossa() {
 		boolean inputNok = true;
