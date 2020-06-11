@@ -9,14 +9,24 @@ public class TorriDiSaggezza {
 	private Giocatore[] giocatori = new Giocatore[2];
 	private MazzoCoperto mazzoCoperto = new MazzoCoperto();
 	private MazzoScarti mazzoScarti = new MazzoScarti();
+	private Giocatore giocatoreCorrente;
 
 	public TorriDiSaggezza() {
 
 	}
 	
-	protected MazzoCoperto getMazzoCoperto() {
-		return mazzoCoperto;
+	public Giocatore[] getGiocatori() {
+		return giocatori;
 	}
+	
+	public void setGiocatori(Giocatore[] giocatori) {
+		this.giocatori = giocatori;
+	}
+
+	public MazzoCoperto getMazzoCoperto() {
+		return mazzoCoperto;
+	}	
+
 
 	protected void setMazzoCoperto(MazzoCoperto mazzoCoperto) {
 		this.mazzoCoperto = mazzoCoperto;
@@ -29,6 +39,24 @@ public class TorriDiSaggezza {
 	protected void setMazzoScarti(MazzoScarti mazzoScarti) {
 		this.mazzoScarti = mazzoScarti;
 	}
+
+	public Giocatore getGiocatoreCorrente() {
+		return giocatoreCorrente;
+	}
+	
+	private String getNomeGiocatore() {
+		// il nome del giocatore verrà dal login
+		//TODO prendi dal front-end il nome del giocatore
+		return "Marco";
+	}
+	
+	private String getNomeAvversario() {
+		
+		//TODO prendi dal front-end il nome del bot
+		return "nome del bot";
+	}
+	
+	
 
 	public String scegliAvversario() {
 		boolean inputNok = true;
@@ -64,36 +92,33 @@ public class TorriDiSaggezza {
 
 	public void giocaPartita() {
 		System.out.println("sono in gioca partita");
-		String nomeGiocatore = ottieniNomeGiocatore();
-		giocatori[0] = new GiocatoreUmano(nomeGiocatore);
+	
+		String nomeGiocatore = getNomeGiocatore();
+		giocatori[0] = new GiocatoreUmano();
 		//giocatori[0] = new GiocatoreBot("BOT 0");
-		//giocatori[1] = new GiocatoreBot("BOT 1");
-		String tipologiaAvversario = scegliAvversario();
-		System.out.println("tipologia avversario:"+tipologiaAvversario);
-		if(tipologiaAvversario.equals("BOT")) {
-			giocatori[1] = new GiocatoreBot(tipologiaAvversario);
-		} else {
-			giocatori[1] = new GiocatoreUmano(tipologiaAvversario);
-		}	
+		giocatori[1] = new GiocatoreBot();
+		//String tipologiaAvversario = scegliAvversario();
+		//System.out.println("tipologia avversario:"+tipologiaAvversario);
+//		if(tipologiaAvversario.equals("BOT")) {
+//			giocatori[1] = new GiocatoreBot(tipologiaAvversario);
+//		} else {
+//			giocatori[1] = new GiocatoreUmano(tipologiaAvversario);
+//		}	
 
 		System.out.println("giocatore 1: " + giocatori[0].getNome());
 		System.out.println("giocatore 2: " + giocatori[1].getNome());
-		if(tipologiaAvversario.equals("BOT")) {
+//		if(tipologiaAvversario.equals("BOT")) {
 			giocaPartitaConBot();
-		} else {
-			if(tipologiaAvversario.equals("AMICO")) {
-				giocaPartitaConUmano();
-			} else {
-				throw new GiocatoreException("Giocatore non valido");
-			}
-		}
+//		} else {
+//			if(tipologiaAvversario.equals("AMICO")) {
+//				giocaPartitaConUmano();
+//			} else {
+//				throw new GiocatoreException("Giocatore non valido");
+//			}
+//		}
 
 	}
 
-	private String ottieniNomeGiocatore() {
-		// il nome del giocatore verrà dal login
-		return "Marco";
-	}
 
 	public int stabilisciPrimoTurno() {
 		int risultato = ThreadLocalRandom.current().nextInt(0, 2);
@@ -109,7 +134,6 @@ public class TorriDiSaggezza {
 		int turnoIniziale = stabilisciPrimoTurno();
 		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
 		int turnoCorrente = turnoIniziale;
-		Giocatore giocatoreCorrente = null;
 
 
 		giocatori[0].distribuisciCarte(mazzoCoperto);

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
+
+
 @Entity
 public abstract class Giocatore {  
 
@@ -19,16 +21,21 @@ public abstract class Giocatore {
 	private ArrayList<Carta> mano = new ArrayList<>(4);
 
 	public Giocatore() {
-
-	}
-
-	public Giocatore(String nome) {
-		this.nome = nome;
 		insTorri2.add(new Torre(Simbolo.Q));
 		insTorri2.add(new Torre(Simbolo.C));
 		insTorri2.add(new Torre(Simbolo.T));
 		insTorri2.add(new Torre(Simbolo.A));
 	}
+
+//	public Giocatore(String nome) {
+//		this.nome = nome;
+//		insTorri2.add(new Torre(Simbolo.Q));
+//		insTorri2.add(new Torre(Simbolo.C));
+//		insTorri2.add(new Torre(Simbolo.T));
+//		insTorri2.add(new Torre(Simbolo.A));
+//	}
+	
+	
 
 	protected ArrayList<Torre> getInsTorri2() {
 		return insTorri2;
@@ -37,6 +44,7 @@ public abstract class Giocatore {
 	public String getNome() {
 		return nome;
 	}
+	
 
 	public ArrayList<Carta> getMano() {
 		return mano;
@@ -44,6 +52,10 @@ public abstract class Giocatore {
 
 	public void setMano(ArrayList<Carta> mano) {
 		this.mano = mano;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	private Torre getTorre(Simbolo s) {
@@ -126,8 +138,8 @@ public abstract class Giocatore {
 	}
 
 	public ArrayList<Carta> distribuisciCarte(MazzoCoperto mazzoCoperto) {
-		assert (mano.size() == 0): "La mano deve essere vuota";
-
+		assert (mano.size() == 0): "La mano deve essere vuota"; 
+		
 		for(int i=0; i<3; i++) {
 			mano.add(mazzoCoperto.pescaCarta());
 		}

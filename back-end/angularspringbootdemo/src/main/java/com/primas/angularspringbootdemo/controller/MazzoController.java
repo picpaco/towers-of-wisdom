@@ -24,13 +24,14 @@ public class MazzoController implements BeanFactoryAware {
 	     }
 	
 	@SuppressWarnings("unchecked")
-	@GetMapping("/mazzo")
-	public ArrayList<Carta> getMazzoCoperto() {
+	@GetMapping("/mano")
+	public ArrayList<Carta> getManoGiocatore() {
 		
-		System.out.println("BeanFactory" + bf.getBean("mazzo"));
-		
-		return (ArrayList<Carta>) bf.getBean("mazzo");
+		System.out.println("BeanFactory" + bf.getBean("manoGiocatore"));
+		return (ArrayList<Carta>) bf.getBean("manoGiocatore");
 	}
+	
+	
 
 
 }

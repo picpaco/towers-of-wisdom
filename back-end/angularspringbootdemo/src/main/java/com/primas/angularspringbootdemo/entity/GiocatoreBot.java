@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class GiocatoreBot extends Giocatore {
 
-	public GiocatoreBot(String nome) {
-		super(nome);
-	}
+//	public GiocatoreBot(String nome) {
+//		super(nome);
+//	}
 
 	@Override
 	public void decidiCartaDaGiocareSeMazzoNonVuoto(ArrayList<Carta> mano, MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) {

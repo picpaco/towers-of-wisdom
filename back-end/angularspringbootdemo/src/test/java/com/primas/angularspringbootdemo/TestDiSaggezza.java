@@ -41,7 +41,8 @@ class TestDiSaggezza {
 	public void setUp() throws Exception{
 		scarti = new MazzoScarti();
 		coperto = new MazzoCoperto();
-		giocatorebot = new GiocatoreBot("robot");
+		giocatorebot = new GiocatoreBot();
+		giocatorebot.setNome("robot");
 		cartaA = new Carta(Valore.QUATTRO, Simbolo.A);
 		cartaQ = new Carta(Valore.CINQUE, Simbolo.Q);
 		cartaC = new Carta(Valore.DUE, Simbolo.C);
