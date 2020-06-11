@@ -17,6 +17,7 @@ public abstract class Giocatore {
 	private String nome;
 	private ArrayList<Torre> insTorri2 = new ArrayList<>();
 	private ArrayList<Carta> mano = new ArrayList<>(4);
+	
 
 	public Giocatore() {
 
@@ -29,6 +30,7 @@ public abstract class Giocatore {
 		insTorri2.add(new Torre(Simbolo.T));
 		insTorri2.add(new Torre(Simbolo.A));
 	}
+
 
 	protected ArrayList<Torre> getInsTorri2() {
 		return insTorri2;

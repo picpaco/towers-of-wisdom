@@ -32,5 +32,4 @@ public class MazzoController implements BeanFactoryAware {
 		return (ArrayList<Carta>) bf.getBean("mazzo");
 	}
 
-
 }

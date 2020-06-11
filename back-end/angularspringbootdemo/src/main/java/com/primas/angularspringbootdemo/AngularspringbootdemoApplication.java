@@ -31,8 +31,8 @@ public class AngularspringbootdemoApplication {
 
 		ArrayList<Carta> mc1 = (ArrayList<Carta>) context.getBean("mazzo");
 		ArrayList<Carta> ms1 = (ArrayList<Carta>) context.getBean("scarti");
-		System.out.println("Mazzo Coperto:" + mc1);
-		System.out.println("Mazzo Scarti:" + ms1);
+		System.out.println("Mazzo Coperto Main:" + mc1 + "dimensione: " + mc1.size());
+		System.out.println("Mazzo Scarti Main:" + ms1  + "dimensione: " + ms1.size());
 		
 		//tds.giocaPartita();
 		context.close();
@@ -43,9 +43,7 @@ public class AngularspringbootdemoApplication {
 		return args -> {
 			Giocatore giocatore = new GiocatoreBot("Marco");
 			Giocatore giocatore2 = new GiocatoreBot("Tizio");
-			
-			
-
+	
 //			Torre torreQ = new Torre(Simbolo.Q);
 //			HashMap<Simbolo, Torre> torri = new HashMap<>();
 //			torri.put(Simbolo.Q, torreQ);
