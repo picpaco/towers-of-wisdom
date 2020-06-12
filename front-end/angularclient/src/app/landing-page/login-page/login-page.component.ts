@@ -29,7 +29,8 @@ export class LoginPageComponent implements OnInit {
 
     (this.loginservice.authenticate(this.username, this.password).subscribe(
       data => {
-        if (this.username.length >= 8 || this.password.length >= 8){
+        console.log(data);
+        if (this.username.length >= 8 && this.password.length >= 8){
         this.router.navigate(['/menu-di-gioco'])
         this.invalidLogin = false
         }

@@ -69,15 +69,20 @@ public class PartitaController implements ApplicationContextAware{
 		return mano;
 		
 	}
+	
+//	@PostMapping("/nome")
+//	public void inizializzaGiocatore(@RequestBody String nomeGiocatore) {
+//		String nome = nomeGiocatore;
+//		System.out.println("Nome giocatore inviato: " + nome);
+//		
+//	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		
 		context = applicationContext;
 	}
-	
-	
-	
+
 	//aggiungiere una get con parametro giocatore che restituisce le info sul singolo giocatore
 	
 

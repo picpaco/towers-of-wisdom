@@ -25,11 +25,12 @@ public class User {
 		this.status=status;
 	}
 	
-	public User(String nomeutente, String password) {
-		super();
-		this.nomeutente = nomeutente;
-		this.password = password;
-	}
+//	public User(String nomeutente, String password) {
+//		super();
+//		this.nomeutente = nomeutente;
+//		this.password = password;
+//	}
+	
 	public String getNomeutente() {
 		return nomeutente;
 	}

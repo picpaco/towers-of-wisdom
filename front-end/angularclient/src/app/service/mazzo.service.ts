@@ -28,7 +28,7 @@ public getMazzoCoperto(): Observable<Carta[]>{
   let username = "stefano89";
   let password = "stefanorusso";
   const headers = new HttpHeaders({Authorization: "Basic " + btoa(username + ":" + password)});
-    const observable = this.http.get<Carta[]>('http://localhost:8080/mazzo',{headers});
+    const observable = this.http.get<Carta[]>('http://localhost:8080/menu-di-gioco',{headers});
     //observer.complete();
     return observable; 
 }
