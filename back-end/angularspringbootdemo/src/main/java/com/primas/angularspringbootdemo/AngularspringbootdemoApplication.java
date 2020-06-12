@@ -23,40 +23,11 @@ public class AngularspringbootdemoApplication implements ApplicationContextAware
 	public static void main(String[] args) {
 		SpringApplication.run(AngularspringbootdemoApplication.class, args);
 	
-		//TorriDiSaggezza tds = new TorriDiSaggezza();
-		
-//		AnnotationConfigApplicationContext context= new AnnotationConfigApplicationContext(ConfiguratoreSpring.class);
-//		TorriDiSaggezza tds = (TorriDiSaggezza) context.getBean("datiPartita");
-		
-
-//		ArrayList<Carta> mc1 = (ArrayList<Carta>) context.getBean("mazzo");
-//		ArrayList<Carta> ms1 = (ArrayList<Carta>) context.getBean("scarti");
-//		System.out.println("Mazzo Coperto:" + mc1);
-//		System.out.println("Mazzo Scarti:" + ms1);
-		
-		//TODO gestire in maniera asincrona la chiusura del context 
-//		tds.giocaPartita();
-//		context.close();
 	}
 	
 	@Bean
 	CommandLineRunner init(RepositoryPartita partitaRepository) {
 		return args -> {
-//			Giocatore giocatore = new GiocatoreBot();
-//			Giocatore giocatore2 = new GiocatoreBot();
-			
-			
-			
-//			Torre torreQ = new Torre(Simbolo.Q);
-//			HashMap<Simbolo, Torre> torri = new HashMap<>();
-//			torri.put(Simbolo.Q, torreQ);
-			//InsiemeTorri insTorri = new InsiemeTorri();
-			//insTorri.setTorriCarte(torri);
-			//giocatore.setInsTorri(insTorri);
-//			Stream.of("Bob", "Lil", "Art", "Susy", "Tess").forEach(name -> {
-//				GiocatoreBot giocatore = new GiocatoreBot(name);
-//				giocatoreRepository.save(giocatore);
-//			});
 			Partita partita = new Partita("Marco", "Tizio");
 			
 			partitaRepository.save(partita);
@@ -66,7 +37,6 @@ public class AngularspringbootdemoApplication implements ApplicationContextAware
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		// TODO Auto-generated method stub
 		context = applicationContext;
 	}
 	

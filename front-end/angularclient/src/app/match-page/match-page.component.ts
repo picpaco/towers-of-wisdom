@@ -7,6 +7,7 @@ import { mainModule } from "process";
 import { MazzoService } from '../service/mazzo.service';
 import { async } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-match-page",
@@ -14,10 +15,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
+  [x: string]: any;
   public player: Giocatore;
   public mano: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
+  public manoT : Carta[] = [];
+  
+
   public torriAvversario:Array<Carta[]>=[
     undefined,
     undefined,
@@ -34,39 +39,53 @@ export class MatchPageComponent implements OnInit {
   manoProva: Carta[]=[]; //cambiare nome a manoProva
 
 
-  constructor(private giocatoreService: GiocatoreService, private activatedRoute: ActivatedRoute) {}
+  constructor(private giocatoreService: GiocatoreService, private activatedRoute: ActivatedRoute, private cartaAdapter: CartaAdapter) {}
 
   ngOnInit() {
-    console.log("sono dentro ngOnInit");
+    // console.log("sono dentro ngOnInit");
       
   this.activatedRoute.data.subscribe((data: { manoProva: any}) => {
       this.manoProva = data.manoProva;
-      console.log("sono dentro subscribe");
-      console.log(data);
+      // console.log("sono dentro subscribe");
+      // console.log(data);
     });
    
-    console.log("sono dentro ngOnInit dopo subscribe");
-    console.log(this.manoProva);
-    this.mano = [
-      new Carta("Ancora", "1"),
-      new Carta("Punta", "P"),
-      new Carta("Quadrato", "7"),
-    ];
+    // console.log("sono dentro ngOnInit dopo subscribe");
+    // console.log(this.manoProva);
+    // this.mano = [
+    //   new Carta("Ancora", "1"),
+    //   new Carta("Punta", "P"),
+    //   new Carta("Quadrato", "7"),
+    // ];
+    this.stampaManoJson();
+     this.stampaManoTs();
+     this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
+     this.mostraMazzo();
+     this.inizializzaMazzoScarti();
+     this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
 
-    // this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
-    // this.mostraMazzo();
-    // this.inizializzaMazzoScarti();
-    // this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
-    // this.stampaLunghezza();
   }
 
-  public stampaLunghezza() {
-    console.log("--------Prova-Dati-0-Mano-------");
+  public stampaManoJson() {
+    this.manoT = this.manoProva.map((item) => this.cartaAdapter.adapt(item));
+    this.mano = this.manoT;
+    console.log("--------Prova-Dati-Mano-json-------");
     console.log(this.manoProva);
-    // for (let index = 0; index < this.manoProva.length; index++) {
-    //   console.log(this.manoProva[index].simbolo);
-    // }
+     for (let index = 0; index < this.manoProva.length; index++) {
+       console.log(this.manoProva[index]["simbolo"] + " " + this.manoProva[index]["valore"]);
+     }
+
   }
+
+  
+  public stampaManoTs() {
+    console.log("--------Prova-Dati-Mano-ts-------");
+    console.log(this.manoT);
+     for (let index = 0; index < this.manoT.length; index++) {
+       console.log(this.manoT[index].getSymbol()+ " " + this.manoT[index].getValue());
+     }
+
+    }
 
   private getNumeroDellaTorre(torre: string): number {
     switch (torre) {
