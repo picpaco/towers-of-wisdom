@@ -46,7 +46,9 @@ const routes: Routes = [
 
   { path: 'regole', component: RegoleGiocoComponent },
 
-  { path: 'match', component: MatchPageComponent, resolve: { manoProva: MazzoResolverService} },
+   { path: 'match', component: MatchPageComponent, resolve: { manoProva: MazzoResolverService} },
+
+  // { path: 'match', component: MatchPageComponent },
 
   { path: 'risultati-finali', component: LeaderboardPageComponent},
  

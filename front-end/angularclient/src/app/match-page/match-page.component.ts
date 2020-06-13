@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
-import { Carta ,CartaAdapter} from "../model/Carta";
-import { GiocatoreService } from "../service/giocatore-service.service";
-import { mainModule } from "process";
-import { MazzoService } from '../service/mazzo.service';
-import { async } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { map } from "rxjs/operators";
+import { Carta, CartaAdapter } from "../model/Carta";
+ import { GiocatoreService } from "../service/giocatore-service.service";
+ import { mainModule } from "process";
+ import { MazzoService } from "../service/mazzo.service";
+ import { async } from "@angular/core/testing";
+ import { ActivatedRoute } from "@angular/router";
+ import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-match-page",
@@ -15,55 +15,51 @@ import { map } from "rxjs/operators";
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
-  [x: string]: any;
   public player: Giocatore;
   public mano: Carta[];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
-  public manoT : Carta[] = [];
-  
+  public manoT: Carta[] = [];
 
-  public torriAvversario:Array<Carta[]>=[
+  public torriAvversario: Array<Carta[]> = [
     undefined,
     undefined,
     undefined,
     undefined,
   ];
-  public torriGiocatore:Array<Carta[]> = [
+  public torriGiocatore: Array<Carta[]> = [
     undefined,
     undefined,
     undefined,
     undefined,
   ]; /*Quadrato,Triangolo,Cerchio,Ancora */
 
-  manoProva: Carta[]=[]; //cambiare nome a manoProva
+  manoProva: Carta[] = []; //cambiare nome a manoProva
 
+   constructor(
+     private giocatoreService: GiocatoreService,
+     private activatedRoute: ActivatedRoute,
+     private cartaAdapter: CartaAdapter
+   ) {}
 
-  constructor(private giocatoreService: GiocatoreService, private activatedRoute: ActivatedRoute, private cartaAdapter: CartaAdapter) {}
+  // constructor(private cartaAdapter: CartaAdapter) {}
 
   ngOnInit() {
-    // console.log("sono dentro ngOnInit");
-      
-  this.activatedRoute.data.subscribe((data: { manoProva: any}) => {
+     this.activatedRoute.data.subscribe((data: { manoProva: any}) => {
       this.manoProva = data.manoProva;
-      // console.log("sono dentro subscribe");
-      // console.log(data);
     });
-   
-    // console.log("sono dentro ngOnInit dopo subscribe");
-    // console.log(this.manoProva);
+
     // this.mano = [
     //   new Carta("Ancora", "1"),
     //   new Carta("Punta", "P"),
     //   new Carta("Quadrato", "7"),
     // ];
     this.stampaManoJson();
-     this.stampaManoTs();
-     this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
-     this.mostraMazzo();
-     this.inizializzaMazzoScarti();
-     this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
-
+    this.stampaManoTs();
+    this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
+    this.inizializzaMazzoScarti();
+    this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
+    this.mostraMazzo();
   }
 
   public stampaManoJson() {
@@ -71,21 +67,22 @@ export class MatchPageComponent implements OnInit {
     this.mano = this.manoT;
     console.log("--------Prova-Dati-Mano-json-------");
     console.log(this.manoProva);
-     for (let index = 0; index < this.manoProva.length; index++) {
-       console.log(this.manoProva[index]["simbolo"] + " " + this.manoProva[index]["valore"]);
-     }
-
+    for (let index = 0; index < this.manoProva.length; index++) {
+      console.log(
+        this.manoProva[index]["simbolo"] + " " + this.manoProva[index]["valore"]
+      );
+    }
   }
 
-  
   public stampaManoTs() {
     console.log("--------Prova-Dati-Mano-ts-------");
     console.log(this.manoT);
-     for (let index = 0; index < this.manoT.length; index++) {
-       console.log(this.manoT[index].getSymbol()+ " " + this.manoT[index].getValue());
-     }
-
+    for (let index = 0; index < this.manoT.length; index++) {
+      console.log(
+        this.manoT[index].getSymbol() + " " + this.manoT[index].getValue()
+      );
     }
+  }
 
   private getNumeroDellaTorre(torre: string): number {
     switch (torre) {
@@ -140,9 +137,13 @@ export class MatchPageComponent implements OnInit {
 
     let Quadrato = [
       new Carta("Quadrato", "7"),
+      new Carta("Quadrato", "6"),
+      new Carta("Quadrato", "5"),
       new Carta("Quadrato", "4"),
       new Carta("Quadrato", "3"),
       new Carta("Quadrato", "2"),
+      new Carta("Quadrato", "1"),
+      new Carta("Punta", "P"),
     ];
     let Triangolo = [new Carta("Triangolo", "7"), new Carta("Triangolo", "5")];
     let Cerchio = [
@@ -178,7 +179,7 @@ export class MatchPageComponent implements OnInit {
         let valore = this.torriAvversario[indexTorre][index].getValue();
         $(document).ready(function () {
           $(
-            ".pannello-torri-del-giocatore-avversario .carte-delle-torri-avversario:eq(" +
+            ".carte-delle-torri-avversario:eq(" +
               indexTorre +
               ") div:eq(" +
               index +
@@ -290,13 +291,7 @@ export class MatchPageComponent implements OnInit {
         let classe = this.torriGiocatore[indexTorre][index].getSymbol();
         let valore = this.torriGiocatore[indexTorre][index].getValue();
         $(document).ready(function () {
-          $(
-            ".pannello-torri-del-giocatore .carte-delle-torri:eq(" +
-              indexTorre +
-              ") div:eq(" +
-              index +
-              ")"
-          )
+          $(".carte-delle-torri:eq(" + indexTorre + ") div:eq(" + index + ")")
             .css({ border: "1px solid white" })
             .addClass(classe)
             .text(valore);
@@ -340,7 +335,9 @@ export class MatchPageComponent implements OnInit {
     for (let index = 0; index < this.torriGiocatore.length; index++) {
       if (this.torriGiocatore[index] !== undefined) {
         $(document).ready(function () {
-          $("#marker" + index).hide();
+          $(".carte-delle-torri:eq(" + index + ") div:eq(8)").css({
+            border: "transparent",
+          });
         });
       }
     }
