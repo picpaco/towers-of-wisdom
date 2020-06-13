@@ -88,10 +88,8 @@ span {
     -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
 }
 
-.ambienti div {
+.ambienti >div {
   /*settaggi comuni a tutte le 4 colonne in un colpo solo*/
-  display: flex;
-  flex-direction: row;
   width: 55mm;
   height: inherit;
 }
@@ -346,30 +344,7 @@ span {
   box-shadow: 1px 1px 2px white, -1px 1px 2px white, 1px -1px 2px white,
     -1px -1px 2px white;
 }
-.pannello-torri-del-giocatore {
-  /*rappresenta il pannello di gioco del giocatore*/
-  position: absolute;
-  width: 218mm;
-  height: 60mm;
-  /* border: 1px solid white; */
-  background: transparent;
-  top: 98mm;
-  left: 69.5mm;
-  display: grid;
-  grid-template-columns: 55mm 55mm 55mm 55mm;
-}
-.pannello-torri-del-giocatore-avversario {
-  /*rappresenta il pannello di gioco dell'avversario*/
-  position: absolute;
-  width: 218mm;
-  height: 60mm;
-  /*border: 1px solid white;*/
-  background: transparent;
-  left: 69.5mm;
-  top: 36mm;
-  display: grid;
-  grid-template-columns: 55mm 55mm 55mm 55mm;
-}
+
 
 .mazzo-coperte div {
   /*gestione delle carte del mazzo coperto*/
@@ -379,10 +354,7 @@ span {
 }
 
 .carte-delle-torri {
-  /* display: flex;
-  flex-flow: wrap-reverse;
-  flex-direction: row; */
-  /* border:2px solid white; */
+   /* border:2px solid white;  */
   width: 53mm;
   height: 66mm;
   bottom: 4.5mm;
@@ -406,10 +378,9 @@ span {
 }
 
 .carte-delle-torri-avversario {
-  /* border:2px solid red;  */
+    /* border:2px solid red;    */
   width: 53mm;
   height: 66mm;
-  bottom: 2mm;
   padding-left: 2mm;
   position: relative;
   cursor: default;
@@ -448,16 +419,23 @@ span {
   padding-top: 5mm;
   width: 58mm;
   height: 30mm;
+  position: absolute;
+
+}
+.pannello-del-messaggio-di-avviso{
+  /* border:solid 2px white; */
   position: relative;
-  bottom: 189.5mm;
-  left: 75mm;
-  display: none;
+  width: 50mm;
+  height:30mm;
+  right: 76mm;
+  top: 3mm;
+  margin: auto;
+
 }
 
-.panelli .mazzo {
+.mazzo {
   /*pannello principale delle carte*/
-  /*border: 2px solid white;
-   <-questo và levato*/
+  /* border: 2px solid white; */
   width: 150mm;
   height: 37mm;
   display: grid;
@@ -465,6 +443,8 @@ span {
   grid-gap: 40px;
   padding: 20px;
   justify-content: center;
+  right: 27mm;
+  position: absolute;
 }
 
 .panelli .mazzo div {
