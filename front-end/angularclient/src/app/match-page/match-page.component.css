@@ -447,7 +447,7 @@ span {
   position: absolute;
 }
 
-.panelli .mazzo div {
+.mazzo div {
   /*settaggio comune a tutte le tre carte,dimensioni e spazi tra di loro*/
   width: 15mm;
   height: 24mm;
@@ -545,7 +545,7 @@ span {
   position: relative;
   width: 11mm;
   height: 10mm;
-  bottom: 8mm;
+  bottom: 254mm;
   border-top-left-radius: 4.2mm;
   border-top-right-radius: 5mm;
   border-bottom-left-radius: 5mm;
@@ -555,13 +555,16 @@ span {
   color: white;
   border: transparent;
   text-align: center;
+  margin: auto;
   background-image: radial-gradient(
     rgba(124, 227, 253, 0.932),
     rgba(1, 192, 240, 0.932)
   );
 }
 .bolla {
-  bottom: 20mm;
+  position: absolute;
+  bottom: 12mm;
+  right: 6mm;
   width: 5.5mm;
   height: 6mm;
   border: 1px solid rgb(1, 192, 240);
