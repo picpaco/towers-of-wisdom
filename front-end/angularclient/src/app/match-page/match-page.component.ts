@@ -2,12 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta, CartaAdapter } from "../model/Carta";
- import { GiocatoreService } from "../service/giocatore-service.service";
- import { mainModule } from "process";
- import { MazzoService } from "../service/mazzo.service";
- import { async } from "@angular/core/testing";
  import { ActivatedRoute } from "@angular/router";
- import { map } from "rxjs/operators";
+
 
 @Component({
   selector: "app-match-page",
@@ -37,7 +33,6 @@ export class MatchPageComponent implements OnInit {
   manoProva: Carta[] = []; //cambiare nome a manoProva
 
    constructor(
-     private giocatoreService: GiocatoreService,
      private activatedRoute: ActivatedRoute,
      private cartaAdapter: CartaAdapter
    ) {}
@@ -49,17 +44,13 @@ export class MatchPageComponent implements OnInit {
       this.manoProva = data.manoProva;
     });
 
-    // this.mano = [
-    //   new Carta("Ancora", "1"),
-    //   new Carta("Punta", "P"),
-    //   new Carta("Quadrato", "7"),
-    // ];
     this.stampaManoJson();
     this.stampaManoTs();
     this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
     this.inizializzaMazzoScarti();
     this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
     this.mostraMazzo();
+    
   }
 
   public stampaManoJson() {

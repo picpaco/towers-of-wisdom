@@ -1,5 +1,3 @@
-// import { Carta } from './Carta';
-
  export class Giocatore {
  id: string;
  nome: string;

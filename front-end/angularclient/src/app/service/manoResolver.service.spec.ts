@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { MazzoResolverService } from './mazzoResolver.service';
+import { MazzoResolverService } from './manoResolver.service';
 
 describe('Service: MazzoResolver', () => {
   beforeEach(() => {

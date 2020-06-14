@@ -1,10 +1,6 @@
 import { Injectable } from "@angular/core";
-import { MazzoService } from "./mazzo.service";
-import {
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot,
-  Resolve,
-} from "@angular/router";
+import { ManoService } from "./mano.service";
+import { RouterStateSnapshot, ActivatedRouteSnapshot,Resolve } from "@angular/router";
 import { catchError } from "rxjs/operators";
 import { empty } from "rxjs";
 
@@ -12,9 +8,9 @@ import { empty } from "rxjs";
   providedIn: "root",
 })
 export class MazzoResolverService implements Resolve<any> {
-  constructor(private mazzoService: MazzoService) {}
+  constructor(private manoService: ManoService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.mazzoService.getMazzoCoperto().pipe(
+    return this.manoService.getMano().pipe(
       catchError((error) => {
         return empty();
       })

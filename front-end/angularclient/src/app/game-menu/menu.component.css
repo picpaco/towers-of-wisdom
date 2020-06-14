@@ -17,6 +17,14 @@
     -1px -1px 3px #1871f5;
 }
 
+#indice_benvenuto {
+  font-size: 5mm;
+  font-family: cursive;
+  color: #61d5ea;
+  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+    -1px -1px 3px #1871f5;
+}
+
 #bot {
   /*immaggine sul tasto robot*/
   background-image: url("../../assets/pictures_of_game_menu/fish-378286_1920.jpg");

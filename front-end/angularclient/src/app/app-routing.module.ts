@@ -8,13 +8,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DemoComponent } from './demo/demo.component';
 import { RegoleGiocoComponent } from './regole-gioco/regole-gioco.component';
-import { GameComponent } from './game-menu/game.component'
+import { MenuComponent } from './game-menu/menu.component'
 import { MatchPageComponent } from './match-page/match-page.component';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component'
 import { FormuserComponent } from './landing-page/formuser/formuser.component';
 import { FormgiocatoreComponent } from './formgiocatore/formgiocatore.component';
 import { ListautentiComponent } from './listautenti/listautenti.component';
-import { MazzoResolverService } from './service/mazzoResolver.service';
+import { MazzoResolverService } from './service/manoResolver.service';
 
 
 
@@ -42,7 +42,7 @@ const routes: Routes = [
 
   { path: 'demo', component:DemoComponent },
 
-  { path: 'menu-di-gioco', component: GameComponent},
+  { path: 'menu-di-gioco', component: MenuComponent},
 
   { path: 'regole', component: RegoleGiocoComponent },
 
@@ -68,7 +68,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents = [ListagiocatoriComponent, 
                                   FormgiocatoreComponent, 
-                                  GameComponent,
+                                  MenuComponent,
                                   LoginPageComponent,
                                   PageNotFoundComponent,
                                   LandingPageComponent,
