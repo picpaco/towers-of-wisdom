@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.Giocatore;
+import com.primas.angularspringbootdemo.entity.GiocatoreBot;
+import com.primas.angularspringbootdemo.entity.GiocatoreUmano;
 import com.primas.angularspringbootdemo.entity.Mazzo;
 import com.primas.angularspringbootdemo.entity.MazzoCoperto;
 import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
@@ -37,9 +39,11 @@ public class ConfiguratoreSpring {
 //		return player.distribuisciCarte(coperto.getListaCarte());
 //	}
 	
+	//TODO: cambiare nome Bean in "inizializzaPartita"
 	@Bean(name = "datiPartita")
-	public TorriDiSaggezza gestisciPartita() {
+	public TorriDiSaggezza inizializzaPartita() {
 		System.out.println("sono dentro gestisci partita");
+
 		return tow;
 	}
 	

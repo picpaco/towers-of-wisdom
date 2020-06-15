@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.primas.angularspringbootdemo.entity.Giocatore;
+import com.primas.angularspringbootdemo.entity.GiocatoreBot;
+import com.primas.angularspringbootdemo.entity.GiocatoreUmano;
+import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
 import com.primas.angularspringbootdemo.entity.User;
 import com.primas.angularspringbootdemo.repository.RepositoryUser;
 
@@ -57,20 +63,40 @@ public class UserController implements ApplicationContextAware {
 
 	@RequestMapping(value = "/validateLogin", method = RequestMethod.GET)
 	@ResponseBody
-	public User validateLogin(HttpServletRequest request) {
-		
+	public User validateLogin(HttpServletRequest request, HttpServletResponse response) {
+		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("datiPartita");
+		//inizializzaPartita(tow);
 		Principal principal = request.getUserPrincipal();
 		User utente = new User();
 		utente.setNomeutente(principal.getName() + "!");
 		System.out.println("siamo dentro validateLogin " + principal.getName());
+		//response.addHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+
 		return utente;
 	}
 	
+//	private void inizializzaPartita(TorriDiSaggezza tow) {
+//		Giocatore[] giocatori = new Giocatore[2];
+//		giocatori[0] = new GiocatoreUmano();
+//		giocatori[1] = new GiocatoreBot();
+//		tow.setGiocatori(giocatori);
+//		tow.getGiocatori()[0].setNome("Giovanni");
+//		tow.getGiocatori()[1].setNome("STUPID BOT");
+//		
+//		int turnoIniziale = tow.stabilisciPrimoTurno();
+//		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
+//		int turnoCorrente = turnoIniziale;
+//
+//		giocatori[0].distribuisciCarte(tow.getMazzoCoperto());
+//		giocatori[1].distribuisciCarte(tow.getMazzoCoperto());	
+//	}
+
+
+
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 
 		context = applicationContext;
 	}
-
 
 }

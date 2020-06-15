@@ -49,23 +49,23 @@ public class PartitaController implements ApplicationContextAware{
 	//TODO dovrebbe ricevere coem parametro 2 stringe per i nomei dei giocatori
 	@GetMapping("/menu-di-gioco")
 	public ArrayList<Carta> gestisciMenu() {
-
-		TorriDiSaggezza tds = (TorriDiSaggezza) context.getBean("datiPartita");
+		//TODO: cambiare nome bean in "inizializzaPartita"
+		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("datiPartita");
 		Giocatore[] giocatori = new Giocatore[2];
 		giocatori[0] = new GiocatoreUmano();
 		giocatori[1] = new GiocatoreBot();
-		tds.setGiocatori(giocatori);
-		tds.getGiocatori()[0].setNome("Giovanni");
-		tds.getGiocatori()[1].setNome("STUPID BOT");
+		tow.setGiocatori(giocatori);
+		tow.getGiocatori()[0].setNome("Giovanni");
+		tow.getGiocatori()[1].setNome("STUPID BOT");
 		
-		int turnoIniziale = tds.stabilisciPrimoTurno();
+		int turnoIniziale = tow.stabilisciPrimoTurno();
 		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
 		int turnoCorrente = turnoIniziale;
 
-		giocatori[0].distribuisciCarte(tds.getMazzoCoperto());
-		giocatori[1].distribuisciCarte(tds.getMazzoCoperto());
-		
-		ArrayList<Carta> mano = tds.getGiocatori()[0].getMano();
+		giocatori[0].distribuisciCarte(tow.getMazzoCoperto());
+		giocatori[1].distribuisciCarte(tow.getMazzoCoperto());
+	
+		ArrayList<Carta> mano = tow.getGiocatori()[0].getMano();
 		return mano;
 		
 	}

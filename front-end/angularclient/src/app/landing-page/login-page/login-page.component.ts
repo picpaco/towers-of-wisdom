@@ -10,8 +10,8 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent implements OnInit {
-  username = '';
-  password = '';
+  username = 'stefano89';
+  password = 'stefanorusso';
   invalidLogin: boolean = false;
   bottoneLanding: boolean = true;
  
@@ -27,23 +27,40 @@ export class LoginPageComponent implements OnInit {
   checkLogin() {
 
 
+    // (this.loginservice.authenticate(this.username, this.password).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     if (this.username.length >= 8 && this.password.length >= 8){
+    //     this.router.navigate(['/menu-di-gioco'])
+    //     this.invalidLogin = false
+    //     }
+    //   },
+    //   error => {
+    //     if (this.username.length < 8 || this.password.length < 8) {
+    //       this.invalidLogin = true
+    //     }
+
+    //   }
+    // )
+    // );
+
     (this.loginservice.authenticate(this.username, this.password).subscribe(
       data => {
         console.log(data);
-        if (this.username.length >= 8 && this.password.length >= 8){
-        this.router.navigate(['/menu-di-gioco'])
-        this.invalidLogin = false
-        }
+        // if (this.username.length >= 8 && this.password.length >= 8){
+        this.invalidLogin = false;
+         this.router.navigate(['/menu-di-gioco'])
+         
+        // }
       },
       error => {
-        if (this.username.length < 8 || this.password.length < 8) {
-          this.invalidLogin = true
-        }
+        // if (this.username.length < 8 || this.password.length < 8) {
+          this.invalidLogin = true;
+        // }
 
       }
     )
     );
-
 
 
 

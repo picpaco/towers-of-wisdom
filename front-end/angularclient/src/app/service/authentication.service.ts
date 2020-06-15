@@ -22,7 +22,7 @@ export class AuthenticationService {
     let utente: any;
     this.nomeGiocatore = username;
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
+    //headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
     return this.httpClient.get<User>('http://localhost:8080/validateLogin',{headers}).pipe(
      map(
        userData => {

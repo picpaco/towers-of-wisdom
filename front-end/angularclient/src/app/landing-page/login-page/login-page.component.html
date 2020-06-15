@@ -1,60 +1,72 @@
 <div class="container">
-   <div class="form">
+  <form>
+    <div class="form">
       <div class="d-flex justify-content-center h-100">
-         <div class="card w-48 form_login">
-
-
-
-            <div class="input-group form-group">
-               <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-user"></i></span>
-               </div>
-               <input type="text" class="form-control" [(ngModel)]="username" placeholder="nome utente">
-
+        <div class="card w-48 form_login">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-
-
-            <div class="input-group form-group">
-               <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-key"></i></span>
-               </div>
-               <input type="password" class="form-control" [(ngModel)]="password" placeholder="password">
+            <input type="text" class="form-control" placeholder="nome utente" />
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="password"
+              autocomplete="on"
+            />
+          </div>
 
-            <div class="input-group form-group justify-content-center">
-               <button type="button" class="btn btn-info button_accedi" (click)="checkLogin()">Accedi</button>
-            </div>
-
-
-
-
-         </div>
+          <div class="input-group form-group justify-content-center">
+            <button
+              type="button"
+              class="btn btn-info button_accedi"
+              (click)="checkLogin()"
+            >
+              Accedi
+            </button>
+          </div>
+        </div>
       </div>
-   </div>
+    </div>
+  </form>
 </div>
 
 <div class="text-center">
+  <div class="text-center">
+    <div *ngIf="invalidLogin">
+      <label class="alert alert-danger">
+        Attenzione! Il nome utente o la password sono errati</label
+      >
+    </div>
+  </div>
 
-   <div class="text-center">
-      <div *ngIf="invalidLogin">
-         <label class="alert alert-danger"> Attenzione! Il nome utente o la password sono errati</label>
+  <label>Non hai un account?</label
+  ><a
+    type="link"
+    routerLink="/registrazione"
+    href="/registrazione"
+    (click)="aggiornaStringa('Effettua la registrazione')"
+    style="color: #140d79;"
+    >Registrati</a
+  >
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-right">
+        <button
+          type="button"
+          routerLink="/"
+          class="btn btn-info button_back"
+          (click)="updateData(bottoneLanding)"
+        >
+          Torna alla pagina precedente
+        </button>
       </div>
-
-   </div>
-
-   <label>Non hai un account?</label><a type="link" routerLink="/registrazione" href="/registrazione"
-      (click)="aggiornaStringa('Effettua la registrazione')" style="color:#140d79;">Registrati</a>
-
-
-   <div class="row">
-      <div class="col-md-12">
-         <div class="text-right">
-            <button type="button" routerLink="/" class="btn btn-info button_back"
-               (click)="updateData(bottoneLanding)">Torna
-               alla pagina precedente </button>
-         </div>
-      </div>
-   </div>
-
-
+    </div>
+  </div>
 </div>
