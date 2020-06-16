@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { MazzoResolverService } from './manoResolver.service';
+import { ManoResolverService } from './manoResolver.service';
 
-describe('Service: MazzoResolver', () => {
+describe('Service: ManoResolver', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MazzoResolverService]
+      providers: [ManoResolverService]
     });
   });
 
-  it('should ...', inject([MazzoResolverService], (service: MazzoResolverService) => {
+  it('should ...', inject([ManoResolverService], (service: ManoResolverService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.primas.angularspringbootdemo.entity.Carta;
+import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 import com.primas.angularspringbootdemo.entity.Giocatore;
 import com.primas.angularspringbootdemo.entity.GiocatoreBot;
 import com.primas.angularspringbootdemo.entity.GiocatoreUmano;
@@ -50,7 +51,7 @@ public class PartitaController implements ApplicationContextAware{
 	@GetMapping("/menu-di-gioco")
 	public ArrayList<Carta> gestisciMenu() {
 		//TODO: cambiare nome bean in "inizializzaPartita"
-		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("datiPartita");
+		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("inizializzaPartita");
 		Giocatore[] giocatori = new Giocatore[2];
 		giocatori[0] = new GiocatoreUmano();
 		giocatori[1] = new GiocatoreBot();
@@ -58,17 +59,27 @@ public class PartitaController implements ApplicationContextAware{
 		tow.getGiocatori()[0].setNome("Giovanni");
 		tow.getGiocatori()[1].setNome("STUPID BOT");
 		
-		int turnoIniziale = tow.stabilisciPrimoTurno();
-		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
-		int turnoCorrente = turnoIniziale;
-
-		giocatori[0].distribuisciCarte(tow.getMazzoCoperto());
-		giocatori[1].distribuisciCarte(tow.getMazzoCoperto());
+//		int turnoIniziale = tow.stabilisciPrimoTurno();
+//		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
+//		int turnoCorrente = turnoIniziale;
+		
+		tow.getGiocatori()[0].distribuisciCarte(tow.getMazzoCoperto());
+		tow.getGiocatori()[1].distribuisciCarte(tow.getMazzoCoperto());
 	
 		ArrayList<Carta> mano = tow.getGiocatori()[0].getMano();
+		System.out.println("Mano del giocatore "+mano);
 		return mano;
 		
 	}
+	
+	@GetMapping("/pescaDalMazzoCoperto")
+	public ArrayList<Carta> pesca(){
+		DatiPartitaInCorso dati= (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		return dati.pescaMazzoCoperto();
+	}
+	
+	
+	
 	
 //	@PostMapping("/nome")
 //	public void inizializzaGiocatore(@RequestBody String nomeGiocatore) {

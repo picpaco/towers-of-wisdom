@@ -23,4 +23,22 @@ public getMano(): Observable<Carta[]>{
     return observable; 
 }
 
+
+}
+
+@Injectable({
+  providedIn: "root",
+})
+export class MazzoCopertoService{
+
+  constructor(private http: HttpClient) {}
+
+  public getNuovaMano(): Observable<Carta[]>{
+    let username = "stefano89";
+    let password = "stefanorusso";
+    const headers = new HttpHeaders({Authorization: "Basic " + btoa(username + ":" + password)});
+      const observable = this.http.get<Carta[]>('http://localhost:8080/pescaDalMazzoCoperto',{headers});
+      return observable; 
+  }
+
 }

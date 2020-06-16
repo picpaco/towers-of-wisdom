@@ -2,37 +2,51 @@ package com.primas.angularspringbootdemo.entity;
 
 import java.util.ArrayList;
 
-public class DatiPartitaInCorso {
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
 
-	private Giocatore giocatore = new GiocatoreUmano();
-	private Giocatore avversario = new GiocatoreBot();
-	private MazzoScarti mazzoScarti;
+public class DatiPartitaInCorso implements ApplicationContextAware {
+
+	private ApplicationContext context;
+
+	private TorriDiSaggezza tds;
+
+	//private MazzoScarti mazzoScarti;
+	
+	
+	public DatiPartitaInCorso(TorriDiSaggezza tds) {
+		this.tds=tds;
+	}
+
 
 	public ArrayList<Carta> getManoGiocatore() {
-		return giocatore.getMano();
-	}
+		assert tds.getGiocatori()[0].getMano().size()>0 : "La mano del giocatore non ha nessuna carta";
 
-//	public int getPunteggioParziale(Carta carta) {
-//		Torre t = new Torre(carta.getSimbolo());
-//		return t.getValoreTorre();
-//	}
-//
-//	public int getPunteggioTotaleGiocatore() {
-//		return giocatore.getPunteggioTotale();
-//	}
-//
-//	public int getPunteggioTotaleAvversario() {
-//		return avversario.getPunteggioTotale();
-//	}
-
-	public MazzoScarti getMazzoScarti() {
-		return mazzoScarti;
+		return tds.getGiocatori()[0].getMano();
 	}
+	
+	public ArrayList<Carta> pescaMazzoCoperto() {
+		assert (tds.getGiocatori()[0].getMano().size()==3): "La mano del giocatore deve avere 3 carte in mano";
+		System.out.println("Mano del giocatore prima che lui peschi "+ tds.getGiocatori()[0].getMano());
+		MazzoCoperto mc= tds.getMazzoCoperto();
+		tds.getGiocatori()[0].getMano().add(mc.pescaCarta());
+		System.out.println("Mano del giocatore dopo che lui ha pescato "+ tds.getGiocatori()[0].getMano());
+		assert (tds.getGiocatori()[0].getMano().size()==4) : "La mano del giocatore ora deve essere di 4 carte dopo aver pescato dal mazzo coperto";
+		return tds.getGiocatori()[0].getMano();
+	}
+	
+	
+
+
+
+
 
 	@Override
-	public String toString() {
-		return "DatiPartitaInCorso [giocatore=" + giocatore + ", avversario=" + avversario + ", mazzoCoperto="
-				+ ", mazzoScarti=" + mazzoScarti + "]";
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		context=applicationContext;
+
 	}
 
 }

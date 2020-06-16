@@ -2,7 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta, CartaAdapter } from "../model/Carta";
- import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
+import { MazzoCopertoService } from '../service/mano.service';
+
+
 
 
 @Component({
@@ -12,10 +15,9 @@ import { Carta, CartaAdapter } from "../model/Carta";
 })
 export class MatchPageComponent implements OnInit {
   public player: Giocatore;
-  public mano: Carta[];
+  public mano: Carta[] = [];
   public mazzoCoperto: Carta[];
   public mazzoScarti: Carta[];
-  public manoT: Carta[] = [];
 
   public torriAvversario: Array<Carta[]> = [
     undefined,
@@ -30,50 +32,36 @@ export class MatchPageComponent implements OnInit {
     undefined,
   ]; /*Quadrato,Triangolo,Cerchio,Ancora */
 
-  manoProva: Carta[] = []; //cambiare nome a manoProva
 
-   constructor(
-     private activatedRoute: ActivatedRoute,
-     private cartaAdapter: CartaAdapter
-   ) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private cartaAdapter: CartaAdapter,
+    private mazzoCopertoService:MazzoCopertoService
+  ) { }
 
   // constructor(private cartaAdapter: CartaAdapter) {}
 
   ngOnInit() {
-     this.activatedRoute.data.subscribe((data: { manoProva: any}) => {
-      this.manoProva = data.manoProva;
-    });
-
-    this.stampaManoJson();
-    this.stampaManoTs();
+    this.inizializzaMano();
     this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
     this.inizializzaMazzoScarti();
     this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
     this.mostraMazzo();
-    
   }
 
-  public stampaManoJson() {
-    this.manoT = this.manoProva.map((item) => this.cartaAdapter.adapt(item));
-    this.mano = this.manoT;
-    console.log("--------Prova-Dati-Mano-json-------");
-    console.log(this.manoProva);
-    for (let index = 0; index < this.manoProva.length; index++) {
-      console.log(
-        this.manoProva[index]["simbolo"] + " " + this.manoProva[index]["valore"]
-      );
-    }
+  public inizializzaMano(): void {
+    let manoJson: Carta[];
+
+    this.activatedRoute.data.subscribe((data: { mano: any }) => {
+      manoJson = data.mano;
+    });
+
+    console.log("manoJson:")
+    console.log(manoJson);
+    this.mano = manoJson.map((item) => this.cartaAdapter.adapt(item));
   }
 
-  public stampaManoTs() {
-    console.log("--------Prova-Dati-Mano-ts-------");
-    console.log(this.manoT);
-    for (let index = 0; index < this.manoT.length; index++) {
-      console.log(
-        this.manoT[index].getSymbol() + " " + this.manoT[index].getValue()
-      );
-    }
-  }
+
 
   private getNumeroDellaTorre(torre: string): number {
     switch (torre) {
@@ -171,10 +159,10 @@ export class MatchPageComponent implements OnInit {
         $(document).ready(function () {
           $(
             ".carte-delle-torri-avversario:eq(" +
-              indexTorre +
-              ") div:eq(" +
-              index +
-              ")"
+            indexTorre +
+            ") div:eq(" +
+            index +
+            ")"
           )
             .css({ border: "1px solid white" })
             .addClass(classe)
@@ -424,22 +412,41 @@ export class MatchPageComponent implements OnInit {
     });
   }
 
+  // public peschaDalMazzoCoperto() {
+  //   /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
+  //   this.nascondiMessaggioDiAvviso();
+  //   this.deselezionaLaCartaSelezionata();
+  //   if (this.mano.length === 3) {
+  //     //per pescare dal mazzo coperto il mazzo deve avere sempre 3 carte
+  //     this.mano.unshift(this.mazzoCoperto.shift());
+  //     this.mostraMazzo();
+  //     console.log("é stata pescata una carta dal mazzo coperto!");
+  //     /*TO DO:animazione della carta che viene passata*/
+  //   } else {
+  //     this.mostraMessaggioDiAvviso(
+  //       "Devi prima giocare la tua carta per pescare"
+  //     );
+  //     this.deselezionaLaCartaSelezionata();
+  //   }
+  // }
+
   public peschaDalMazzoCoperto() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
-    this.nascondiMessaggioDiAvviso();
-    this.deselezionaLaCartaSelezionata();
-    if (this.mano.length === 3) {
-      //per pescare dal mazzo coperto il mazzo deve avere sempre 3 carte
-      this.mano.unshift(this.mazzoCoperto.shift());
-      this.mostraMazzo();
-      console.log("é stata pescata una carta dal mazzo coperto!");
-      /*TO DO:animazione della carta che viene passata*/
-    } else {
-      this.mostraMessaggioDiAvviso(
-        "Devi prima giocare la tua carta per pescare"
-      );
-      this.deselezionaLaCartaSelezionata();
-    }
+    let manoNuovaJson: Carta[];
+    // this.activatedRoute.data.subscribe((data: { nuovaMano: any }) => {
+    //   manoNuovaJson = data.nuovaMano;
+    // });
+    this.mazzoCopertoService.getNuovaMano().subscribe((data)=>{
+      manoNuovaJson=data;
+      console.log(data);
+
+    });
+
+    console.log("carta pescata dal mazzo coperto: ")
+    console.log(manoNuovaJson)
+    this.mano = undefined;
+    this.mano = manoNuovaJson.map((item) => this.cartaAdapter.adapt(item));
+    this.mostraMazzo();
   }
 
   public scartaOppurePescaDalMazzoScarti() {

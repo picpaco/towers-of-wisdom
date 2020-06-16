@@ -17,13 +17,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	DataSource dataSource;
-
-	@Autowired
-	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource);
-	}
+//	@Autowired
+//	DataSource dataSource;
+//
+//	@Autowired
+//	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.jdbcAuthentication().dataSource(dataSource);
+//	}
 
 //	@Bean
 //	CorsConfigurationSource corsConfigurationSource() {
