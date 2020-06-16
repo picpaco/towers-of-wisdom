@@ -25,7 +25,7 @@ public class BeansOfSpring {
 	
 	private TorriDiSaggezza tow = new TorriDiSaggezza();
 	private User user = new User();
-	private DatiPartitaInCorso dati= new DatiPartitaInCorso(tow);
+	private DatiPartitaInCorso dati= new DatiPartitaInCorso();
 	
 //	MazzoCoperto coperto = new MazzoCoperto();
 //	ArrayList<Carta> manoGiocatore = tow.getGiocatore().distribuisciCarte(coperto);
