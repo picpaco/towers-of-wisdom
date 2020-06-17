@@ -3,10 +3,8 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta, CartaAdapter } from "../model/Carta";
 import { ActivatedRoute } from "@angular/router";
-import { MazzoCopertoService } from '../service/mano.service';
-
-
-
+import { MazzoCopertoService, ManoService } from "../service/mano.service";
+import { asyncScheduler } from "rxjs";
 
 @Component({
   selector: "app-match-page",
@@ -32,12 +30,12 @@ export class MatchPageComponent implements OnInit {
     undefined,
   ]; /*Quadrato,Triangolo,Cerchio,Ancora */
 
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private cartaAdapter: CartaAdapter,
-    private mazzoCopertoService:MazzoCopertoService
-  ) { }
+    private mazzoCopertoService: MazzoCopertoService,
+    private manoService:ManoService
+  ) {}
 
   // constructor(private cartaAdapter: CartaAdapter) {}
 
@@ -56,12 +54,10 @@ export class MatchPageComponent implements OnInit {
       manoJson = data.mano;
     });
 
-    console.log("manoJson:")
-    console.log(manoJson);
+    // console.log("manoJson:");
+    // console.log(manoJson);
     this.mano = manoJson.map((item) => this.cartaAdapter.adapt(item));
   }
-
-
 
   private getNumeroDellaTorre(torre: string): number {
     switch (torre) {
@@ -159,10 +155,10 @@ export class MatchPageComponent implements OnInit {
         $(document).ready(function () {
           $(
             ".carte-delle-torri-avversario:eq(" +
-            indexTorre +
-            ") div:eq(" +
-            index +
-            ")"
+              indexTorre +
+              ") div:eq(" +
+              index +
+              ")"
           )
             .css({ border: "1px solid white" })
             .addClass(classe)
@@ -237,6 +233,7 @@ export class MatchPageComponent implements OnInit {
         } else {
           this.torriGiocatore[indexTorre].push(this.mano[indexI]);
         }
+        this.aggiornamento(this.mano[indexI]);
       } else {
         //le tre carte non selezionata saranno memorizzate nella copia
         if (copiaMazzo === undefined) {
@@ -252,6 +249,12 @@ export class MatchPageComponent implements OnInit {
     this.mano = copiaMazzo;
   }
 
+  public aggiornamento(carta:Carta):void{
+    console.log(carta);
+    this.manoService.addCartaSuTorre(carta).subscribe();
+    
+  }
+
   private mostraTorri(torre: string) {
     //questa funzione serve per calcolare il punteggio di ogni torre,gestire i markers e visualizzare la torre.
     this.calcolaPuntaggio();
@@ -260,7 +263,7 @@ export class MatchPageComponent implements OnInit {
   }
   private mostraTorre(torre: string) {
     let indexTorre = this.getNumeroDellaTorre(torre);
-    console.log("sono dentro mostraTorre" + indexTorre);
+    // console.log("sono dentro mostraTorre" + indexTorre);
     if (this.torriGiocatore[indexTorre] != undefined) {
       for (
         let index = 0;
@@ -430,23 +433,25 @@ export class MatchPageComponent implements OnInit {
   //   }
   // }
 
-  public peschaDalMazzoCoperto() {
+  public async pescaDalMazzoCoperto() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     let manoNuovaJson: Carta[];
-    // this.activatedRoute.data.subscribe((data: { nuovaMano: any }) => {
-    //   manoNuovaJson = data.nuovaMano;
-    // });
-    this.mazzoCopertoService.getNuovaMano().subscribe((data)=>{
-      manoNuovaJson=data;
-      console.log(data);
 
+    this.mazzoCopertoService.getNuovaMano().subscribe((data) => {
+      manoNuovaJson = data;
+      console.log(data);
     });
 
-    console.log("carta pescata dal mazzo coperto: ")
-    console.log(manoNuovaJson)
-    this.mano = undefined;
-    this.mano = manoNuovaJson.map((item) => this.cartaAdapter.adapt(item));
-    this.mostraMazzo();
+    let func = () => {
+      console.log("carta pescata dal mazzo coperto: ");
+      // console.log(manoNuovaJson);
+      this.mano = undefined;
+      this.mano = manoNuovaJson.map((item) => this.cartaAdapter.adapt(item));
+      this.mostraMazzo();
+    };
+    asyncScheduler.schedule(func, 2000);
+
+   
   }
 
   public scartaOppurePescaDalMazzoScarti() {

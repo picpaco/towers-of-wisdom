@@ -1,26 +1,15 @@
 package com.primas.angularspringbootdemo;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
-import com.primas.angularspringbootdemo.entity.Giocatore;
-import com.primas.angularspringbootdemo.entity.GiocatoreBot;
-import com.primas.angularspringbootdemo.entity.GiocatoreUmano;
-import com.primas.angularspringbootdemo.entity.Mazzo;
-import com.primas.angularspringbootdemo.entity.MazzoCoperto;
 import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
 import com.primas.angularspringbootdemo.entity.User;
 
 
 @Configuration
-public class BeansOfSpring {
+public class ConfigurazionePartita {
 
 	
 	private TorriDiSaggezza tow = new TorriDiSaggezza();
@@ -44,7 +33,7 @@ public class BeansOfSpring {
 	//TODO: cambiare nome Bean in "inizializzaPartita"
 	@Bean
 	public TorriDiSaggezza inizializzaPartita() {
-		System.out.println("sono dentro al metodo inizializzaPartita della classe BeansOfSpring");
+		System.out.println("sono dentro al metodo inizializzaPartita della classe ConfigurazionePartita");
 
 		return tow;
 	}

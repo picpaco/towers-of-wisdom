@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 import com.primas.angularspringbootdemo.entity.Giocatore;
@@ -71,12 +72,21 @@ public class PartitaController implements ApplicationContextAware{
 		return mano;
 		
 	}
-	
+	//deve restituire una carta 
 	@GetMapping("/pescaDalMazzoCoperto")
 	public ArrayList<Carta> pesca(){
 		DatiPartitaInCorso dati= (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		return dati.pescaMazzoCoperto();
 	}
+	
+	@ResponseBody
+	@PostMapping(path="/giocaSuTorre")	
+	public void cartaGiocataSuTorre(@RequestBody String carta) {
+		System.out.println(carta);
+		Carta data = new Gson().fromJson(carta, Carta.class);
+		System.out.println("Carta ricevuta: "+data);
+	}
+	
 	
 	
 	

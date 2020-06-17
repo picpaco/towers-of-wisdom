@@ -22,19 +22,3 @@ export class ManoResolverService implements Resolve<any> {
 
 }
 
-@Injectable({
-  providedIn: "root",
-})
-export class MazzoCopertoResolverService implements Resolve<any> {
-
-  constructor(private mazzoCopertoService: MazzoCopertoService) {}
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.mazzoCopertoService.getNuovaMano().pipe(
-      catchError((error) => {
-        return empty();
-      })
-    );
-  }
-
-}

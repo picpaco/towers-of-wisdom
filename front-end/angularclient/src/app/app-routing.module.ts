@@ -14,7 +14,7 @@ import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.co
 import { FormuserComponent } from './landing-page/formuser/formuser.component';
 import { FormgiocatoreComponent } from './formgiocatore/formgiocatore.component';
 import { ListautentiComponent } from './listautenti/listautenti.component';
-import { ManoResolverService, MazzoCopertoResolverService } from './service/manoResolver.service';
+import { ManoResolverService } from './service/manoResolver.service';
 
 
 
