@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.naming.factory.BeanFactory;
+import org.json.JSONObject;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -79,13 +80,16 @@ public class PartitaController implements ApplicationContextAware{
 		return dati.pescaMazzoCoperto();
 	}
 	
-	@ResponseBody
 	@PostMapping(path="/giocaSuTorre")	
-	public void cartaGiocataSuTorre(@RequestBody String carta) {
+	public String cartaGiocataSuTorre(@RequestBody String carta) {
 		System.out.println(carta);
-		Carta data = new Gson().fromJson(carta, Carta.class);
-		System.out.println("Carta ricevuta: "+data);
+		DatiPartitaInCorso datiPartita=(DatiPartitaInCorso) context.getBean("getDatiPartita");
+		datiPartita.creaCartaDaJson(carta);
+		
+		return carta;
 	}
+	
+
 	
 	
 	

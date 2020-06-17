@@ -250,8 +250,14 @@ export class MatchPageComponent implements OnInit {
   }
 
   public aggiornamento(carta:Carta):void{
-    console.log(carta);
-    this.manoService.addCartaSuTorre(carta).subscribe();
+
+    let func = () => {
+      console.log(carta);
+      this.manoService.addCartaSuTorre(carta).subscribe();
+    };
+    asyncScheduler.schedule(func, 150);
+
+  
     
   }
 
@@ -449,7 +455,7 @@ export class MatchPageComponent implements OnInit {
       this.mano = manoNuovaJson.map((item) => this.cartaAdapter.adapt(item));
       this.mostraMazzo();
     };
-    asyncScheduler.schedule(func, 2000);
+    asyncScheduler.schedule(func, 500);
 
    
   }

@@ -27,8 +27,6 @@ export class ManoService {
     const headers = new HttpHeaders({
       Authorization: "Basic " + btoa(username + ":" + password),"Content-Type": "application/json"
     });
-
-    //"Content-Type": "application/json",
     return this.http.post<Carta>("http://localhost:8080/giocaSuTorre",JSON.stringify(carta), {
       headers,
     });
