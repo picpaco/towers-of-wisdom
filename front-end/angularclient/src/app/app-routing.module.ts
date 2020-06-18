@@ -14,7 +14,9 @@ import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.co
 import { FormuserComponent } from './landing-page/formuser/formuser.component';
 import { FormgiocatoreComponent } from './formgiocatore/formgiocatore.component';
 import { ListautentiComponent } from './listautenti/listautenti.component';
-import { MazzoResolverService } from './service/manoResolver.service';
+import { ManoResolverService } from './service/manoResolver.service';
+
+
 
 
 
@@ -46,9 +48,9 @@ const routes: Routes = [
 
   { path: 'regole', component: RegoleGiocoComponent },
 
-   { path: 'match', component: MatchPageComponent, resolve: { manoProva: MazzoResolverService} },
+   { path: 'match', component: MatchPageComponent, resolve: { mano: ManoResolverService }},
 
-  // { path: 'match', component: MatchPageComponent },
+  //  { path: 'match', component: MatchPageComponent},
 
   { path: 'risultati-finali', component: LeaderboardPageComponent},
  
@@ -61,6 +63,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes), ],
   exports: [RouterModule],
+  providers:[ManoResolverService]
 })
 
 
@@ -79,18 +82,3 @@ export const routingComponents = [ListagiocatoriComponent,
                                   FormuserComponent,
                                   ListautentiComponent
                                   ]
-
-
-                                  
-// const routes: Routes = [
-//   { path: 'users', component: UsersComponent, resolve: { users: UserResolverService } }
-//   ];
-//   @NgModule({
-//     imports: [
-//     CommonModule,
-//     FormsModule,
-//     HttpClientModule,
-//     RouterModule.forRoot(routes)],
-//     exports: [RouterModule]
-//   })
-//   export class AppRoutingModule { }

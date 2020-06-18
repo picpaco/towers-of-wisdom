@@ -36,5 +36,6 @@ public class MazzoScarti extends Mazzo {
 			throw new IllegalStateException("La carta non è stata pescata correttamente");
 		}
 	}
+	
 
 }
