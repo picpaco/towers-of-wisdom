@@ -5,11 +5,18 @@
 
         <p class="font_title"><img class="allineamento_img1" src="assets/images/stellemarine.png"> {{title}} <img
             class="allineamento_img2" src="assets/images/stellemarine.png"></p>
-
+            <div class="img" align=center>
+              <img src = "../../assets/images/anchor-ancora.png" height="100" width="150">
+              <img src="../../assets/images/fish-cerchio.png" height="100" width="150">
+              <img src="../../assets/images/octo-quadrato.png" height="100" width="150">
+              <img src="../../assets/images/stella-triangolo.png" height="100" width="150">
+            </div>
       </div>
     </div>
+    
   </section>
 
+  <br>
 
   <section id="introduzione">
     <div class="row">
@@ -36,10 +43,16 @@
   
   
  
-  
 
   <section id='menu'>
-    
+    <script>
+      function play() {
+        var audio = document.getElementById("card");
+        audio.play();
+      }
+    </script>
+    <audio id="splash" src="../../assets/music/splash.wav"></audio>
+    <audio id="splash" src="../../assets/music/splash.ogg"></audio>
 
 
     <div class="row">
@@ -47,7 +60,7 @@
         <ul class="text-center list-inline py-3">
           <li class="list-inline-item">
 
-            <button routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info  mr-4 button_menu " (click)="nascondi()"
+            <button onclick="javascript: document.getElementById('splash').play();" routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info  mr-4 button_menu " (click)="nascondi()"
                >
               <div class="row justify-content-center py-4">Entra</div>
               <div class="bolla1 list-inline-item">
@@ -69,7 +82,7 @@
           </li>
 
 
-              <li class="list-inline-item"><button routerLink="/regole" *ngIf="bottoneLanding"
+              <li class="list-inline-item"><button onclick="javascript: document.getElementById('splash').play();" routerLink="/regole" *ngIf="bottoneLanding"
                   class="btn btn-info button_menu mr-4">
                   <div class="row justify-content-center">Regole</div>
                   <div class="row justify-content-center">del gioco</div>
@@ -89,7 +102,7 @@
                 </button>
 
               </li>
-              <li class="list-inline-item"><button routerLink="/demo" *ngIf="bottoneLanding"
+              <li class="list-inline-item"><button onclick="javascript: document.getElementById('splash').play();" routerLink="/demo" *ngIf="bottoneLanding"
                   class="btn btn-info button_menu" >
                   <div class="row justify-content-center py-4">Demo</div>
                   <div class="bolla1 list-inline-item">

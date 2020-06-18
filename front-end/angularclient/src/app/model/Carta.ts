@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Adapter } from "./Adapter";
+import { Url } from 'url';
 
 export class Carta {
   private selected: boolean;
@@ -24,6 +25,9 @@ export class Carta {
   public getInitial(): string {
     return this.symbol.slice(0, 1);
   }
+
+
+  
 
   public setId(id: number) {
     this.id = id;

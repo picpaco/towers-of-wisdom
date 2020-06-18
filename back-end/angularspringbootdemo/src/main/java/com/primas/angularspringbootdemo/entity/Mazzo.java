@@ -23,5 +23,9 @@ public abstract class Mazzo {
 	public int dimensione() {
 		return listaCarte.size();
 	}
+	
+	public boolean contiene(Carta carta) {
+		return listaCarte.contains(carta);
+	}
 
 }

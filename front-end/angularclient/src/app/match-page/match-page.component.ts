@@ -259,7 +259,16 @@ export class MatchPageComponent implements OnInit {
 
     let func = () => {
       console.log(carta);
-      this.manoService.giocaCartaSuTorre(carta).subscribe();
+      this.manoService.addCartaSuTorre(carta).subscribe();
+    };
+    asyncScheduler.schedule(func, 150);
+  }
+
+
+  public scarto(carta:Carta):void{
+    let func = () => {
+      console.log(carta);
+      this.manoService.addCartaMazzoScarti(carta).subscribe();
     };
     asyncScheduler.schedule(func, 150);
   }
@@ -652,6 +661,7 @@ export class MatchPageComponent implements OnInit {
         if (this.mano[index].isSelected()) {
           //se questa carta è selezionata viene scartata
           this.mano[index].setSelected(false);
+          this.scarto(this.mano[index]);
           if (this.mazzoScarti === undefined) {
             this.mazzoScarti = [this.mano[index]];
           } else {
@@ -767,4 +777,6 @@ export class MatchPageComponent implements OnInit {
       /*TO DO:animazione del messaggio*/
     });
   }
+
+
 }

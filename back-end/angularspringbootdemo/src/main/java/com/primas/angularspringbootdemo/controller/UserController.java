@@ -51,7 +51,6 @@ public class UserController implements ApplicationContextAware {
 
 	@GetMapping("/validateLogin")
 	public User validateLogin(HttpServletRequest request, HttpServletResponse response) {
-		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("inizializzaPartita");
 		Principal principal = request.getUserPrincipal();
 		tow.setNomeGiocatore(principal.getName());
 		return new User("stefano89");
