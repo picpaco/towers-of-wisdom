@@ -26,7 +26,7 @@ public class TorriDiSaggezza {
 		this.nomeAvversario = nomeAvversario;
 	}
 
-	public String getNomeGiocatore() {
+	String getNomeGiocatore() {
 		return nomeGiocatore;
 	}
 
