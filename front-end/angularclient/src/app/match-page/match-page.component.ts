@@ -704,7 +704,7 @@ export class MatchPageComponent implements OnInit {
 
     let func = () => {
       console.log(carta);
-      this.manoService.scartaCarta(carta).subscribe();
+      this.manoService.addCartaMazzoScarti(carta).subscribe();
     };
     asyncScheduler.schedule(func, 150);
   }
