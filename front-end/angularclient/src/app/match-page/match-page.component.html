@@ -7,15 +7,39 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
     <link href="match-page.component.css" type="text/css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body>    
+    <br>
+    <div id="music">
+      <audio id="water" autoplay>
+        <source src="../../assets/music/water.wav" type="audio/mp3" />
+        <source src="../../assets/music/water.ogg" type="audio/ogg" />
+      </audio>
+      <audio id="audio" autoplay loop>
+        <source
+          src="../../assets/music/underwater-music.mp3"
+          type="audio/mp3"
+        />
+        <source
+          src="../../assets/music/underwater-music.ogg"
+          type="audio/ogg"
+        />
+      </audio>
+      <div align="right">
+        <img
+          class="mus"
+          src="../../assets/music/octomus.png"
+          onclick="document.getElementById('audio').muted=!document.getElementById('audio').muted"
+        />
+      </div>
+    </div>
+
     <p class="title">Julian <span>vs</span> Bot</p>
 
     <div class="panelli">
-<!-- 
+      <!-- 
       <div class="bolla" style=" left: 126mm;">
         <div><div></div></div>
       </div>
@@ -64,7 +88,10 @@
             ></div>
           </div>
 
-          <div class="carte-delle-torri" (click)="giocaSullaTorre('Quadrato')">
+          <div
+            class="carte-delle-torri"
+            (click)="giocaSullaTorre('Quadrato')"
+          >
             <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div>
             <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div>
             <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div>
@@ -84,10 +111,10 @@
                 width: 15mm;
                 height: 24mm;
               "
-            ></div>
+            >
           </div>
         </div>
-
+        </div>
         <div class="funghi-del-mare">
           <div class="carte-delle-torri-avversario">
             <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div>
@@ -108,7 +135,10 @@
             ></div>
           </div>
 
-          <div class="carte-delle-torri" (click)="giocaSullaTorre('Triangolo')">
+          <div
+            class="carte-delle-torri"
+            (click)="giocaSullaTorre('Triangolo')"
+          >
             <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div>
             <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div>
             <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div>
@@ -151,7 +181,10 @@
               style="right: 40mm; top: 42mm; transform: rotate(-2deg);"
             ></div>
           </div>
-          <div class="carte-delle-torri" (click)="giocaSullaTorre('Cerchio')">
+          <div
+            class="carte-delle-torri"
+            (click)="giocaSullaTorre('Cerchio')"
+          >
             <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div>
             <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div>
             <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div>
@@ -194,7 +227,10 @@
               style="right: 40mm; top: 42mm; transform: rotate(-2deg);"
             ></div>
           </div>
-          <div class="carte-delle-torri" (click)="giocaSullaTorre('Ancora')">
+          <div
+            class="carte-delle-torri"
+            (click)="giocaSullaTorre('Ancora')"
+          >
             <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div>
             <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div>
             <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div>
@@ -220,7 +256,11 @@
       </div>
 
       <div class="pannello-scarti">
-        <div class="mazzo-scarti" (click)="scartaOppurePescaDalMazzoScarti()">
+        <div
+          class="mazzo-scarti"
+          (click)="scartaOppurePescaDalMazzoScarti()"
+          onclick="javascript: document.getElementById('card').play();"
+        >
           <div>
             <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
               {{ mazzoScarti[0].getValue() }}
@@ -231,7 +271,11 @@
 
       <div class="pannello-coperte">
         <div class="carte-rimaste">{{ this.mazzoCoperto.length }}</div>
-        <div class="mazzo-coperte" (click)="peschaDalMazzoCoperto()">
+        <div
+          class="mazzo-coperte"
+          (click)="peschaDalMazzoCoperto()"
+          onclick="javascript: document.getElementById('card').play();"
+        >
           <div *ngIf="mazzoCoperto.length > 0" class="Carta-misteriosa">
             <div
               *ngIf="mazzoCoperto.length > 1"
@@ -266,7 +310,14 @@
           (click)="selezionaEPescaCartaDalMazzoScarti(item.getId())"
         ></div>
       </div>
-
+      <script>
+        function play() {
+          var audio = document.getElementById("card");
+          audio.play();
+        }
+      </script>
+      <audio id="card" src="../../assets/music/card.wav"></audio>
+      <audio id="card" src="../../assets/music/card.ogg"></audio>
       <div class="pannello-delle-carte">
         <div class="pannello-del-messaggio-di-avviso">
           <div class="messaggioDiAvviso">
@@ -277,14 +328,25 @@
           <div
             *ngFor="let carta of this.mano"
             (click)="selezionaCarta(carta.getId())"
+            onclick="javascript: document.getElementById('card').play();"
           >
-            <p>{{ carta.getValue() }}</p>
+            <p>{{ carta.getValue() }}
+            {{ carta.getInitial() }}  </p>
           </div>
+
         </div>
       </div>
-
+      <script>
+        function play() {
+          var audio = document.getElementById("btn");
+          audio.play();
+        }
+      </script>
+      <audio id="btn" src="../../assets/music/glug.wav"></audio>
+      <audio id="btn" src="../../assets/music/glug.ogg"></audio>
       <div class="pannello-dei-tasti">
         <button
+          onclick="javascript: document.getElementById('btn').play();"
           data-tooltip="Scrivi messaggio"
           type="button"
           style="border-top-right-radius: 2mm;"
@@ -293,13 +355,22 @@
           <i class="fas fa-comment-dots p-2" style="font-size: 10mm;"></i>
         </button>
 
-        <button data-tooltip="Regole di gioco" type="button">
+        <button
+          onclick="javascript: document.getElementById('btn').play();"
+          data-tooltip="Regole di gioco"
+          type="button"
+        >
           <i class="fas fa-book p-2" style="font-size: 10mm;"></i>
         </button>
-        <button data-tooltip="Opzioni" type="button">
+        <button
+          onclick="javascript: document.getElementById('btn').play();"
+          data-tooltip="Opzioni"
+          type="button"
+        >
           <i class="fas fa-cog p-2" style="font-size: 10mm;"></i>
         </button>
         <button
+          onclick="javascript: document.getElementById('btn').play();"
           data-tooltip="Abbandona partita"
           type="button"
           style="border-bottom-right-radius: 2mm;"
@@ -308,24 +379,27 @@
         </button>
       </div>
 
- 
       <div id="0" class="punteggio" style="right: 100mm;">
-        0     <div class="bolla">
+        0
+        <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
       <div id="1" class="punteggio" style="right: 45mm; bottom: 265mm;">
-        0     <div class="bolla">
+        0
+        <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
       <div id="2" class="punteggio" style="left: 10mm; bottom: 275mm;">
-        0     <div class="bolla">
+        0
+        <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
       <div id="3-" class="punteggio" style="left: 65mm; bottom: 285mm;">
-        0     <div class="bolla">
+        0
+        <div class="bolla">
           <div><div></div></div>
         </div>
       </div>

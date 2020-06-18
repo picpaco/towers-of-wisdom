@@ -692,4 +692,6 @@ export class MatchPageComponent implements OnInit {
       /*TO DO:animazione del messaggio*/
     });
   }
+
+
 }

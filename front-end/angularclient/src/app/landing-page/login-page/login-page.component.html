@@ -21,8 +21,17 @@
             />
           </div>
 
+          <script>
+            function play() {
+              var audio = document.getElementById("glug");
+              audio.play();
+            }
+          </script>
+          <audio id="glug" src="../../assets/music/glug.wav"></audio>
+          <audio id="glug" src="../../assets/music/glug.ogg"></audio>
+
           <div class="input-group form-group justify-content-center">
-            <button
+            <button onclick="javascript: document.getElementById('glug').play();"
               type="button"
               class="btn btn-info button_accedi"
               (click)="checkLogin()"
@@ -46,7 +55,7 @@
   </div>
 
   <label>Non hai un account?</label
-  ><a
+  ><a onclick="javascript: document.getElementById('glug').play();"
     type="link"
     routerLink="/registrazione"
     href="/registrazione"
@@ -58,7 +67,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="text-right">
-        <button
+        <button onclick="javascript: document.getElementById('glug').play();"
           type="button"
           routerLink="/"
           class="btn btn-info button_back"
