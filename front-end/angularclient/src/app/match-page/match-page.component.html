@@ -242,13 +242,13 @@
       </div>
 
       <div class="pannello-coperte">
-        <div class="carte-rimaste">{{ this.mazzoCoperto.length }}</div>
+        <div class="carte-rimaste">{{ this.carteRimanentiDaPescare }}</div>
         <div
           class="mazzo-coperte"
           (click)="pescaDalMazzoCoperto()"
           onclick="javascript: document.getElementById('card').play();"
         >
-          <div *ngIf="mazzoCoperto.length > 0" class="Carta-misteriosa">
+          <div *ngIf="this.carteRimanentiDaPescare > 0" class="Carta-misteriosa">
             <div
               *ngIf="this.carteRimanentiDaPescare > 1"
               class="Carta-misteriosa"

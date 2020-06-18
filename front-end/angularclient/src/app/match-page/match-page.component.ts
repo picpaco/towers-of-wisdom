@@ -679,7 +679,7 @@ export class MatchPageComponent implements OnInit {
               this.mazzoScarti.unshift(this.mano[index]);
             }
           }
-          this.scartaUnaCartaBackEnd(this.mano[index]); //si fa un post per aggiornare il backend
+          //this.scartaUnaCartaBackEnd(this.mano[index]); //si fa un post per aggiornare il backend
         } else {
           if (copiaMazzo === undefined) {
             copiaMazzo = [this.mano[index]];
@@ -699,15 +699,15 @@ export class MatchPageComponent implements OnInit {
     }
   }
 
-  public scartaUnaCartaBackEnd(carta: Carta): void {
-    //si fa un post per aggiornare il backend
+  // public scartaUnaCartaBackEnd(carta: Carta): void {
+  //   //si fa un post per aggiornare il backend
 
-    let func = () => {
-      console.log(carta);
-      this.manoService.addCartaMazzoScarti(carta).subscribe();
-    };
-    asyncScheduler.schedule(func, 150);
-  }
+  //   let func = () => {
+  //     console.log(carta);
+  //     this.manoService.addCartaMazzoScarti(carta).subscribe();
+  //   };
+  //   asyncScheduler.schedule(func, 150);
+  // }
 
   private isSelectedUnaCartaDalMazzo(): boolean {
     let selezionato = false;
