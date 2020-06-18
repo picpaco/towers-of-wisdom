@@ -3,8 +3,7 @@ package com.primas.angularspringbootdemo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.naming.factory.BeanFactory;
-import org.json.JSONObject;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -12,10 +11,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
+
 import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 import com.primas.angularspringbootdemo.entity.Giocatore;
@@ -87,6 +86,15 @@ public class PartitaController implements ApplicationContextAware{
 		datiPartita.creaCartaDaJson(carta);
 		
 		return carta;
+	}
+	
+	@PostMapping(path="/scartaCarta")	
+	public void cartaDaScartareDallaMano(@RequestBody String carta) {
+		System.out.println(carta);
+		DatiPartitaInCorso datiPartita=(DatiPartitaInCorso) context.getBean("getDatiPartita");
+		Carta cartaDaScartare=datiPartita.creaCartaDaJson(carta);
+		datiPartita.aggiungiCartaAlMazzoScarti(cartaDaScartare);
+		
 	}
 	
 

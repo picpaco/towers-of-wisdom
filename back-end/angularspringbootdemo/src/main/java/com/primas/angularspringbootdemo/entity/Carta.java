@@ -24,4 +24,32 @@ public class Carta {
 		return "[" + simbolo + " " + valore + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((simbolo == null) ? 0 : simbolo.hashCode());
+		result = prime * result + ((valore == null) ? 0 : valore.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Carta other = (Carta) obj;
+		if (simbolo != other.simbolo)
+			return false;
+		if (valore != other.valore)
+			return false;
+		return true;
+	}
+	
+	
+	
+
 }

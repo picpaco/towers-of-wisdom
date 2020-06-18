@@ -256,9 +256,15 @@ export class MatchPageComponent implements OnInit {
       this.manoService.addCartaSuTorre(carta).subscribe();
     };
     asyncScheduler.schedule(func, 150);
+  }
 
-  
-    
+
+  public scarto(carta:Carta):void{
+    let func = () => {
+      console.log(carta);
+      this.manoService.addCartaMazzoScarti(carta).subscribe();
+    };
+    asyncScheduler.schedule(func, 150);
   }
 
   private mostraTorri(torre: string) {
@@ -607,6 +613,7 @@ export class MatchPageComponent implements OnInit {
       for (let index = 0; index < this.mano.length; index++) {
         if (this.mano[index].isSelected()) {
           this.mano[index].setSelected(false);
+          this.scarto(this.mano[index]);
           if (this.mazzoScarti === undefined) {
             this.mazzoScarti = [this.mano[index]];
           } else {
