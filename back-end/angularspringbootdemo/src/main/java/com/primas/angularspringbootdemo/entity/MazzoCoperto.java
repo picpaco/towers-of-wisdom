@@ -8,6 +8,7 @@ public class MazzoCoperto extends Mazzo {
 	public MazzoCoperto() {
 		for (Simbolo s: Simbolo.values()) {
 			for (Valore f: Valore.values()) {
+		
 				getListaCarte().add(new Carta(f, s));
 			}
 		}

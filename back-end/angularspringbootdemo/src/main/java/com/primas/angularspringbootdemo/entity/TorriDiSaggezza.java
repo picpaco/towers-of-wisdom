@@ -10,11 +10,30 @@ public class TorriDiSaggezza {
 	private MazzoCoperto mazzoCoperto = new MazzoCoperto();
 	private MazzoScarti mazzoScarti = new MazzoScarti();
 	private Giocatore giocatoreCorrente;
+	private String nomeGiocatore;
+	private String nomeAvversario="BOT";//dipenderà quale modalità scegle il giocatore
+	
 
 	public TorriDiSaggezza() {
 
 	}
 	
+	public void setNomeGiocatore(String nomeGiocatore) {
+		this.nomeGiocatore = nomeGiocatore;
+	}
+
+	public void setNomeAvversario(String nomeAvversario) {
+		this.nomeAvversario = nomeAvversario;
+	}
+
+	public String getNomeGiocatore() {
+		return nomeGiocatore;
+	}
+
+	public String getNomeAvversario() {
+		return nomeAvversario;
+	}
+
 	public Giocatore[] getGiocatori() {
 		return giocatori;
 	}
@@ -44,17 +63,6 @@ public class TorriDiSaggezza {
 		return giocatoreCorrente;
 	}
 	
-	private String getNomeGiocatore() {
-		// il nome del giocatore verrà dal login
-		//TODO prendi dal front-end il nome del giocatore
-		return "Marco";
-	}
-	
-	private String getNomeAvversario() {
-		
-		//TODO prendi dal front-end il nome del bot
-		return "nome del bot";
-	}
 	
 	
 

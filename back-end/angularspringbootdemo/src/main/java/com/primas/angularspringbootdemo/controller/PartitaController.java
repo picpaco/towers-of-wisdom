@@ -27,10 +27,9 @@ import com.primas.angularspringbootdemo.repository.RepositoryPartita;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class PartitaController implements ApplicationContextAware{
+public class PartitaController implements ApplicationContextAware {
 	private final RepositoryPartita repositoryPartita;
 	private ApplicationContext context;
-	
 
 	public PartitaController(RepositoryPartita repo) {
 		this.repositoryPartita = repo;
@@ -39,76 +38,69 @@ public class PartitaController implements ApplicationContextAware{
 	@GetMapping("/giocatori")
 	public List<Partita> getGiocatori() {
 		return (List<Partita>) repositoryPartita.findAll();
-		//serve per visualizzare la leaderbord 
+		// serve per visualizzare la leaderbord
 	}
 
 	@PostMapping("/giocatori")
 	public void addUser(@RequestBody Partita partita) {
 		repositoryPartita.save(partita);
-		//quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
+		// quando il front-end effettua un post mi passa come parametro un giocatore da
+		// aggiungere al database
 	}
-	
-	
-	//TODO dovrebbe ricevere coem parametro 2 stringe per i nomei dei giocatori
-	@GetMapping("/menu-di-gioco")
+
+	@GetMapping("/inizia-partita")
 	public ArrayList<Carta> gestisciMenu() {
-		//TODO: cambiare nome bean in "inizializzaPartita"
-		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("inizializzaPartita");
-		Giocatore[] giocatori = new Giocatore[2];
-		giocatori[0] = new GiocatoreUmano();
-		giocatori[1] = new GiocatoreBot();
-		tow.setGiocatori(giocatori);
-		tow.getGiocatori()[0].setNome("Giovanni");
-		tow.getGiocatori()[1].setNome("STUPID BOT");
-		
-//		int turnoIniziale = tow.stabilisciPrimoTurno();
-//		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
-//		int turnoCorrente = turnoIniziale;
-		
-		tow.getGiocatori()[0].distribuisciCarte(tow.getMazzoCoperto());
-		tow.getGiocatori()[1].distribuisciCarte(tow.getMazzoCoperto());
-	
-		ArrayList<Carta> mano = tow.getGiocatori()[0].getMano();
-		System.out.println("Mano del giocatore "+mano);
-		return mano;
-		
+		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		return dati.inizializzaPartita();//crea i due giocatori,distribuisce le carte e ritorna la mano del giocatore
 	}
-	//deve restituire una carta 
+
+	// deve restituire una carta
 	@GetMapping("/pescaDalMazzoCoperto")
-	public ArrayList<Carta> pesca(){
-		DatiPartitaInCorso dati= (DatiPartitaInCorso) context.getBean("getDatiPartita");
-		return dati.pescaMazzoCoperto();
+	public ArrayList<Carta> pesca() {
+		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		return dati.pescaMazzoCoperto();//resituisce la mano del giocatore assieme alla carta pescata dal mazzo coperto
 	}
-	
-	@PostMapping(path="/giocaSuTorre")	
+
+	@PostMapping(path = "/giocaSuTorre")
 	public String cartaGiocataSuTorre(@RequestBody String carta) {
-		System.out.println(carta);
-		DatiPartitaInCorso datiPartita=(DatiPartitaInCorso) context.getBean("getDatiPartita");
-		datiPartita.creaCartaDaJson(carta);
-		
+		System.out.println("\r viene giocata una carta");
+		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		Carta cartaGiocata=datiPartita.cercaCartaGiocata(carta);
+		datiPartita.giocaSuTorre(cartaGiocata);
 		return carta;
 	}
 	
-
+	@PostMapping(path = "/scartaLaCarta")
+	public String cartaScartata(@RequestBody String carta) {
+		System.out.println("\r viene scartata una carta");
+		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		Carta cartaScartata=datiPartita.cercaCartaGiocata(carta);
+		datiPartita.scartaCarta(cartaScartata);
+		return carta;
+	}
 	
+	@PostMapping(path = "/pescaDalMazzoScarti")
+	public String pescaDalMazzoScarti(@RequestBody String carta) {
+		System.out.println("\r viene pescata una carta dal mazzo scarti");
+		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		Carta cartaPescataDalMazzoScarti=datiPartita.cercaCartaDaPescareNelMazzoScarti(carta);
+		return carta;
+	}
 	
-	
-	
-	
-//	@PostMapping("/nome")
-//	public void inizializzaGiocatore(@RequestBody String nomeGiocatore) {
-//		String nome = nomeGiocatore;
-//		System.out.println("Nome giocatore inviato: " + nome);
-//		
-//	}
+	@GetMapping(path = "/pescaDalMazzoScarti")
+	public ArrayList<Carta> pescaMazzoScarti(@RequestBody String carta) {
+		System.out.println("\r viene mandata la mano del giocatore");
+		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("inizializzaPartita");
+		return tow.getGiocatori()[0].getMano();
+	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		
+
 		context = applicationContext;
 	}
 
-	//aggiungiere una get con parametro giocatore che restituisce le info sul singolo giocatore
-	
+	// aggiungiere una get con parametro giocatore che restituisce le info sul
+	// singolo giocatore
 
 }

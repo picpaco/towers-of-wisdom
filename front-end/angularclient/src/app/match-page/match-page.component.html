@@ -15,34 +15,6 @@
     <p class="title">Julian <span>vs</span> Bot</p>
 
     <div class="panelli">
-<!-- 
-      <div class="bolla" style=" left: 126mm;">
-        <div><div></div></div>
-      </div>
-      <div id="1" class="punteggio" style=" left: 127mm;">
-        0
-        <div>
-          <div><div></div></div>
-        </div>
-      </div>
-      <div class="bolla" style=" left: 181mm;">
-        <div><div></div></div>
-      </div>
-      <div id="2" class="punteggio" style=" left: 182mm;">
-        0
-        <div>
-          <div><div></div></div>
-        </div>
-      </div>
-      <div class="bolla" style=" left: 236mm;">
-        <div><div></div></div>
-      </div>
-      <div id="3" class="punteggio" style=" left: 237mm;">
-        0
-        <div>
-          <div><div></div></div>
-        </div>
-      </div> -->
       <div class="ambienti">
         <div class="distese-di-sabbia">
           <div class="carte-delle-torri-avversario">
@@ -230,26 +202,26 @@
       </div>
 
       <div class="pannello-coperte">
-        <div class="carte-rimaste">{{ this.mazzoCoperto.length }}</div>
+        <div class="carte-rimaste">{{ this.carteRimanentiDaPescare }}</div>
         <div class="mazzo-coperte" (click)="pescaDalMazzoCoperto()">
-          <div *ngIf="mazzoCoperto.length > 0" class="Carta-misteriosa">
+          <div *ngIf="this.carteRimanentiDaPescare > 0" class="Carta-misteriosa">
             <div
-              *ngIf="mazzoCoperto.length > 1"
+              *ngIf="this.carteRimanentiDaPescare > 1"
               class="Carta-misteriosa"
               style="position: relative; top: 1mm; left: 1mm;"
             >
               <div
-                *ngIf="mazzoCoperto.length > 2"
+                *ngIf="this.carteRimanentiDaPescare > 2"
                 class="Carta-misteriosa"
                 style="position: relative; top: 1mm; left: 1mm;"
               >
                 <div
-                  *ngIf="mazzoCoperto.length > 3"
+                  *ngIf="this.carteRimanentiDaPescare > 3"
                   class="Carta-misteriosa"
                   style="position: relative; top: 1mm; left: 1mm;"
                 >
                   <div
-                    *ngIf="mazzoCoperto.length > 4"
+                    *ngIf="this.carteRimanentiDaPescare > 4"
                     class="Carta-misteriosa"
                     style="position: relative; top: 1mm; left: 1mm;"
                   ></div>
@@ -324,7 +296,7 @@
           <div><div></div></div>
         </div>
       </div>
-      <div id="3-" class="punteggio" style="left: 65mm; bottom: 285mm;">
+      <div id="3" class="punteggio" style="left: 65mm; bottom: 285mm;">
         0     <div class="bolla">
           <div><div></div></div>
         </div>

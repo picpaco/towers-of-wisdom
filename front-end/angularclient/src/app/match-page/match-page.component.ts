@@ -3,7 +3,11 @@ import * as $ from "jquery";
 import { Giocatore } from "../model/giocatore";
 import { Carta, CartaAdapter } from "../model/Carta";
 import { ActivatedRoute } from "@angular/router";
-import { MazzoCopertoService, ManoService } from "../service/mano.service";
+import {
+  MazzoCopertoService,
+  ManoService,
+  MazzoScartiService,
+} from "../service/mano.service";
 import { asyncScheduler } from "rxjs";
 
 @Component({
@@ -14,7 +18,8 @@ import { asyncScheduler } from "rxjs";
 export class MatchPageComponent implements OnInit {
   public player: Giocatore;
   public mano: Carta[] = [];
-  public mazzoCoperto: Carta[];
+  //public mazzoCoperto: Carta[];
+  public carteRimanentiDaPescare: number = 26;
   public mazzoScarti: Carta[];
 
   public torriAvversario: Array<Carta[]> = [
@@ -34,7 +39,8 @@ export class MatchPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private cartaAdapter: CartaAdapter,
     private mazzoCopertoService: MazzoCopertoService,
-    private manoService:ManoService
+    private manoService: ManoService,
+    private mazzoScartiService: MazzoScartiService
   ) {}
 
   // constructor(private cartaAdapter: CartaAdapter) {}
@@ -43,7 +49,6 @@ export class MatchPageComponent implements OnInit {
     this.inizializzaMano();
     this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
     this.inizializzaMazzoScarti();
-    this.riempiMazzoCoperto(); //funzione che riempe il mazzoCoperto si toglierà
     this.mostraMazzo();
   }
 
@@ -87,13 +92,13 @@ export class MatchPageComponent implements OnInit {
     if (torreCopia === undefined) {
       /*se la torreCopia è vuota vuol dire che la torre che mi serve non esiste ancora,
       e che quindi si può inserisce qualsiasi carta che non sia una Punta*/
-      if (carta.getSymbol() !== "Punta") {
+      if (carta.getValue() !== "P") {
         sicuro = true;
       }
     } else {
       /*se la torreCopia ha dei valori vuol dire che la torre esiste e bisogna controllare l'ordine delle carte*/
 
-      if (carta.getSymbol() === "Punta") {
+      if (carta.getValue() === "P") {
         if (+torreCopia[torreCopia.length - 1].getValue() === 1) {
           sicuro = true;
         }
@@ -233,7 +238,7 @@ export class MatchPageComponent implements OnInit {
         } else {
           this.torriGiocatore[indexTorre].push(this.mano[indexI]);
         }
-        this.aggiornamento(this.mano[indexI]);
+        this.giocaUnaCartaSullaTorreBackEnd(this.mano[indexI]);
       } else {
         //le tre carte non selezionata saranno memorizzate nella copia
         if (copiaMazzo === undefined) {
@@ -249,16 +254,14 @@ export class MatchPageComponent implements OnInit {
     this.mano = copiaMazzo;
   }
 
-  public aggiornamento(carta:Carta):void{
+  public giocaUnaCartaSullaTorreBackEnd(carta: Carta): void {
+    //si fa un post per aggiornare il backend
 
     let func = () => {
       console.log(carta);
-      this.manoService.addCartaSuTorre(carta).subscribe();
+      this.manoService.giocaCartaSuTorre(carta).subscribe();
     };
     asyncScheduler.schedule(func, 150);
-
-  
-    
   }
 
   private mostraTorri(torre: string) {
@@ -267,6 +270,7 @@ export class MatchPageComponent implements OnInit {
     this.gestisciMarkers();
     this.mostraTorre(torre);
   }
+
   private mostraTorre(torre: string) {
     let indexTorre = this.getNumeroDellaTorre(torre);
     // console.log("sono dentro mostraTorre" + indexTorre);
@@ -301,9 +305,7 @@ export class MatchPageComponent implements OnInit {
           indexCarta < this.torriGiocatore[indexTorre].length;
           indexCarta++
         ) {
-          if (
-            this.torriGiocatore[indexTorre][indexCarta].getSymbol() === "Punta"
-          ) {
+          if (this.torriGiocatore[indexTorre][indexCarta].getValue() === "P") {
             punti = punti * 2;
           } else {
             punti += +this.torriGiocatore[indexTorre][indexCarta].getValue();
@@ -331,37 +333,37 @@ export class MatchPageComponent implements OnInit {
     }
   }
 
-  private riempiMazzoCoperto(): void {
-    /*ta togliere...*/
-    this.mazzoCoperto = [
-      new Carta("Quadrato", "6"),
-      new Carta("Quadrato", "5"),
-      new Carta("Quadrato", "4"),
-      new Carta("Quadrato", "3"),
-      new Carta("Quadrato", "2"),
-      new Carta("Quadrato", "1"),
-      new Carta("Quadrato", "1"),
-      new Carta("Triangolo", "1"),
-      new Carta("Triangolo", "2"),
-      new Carta("Triangolo", "3"),
-      new Carta("Ancora", "4"),
-      new Carta("Cerchio", "5"),
-      new Carta("Triangolo", "5"),
-      new Carta("Punta", "P"),
-      new Carta("Triangolo", "7"),
-      new Carta("Cerchio", "1"),
-      new Carta("Cerchio", "2"),
-      new Carta("Cerchio", "3"),
-      new Carta("Cerchio", "4"),
-      new Carta("Cerchio", "5"),
-      new Carta("Punta", "P"),
-      new Carta("Cerchio", "7"),
-      new Carta("Triangolo", "4"),
-      new Carta("Triangolo", "1"),
-      new Carta("Punta", "P"),
-      new Carta("Ancora", "5"),
-    ];
-  }
+  //  private riempiMazzoCoperto(): void {
+  //    /*ta togliere...*/
+  //    this.mazzoCoperto = [
+  //      new Carta("Quadrato", "6"),
+  //      new Carta("Quadrato", "5"),
+  //      new Carta("Quadrato", "4"),
+  //      new Carta("Quadrato", "3"),
+  //      new Carta("Quadrato", "2"),
+  //      new Carta("Quadrato", "1"),
+  //      new Carta("Quadrato", "1"),
+  //      new Carta("Triangolo", "1"),
+  //      new Carta("Triangolo", "2"),
+  //      new Carta("Triangolo", "3"),
+  //      new Carta("Ancora", "4"),
+  //      new Carta("Cerchio", "5"),
+  //      new Carta("Triangolo", "5"),
+  //      new Carta("Punta", "P"),
+  //      new Carta("Triangolo", "7"),
+  //      new Carta("Cerchio", "1"),
+  //      new Carta("Cerchio", "2"),
+  //      new Carta("Cerchio", "3"),
+  //      new Carta("Cerchio", "4"),
+  //      new Carta("Cerchio", "5"),
+  //      new Carta("Punta", "P"),
+  //      new Carta("Cerchio", "7"),
+  //      new Carta("Triangolo", "4"),
+  //      new Carta("Triangolo", "1"),
+  //      new Carta("Punta", "P"),
+  //      new Carta("Ancora", "5"),
+  //    ];
+  //  }
 
   private mostraMazzo(): void {
     /*funzione per proiettare correttamente le carte del mazzo/mano,
@@ -443,21 +445,23 @@ export class MatchPageComponent implements OnInit {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     let manoNuovaJson: Carta[];
 
-    this.mazzoCopertoService.getNuovaMano().subscribe((data) => {
-      manoNuovaJson = data;
-      console.log(data);
-    });
-
-    let func = () => {
-      console.log("carta pescata dal mazzo coperto: ");
-      // console.log(manoNuovaJson);
-      this.mano = undefined;
-      this.mano = manoNuovaJson.map((item) => this.cartaAdapter.adapt(item));
-      this.mostraMazzo();
-    };
-    asyncScheduler.schedule(func, 500);
-
-   
+    if (this.mano.length === 3) {
+      this.mazzoCopertoService.pescaDalMazzoCoperto().subscribe((data) => {
+        manoNuovaJson = data;
+        console.log(data);
+      });
+      let func = () => {
+        console.log("carta pescata dal mazzo coperto: ");
+        // console.log(manoNuovaJson);
+        this.mano = undefined;
+        this.mano = manoNuovaJson.map((item) => this.cartaAdapter.adapt(item));
+        this.carteRimanentiDaPescare -= 1;
+        this.mostraMazzo();
+      };
+      asyncScheduler.schedule(func, 500);
+    } else {
+      this.mostraMessaggioDiAvviso("Devi giocare la tua carta");
+    }
   }
 
   public scartaOppurePescaDalMazzoScarti() {
@@ -525,13 +529,17 @@ export class MatchPageComponent implements OnInit {
   public selezionaEPescaCartaDalMazzoScarti(cartaId: string) {
     if (this.mano.length === 3) {
       if (this.isSelectedUnaCartaDalMazzo()) {
+        //controlla se nella mano è presente una carta selezionata
         this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
         this.deselezionaLaCartaSelezionata();
       } else {
         let copiaMazzoScarti: [Carta];
+        //una copia per tenere tutte le carte scartate che non sono state selezionate
         for (let index = 0; index < this.mazzoScarti.length; index++) {
+          //si cicla nel mazzo scarti per cercare la carta selezionata tramite Id
           if (this.mazzoScarti[index].getId() === cartaId) {
             this.mano.push(this.mazzoScarti[index]);
+            //this.salvaCartaSulMazzoScartiBackEnd(this.mazzoScarti[index]);
           } else {
             if (copiaMazzoScarti === undefined) {
               copiaMazzoScarti = [this.mazzoScarti[index]];
@@ -568,6 +576,39 @@ export class MatchPageComponent implements OnInit {
     }
   }
 
+  // public async salvaCartaSulMazzoScartiBackEnd(carta:Carta) {
+  //     //si fa un post per aggiornare il backend
+  
+  //     let func = () => {
+  //       console.log(carta);
+  //       this.mazzoScartiService.salvaLaCartaPescataDalMazzoScarti(carta).subscribe();
+  //     };
+  //     asyncScheduler.schedule(func, 150);
+    
+  // }
+
+  // public async aggiornaMano(){
+  //   let manoNuovaJson: Carta[];
+
+  //   if (this.mano.length === 3) {
+  //     this.mazzoCopertoService.pescaDalMazzoCoperto().subscribe((data) => {
+  //       manoNuovaJson = data;
+  //       console.log(data);
+  //     });
+  //     let func = () => {
+  //       console.log("carta pescata dal mazzo coperto: ");
+  //       // console.log(manoNuovaJson);
+  //       this.mano = undefined;
+  //       this.mano = manoNuovaJson.map((item) => this.cartaAdapter.adapt(item));
+  //       this.carteRimanentiDaPescare -= 1;
+  //       this.mostraMazzo();
+  //     };
+  //     asyncScheduler.schedule(func, 500);
+  //   } else {
+  //     this.mostraMessaggioDiAvviso("Devi giocare la tua carta");
+  //   }
+  // }
+
   private mostraMazzoScarti() {
     let m = this.mazzoScarti.length - 1;
     for (let index = m; index >= 0; index--) {
@@ -603,9 +644,13 @@ export class MatchPageComponent implements OnInit {
 
   private scartaLaCarta(): void {
     let copiaMazzo: [Carta];
+    //si ha una copia per prendere tutte le carte che non sono state selezionate
     if (this.isSelectedUnaCartaDalMazzo()) {
+      //controlla se una carta dalla mano è stata selezionata
       for (let index = 0; index < this.mano.length; index++) {
+        //si cicla per trovare la carta da scartare nella mano
         if (this.mano[index].isSelected()) {
+          //se questa carta è selezionata viene scartata
           this.mano[index].setSelected(false);
           if (this.mazzoScarti === undefined) {
             this.mazzoScarti = [this.mano[index]];
@@ -624,6 +669,7 @@ export class MatchPageComponent implements OnInit {
               this.mazzoScarti.unshift(this.mano[index]);
             }
           }
+          this.scartaUnaCartaBackEnd(this.mano[index]); //si fa un post per aggiornare il backend
         } else {
           if (copiaMazzo === undefined) {
             copiaMazzo = [this.mano[index]];
@@ -634,12 +680,23 @@ export class MatchPageComponent implements OnInit {
       }
       this.mano = undefined;
       this.mano = copiaMazzo;
+      //la mano sarà nuovamente contenuta dal resto delle carte non selezionate
       console.log("é stata scartata una carta!");
       console.log(this.mazzoScarti);
     } else {
       /* nessuna carta è stata selezionata mostra un messaggio...*/
       this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
     }
+  }
+
+  public scartaUnaCartaBackEnd(carta: Carta): void {
+    //si fa un post per aggiornare il backend
+
+    let func = () => {
+      console.log(carta);
+      this.manoService.scartaCarta(carta).subscribe();
+    };
+    asyncScheduler.schedule(func, 150);
   }
 
   private isSelectedUnaCartaDalMazzo(): boolean {
