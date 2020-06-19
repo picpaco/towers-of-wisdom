@@ -71,32 +71,21 @@ public class PartitaController implements ApplicationContextAware {
 	
 	@PostMapping(path="/scartaCarta")	
 	public void cartaDaScartareDallaMano(@RequestBody String carta) {
-		System.out.println(carta);
+		System.out.println("\r viene scartata la seguente carta dalla mano" + carta);
 		DatiPartitaInCorso datiPartita=(DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaDaScartare=datiPartita.creaCartaDaJson(carta);
 		datiPartita.aggiungiCartaAlMazzoScarti(cartaDaScartare);
 		
 	}
 	
-
 	
-	
-	
-	
-	@PostMapping(path = "/pescaDalMazzoScarti")
-	public String pescaDalMazzoScarti(@RequestBody String carta) {
-		System.out.println("\r viene pescata una carta dal mazzo scarti");
+	@PostMapping(path = "/selezionaDalMazzoScarti")
+	public void selezionaCartaDalMazzoScarti(@RequestBody String carta) {
+		System.out.println("\r viene pescata una carta dal mazzo scarti ed e' "+ carta);
 		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
-		Carta cartaPescataDalMazzoScarti=datiPartita.cercaCartaDaPescareNelMazzoScarti(carta);
-		return carta;
+		datiPartita.pescaMazzoScarti(carta);
 	}
 	
-	@GetMapping(path = "/pescaDalMazzoScarti")
-	public ArrayList<Carta> pescaMazzoScarti(@RequestBody String carta) {
-		System.out.println("\r viene mandata la mano del giocatore");
-		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("inizializzaPartita");
-		return tow.getGiocatori()[0].getMano();
-	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

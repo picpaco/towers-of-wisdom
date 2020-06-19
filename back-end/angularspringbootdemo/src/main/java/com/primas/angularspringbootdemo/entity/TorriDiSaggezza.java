@@ -51,7 +51,7 @@ public class TorriDiSaggezza {
 		this.mazzoCoperto = mazzoCoperto;
 	}
 
-	protected MazzoScarti getMazzoScarti() {
+	public MazzoScarti getMazzoScarti() {
 		return mazzoScarti;
 	}
 

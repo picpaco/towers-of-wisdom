@@ -35,30 +35,30 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 
 		return tds.getGiocatori()[0].getMano();
 	}
-	
-	
+
+
 	public ArrayList<Carta> aggiungiCartaAlMazzoScarti(Carta carta){
 		TorriDiSaggezza tds = (TorriDiSaggezza) context.getBean("inizializzaPartita");
 		int dimensionePrimaDiScartareCarta= tds.getMazzoScarti().dimensione();
-		
+
 		assert (tds.getGiocatori()[0].getMano().size() == 4) : "La mano del giocatore deve essere di 4 carte";
 		assert (tds.getGiocatori()[0].getMano().contains(carta)) : "La mano del giocatore deve contenere la carta da scartare";
-		
+
 		MazzoScarti ms = tds.getMazzoScarti();
-		
-		
+
+
 		System.out.println("Mano del giocatore prima che lui scarti la carta" + tds.getGiocatori()[0].getMano());
 		ms.aggiungiCarta(carta);
 		int dimensioneDopoAverScartatoLaCarta= tds.getMazzoScarti().dimensione();
-		
+
 		tds.getGiocatori()[0].getMano().remove(carta);
 		assert (tds.getGiocatori()[0].getMano().size() == 3) : "La mano del giocatore ora deve essere di 3 carte dopo aver scartato la carta dalla mano";
 		System.out.println("Mano del giocatore dopo che lui ha scartato " + tds.getGiocatori()[0].getMano());
-		
+
 		assert (dimensioneDopoAverScartatoLaCarta==dimensionePrimaDiScartareCarta+1) : "Al mazzo degli scarti dovrebbe essere stata aggiunta una carta";
 		assert (tds.getMazzoScarti().contiene(carta)) : "Il mazzo degli scarti dovrebbe contenere la carta scartata dev'essere corretta";
 		return tds.getGiocatori()[0].getMano();
-		
+
 	}
 
 	public Carta creaCartaDaJson(String cartaJson) {
@@ -132,9 +132,9 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		tow.getGiocatori()[0].setNome(nomeGiocatore);
 		tow.getGiocatori()[1].setNome(nomeAvversario);
 
-//		int turnoIniziale = tow.stabilisciPrimoTurno();
-//		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
-//		int turnoCorrente = turnoIniziale;
+		//		int turnoIniziale = tow.stabilisciPrimoTurno();
+		//		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
+		//		int turnoCorrente = turnoIniziale;
 
 		tow.getGiocatori()[0].distribuisciCarte(tow.getMazzoCoperto());
 		tow.getGiocatori()[1].distribuisciCarte(tow.getMazzoCoperto());
@@ -166,37 +166,25 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		return cartaCorrispondente;
 	}
 
-	public Carta cercaCartaDaPescareNelMazzoScarti(String carta) {
+	public Carta pescaMazzoScarti(String carta) {
 
 		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("inizializzaPartita");
-		assert (tow.getGiocatori()[0].getMano()
-				.size() == 3) : "La mano del giocatore deve essere di 3 carte per pescare dal mazzo scarti!";
-		assert (tow.getMazzoScarti()
-				.dimensione() > 0) : "Il mazzo degli scarti deve contenere almeno una carta per essere pescata!";
-		Carta cartaPescata = creaCartaDaJson(carta);// ritorna una carta in formato oggetto java
+		assert (tow.getGiocatori()[0].getMano().size() == 3) : "La mano del giocatore deve essere di 3 carte per pescare dal mazzo scarti!";
+		assert (tow.getMazzoScarti().dimensione() > 0) : "Il mazzo degli scarti deve contenere almeno una carta per essere pescata!";
 
-		Carta cartaCorrispondente = cartaPescata;
+		Carta cartaSceltaDaPescare = creaCartaDaJson(carta);// ritorna una carta in formato oggetto java
 
-//		int oldDimensioneDegliScarti = tow.getMazzoScarti().dimensione();
 
-//		for (int index = 0; index < tow.getMazzoScarti().dimensione(); index++) {
-//
-//			if (tow.getMazzoScarti().getListaCarte().get(index).getSimbolo().equals(cartaPescata.getSimbolo())
-//					&& tow.getMazzoScarti().getListaCarte().get(index).getValore().equals(cartaPescata.getValore())) {
-//
-//				cartaCorrispondente = tow.getMazzoScarti().getListaCarte().remove(index);
-//
-//			}
-//		}
-//		assert (tow.getMazzoScarti().dimensione() == oldDimensioneDegliScarti
-//				- 1) : "La dimensione del mazzo degli scarti dovrebbe essere diminuita di uno!";
-//
-//		assert (tow.getGiocatori()[0].getMano()
-//				.size() == 4) : "Dopo aver pescato dal mazzo degli scarti la mano deve contenere una carta in più!";
-//
-		assert (cartaCorrispondente != null) : "La carta pescata dal mazzo degli scarti non è stata trovata!";
+		if(tow.getMazzoScarti().contiene(cartaSceltaDaPescare)) {
+			tow.getGiocatori()[0].getMano().add(tow.getMazzoScarti().pescaCarta(cartaSceltaDaPescare));
+		}
+		System.out.println("\r Il mazzo Scarti è :"+ tow.getMazzoScarti());
+		System.out.println("\r La mano del giocatore è composta da: "+ tow.getGiocatori()[0].getMano());
 
-		return cartaCorrispondente;
+		assert (tow.getGiocatori()[0].getMano().size() == 4) : "Dopo aver pescato dal mazzo degli scarti la mano deve contenere una carta in più!";
+
+
+		return cartaSceltaDaPescare;
 	}
 
 	public void giocaSuTorre(Carta cartaGiocata) {
@@ -208,25 +196,6 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		System.out.println("\r InsiemeDiTorri: " + tow.getGiocatori()[0].getInsTorri2());
 	}
 
-	public void scartaCarta(Carta cartaScartata) {
-		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("inizializzaPartita");
-		assert (tow.getGiocatori()[0].getMano()
-				.size() == 3) : "La mano del giocatore deve aver già rimosso dalla sua mano la carta da scartare!";
-		tow.getMazzoScarti().aggiungiCarta(cartaScartata);
-		System.out.println("\r Mano del giocatore: " + tow.getGiocatori()[0].getMano());
-		System.out.println("\r MazzoScarti: " + tow.getMazzoScarti());
-	}
 
-	public boolean pescaDalMazzoScarti(Carta cartaPescataDalMazzoScarti) {
-		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("inizializzaPartita");
-		assert (tow.getGiocatori()[0].getMano()
-				.size() == 3) : "La mano del giocatore deve essere di 3 carte per pescare dal mazzo scarti!";
-
-		Carta cartaPescata = tow.getMazzoScarti().pescaCarta(cartaPescataDalMazzoScarti);
-		tow.getGiocatori()[0].getMano().add(cartaPescata);
-		assert (tow.getGiocatori()[0].getMano()
-				.size() == 4) : "Dopo aver pescato dal mazzo degli scarti la mano deve contenere una carta in più!";
-		return true;
-	}
 
 }
