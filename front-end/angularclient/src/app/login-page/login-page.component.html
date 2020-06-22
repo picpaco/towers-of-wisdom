@@ -7,17 +7,25 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="nome utente" />
+            <input
+              matInput
+              placeholder="Username"
+              [(ngModel)]="username"
+              name="username"
+              required
+            />
           </div>
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
             <input
+              matInput
+              placeholder="Password"
+              [(ngModel)]="password"
               type="password"
-              class="form-control"
-              placeholder="password"
-              autocomplete="on"
+              name="password"
+              required
             />
           </div>
 
@@ -31,7 +39,8 @@
           <audio id="glug" src="assets/music/glug.ogg"></audio>
 
           <div class="input-group form-group justify-content-center">
-            <button onclick="javascript: document.getElementById('glug').play();"
+            <button
+              onclick="javascript: document.getElementById('glug').play();"
               type="button"
               class="btn btn-info button_accedi"
               (click)="checkLogin()"
@@ -55,7 +64,8 @@
   </div>
 
   <label>Non hai un account?</label
-  ><a onclick="javascript: document.getElementById('glug').play();"
+  ><a
+    onclick="javascript: document.getElementById('glug').play();"
     type="link"
     routerLink="/registrazione"
     href="/registrazione"
@@ -64,10 +74,11 @@
     >Registrati</a
   >
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-12">
       <div class="text-right">
-        <button onclick="javascript: document.getElementById('glug').play();"
+        <button
+          onclick="javascript: document.getElementById('glug').play();"
           type="button"
           routerLink="/"
           class="btn btn-info button_back"
@@ -77,5 +88,5 @@
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

@@ -26,11 +26,11 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		TorriDiSaggezza tds = (TorriDiSaggezza) context.getBean("inizializzaPartita");
 		assert (tds.getGiocatori()[0].getMano().size() == 3) : "La mano del giocatore deve avere 3 carte in mano";
 
-		System.out.println("Mano del giocatore prima che lui peschi dal mazzo coperto" + tds.getGiocatori()[0].getMano());
+		System.out.println("\r Mano del giocatore prima che lui peschi dal mazzo coperto" + tds.getGiocatori()[0].getMano());
 		MazzoCoperto mc = tds.getMazzoCoperto();
 		tds.getGiocatori()[0].getMano().add(mc.pescaCarta());
 
-		System.out.println("Mano del giocatore dopo che lui ha pescato " + tds.getGiocatori()[0].getMano());
+		System.out.println("\r Mano del giocatore dopo che lui ha pescato " + tds.getGiocatori()[0].getMano());
 		assert (tds.getGiocatori()[0].getMano().size() == 4) : "La mano del giocatore ora deve essere di 4 carte dopo aver pescato dal mazzo coperto";
 
 		return tds.getGiocatori()[0].getMano();
@@ -131,6 +131,8 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		tow.setGiocatori(giocatori);
 		tow.getGiocatori()[0].setNome(nomeGiocatore);
 		tow.getGiocatori()[1].setNome(nomeAvversario);
+		tow.setMazzoCoperto(new MazzoCoperto());
+		tow.setMazzoScarti(new MazzoScarti());
 
 		//		int turnoIniziale = tow.stabilisciPrimoTurno();
 		//		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
@@ -180,6 +182,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		}
 		System.out.println("\r Il mazzo Scarti è :"+ tow.getMazzoScarti());
 		System.out.println("\r La mano del giocatore è composta da: "+ tow.getGiocatori()[0].getMano());
+		
 
 		assert (tow.getGiocatori()[0].getMano().size() == 4) : "Dopo aver pescato dal mazzo degli scarti la mano deve contenere una carta in più!";
 

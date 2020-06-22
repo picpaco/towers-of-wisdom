@@ -9,6 +9,7 @@ import {
   MazzoScartiService,
 } from "../service/mano.service";
 import { asyncScheduler } from "rxjs";
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: "app-match-page",
@@ -16,7 +17,7 @@ import { asyncScheduler } from "rxjs";
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
-  public player: Giocatore;
+  public nomeGiocatore=this.autenticazione.getNomeGiocatore();
   public mano: Carta[] = [];
   //public mazzoCoperto: Carta[];
   public carteRimanentiDaPescare: number = 26;
@@ -40,7 +41,8 @@ export class MatchPageComponent implements OnInit {
     private cartaAdapter: CartaAdapter,
     private mazzoCopertoService: MazzoCopertoService,
     private manoService: ManoService,
-    private mazzoScartiService: MazzoScartiService
+    private mazzoScartiService: MazzoScartiService,
+    private autenticazione:AuthenticationService
   ) {}
 
   // constructor(private cartaAdapter: CartaAdapter) {}
