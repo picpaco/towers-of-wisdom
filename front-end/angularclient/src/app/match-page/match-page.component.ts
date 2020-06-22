@@ -9,6 +9,7 @@ import {
   MazzoScartiService,
 } from "../service/mano.service";
 import { asyncScheduler } from "rxjs";
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: "app-match-page",
@@ -16,7 +17,7 @@ import { asyncScheduler } from "rxjs";
   styleUrls: ["./match-page.component.css"],
 })
 export class MatchPageComponent implements OnInit {
-  public player: Giocatore;
+  public nomeGiocatore=this.autenticazione.getNomeGiocatore();
   public mano: Carta[] = [];
   public mazzoCoperto: Carta[];
   public carteRimanentiDaPescare: number = 26;
@@ -40,7 +41,8 @@ export class MatchPageComponent implements OnInit {
     private cartaAdapter: CartaAdapter,
     private mazzoCopertoService: MazzoCopertoService,
     private manoService: ManoService,
-    private mazzoScartiService: MazzoScartiService
+    private mazzoScartiService: MazzoScartiService,
+    private autenticazione:AuthenticationService
   ) {}
 
   // constructor(private cartaAdapter: CartaAdapter) {}
@@ -264,6 +266,16 @@ export class MatchPageComponent implements OnInit {
     };
     asyncScheduler.schedule(func, 150);
   }
+
+  public sceltaCarta(carta:Carta):void{
+    let func = () => {
+      console.log(carta);
+      this.mazzoScartiService.selezionaLaCartaDaPescareDalMazzoScarti(carta).subscribe();
+    };
+    asyncScheduler.schedule(func, 150);
+  }
+
+ 
 
   private mostraTorri(torre: string) {
     //questa funzione serve per calcolare il punteggio di ogni torre,gestire i markers e visualizzare la torre.
@@ -555,6 +567,7 @@ export class MatchPageComponent implements OnInit {
           //si cicla nel mazzo scarti per cercare la carta selezionata tramite Id
           if (this.mazzoScarti[index].getId() === cartaId) {
             this.mano.push(this.mazzoScarti[index]);
+            this.sceltaCarta((this.mazzoScarti[index]));
             //this.salvaCartaSulMazzoScartiBackEnd(this.mazzoScarti[index]);
           } else {
             if (copiaMazzoScarti === undefined) {
@@ -759,11 +772,12 @@ export class MatchPageComponent implements OnInit {
           $(".mazzo-scarti div div").addClass(classePrec);
         });
       }
-
+    
       let carta = this.mazzoScarti.shift();
       carta.setSelected(false);
       this.mano.push(carta);
       console.log("é stata pescata una carta dal mazzo scarti!");
+      this.sceltaCarta(carta);
       console.log(this.mazzoScarti);
     } else {
       let causa = false;

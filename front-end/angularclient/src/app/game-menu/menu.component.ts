@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
+import { Router } from '@angular/router';
 
 
 
@@ -10,19 +11,20 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class MenuComponent implements OnInit {
 
-private nomeGiocatore: string;
+private nomeGiocatore: string=this.autenticazione.getNomeGiocatore();
 
-  constructor(private autenticazione: AuthenticationService) { 
+  constructor(private autenticazione: AuthenticationService,private route:Router) { 
     
   }
 
   ngOnInit() {
-    console.log(this.autenticazione.getNomeGiocatore());
-    this.nomeGiocatore = this.autenticazione.getNomeGiocatore();
+
   }
 
   public getNomeGiocatore(): string {
     return this.nomeGiocatore;
   }
+
+
 
 }

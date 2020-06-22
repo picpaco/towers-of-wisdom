@@ -12,23 +12,23 @@ export class ManoService {
   public getMano(): Observable<Carta[]> {
     let username = "stefano89";
     let password = "stefanorusso";
-    const headers = new HttpHeaders({Authorization: "Basic " + btoa(username + ":" + password)});
-    const observable = this.http.get<Carta[]>("http://localhost:8080/inizia-partita",{ headers });
+    const headers = new HttpHeaders({ Authorization: "Basic " + btoa(username + ":" + password) });
+    const observable = this.http.get<Carta[]>("http://localhost:8080/inizia-partita", { headers });
     return observable;
   }
 
   public addCartaSuTorre(carta: Carta) {
     let username = "stefano89";
     let password = "stefanorusso";
-    const headers = new HttpHeaders({Authorization: "Basic " + btoa(username + ":" + password), "Content-Type": "application/json"});
-    return this.http.post<Carta>("http://localhost:8080/giocaSuTorre", JSON.stringify(carta),{headers});
+    const headers = new HttpHeaders({ Authorization: "Basic " + btoa(username + ":" + password), "Content-Type": "application/json" });
+    return this.http.post<Carta>("http://localhost:8080/giocaSuTorre", JSON.stringify(carta), { headers });
   }
 
   public addCartaMazzoScarti(carta: Carta) {
     let username = "stefano89";
     let password = "stefanorusso";
-    const headers = new HttpHeaders({Authorization: "Basic " + btoa(username + ":" + password), "Content-Type": "application/json"});
-    return this.http.post<Carta>("http://localhost:8080/scartaCarta", JSON.stringify(carta),{headers});
+    const headers = new HttpHeaders({ Authorization: "Basic " + btoa(username + ":" + password), "Content-Type": "application/json" });
+    return this.http.post<Carta>("http://localhost:8080/scartaCarta", JSON.stringify(carta), { headers });
   }
 
 
@@ -43,8 +43,8 @@ export class MazzoCopertoService {
   public pescaDalMazzoCoperto(): Observable<Carta[]> {
     let username = "stefano89";
     let password = "stefanorusso";
-    const headers = new HttpHeaders({Authorization: "Basic " + btoa(username + ":" + password),});
-    const observable = this.http.get<Carta[]>("http://localhost:8080/pescaDalMazzoCoperto",{ headers });
+    const headers = new HttpHeaders({ Authorization: "Basic " + btoa(username + ":" + password), });
+    const observable = this.http.get<Carta[]>("http://localhost:8080/pescaDalMazzoCoperto", { headers });
     return observable;
   }
 }
@@ -53,20 +53,15 @@ export class MazzoCopertoService {
   providedIn: "root",
 })
 export class MazzoScartiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  // public salvaLaCartaPescataDalMazzoScarti(carta: Carta): Observable<Carta[]> {
-  //   let username = "stefano89";
-  //   let password = "stefanorusso";
-  //   const headers = new HttpHeaders({
-  //     Authorization: "Basic " + btoa(username + ":" + password),"Content-Type": "application/json"
-  //   });
-  //   const observable = this.http.post<Carta[]>(
-  //     "http://localhost:8080/pescaDalMazzoScarti",JSON.stringify(carta),
-  //     { headers }
-  //   );
-  //   return observable;
-  // }
+  public selezionaLaCartaDaPescareDalMazzoScarti(carta: Carta): Observable<Carta[]> {
+    let username = "stefano89";
+    let password = "stefanorusso";
+    const headers = new HttpHeaders({ Authorization: "Basic " + btoa(username + ":" + password), "Content-Type": "application/json" });
+    const observable = this.http.post<Carta[]>("http://localhost:8080/selezionaDalMazzoScarti", JSON.stringify(carta), { headers });
+    return observable;
+  }
 
 
   // public aggiornaManoGiocatore(): Observable<Carta[]> {

@@ -33,7 +33,9 @@
       </p>
     </div>
   </div>
-
+  <script>
+    System.import('app/main.js').catch(function(err){ console.error(err); });
+  </script>
   <script>
     function play() {
       var audio = document.getElementById("glug");

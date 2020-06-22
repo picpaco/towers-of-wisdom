@@ -21,4 +21,5 @@ public enum Simbolo {
 	public String toString() {
 		return nome;
 	}
+	
 }

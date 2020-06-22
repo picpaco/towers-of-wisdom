@@ -7,11 +7,11 @@ public class TorriDiSaggezza {
 
 
 	private Giocatore[] giocatori = new Giocatore[2];
-	private MazzoCoperto mazzoCoperto = new MazzoCoperto();
-	private MazzoScarti mazzoScarti = new MazzoScarti();
+	private MazzoCoperto mazzoCoperto;
+	private MazzoScarti mazzoScarti;
 	private Giocatore giocatoreCorrente;
 	private String nomeGiocatore;
-	private String nomeAvversario="BOT";//dipenderà quale modalità scegle il giocatore
+	private String nomeAvversario="BOT";//dipenderà quale modalità sceglie il giocatore
 	
 
 	public TorriDiSaggezza() {
@@ -51,7 +51,7 @@ public class TorriDiSaggezza {
 		this.mazzoCoperto = mazzoCoperto;
 	}
 
-	protected MazzoScarti getMazzoScarti() {
+	public MazzoScarti getMazzoScarti() {
 		return mazzoScarti;
 	}
 
