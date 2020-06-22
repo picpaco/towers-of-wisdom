@@ -1,18 +1,21 @@
 import { Injectable } from "@angular/core";
 import { Adapter } from "./Adapter";
-import { Url } from 'url';
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
+
 
 export class Carta {
   private selected: boolean;
   private symbol: string;
   private value: string;
   private id: number;
+  private image: string;
+
 
   public constructor(symbol: string, value: string) {
     this.selected = false;
     this.symbol = symbol;
     this.value = value;
-  }
+    }
 
   public getValue(): string {
     return this.value;
@@ -26,8 +29,19 @@ export class Carta {
     return this.symbol.slice(0, 1);
   }
 
-
-  
+  public getImage(): string {
+    let img = "";
+    if(this.getInitial() == "Q"){
+      img = "octo-quadrato";
+    } else if(this.getInitial() == "C") {
+        img = "fish-cerchio";
+    } else if(this.getInitial() == "A") {
+        img = "anchor-ancora";
+    } else { 
+        img = "stella-triangolo";
+    }
+    return img;
+  }
 
   public setId(id: number) {
     this.id = id;

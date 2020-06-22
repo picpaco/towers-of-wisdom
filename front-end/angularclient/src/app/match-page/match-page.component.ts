@@ -18,7 +18,7 @@ import { asyncScheduler } from "rxjs";
 export class MatchPageComponent implements OnInit {
   public player: Giocatore;
   public mano: Carta[] = [];
-  //public mazzoCoperto: Carta[];
+  public mazzoCoperto: Carta[];
   public carteRimanentiDaPescare: number = 26;
   public mazzoScarti: Carta[];
 
@@ -50,6 +50,7 @@ export class MatchPageComponent implements OnInit {
     this.mostraTorriAvversario(); //dovrà essere invocata quando opportuno...
     this.inizializzaMazzoScarti();
     this.mostraMazzo();
+    //this.riempiMazzoCoperto();
   }
 
   public inizializzaMano(): void {
@@ -117,9 +118,6 @@ export class MatchPageComponent implements OnInit {
 
     let Quadrato = [
       new Carta("Quadrato", "7"),
-      new Carta("Quadrato", "6"),
-      new Carta("Quadrato", "5"),
-      new Carta("Quadrato", "4"),
       new Carta("Quadrato", "3"),
       new Carta("Quadrato", "2"),
       new Carta("Quadrato", "1"),
@@ -158,13 +156,7 @@ export class MatchPageComponent implements OnInit {
         let classe = this.torriAvversario[indexTorre][index].getSymbol();
         let valore = this.torriAvversario[indexTorre][index].getValue();
         $(document).ready(function () {
-          $(
-            ".carte-delle-torri-avversario:eq(" +
-              indexTorre +
-              ") div:eq(" +
-              index +
-              ")"
-          )
+          $(".carte-delle-torri-avversario:eq("+indexTorre+") div:eq("+ index +")")
             .css({ border: "1px solid white" })
             .addClass(classe)
             .text(valore);
@@ -291,11 +283,14 @@ export class MatchPageComponent implements OnInit {
       ) {
         let classe = this.torriGiocatore[indexTorre][index].getSymbol();
         let valore = this.torriGiocatore[indexTorre][index].getValue();
+        let image =  this.torriGiocatore[indexTorre][index].getImage();
         $(document).ready(function () {
           $(".carte-delle-torri:eq(" + indexTorre + ") div:eq(" + index + ")")
             .css({ border: "1px solid white" })
             .addClass(classe)
             .text(valore);
+          $(".carte-delle-torri:eq(" + indexTorre + ") img:eq(" + index + ")").attr("src", "../../assets/images/"+ image +".png")
+          .css({ visibility: "visible"})
         });
       }
     }
@@ -345,32 +340,38 @@ export class MatchPageComponent implements OnInit {
   //  private riempiMazzoCoperto(): void {
   //    /*ta togliere...*/
   //    this.mazzoCoperto = [
+  //     new Carta("Quadrato", "7"),
   //      new Carta("Quadrato", "6"),
   //      new Carta("Quadrato", "5"),
   //      new Carta("Quadrato", "4"),
   //      new Carta("Quadrato", "3"),
   //      new Carta("Quadrato", "2"),
   //      new Carta("Quadrato", "1"),
-  //      new Carta("Quadrato", "1"),
-  //      new Carta("Triangolo", "1"),
-  //      new Carta("Triangolo", "2"),
-  //      new Carta("Triangolo", "3"),
-  //      new Carta("Ancora", "4"),
-  //      new Carta("Cerchio", "5"),
-  //      new Carta("Triangolo", "5"),
-  //      new Carta("Punta", "P"),
+  //      new Carta("Quadrato", "P"),
   //      new Carta("Triangolo", "7"),
-  //      new Carta("Cerchio", "1"),
-  //      new Carta("Cerchio", "2"),
-  //      new Carta("Cerchio", "3"),
-  //      new Carta("Cerchio", "4"),
-  //      new Carta("Cerchio", "5"),
-  //      new Carta("Punta", "P"),
-  //      new Carta("Cerchio", "7"),
+  //      new Carta("Triangolo", "6"),
+  //      new Carta("Triangolo", "5"),
   //      new Carta("Triangolo", "4"),
+  //      new Carta("Triangolo", "3"),
+  //      new Carta("Triangolo", "2"),
   //      new Carta("Triangolo", "1"),
-  //      new Carta("Punta", "P"),
+  //      new Carta("Triangolo", "P"),
+  //      new Carta("Cerchio", "7"),
+  //      new Carta("Cerchio", "6"),
+  //      new Carta("Cerchio", "5"),
+  //      new Carta("Cerchio", "4"),
+  //      new Carta("Cerchio", "3"),
+  //      new Carta("Cerchio", "2"),
+  //      new Carta("Cerchio", "1"),
+  //      new Carta("Cerchio", "P"),
+  //      new Carta("Ancora", "7"),
+  //      new Carta("Ancora", "6"),
   //      new Carta("Ancora", "5"),
+  //      new Carta("Ancora", "4"),
+  //      new Carta("Ancora", "3"),
+  //      new Carta("Ancora", "2"),
+  //      new Carta("Ancora", "1"),
+  //      new Carta("Ancora", "P"),
   //    ];
   //  }
 
@@ -381,11 +382,16 @@ export class MatchPageComponent implements OnInit {
     template*/
 
     this.mano.forEach((carta, index = 0) => {
+      console.log(carta)
       $(document).ready(function () {
         let classe = carta.getSymbol();
+        let image = carta.getImage();
+        
+        console.log(image);
         $(".mazzo > div:eq(" + index + ")")
           .addClass(classe)
           .attr("id", "id" + index);
+          $(".mazzo > div:eq(" + index + ") p img").attr("src", "../../assets/images/"+ image +".png")
       });
       this.mano[index].setId(index);
     });
@@ -432,7 +438,7 @@ export class MatchPageComponent implements OnInit {
     });
   }
 
-  // public peschaDalMazzoCoperto() {
+  // public pescaDalMazzoCoperto() {
   //   /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
   //   this.nascondiMessaggioDiAvviso();
   //   this.deselezionaLaCartaSelezionata();
@@ -521,11 +527,12 @@ export class MatchPageComponent implements OnInit {
       if (this.mazzoScarti.length === 1) {
         //se c'è solo una carta scartata il pannello si nasconde
         let classe = this.mazzoScarti[0].getSymbol();
+        let image = this.mazzoScarti[0].getImage();
         $(document).ready(function () {
           $(".mazzo-scarti >div:eq(0)").css({ border: "transparent" });
-
           $(".mazzo-scarti div div").addClass(classe);
           $(".pannello-degli-scarti").css({ visibility: "hidden" });
+          $(".mazzo-scarti div div img").attr("src", "../../assets/images/"+ image +".png");
         });
       }
       if (this.mazzoScarti.length === 0) {
@@ -623,6 +630,8 @@ export class MatchPageComponent implements OnInit {
     for (let index = m; index >= 0; index--) {
       let classe = this.mazzoScarti[index].getSymbol();
       let valore = this.mazzoScarti[index].getValue();
+      let image = this.mazzoScarti[index].getImage();
+      
       $(document).ready(function () {
         $(".pannello-degli-scarti div:eq(" + index + ")")
           .addClass(classe)
@@ -630,7 +639,14 @@ export class MatchPageComponent implements OnInit {
           .css({
             transform: "rotate(3deg)",
           })
-          .attr("id", "id" + index);
+          .attr("id", "id" + index).append("<img class= 'imgcarta'>");
+          $(".pannello-degli-scarti div:eq(" + index + ") img").attr("src", "../../assets/images/"+ image +".png")
+          .css({
+            height: "30px",
+            width: "40px",
+            position: "relative",
+            bottom: "10px"
+          })
       });
       this.mazzoScarti[index].setId(index);
     }
@@ -645,9 +661,12 @@ export class MatchPageComponent implements OnInit {
   private mostraInPrimoPianoUltimaCartaScartata(): void {
     let classePrec = this.mazzoScarti[1].getSymbol();
     let classe = this.mazzoScarti[0].getSymbol();
+    let image = this.mazzoScarti[0].getImage();
     $(document).ready(function () {
       $(".mazzo-scarti div div").removeClass(classePrec);
       $(".mazzo-scarti div div").addClass(classe);
+      $(".mazzo-scarti div div img").attr("src", "../../assets/images/"+ image +".png");
+
     });
   }
 

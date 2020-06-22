@@ -50,7 +50,7 @@ const routes: Routes = [
 
    { path: 'match', component: MatchPageComponent, resolve: { mano: ManoResolverService }},
 
-  //  { path: 'match', component: MatchPageComponent},
+   // { path: 'match', component: MatchPageComponent},
 
   { path: 'risultati-finali', component: LeaderboardPageComponent},
  

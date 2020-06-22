@@ -504,11 +504,11 @@ span {
 
 .Carta-misteriosa {
   background-image: linear-gradient(
-    to top left,
-    rgb(5, 228, 24),
-    rgb(181, 253, 167),
-    rgb(5, 228, 24)
-  );
+    rgba(196, 186, 104, 0.438),
+    rgba(173, 166, 101, 0.438)
+  ),
+  url("../../assets/images/cartaback.jpg");
+  position: relative;
 }
 
 .chat {
@@ -600,6 +600,27 @@ span {
   padding-right: 0.5cm;
 }
 
-.ima image{
+.imgcarta {
+  height: 40px;
+  width: 50px;
   position: relative;
+  bottom: 20px;
+}
+
+.cartatorre {
+  height: 30px;
+  width: 40px;
+  position: relative;
+  margin: auto;
+  visibility: hidden;
+}
+
+.ima image {
+  position: relative;
+}
+
+.imgcolonna {
+  position: relative;
+  width: 60px;
+  height: 50px;
 }
