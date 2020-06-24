@@ -113,13 +113,4 @@ public class GiocatoreBot extends Giocatore  {
 		return cartaGiocata;
 	}
 
-<<<<<<< HEAD
-=======
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		context = applicationContext;
-
-	}
-
->>>>>>> 6613769d3f0a5e232b5da855569534280307651c
 }
