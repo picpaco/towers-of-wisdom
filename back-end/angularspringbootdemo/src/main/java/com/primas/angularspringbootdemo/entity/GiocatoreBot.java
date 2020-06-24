@@ -92,5 +92,4 @@ public class GiocatoreBot extends Giocatore {
 		assert (getMano().size() == 3): "La mano deve essere di 3 carte";
 	}
 
-
 }

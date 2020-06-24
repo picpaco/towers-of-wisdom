@@ -37,6 +37,11 @@
   font-size: 6.5mm;
 }
 
+#classifica {
+  background-image: url("../../assets/images/delfino.jpg");
+  font-size: 6.5mm;
+}
+
 button {
   /*settagio dei due tasti-immagini dimensione,stile,effetti*/
   background-position: center;

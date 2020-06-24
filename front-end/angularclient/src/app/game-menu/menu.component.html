@@ -29,7 +29,7 @@
       </p>
 
       <p class=" text-right mx-2" id="indice_benvenuto">
-        nel menu di gioco
+
       </p>
     </div>
   </div>
@@ -48,27 +48,33 @@
   <div class="d-flex p-2 justify-content-center" style="position: relative; top: 15mm;">
     <div class="d-flex p-2 flex-column">
       <div class="p-2">
-        <p id="indice_modalita">
-          Scegli una modalità per iniziare una partita!
+        <p id="indice_modalita" style="left: 20px;">
+          Gioca con un automa o con un'altra persona
         </p>
       </div>
       
       
   
       <div class="d-flex p-2 flex-row justify-content-center">
-        <div class="p-2" style="position: relative; right: 20px;">
+        <div class="p-2" style="position: relative; left: -83px;">
           <button onclick="javascript: document.getElementById('glug').play();" id="bot" routerLink="/match">
             Gioca con <i style="position: relative; left: 5px;" class="fas fa-robot"></i>
           </button>
         </div>
 
 
-        <div class="p-2" style="position: relative; left: 20px;">
+        <div class="p-2" style="position: relative; left: -50px;">
           <button onclick="javascript: document.getElementById('glug').play();" id="friend">
             Gioca con <i style="position: relative; left: 5px;" class="fas fa-user"></i>
           </button>
         </div>
+
+      <div class="p-2" style="position: relative; left: -21px;">
+        <button onclick="javascript: document.getElementById('glug').play();" id="classifica" routerLink="/classifica">
+          Classifica <i style="position: relative; left: 5px;" class="fas fa-list-alt"></i>
+        </button>
       </div>
+    </div>
 
 
     </div>

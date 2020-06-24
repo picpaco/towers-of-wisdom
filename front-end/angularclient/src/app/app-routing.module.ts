@@ -17,6 +17,8 @@ import { ListautentiComponent } from "./listautenti/listautenti.component";
 import { ManoResolverService } from "./service/manoResolver.service";
 import { AuthGaurdService } from "./service/auth-gaurd.service";
 import { LogoutComponent } from "./logout/logout.component";
+import { componentFactoryName } from '@angular/compiler';
+import { ClassificaComponent } from './classifica/classifica/classifica.component';
 
 const routes: Routes = [
   {
@@ -56,7 +58,7 @@ const routes: Routes = [
    // { path: 'match', component: MatchPageComponent},
 
   {
-    path: "risultati-finali",
+    path: "classifica",
     component: LeaderboardPageComponent,
     canActivate: [AuthGaurdService],
   },

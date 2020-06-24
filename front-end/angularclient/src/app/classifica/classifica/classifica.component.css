@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css?family=Coda+Caption:800");
+
+table {
+  /*stile tabella*/
+  background-image: linear-gradient(
+    to top left,
+    rgba(53, 184, 224, 0.644),
+    rgba(118, 206, 247, 0.644),
+    rgba(53, 184, 224, 0.644)
+  );
+  border-radius: 3mm;
+  display: flex;
+  flex-direction: column;
+  transition: 0.6s;
+  box-shadow: -1px -1px 3px rgb(126, 243, 247), -1px 1px 3px rgb(126, 243, 247),
+    1px 1px 3px rgb(126, 243, 247), 1px -1px 3px rgb(126, 243, 247);
+  width: auto;
+  height: 87mm;
+}
+.content,
+th {
+  text-align: center;
+  border: transparent;
+  font-family: cursive;
+  color: rgb(119, 228, 255);
+  text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
+    -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238),
+    2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
+    -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
+  width: auto;
+}
+
+.scroll {
+  width: inherit;
+  height: inherit;
+  border: transparent;
+  overflow: auto;
+}
+
+.title {
+  font-size: 15mm;
+  font-family: "Coda Caption", cursive;
+  color: #61d5ea;
+  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+    -1px -1px 3px #1871f5;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  transform: perspective(350px) scaleY(1.5) rotateX(-30deg);
+  text-align: center;
+  padding-top: 3mm;
+  position: relative;
+  top: 5mm;
+}
+
+table,
+button {
+  /*posizione della taballa e dei due tasti*/
+  position: relative;
+  top: 40px;
+}
+
+body {
+  /*sfondo dell'intero schermo*/
+  
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  height: 625px;
+}
+
+th {
+  font-size: 7mm;
+}
+td {
+  font-size: 5.5mm;
+  border-top: 2px solid rgb(108, 205, 250);
+}
+
+html {
+  height: 100%;
+}
+h1 {
+  color: rgb(68, 211, 236);
+  font-family: cursive;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgb(20, 78, 240), -1px 1px 3px rgb(20, 78, 240),
+    -1px -1px 3px rgb(20, 78, 240), 1px -1px 3px rgb(20, 78, 240);
+  display: flex;
+  flex-direction: row;
+}
+@media only screen and (max-width: 670px) {
+  .title {
+    font-size: 12mm;
+  }
+
+
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scroll {
+    width: inherit;
+    height: inherit;
+    border: transparent;
+    overflow: auto;
+    size: 5mm 30mm;
+  }
+}
+@media only screen and (max-width: 535px) {
+  button {
+    font-size: 5mm;
+    height: 15mm;
+    width: 50mm;
+  }
+
+  
+
+  th {
+    font-size: 5.5mm;
+  }
+  td {
+    font-size: 4.5mm;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  th {
+    font-size: 4.5mm;
+  }
+
+
+  td {
+    font-size: 3.5mm;
+  }
+
+  button {
+    font-size: 4.5mm;
+    height: 12mm;
+    width: 40mm;
+  }
+
+  .title {
+    font-size: 6mm;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  th {
+    font-size: 3.4mm;
+  }
+
+  td {
+    font-size: 2.9mm;
+  }
+
+  button {
+    font-size: 4mm;
+    height: 11.5mm;
+    width: 35mm;
+  }
+
+
+  .title {
+    font-size: 8mm;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  th {
+    font-size: 3mm;
+  }
+
+  td {
+    font-size: 2.6mm;
+  }
+
+  button {
+    font-size: 3.6mm;
+    height: 11mm;
+    width: 30mm;
+  }
+
+
+  .title {
+    font-size: 4mm;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 2px 2px 10px rgb(49, 155, 255);
+  background-color: rgba(81, 218, 223, 0.904);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: aquamarine;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(23, 149, 207);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
