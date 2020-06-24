@@ -23,6 +23,7 @@ export class MatchPageComponent implements OnInit {
   public mazzoCoperto: Carta[];
   public carteRimanentiDaPescare: number = 26;
   public mazzoScarti: Carta[];
+  public isTurnoGiocatore:boolean=false;
 
   public torriAvversario: Array<Carta[]> = [
     undefined,
@@ -61,6 +62,7 @@ export class MatchPageComponent implements OnInit {
     console.log(testoJson);
     manoJson = testoJson["datiPartita"]["manoGiocatore"];
     if (testoJson["datiPartita"]["turnoBot"] === true) {
+      this.isTurnoGiocatore=false;
       cartaGiocataBot = this.cartaAdapter.adapt(
         testoJson["datiPartita"]["cartaGiocataBot"]
       );
@@ -78,6 +80,7 @@ export class MatchPageComponent implements OnInit {
       }
     }else{
       this.mostraMessaggioDiAvviso("Tocca a te!");
+      this.isTurnoGiocatore=true;
     }
     this.mano = manoJson.map((item) => this.cartaAdapter.adapt(item));
     this.mostraMazzoScarti();
@@ -90,7 +93,7 @@ export class MatchPageComponent implements OnInit {
     if (this.torriAvversario[torreDaGiocare] === undefined) {
       this.torriAvversario[torreDaGiocare] = [cartaGiocataBot];
     } else {
-      this.torriAvversario[torreDaGiocare].unshift(cartaGiocataBot);
+      this.torriAvversario[torreDaGiocare].push(cartaGiocataBot);
     }
 
     console.log(this.torriAvversario);
@@ -145,6 +148,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   public giocatoreGiocaSullaTorre(torre: string) {
+    this.isTurnoGiocatore=true;
     /*questo metodo viene richiamata nel template attraverso l'attributo (click),sono ben 4 riquadri,nelle colonne
     che se premute richiamano questa funzione passando il loro la torre a cui ci si riferisce es(Quadrato)*/
     if (this.mano.length === 4) {
@@ -169,6 +173,7 @@ export class MatchPageComponent implements OnInit {
                 //in caso la carta sia una Punta bisogna tener conto della torre
                 console.log("gioca carta sulla torre");
                 this.giocaCartaSullaTorre(torre);
+                this.isTurnoGiocatore=false;
               
                 //questo metodo permette la giocata su una torre restituendo poi un target
               } else {
@@ -186,7 +191,9 @@ export class MatchPageComponent implements OnInit {
       } else {
         this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
       }
+      if(!this.isTurnoGiocatore){
       this.BotGiocaLaSuaMossa();
+      }
       this.mostraMano();
       this.mostraTorri();
     } else {
@@ -199,7 +206,7 @@ export class MatchPageComponent implements OnInit {
 
   private giocaCartaSullaTorre(torreDaVisualizzare: string) {
     this.nascondiMessaggioDiAvviso();
-    let ManoMazzo: [Carta]; //una copia del mazzo per inserire tutte quelle carte non selezionate
+    let copiaMano: [Carta]; //una copia del mazzo per inserire tutte quelle carte non selezionate
     let indexTorre = this.getNumeroDellaTorre(torreDaVisualizzare);
     this.mano.forEach((carta, index) => {
       if (carta.isSelected()) {
@@ -212,17 +219,17 @@ export class MatchPageComponent implements OnInit {
         this.giocatoreGiocaSuTorre_Back_End(carta);
       } else {
         //le tre carte della mano non selezionata saranno memorizzate nella copia
-        if (ManoMazzo === undefined) {
-          ManoMazzo = [carta];
+        if (copiaMano === undefined) {
+          copiaMano = [carta];
         } else {
-          ManoMazzo.push(carta);
+          copiaMano.push(carta);
         }
       }
     });
     console.log("inserita carta nella torre :" + torreDaVisualizzare);
     console.log(this.torriGiocatore);
     this.mano = undefined; //infine il mazzo nuovo sarà composto solo da tre carte
-    this.mano = ManoMazzo;
+    this.mano = copiaMano;
   }
 
   public giocatoreGiocaSuTorre_Back_End(carta: Carta): void {
@@ -389,35 +396,40 @@ export class MatchPageComponent implements OnInit {
       let func = () => {
 
         let cartaGiocataBot =undefined;
-        this.datiPartita.giocaBot().subscribe((data) => {
-          testoJson = JSON.stringify(data)
-          console.log("Stampami");
-          console.log(data);
-        });
+
         console.log("Il bot gioca la sua mossa...");
         if(testoJson.turnoBot === true){
           cartaGiocataBot = this.cartaAdapter.adapt(
             testoJson["cartaGiocataBot"]
           );
+          console.log("Carta giocata dal bot:");
+          console.log(cartaGiocataBot);
         if(testoJson["cartaAvversarioGiocataSuTorre"] === true){
           console.log("---Il bot ha giocato su una torre!---");
           this.giocaCartaTorriAvversario(cartaGiocataBot);
+          this.carteRimanentiDaPescare-=1;
         }else{
           console.log("---Il bot ha giocato sul mazzo scarti!---");
           if (this.mazzoScarti === undefined) {
             this.mazzoScarti = [cartaGiocataBot];
           } else {
-            this.mazzoScarti.unshift(cartaGiocataBot);
+            this.mazzoScarti.push(cartaGiocataBot);
           }
         }
       }
-
-
-      };
-      asyncScheduler.schedule(func, 1000);
-      console.log(testoJson);
+      //console.log(testoJson);
       this.mostraTorriAvversario();
-      this.mostraMazzoScarti();
+      //this.mostraMazzoScarti();
+      this.mostraCarteScartate();
+      };
+     
+      this.datiPartita.giocaBot().subscribe((data) => {
+        testoJson = data
+      });
+  
+      asyncScheduler.schedule(func, 1000);
+      
+
     
   }
 
@@ -446,6 +458,7 @@ export class MatchPageComponent implements OnInit {
       /*se il mazzo é uguale a 4 vuol dire che il giocatore vuole scartare una carta selezionata.*/
       if (this.isSelectedUnaCartaDalMazzo()) {
         this.scartaLaCarta();
+        this.BotGiocaLaSuaMossa();
       } else {
         this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
         this.deselezionaLaCartaSelezionata();
@@ -495,7 +508,7 @@ export class MatchPageComponent implements OnInit {
         this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
         this.deselezionaLaCartaSelezionata();
       } else {
-        let ManoMazzoScarti: [Carta];
+        let copiaManoScarti: [Carta];
         //una copia per tenere tutte le carte scartate che non sono state selezionate
         this.mazzoScarti.forEach((carta) => {
           //si cicla nel mazzo scarti per cercare la carta selezionata tramite Id
@@ -504,15 +517,15 @@ export class MatchPageComponent implements OnInit {
             this.giocatorePescaDaMazzoScarti_Back_End(carta);
             //this.salvaCartaSulMazzoScartiBackEnd(this.mazzoScarti[index]);
           } else {
-            if (ManoMazzoScarti === undefined) {
-              ManoMazzoScarti = [carta];
+            if (copiaManoScarti === undefined) {
+              copiaManoScarti = [carta];
             } else {
-              ManoMazzoScarti.push(carta);
+              copiaManoScarti.push(carta);
             }
           }
         });
         this.mazzoScarti = undefined;
-        this.mazzoScarti = ManoMazzoScarti;
+        this.mazzoScarti = copiaManoScarti;
 
         this.mostraMano();
         this.mostraMazzoScarti();
@@ -590,7 +603,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   private scartaLaCarta(): void {
-    let ManoMazzo: [Carta];
+    let copiaMano: [Carta];
     //si ha una copia per prendere tutte le carte che non sono state selezionate
     if (this.isSelectedUnaCartaDalMazzo()) {
       //controlla se una carta dalla mano è stata selezionata
@@ -608,10 +621,10 @@ export class MatchPageComponent implements OnInit {
                 "Il mazzo degli scarti è pieno! gioca la tua carta"
               );
               this.deselezionaLaCartaSelezionata();
-              if (ManoMazzo === undefined) {
-                ManoMazzo = [this.mano[index]];
+              if (copiaMano === undefined) {
+                copiaMano = [this.mano[index]];
               } else {
-                ManoMazzo.push(this.mano[index]);
+                copiaMano.push(this.mano[index]);
               }
             } else {
               this.mazzoScarti.unshift(this.mano[index]);
@@ -619,15 +632,15 @@ export class MatchPageComponent implements OnInit {
           }
           //this.scartaUnaCartaBackEnd(this.mano[index]); //si fa un post per aggiornare il backend
         } else {
-          if (ManoMazzo === undefined) {
-            ManoMazzo = [this.mano[index]];
+          if (copiaMano === undefined) {
+            copiaMano = [this.mano[index]];
           } else {
-            ManoMazzo.push(this.mano[index]);
+            copiaMano.push(this.mano[index]);
           }
         }
       }
       this.mano = undefined;
-      this.mano = ManoMazzo;
+      this.mano = copiaMano;
       //la mano sarà nuovamente contenuta dal resto delle carte non selezionate
       console.log("é stata scartata una carta!");
       console.log(this.mazzoScarti);
@@ -635,7 +648,7 @@ export class MatchPageComponent implements OnInit {
       /* nessuna carta è stata selezionata mostra un messaggio...*/
       this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
     }
-    this.BotGiocaLaSuaMossa();
+    
   }
 
   private isSelectedUnaCartaDalMazzo(): boolean {

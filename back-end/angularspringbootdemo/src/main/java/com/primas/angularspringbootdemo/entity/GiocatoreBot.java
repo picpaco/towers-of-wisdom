@@ -49,6 +49,7 @@ public class GiocatoreBot extends Giocatore  {
 				return mano.get(i);
 			}
 		}
+		assert(1>2):"Non deve ritornare un carta null!!!";
 		return null;
 	}
 
@@ -58,9 +59,9 @@ public class GiocatoreBot extends Giocatore  {
 
 		boolean cartaTrovataInMazzoScarti = false;
 		if (mazzoScarti.isVuoto()) {
-			System.out.println("carte mano prima di pescare: " + getMano());
+			System.out.println("\r carte mano prima di pescare: " + getMano());
 			getMano().add(mazzoCoperto.pescaCarta());
-			System.out.println("carte mano dopo aver pescato: " + getMano());
+			System.out.println("\r carte mano dopo aver pescato: " + getMano());
 		} else {
 			Carta c = null;
 			for (int i = 0; i < mazzoScarti.dimensione(); i++) {
@@ -68,14 +69,14 @@ public class GiocatoreBot extends Giocatore  {
 				if (isGiocabile(c)) {
 					mazzoScarti.pescaCarta(c);
 					getMano().add(c);
-					System.out.println("carta presa da mazzo degli scarti: " + c);
+					System.out.println("\r carta presa da mazzo degli scarti: " + c);
 					cartaTrovataInMazzoScarti = true;
 					break;
 				}
 			}
 			if (!(cartaTrovataInMazzoScarti)) {
 				getMano().add(mazzoCoperto.pescaCarta());
-				System.out.println("carte mano: " + getMano());
+				System.out.println("\r carte mano: " + getMano());
 			}
 		}
 		assert (getMano().size() == 4) : "La mano deve essere di 4 carte";
@@ -85,13 +86,13 @@ public class GiocatoreBot extends Giocatore  {
 	public Carta giocaCarta(MazzoScarti mazzoScarti) {
 		assert (getMano().size() == 4) : "La mano prima di giocare deve avere 4 carte";
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
-		System.out.println("torri giocatore: " + getInsTorri2());
+//		System.out.println("torri giocatore: " + getInsTorri2());
 
 		Carta cartaDaGiocare = decidiCartaDaGiocare(getMano());
 		Carta cartaGiocata = null;// nuovo
-		dati.setCartaGiocataBot(cartaDaGiocare);// nuovo
+		
 
-		System.out.println("carta scelta: " + cartaDaGiocare);
+		System.out.println("\r carta scelta: " + cartaDaGiocare);
 		if (cartaDaGiocare == null) {
 			cartaGiocata = scartaCarta(mazzoScarti);
 			dati.setCartaAvversarioGiocataSuScarti(true);
@@ -104,8 +105,9 @@ public class GiocatoreBot extends Giocatore  {
 			dati.setCartaAvversarioGiocataSuScarti(false);
 			dati.setCartaAvversarioGiocataSuTorre(true);
 		}
+		dati.setCartaGiocataBot(cartaGiocata);// nuovo
 
-		//dati.setCartaGiocataBot(cartaGiocata);
+
 		
 		assert (getMano().size() == 3) : "La mano deve essere di 3 carte";
 		return cartaGiocata;

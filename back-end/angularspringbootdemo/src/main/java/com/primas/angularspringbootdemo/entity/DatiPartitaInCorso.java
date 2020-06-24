@@ -206,7 +206,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 	}
 
 	public void giocaBot() {
-		isTurnoBot = false;
+		isTurnoBot = true;
 		isCartaAvversarioGiocataSuScarti = false;
 		isCartaAvversarioGiocataSuTorre = false;
 		cartaGiocataBot = null;

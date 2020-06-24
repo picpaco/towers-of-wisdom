@@ -118,8 +118,8 @@ public abstract class Giocatore implements ApplicationContextAware{
 		aggiornaPunteggioParziale(carta);
 		int dimTorreCorrente = torreCorrente.numeroCarte();
 
-		System.out.println("punteggio totale: " + getPunteggioTotale());
-		System.out.println("carta appena aggiunta alla torre: " + torreCorrente.guardaLaCartaInCima());
+		System.out.println("\rpunteggio totale: " + getPunteggioTotale());
+		System.out.println("\r carta appena aggiunta alla torre: " + torreCorrente.guardaLaCartaInCima());
 
 		assert (dimTorreCorrente == vecchiaDimTorre+1): "La torre deve avere una carta in più";
 	}
@@ -147,7 +147,7 @@ public abstract class Giocatore implements ApplicationContextAware{
 		for(int i=0; i<3; i++) {
 			mano.add(mazzoCoperto.pescaCarta());
 		}
-		System.out.println("mano dopo distribuzione carte:"+ mano + " " + "dimensione mano: "+mano.size());
+		System.out.println("\r mano dopo distribuzione carte:"+ mano + " " + "dimensione mano: "+mano.size());
 
 		assert (mano.size() == 3): "La mano deve essere di 3 carte";
 		return mano;

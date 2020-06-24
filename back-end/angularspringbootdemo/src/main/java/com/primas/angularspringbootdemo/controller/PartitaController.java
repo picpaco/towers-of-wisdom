@@ -53,6 +53,7 @@ public class PartitaController implements ApplicationContextAware {
 	public DatiPartitaInCorso giocaBot() {
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		dati.giocaBot();		
+		System.out.println("\r"+dati);
 		return dati;
 	}
 	
