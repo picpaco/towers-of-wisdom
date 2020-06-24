@@ -30,11 +30,10 @@ public class ConfigurazionePartita {
 //		return player.distribuisciCarte(coperto.getListaCarte());
 //	}
 	
-	//TODO: cambiare nome Bean in "inizializzaPartita"
+	
 	@Bean
-	public TorriDiSaggezza inizializzaPartita() {
-		System.out.println("sono dentro al metodo inizializzaPartita della classe ConfigurazionePartita");
-
+	public TorriDiSaggezza tow() {
+		System.out.println("sono dentro al metodo tow() della classe ConfigurazionePartita");
 		return tow;
 	}
 	

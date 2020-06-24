@@ -39,7 +39,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		UserDetails user = jwtUserDetailsService.loadUserByUsername("john1234567");
 		String tokenCreato = jwtTokenUtil.generateToken(user);
 		
-		System.out.println("\r token creato DalUsername nel doFilterInternal: " + tokenCreato);
+		//System.out.println("\r token creato DalUsername nel doFilterInternal: " + tokenCreato);
 
 		String username = null;
 		String jwtToken = null;

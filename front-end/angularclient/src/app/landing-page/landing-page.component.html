@@ -2,32 +2,42 @@
   <section id="title_section">
     <div class="row container-fluid py-3">
       <div class="col-12 title">
+        <p class="font_title">
+          <img class="allineamento_img1" src="assets/images/stellemarine.png" />
+          {{ title }}
+          <img class="allineamento_img2" src="assets/images/stellemarine.png" />
+        </p>
 
-        <p class="font_title"><img class="allineamento_img1" src="assets/images/stellemarine.png"> {{title}} <img
-            class="allineamento_img2" src="assets/images/stellemarine.png"></p>
-            <div class="img" align=center>
-              <img class = "img" src = "assets/images/anchor-ancora.png" height="100" width="150">
-              <img src="assets/images/fish-cerchio.png" height="100" width="150">
-              <img src="assets/images/octo-quadrato.png" height="100" width="150">
-              <img src="assets/images/stella-triangolo.png" height="100" width="150">
-            </div>
+        <div class="img" align="center">
+          <img
+            class="img"
+            src="assets/images/anchor-ancora.png"
+            height="100"
+            width="150"
+          />
+          <img src="assets/images/fish-cerchio.png" height="100" width="150" />
+          <img src="assets/images/octo-quadrato.png" height="100" width="150" />
+          <img
+            src="assets/images/stella-triangolo.png"
+            height="100"
+            width="150"
+          />
+        </div>
       </div>
     </div>
-    
   </section>
 
-  <br>
+  <br />
 
   <section id="introduzione">
     <div class="row">
       <div class="col-md-12">
-        <h2 style="font-size: 30px;">{{intro}}</h2>
+        <h2 style="font-size: 30px;">{{ intro }}</h2>
       </div>
     </div>
 
-    <br>
-    <br>
-
+    <br />
+    <br />
   </section>
   <!--
     <div class="d-flex flex-wrap justify-content-around">
@@ -40,11 +50,8 @@
         <router-outlet></router-outlet>
         -->
   <router-outlet></router-outlet>
-  
-  
- 
 
-  <section id='menu'>
+  <section id="menu">
     <script>
       function play() {
         var audio = document.getElementById("card");
@@ -54,78 +61,72 @@
     <audio id="splash" src="../../assets/music/splash.wav"></audio>
     <audio id="splash" src="../../assets/music/splash.ogg"></audio>
 
-
     <div class="row">
       <div class="col-md-12">
         <ul class="text-center list-inline py-3">
           <li class="list-inline-item">
-
-            <button onclick="javascript: document.getElementById('splash').play();" routerLink="/login" *ngIf="bottoneLanding" class="btn btn-info  mr-4 button_menu " (click)="nascondi()">
+            <button
+              onclick="javascript: document.getElementById('splash').play();"
+              routerLink="/login"
+              *ngIf="bottoneLanding"
+              class="btn btn-info mr-4 button_menu"
+              (click)="nascondi()"
+            >
               <div class="row justify-content-center py-4">Entra</div>
               <div class="bolla1 list-inline-item">
                 <div class="bolla2 list-inline-item">
                   <div class="bolla4 list-inline-item">
-                    <div class="bolla5 list-inline-item">
-
-                    </div>
+                    <div class="bolla5 list-inline-item"></div>
                   </div>
                 </div>
               </div>
 
-              <div class="bolla3 list-inline-item">
-
-              </div>
+              <div class="bolla3 list-inline-item"></div>
             </button>
           </li>
 
-
-              <li class="list-inline-item">
-                <button onclick="javascript: document.getElementById('splash').play();" routerLink="/regole" *ngIf="bottoneLanding" class="btn btn-info button_menu mr-4">
-                  <div class="row justify-content-center">Regole</div>
-                  <div class="row justify-content-center">del gioco</div>
-                  <div class="bolla1 list-inline-item">
-                    <div class="bolla2 list-inline-item">
-                      <div class="bolla4 list-inline-item">
-                        <div class="bolla5 list-inline-item">
-
-                        </div>
-                      </div>
-                    </div>
+          <li class="list-inline-item">
+            <button
+              onclick="javascript: document.getElementById('splash').play();"
+              routerLink="/regole"
+              *ngIf="bottoneLanding"
+              class="btn btn-info button_menu mr-4"
+            >
+              <div class="row justify-content-center">Regole</div>
+              <div class="row justify-content-center">del gioco</div>
+              <div class="bolla1 list-inline-item">
+                <div class="bolla2 list-inline-item">
+                  <div class="bolla4 list-inline-item">
+                    <div class="bolla5 list-inline-item"></div>
                   </div>
+                </div>
+              </div>
 
-                  <div class="bolla3 list-inline-item">
+              <div class="bolla3 list-inline-item"></div>
+            </button>
+          </li>
 
+          <li class="list-inline-item">
+            <button
+              onclick="javascript: document.getElementById('splash').play();"
+              routerLink="/demo"
+              *ngIf="bottoneLanding"
+              class="btn btn-info button_menu"
+            >
+              <div class="row justify-content-center py-4">Demo</div>
+              <div class="bolla1 list-inline-item">
+                <div class="bolla2 list-inline-item">
+                  <div class="bolla4 list-inline-item">
+                    <div class="bolla5 list-inline-item"></div>
                   </div>
-                </button>
-              </li>
+                </div>
+              </div>
 
-              <li class="list-inline-item">
-                <button onclick="javascript: document.getElementById('splash').play();" routerLink="/demo" *ngIf="bottoneLanding" class="btn btn-info button_menu" >
-                  <div class="row justify-content-center py-4">Demo</div>
-                  <div class="bolla1 list-inline-item">
-                    <div class="bolla2 list-inline-item">
-                      <div class="bolla4 list-inline-item">
-                        <div class="bolla5 list-inline-item">
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="bolla3 list-inline-item">
-
-                  </div>
-                </button>
-
-              </li>
-
-           
+              <div class="bolla3 list-inline-item"></div>
+            </button>
+          </li>
         </ul>
-
       </div>
     </div>
   </section>
-
-
-
 </div>

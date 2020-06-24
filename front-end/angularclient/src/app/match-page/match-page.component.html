@@ -62,7 +62,7 @@
 
           <div
             class="carte-delle-torri"
-            (click)="giocaSullaTorre('Quadrato')"
+            (click)="giocatoreGiocaSullaTorre('Quadrato')"
           >
             <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img style="left: 36mm; top: 54mm; transform: rotate(-2deg);" class = "cartatorre">
             <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class = "cartatorre">
@@ -108,7 +108,7 @@
 
           <div
             class="carte-delle-torri"
-            (click)="giocaSullaTorre('Triangolo')"
+            (click)="giocatoreGiocaSullaTorre('Triangolo')"
           >
             <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class = "cartatorre">
             <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class = "cartatorre">
@@ -152,7 +152,7 @@
           </div>
           <div
             class="carte-delle-torri"
-            (click)="giocaSullaTorre('Cerchio')"
+            (click)="giocatoreGiocaSullaTorre('Cerchio')"
           >
             <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class = "cartatorre">
             <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class = "cartatorre">
@@ -197,7 +197,7 @@
           
           <div
             class="carte-delle-torri"
-            (click)="giocaSullaTorre('Ancora')"
+            (click)="giocatoreGiocaSullaTorre('Ancora')"
           >
             <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class = "cartatorre">
             <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class = "cartatorre">
@@ -241,7 +241,7 @@
         </div>
         <div
           class="mazzo-coperte"
-          (click)="pescaDalMazzoCoperto()"
+          (click)="giocatorePescaDalMazzoCoperto()"
           onclick="javascript: document.getElementById('card').play();"
         >
           <div *ngIf="this.carteRimanentiDaPescare > 0" class="Carta-misteriosa">
@@ -356,19 +356,19 @@
           <div><div></div></div>
         </div>
       </div>
-      <div id="1" class="punteggio" style="right: 45mm; bottom: 265mm;">
+      <div id="1" class="punteggio" style="right: 45mm; bottom: 360mm;">
         0
         <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div id="2" class="punteggio" style="left: 10mm; bottom: 275mm;">
+      <div id="2" class="punteggio" style="left: 10mm; bottom: 370mm;">
         0
         <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div id="3" class="punteggio" style="left: 65mm; bottom: 285mm;">
+      <div id="3" class="punteggio" style="left: 65mm; bottom: 380mm;">
         0     <div class="bolla">
           <div><div></div></div>
         </div>

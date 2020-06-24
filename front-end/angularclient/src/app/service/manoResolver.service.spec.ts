@@ -10,7 +10,7 @@ describe('Service: ManoResolver', () => {
     });
   });
 
-  it('should ...', inject([ManoResolverService], (service: ManoResolverService) => {
-    expect(service).toBeTruthy();
-  }));
+  // it('should ...', inject([ManoResolverService], (service: ManoResolverService) => {
+  //   expect(service).toBeTruthy();
+  // }));
 });

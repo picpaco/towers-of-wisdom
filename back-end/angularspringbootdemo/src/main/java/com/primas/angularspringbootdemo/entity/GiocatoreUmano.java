@@ -3,6 +3,9 @@ package com.primas.angularspringbootdemo.entity;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+
 
 public class GiocatoreUmano extends Giocatore {
 
@@ -10,6 +13,8 @@ public class GiocatoreUmano extends Giocatore {
 //		super(nome);
 //	}
 
+	private ApplicationContext context;
+	
 	private String scegliMossa() {
 		boolean inputNok = true;
 		@SuppressWarnings("resource")
@@ -175,7 +180,7 @@ public class GiocatoreUmano extends Giocatore {
 	}
 
 	@Override
-	public void giocaCarta(MazzoScarti mazzoScarti) {
+	public Carta giocaCarta(MazzoScarti mazzoScarti) {
 		assert (mazzoScarti != null): "Il mazzo scarti non deve essere null";
 		assert (getMano().size()==4): "La mano deve contenere 4 carte";
 
@@ -189,6 +194,7 @@ public class GiocatoreUmano extends Giocatore {
 					aggiungiCartaATorre(getMano().get(0));
 					System.out.println("carta giocata: " + getMano().get(0));
 					getMano().remove(getMano().get(0));
+					return getMano().get(0);
 				} else {
 					System.out.println("Non è possibile giocare questa carta");
 					giocaCarta(mazzoScarti);
@@ -199,6 +205,7 @@ public class GiocatoreUmano extends Giocatore {
 					aggiungiCartaATorre(getMano().get(1));
 					System.out.println("carta giocata: " + getMano().get(1));
 					getMano().remove(getMano().get(1));
+					return getMano().get(1);
 				} else {
 					System.out.println("Non è possibile giocare questa carta");
 					giocaCarta(mazzoScarti);
@@ -209,6 +216,7 @@ public class GiocatoreUmano extends Giocatore {
 					aggiungiCartaATorre(getMano().get(2));
 					System.out.println("carta giocata: " + getMano().get(2));
 					getMano().remove(getMano().get(2));
+					return getMano().get(2);
 				} else {
 					System.out.println("Non è possibile giocare questa carta");
 					giocaCarta(mazzoScarti);
@@ -219,40 +227,56 @@ public class GiocatoreUmano extends Giocatore {
 					aggiungiCartaATorre(getMano().get(3));
 					System.out.println("carta giocata: " + getMano().get(3));
 					getMano().remove(getMano().get(3));
+					return getMano().get(3);
 				} else {
 					System.out.println("Non è possibile giocare questa carta");
 					giocaCarta(mazzoScarti);
 				}
 			}
-		}	
+		}
+		
 		if(scelta.equals("scarta")) {
 			if(cartaSelezionata.equals("carta1")) {
 				mazzoScarti.aggiungiCarta(getMano().get(0));
 				System.out.println("carta rimossa: " + getMano().get(0));
-				getMano().remove(getMano().get(0));	
+				getMano().remove(getMano().get(0));
+				return getMano().get(0);
 			}
 			if(cartaSelezionata.equals("carta2")) {
 				mazzoScarti.aggiungiCarta(getMano().get(1));
 				System.out.println("carta rimossa: " + getMano().get(1));
 				getMano().remove(getMano().get(1));
+				return getMano().get(1);
 			}
 			if(cartaSelezionata.equals("carta3")) {
 				mazzoScarti.aggiungiCarta(getMano().get(2));
 				System.out.println("carta rimossa: " + getMano().get(2));
 				getMano().remove(getMano().get(2));
+				return getMano().get(2);
 			}
 			if(cartaSelezionata.equals("carta4")) {
 				mazzoScarti.aggiungiCarta(getMano().get(3));
 				System.out.println("carta rimossa: " + getMano().get(3));
 				getMano().remove(getMano().get(3));
+				return getMano().get(3);
 			}
 		}
 		System.out.println("carte mano dopo aver giocato: " + getMano());
 		System.out.println("torri giocatore: " + getInsTorri2());
 		System.out.println("mazzo scarti: " +  mazzoScarti);
-
+		
+		
 		assert (getMano().size() == 3): "La mano deve contenere 3 carte";
+		throw new IllegalArgumentException("Il giocatore deve scegliere se giocare o scartare la carta");
+		
 	}
 
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		context=applicationContext;
+		
+	}
+	
 
 }

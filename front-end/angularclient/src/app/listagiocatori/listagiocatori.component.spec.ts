@@ -19,7 +19,4 @@ describe('ListagiocatoriComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
