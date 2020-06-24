@@ -26,23 +26,28 @@ import com.primas.angularspringbootdemo.repository.RepositoryPartita;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class PartitaController implements ApplicationContextAware{
-	private final RepositoryPartita repositoryPartita;
+//	private final RepositoryPartita repositoryPartita;
 	private ApplicationContext context;
 	
 
-	public PartitaController(RepositoryPartita repo) {
-		this.repositoryPartita = repo;
+	public  PartitaController() {
+	
 	}
+	
+//	public PartitaController(RepositoryPartita repo) {
+//		this.repositoryPartita = repo;
+//	}
 
 	@GetMapping("/giocatori")
 	public List<Partita> getGiocatori() {
-		return (List<Partita>) repositoryPartita.findAll();
+//		return (List<Partita>) repositoryPartita.findAll();
+		return new ArrayList<Partita>();
 		//serve per visualizzare la leaderbord 
 	}
 
 	@PostMapping("/giocatori")
 	public void addUser(@RequestBody Partita partita) {
-		repositoryPartita.save(partita);
+//		repositoryPartita.save(partita);
 		//quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
 	}
 	

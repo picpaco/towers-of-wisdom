@@ -68,7 +68,7 @@ public class UserController implements ApplicationContextAware {
 		//inizializzaPartita(tow);
 		Principal principal = request.getUserPrincipal();
 		User utente = new User();
-		utente.setNomeutente(principal.getName() + "!");
+		utente.setUsername(principal.getName() + "!");
 		System.out.println("siamo dentro validateLogin " + principal.getName());
 		//response.addHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 
