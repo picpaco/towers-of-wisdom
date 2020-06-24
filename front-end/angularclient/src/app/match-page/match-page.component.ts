@@ -191,6 +191,7 @@ export class MatchPageComponent implements OnInit {
       } else {
         this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
       }
+      
       if(!this.isTurnoGiocatore){
       this.BotGiocaLaSuaMossa();
       }
