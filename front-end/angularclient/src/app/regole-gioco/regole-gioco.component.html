@@ -5,6 +5,7 @@
     </div>
   </div>
 
+
   <section id="istruzioni">
     <div class="row">
       <div class="col-md-12">
@@ -60,9 +61,18 @@
     </div>
   </section>
 
+  <script>
+    function play() {
+      var audio = document.getElementById("glug");
+      audio.play();
+    }
+  </script>
+  <audio id="glug" src="../../assets/music/glug.wav"></audio>
+  <audio id="glug" src="../../assets/music/glug.ogg"></audio>
+
   <div class="row">
     <div class="col-12">
-      <a routerLink="/" class="btn btn-info button">Ritorna alla pagina principale</a>
+      <a onclick="javascript: document.getElementById('glug').play();" routerLink="/" class="btn btn-info button">Ritorna alla pagina principale</a>
     </div>
   </div>
 

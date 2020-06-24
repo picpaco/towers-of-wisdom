@@ -7,11 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.context.ApplicationContextAware;
 
 
 
+
+<<<<<<< HEAD
 //@Entity
 public abstract class Giocatore {  
+=======
+@Entity
+public abstract class Giocatore implements ApplicationContextAware{  
+>>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -69,14 +76,15 @@ public abstract class Giocatore {
 		return null;
 	}
 
-	public void giocaTurno(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) { 
+	public Carta giocaTurno(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) { 
 		assert (mano.size() == 3): "La mano deve avere 3 carte";
 		assert (!mazzoCoperto.isVuoto()): "Il mazzo coperto non deve essere vuoto";
 
 		pescaCarta(mazzoCoperto, mazzoScarti);
-		giocaCarta(mazzoScarti);
+		Carta c=giocaCarta(mazzoScarti);
 
 		assert (mano.size() == 3 || mano.size() == 4 && mazzoCoperto.isVuoto()): "La mano deve avere 3 carte oppure 4 se il mazzo è finito";
+		return c;
 	}
 
 
@@ -115,8 +123,8 @@ public abstract class Giocatore {
 		aggiornaPunteggioParziale(carta);
 		int dimTorreCorrente = torreCorrente.numeroCarte();
 
-		System.out.println("punteggio totale: " + getPunteggioTotale());
-		System.out.println("carta appena aggiunta alla torre: " + torreCorrente.guardaLaCartaInCima());
+		System.out.println("\rpunteggio totale: " + getPunteggioTotale());
+		System.out.println("\r carta appena aggiunta alla torre: " + torreCorrente.guardaLaCartaInCima());
 
 		assert (dimTorreCorrente == vecchiaDimTorre+1): "La torre deve avere una carta in più";
 	}
@@ -144,31 +152,36 @@ public abstract class Giocatore {
 		for(int i=0; i<3; i++) {
 			mano.add(mazzoCoperto.pescaCarta());
 		}
-		System.out.println("mano dopo distribuzione carte:"+ mano + " " + "dimensione mano: "+mano.size());
+		System.out.println("\r mano dopo distribuzione carte:"+ mano + " " + "dimensione mano: "+mano.size());
 
 		assert (mano.size() == 3): "La mano deve essere di 3 carte";
 		return mano;
 	}
 
-	public void scartaCarta(MazzoScarti mazzoScarti) { 	
+	public Carta scartaCarta(MazzoScarti mazzoScarti) { 	
 		assert (mano.size() == 4): "La mano deve avere 4 carte"; 
 
+		Carta cartaScartata=null;
+		
 		for(int i = 0; i < mano.size(); i++) {
 			if(!(isGiocabile(mano.get(i)))) {
 				mazzoScarti.aggiungiCarta(mano.get(i));
+			     cartaScartata =mano.get(i);
 				System.out.println("carta scartata: "+mano.get(i));
-				mano.remove(mano.get(i));
-				break;
+				 mano.remove(mano.get(i));
+			
 			}
 		}
-
 		assert (mano.size() == 3): "La mano deve essere di 3 carte";
+		return cartaScartata;
+
+		
 	}
 
 	public abstract void pescaCarta(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti);
 
 
-	public abstract void giocaCarta(MazzoScarti mazzoScarti);
+	public abstract Carta giocaCarta(MazzoScarti mazzoScarti);
 
 
 	public abstract Carta decidiCartaDaGiocare(ArrayList<Carta> mano);

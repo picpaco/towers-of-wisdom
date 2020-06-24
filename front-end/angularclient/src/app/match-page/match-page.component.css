@@ -144,7 +144,7 @@ span {
   height: 35mm;
   margin: auto;
   position: relative;
-  bottom: 124.7mm;
+  bottom: 219.7mm;
   left: 0.1mm;
   border-top: 4px solid rgb(83, 232, 243);
   border-top-left-radius: 75mm;
@@ -168,7 +168,7 @@ span {
   margin: auto;
   position: relative;
   left: 128.8mm;
-  bottom: 238.1mm;
+  bottom: 333.1mm;
   border: 1px solid rgb(0, 255, 213);
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
@@ -309,11 +309,12 @@ span {
 }
 
 .pannello-degli-scarti {
-  position: absolute;
+  position: relative;
   width: 60mm;
   height: 95mm;
-  top: 88mm;
-  left: 3.5mm;
+  right: 143mm;
+  margin:auto;
+  bottom:200mm;
   border: transparent;
   border-radius: 2mm;
   background-image: linear-gradient(
@@ -462,7 +463,8 @@ span {
 }
 
 .Quadrato {
-  background-image: linear-gradient(
+  background-image:
+  linear-gradient(
     to bottom,
     rgb(212, 198, 0),
     rgb(253, 255, 108),
@@ -503,11 +505,11 @@ span {
 
 .Carta-misteriosa {
   background-image: linear-gradient(
-    to top left,
-    rgb(5, 228, 24),
-    rgb(181, 253, 167),
-    rgb(5, 228, 24)
-  );
+    rgba(196, 186, 104, 0.438),
+    rgba(173, 166, 101, 0.438)
+  ),
+  url("../../assets/images/cartaback.jpg");
+  position: relative;
 }
 
 .chat {
@@ -545,7 +547,7 @@ span {
   position: relative;
   width: 11mm;
   height: 10mm;
-  bottom: 254mm;
+  bottom: 349mm;
   border-top-left-radius: 4.2mm;
   border-top-right-radius: 5mm;
   border-bottom-left-radius: 5mm;
@@ -594,4 +596,32 @@ span {
   border: inherit;
   border-radius: 5mm;
   background-image: inherit;
+}
+.mus{
+  padding-right: 0.5cm;
+}
+
+.imgcarta {
+  height: 40px;
+  width: 50px;
+  position: relative;
+  bottom: 20px;
+}
+
+.cartatorre {
+  height: 30px;
+  width: 40px;
+  position: relative;
+  margin: auto;
+  visibility: hidden;
+}
+
+.ima image {
+  position: relative;
+}
+
+.imgcolonna {
+  position: relative;
+  width: 60px;
+  height: 50px;
 }

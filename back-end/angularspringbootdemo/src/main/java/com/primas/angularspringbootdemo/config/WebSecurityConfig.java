@@ -1,27 +1,41 @@
 package com.primas.angularspringbootdemo.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+<<<<<<< HEAD
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+=======
+import org.springframework.security.authentication.AuthenticationManager;
+>>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+<<<<<<< HEAD
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+=======
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+>>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
 
 import com.primas.angularspringbootdemo.entity.UserDetailsServiceImpl;
 
 @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+<<<<<<< HEAD
 //	@Autowired
 //	DataSource dataSource;
 //
@@ -57,38 +71,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
+=======
+	@Autowired
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		//http.cors();
-		System.out.println("sto dentro il metodo configure(http)");
-		//		http
-		//			.authorizeRequests()
-		//				.antMatchers("/", "/home").permitAll()
-		//				.anyRequest().authenticated()
-		//				.and()
-		//			.formLogin()
-		//				.loginPage("/login")
-		//				.permitAll()
-		//				.and()
-		//			.logout()
-		//				.permitAll();
+	@Autowired
+	private UserDetailsService jwtUserDetailsService;
+>>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
 
-		http.csrf().disable().
-		authorizeRequests().
-		antMatchers(HttpMethod.OPTIONS,"/**").
-		permitAll().
-		anyRequest().
-		authenticated()
-		.and().httpBasic();
+	@Autowired
+	private JwtRequestFilter jwtRequestFilter;
 
-		//		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll().antMatchers("/welcome")
-		//				.hasAnyRole("USER", "ADMIN").antMatchers("/getEmployees").hasAnyRole("USER", "ADMIN")
-		//				.antMatchers("/addNewEmployee").hasAnyRole("ADMIN").anyRequest().authenticated().and().formLogin()
-		//				.loginPage("/validateLogin").permitAll().and().logout().permitAll().and().httpBasic();
-
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		// configure AuthenticationManager so that it knows from where to load
+		// user for matching credentials
+		// Use BCryptPasswordEncoder
+		
+		auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+
+<<<<<<< HEAD
 //	@Autowired
 //	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //		auth.inMemoryAuthentication().withUser("stefano89").password("{noop}stefanorusso").roles("USER");
@@ -107,4 +121,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	//
 	//		return new InMemoryUserDetailsManager(user);
 	//	}
+=======
+	@Override
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		// We don't need CSRF for this example
+		httpSecurity.csrf().disable()
+				// dont authenticate this particular request
+				.authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
+				.permitAll().
+				// all other requests need to be authenticated
+				anyRequest().authenticated().and().
+				// make sure we use stateless session; session won't be used to
+				// store user's state.
+				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+		// Add a filter to validate the tokens with every request
+		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	}
+>>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
 }
