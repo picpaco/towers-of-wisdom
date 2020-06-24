@@ -17,6 +17,7 @@ import { ListautentiComponent } from "./listautenti/listautenti.component";
 import { ManoResolverService } from "./service/manoResolver.service";
 import { AuthGaurdService } from "./service/auth-gaurd.service";
 import { LogoutComponent } from "./logout/logout.component";
+import { DatiPartitaResolverService } from './service/Dati-partita.service';
 
 const routes: Routes = [
   {
@@ -49,7 +50,7 @@ const routes: Routes = [
   {
     path: "match",
     component: MatchPageComponent,
-    resolve: { mano: ManoResolverService },
+    resolve: { datiPartita: DatiPartitaResolverService },
     canActivate: [AuthGaurdService],
   },
 
@@ -73,7 +74,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [ManoResolverService],
+  providers: [DatiPartitaResolverService],
 })
 export class AppRoutingModule {}
 export const routingComponents = [

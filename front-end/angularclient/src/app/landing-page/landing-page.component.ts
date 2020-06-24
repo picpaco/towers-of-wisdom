@@ -18,7 +18,10 @@ export class LandingPageComponent implements OnInit {
   constructor(private data:DataService ) {
     this.title = "Towers of wisdom";
   }
-
+  ngOnInit() {
+    this.data.share.subscribe(x=>this.bottoneLanding=x);
+    this.data.stringaCondivisa.subscribe(nuovaStringa=>this.intro=nuovaStringa);
+  }
 
   nascondi() {
     this.bottoneLanding = false;
@@ -30,9 +33,6 @@ export class LandingPageComponent implements OnInit {
  
   
 
-  ngOnInit() {
-    this.data.share.subscribe(x=>this.bottoneLanding=x);
-    this.data.stringaCondivisa.subscribe(nuovaStringa=>this.intro=nuovaStringa);
-  }
+ 
 
 }

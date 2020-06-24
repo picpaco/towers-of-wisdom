@@ -10,8 +10,9 @@ public class TorriDiSaggezza {
 	private MazzoCoperto mazzoCoperto;
 	private MazzoScarti mazzoScarti;
 	private Giocatore giocatoreCorrente;
-	private String nomeGiocatore;
+	private String nomeGiocatore="Maurizio";//deve essere settato dopo che si ha effettuato il login!
 	private String nomeAvversario="BOT";//dipenderà quale modalità sceglie il giocatore
+	private int indiceGiocatorePrimoTurno;
 	
 
 	public TorriDiSaggezza() {
@@ -98,69 +99,71 @@ public class TorriDiSaggezza {
 		return avversario;
 	}
 
-	public void giocaPartita() {
-		System.out.println("sono in gioca partita");
+//	public void giocaPartita() {
+//		System.out.println("sono in gioca partita");
+//	
+//		String nomeGiocatore = getNomeGiocatore();
+//		giocatori[0] = new GiocatoreUmano();
+//		//giocatori[0] = new GiocatoreBot("BOT 0");
+//		giocatori[1] = new GiocatoreBot();
+//		//String tipologiaAvversario = scegliAvversario();
+//		//System.out.println("tipologia avversario:"+tipologiaAvversario);
+////		if(tipologiaAvversario.equals("BOT")) {
+////			giocatori[1] = new GiocatoreBot(tipologiaAvversario);
+////		} else {
+////			giocatori[1] = new GiocatoreUmano(tipologiaAvversario);
+////		}	
+//
+//		System.out.println("giocatore 1: " + giocatori[0].getNome());
+//		System.out.println("giocatore 2: " + giocatori[1].getNome());
+////		if(tipologiaAvversario.equals("BOT")) {
+//		giocaPartitaConBot();
+////		} else {
+////			if(tipologiaAvversario.equals("AMICO")) {
+////				giocaPartitaConUmano();
+////			} else {
+////				throw new GiocatoreException("Giocatore non valido");
+////			}
+////		}
+//
+//	}
+
+
+	public void stabilisciPrimoTurno() {
+		indiceGiocatorePrimoTurno = ThreadLocalRandom.current().nextInt(0, 2);
+		
+		assert(indiceGiocatorePrimoTurno == 0 || indiceGiocatorePrimoTurno == 1): "Il turno deve essere 0 o 1";
+	}
 	
-		String nomeGiocatore = getNomeGiocatore();
-		giocatori[0] = new GiocatoreUmano();
-		//giocatori[0] = new GiocatoreBot("BOT 0");
-		giocatori[1] = new GiocatoreBot();
-		//String tipologiaAvversario = scegliAvversario();
-		//System.out.println("tipologia avversario:"+tipologiaAvversario);
-//		if(tipologiaAvversario.equals("BOT")) {
-//			giocatori[1] = new GiocatoreBot(tipologiaAvversario);
-//		} else {
-//			giocatori[1] = new GiocatoreUmano(tipologiaAvversario);
-//		}	
+	
+	public int getIndiceGiocatorePrimoTurno() {
+		return indiceGiocatorePrimoTurno;
+	}
 
-		System.out.println("giocatore 1: " + giocatori[0].getNome());
-		System.out.println("giocatore 2: " + giocatori[1].getNome());
-//		if(tipologiaAvversario.equals("BOT")) {
-			giocaPartitaConBot();
-//		} else {
-//			if(tipologiaAvversario.equals("AMICO")) {
-//				giocaPartitaConUmano();
-//			} else {
-//				throw new GiocatoreException("Giocatore non valido");
-//			}
+//	public void giocaPartitaConBot() { 
+//		System.out.println("sono in gioca con bot");
+//		stabilisciPrimoTurno();
+//		System.out.println("inizia prima: " + giocatori[getIndiceGiocatorePrimoTurno()]);
+//		int turnoCorrente = getIndiceGiocatorePrimoTurno();
+//
+//
+//		giocatori[0].distribuisciCarte(mazzoCoperto);
+//		giocatori[1].distribuisciCarte(mazzoCoperto);
+//
+//		System.out.println(mazzoCoperto);
+//		System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
+//		while(!(mazzoCoperto.isVuoto())) {
+//
+//			giocatoreCorrente = giocatori[turnoCorrente];
+//			System.out.println("turno: " + giocatoreCorrente.getNome());
+//				giocatoreCorrente.giocaTurno(mazzoCoperto, mazzoScarti);
+//			turnoCorrente = (turnoCorrente+1)%2;
+//			System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
 //		}
-
-	}
-
-
-	public int stabilisciPrimoTurno() {
-		int risultato = ThreadLocalRandom.current().nextInt(0, 2);
-		
-		assert(risultato == 0 || risultato == 1): "Il turno deve essere 0 o 1";
-		
-		return risultato;
-	}
-
-
-	public void giocaPartitaConBot() { 
-		System.out.println("sono in gioca con bot");
-		int turnoIniziale = stabilisciPrimoTurno();
-		System.out.println("inizia prima: " + giocatori[turnoIniziale]);
-		int turnoCorrente = turnoIniziale;
-
-
-		giocatori[0].distribuisciCarte(mazzoCoperto);
-		giocatori[1].distribuisciCarte(mazzoCoperto);
-
-		System.out.println(mazzoCoperto);
-		System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
-		while(!(mazzoCoperto.isVuoto())) {
-
-			giocatoreCorrente = giocatori[turnoCorrente];
-			System.out.println("turno: " + giocatoreCorrente.getNome());
-				giocatoreCorrente.giocaTurno(mazzoCoperto, mazzoScarti);
-			turnoCorrente = (turnoCorrente+1)%2;
-			System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
-		}
-		calcolaVincitore();
-		
-		assert (mazzoCoperto.dimensione() == 0): "Il mazzo non dovrebbe essere pieno";
-	}
+//		calcolaVincitore();
+//		
+//		assert (mazzoCoperto.dimensione() == 0): "Il mazzo non dovrebbe essere pieno";
+//	}
 
 	private void calcolaVincitore() {
 		System.out.println("punteggio "+ giocatori[0].getNome() + ": " + giocatori[0].calcolaPunteggio());
@@ -177,28 +180,28 @@ public class TorriDiSaggezza {
 		}
 	}
 
-	public void giocaPartitaConUmano() {
-		assert (stabilisciPrimoTurno()==0 || stabilisciPrimoTurno()==1): "Il turno deve essere 0 o 1";
-		System.out.println("sono in gioca con UMANO");
-		int turnoIniziale = stabilisciPrimoTurno();
-		int turnoCorrente = turnoIniziale;
-		Giocatore giocatoreCorrente = null;
-
-		giocatori[0].distribuisciCarte(mazzoCoperto);
-		giocatori[1].distribuisciCarte(mazzoCoperto);
-
-		System.out.println(mazzoCoperto);
-		System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
-		while(!(mazzoCoperto.isVuoto())) {
-
-			giocatoreCorrente = giocatori[turnoCorrente];
-			System.out.println("turno: " + giocatoreCorrente.getNome());
-			giocatoreCorrente.giocaTurno(mazzoCoperto, mazzoScarti);
-			turnoCorrente = (turnoCorrente+1)%2;
-			System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
-		}
-		calcolaVincitore();
-		
-		assert (mazzoCoperto.dimensione() == 0): "Il mazzo non dovrebbe essere pieno";
-	}
+//	public void giocaPartitaConUmano() {
+//		assert (stabilisciPrimoTurno()==0 || stabilisciPrimoTurno()==1): "Il turno deve essere 0 o 1";
+//		System.out.println("sono in gioca con UMANO");
+//		int turnoIniziale = stabilisciPrimoTurno();
+//		int turnoCorrente = turnoIniziale;
+//		Giocatore giocatoreCorrente = null;
+//
+//		giocatori[0].distribuisciCarte(mazzoCoperto);
+//		giocatori[1].distribuisciCarte(mazzoCoperto);
+//
+//		System.out.println(mazzoCoperto);
+//		System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
+//		while(!(mazzoCoperto.isVuoto())) {
+//
+//			giocatoreCorrente = giocatori[turnoCorrente];
+//			System.out.println("turno: " + giocatoreCorrente.getNome());
+//			giocatoreCorrente.giocaTurno(mazzoCoperto, mazzoScarti);
+//			turnoCorrente = (turnoCorrente+1)%2;
+//			System.out.println("Il mazzo ha "+mazzoCoperto.dimensione()+" carte");
+//		}
+//		calcolaVincitore();
+//		
+//		assert (mazzoCoperto.dimensione() == 0): "Il mazzo non dovrebbe essere pieno";
+//	}
 }

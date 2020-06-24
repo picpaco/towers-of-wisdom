@@ -18,7 +18,7 @@ import com.primas.angularspringbootdemo.repository.RepositoryPartita;
 
 @SpringBootApplication
 public class AngularspringbootdemoApplication implements ApplicationContextAware{
-	private static ApplicationContext context;
+	private ApplicationContext context;
 //	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		SpringApplication.run(AngularspringbootdemoApplication.class, args);
@@ -28,10 +28,10 @@ public class AngularspringbootdemoApplication implements ApplicationContextAware
 	@Bean
 	CommandLineRunner init(RepositoryPartita partitaRepository) {
 		return args -> {
-			Partita partita = new Partita("Marco", "Tizio");
-			
-			partitaRepository.save(partita);
-			partitaRepository.findAll().forEach(System.out::println);//i giocaotri vanno salvati a partire dall'interfaccia 
+//			Partita partita = new Partita("Marco", "Tizio");
+//			
+//			partitaRepository.save(partita);
+//			partitaRepository.findAll().forEach(System.out::println);//i giocaotri vanno salvati a partire dall'interfaccia 
 		};
 	}
 

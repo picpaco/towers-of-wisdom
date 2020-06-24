@@ -144,7 +144,7 @@ span {
   height: 35mm;
   margin: auto;
   position: relative;
-  bottom: 124.7mm;
+  bottom: 219.7mm;
   left: 0.1mm;
   border-top: 4px solid rgb(83, 232, 243);
   border-top-left-radius: 75mm;
@@ -168,7 +168,7 @@ span {
   margin: auto;
   position: relative;
   left: 128.8mm;
-  bottom: 238.1mm;
+  bottom: 333.1mm;
   border: 1px solid rgb(0, 255, 213);
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
@@ -309,11 +309,12 @@ span {
 }
 
 .pannello-degli-scarti {
-  position: absolute;
+  position: relative;
   width: 60mm;
   height: 95mm;
-  top: 88mm;
-  left: 3.5mm;
+  right: 143mm;
+  margin:auto;
+  bottom:200mm;
   border: transparent;
   border-radius: 2mm;
   background-image: linear-gradient(
@@ -546,7 +547,7 @@ span {
   position: relative;
   width: 11mm;
   height: 10mm;
-  bottom: 254mm;
+  bottom: 349mm;
   border-top-left-radius: 4.2mm;
   border-top-right-radius: 5mm;
   border-bottom-left-radius: 5mm;
