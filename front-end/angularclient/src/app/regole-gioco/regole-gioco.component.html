@@ -23,27 +23,26 @@
           </ul>
         </article>
         <article class="font_istruzioni">
-          Ai simboli (S1), (S2), (S3), (S4), (P) corrisponderanno delle icone tematiche. "S" sta per
-          simbolo, "P" sta per punta.
-          L'idea è quella di costruire delle torri, dove ogni torre è formata da una pila di carte con stesso
-          simbolo sovrapposte parzialmente (in modo da vedere le carte sottostanti). La regola da seguire
-          quando si contribuisce una carta alla costruzione di una torre è quella di sovrapporre carte con valori
-          progressivamente decrescenti, non importa se consecutivi. La punta P è come un jolly, nel senso che
-          è sovrapponibile ad una carta di un qualsiasi simbolo, ma solo se la carta ha valore 1.
+          L'idea è quella di costruire delle torri, dove ogni torre è formata da una pila di carte con lo stesso
+          simbolo. Per aggiungere una carta con un valore numerico ed un simbolo ad una torre 
+          con lo stesso simbolo la torre deve essere vuota o la carta in cima alla torre
+          da aggiungere deve avere un valore inferiore alla carta in cima alla torre.
+          Si può inserire una punta solo su di una carta di valore uno di qualsiasi simbolo.
+
           Esempi di torri valide:
-          1. 7, 6, 5, 4, 3 2, 1, P
-          2. 7, 5, 3, 1, P
-          3. 3, 2, 1, P
-          4. 1, P
-          5. 4
+          - 7, 6, 5, 4, 3, 2, 1, P
+          - 7, 5, 3, 1, P
+          - 3, 2, 1, P
+          - 1, P
+          - 4
           Lo scopo del gioco è totalizzare più punti dell'avversario. Il totale dei punti per un giocatore è dato
           dal totale dei punti di tutte le torri giocate. La presenza di una punta fa raddoppiare il valore di quella
           torre. Le torri dell'esempio precedente hanno i seguenti valori:
-          1. 7, 6, 5, 4, 3 2, 1, P: 56
-          2. 7, 5, 3, 1, P: 32
-          3. 3, 2, 1, P: 12
-          4. 1, P: 2
-          5. 4: 4
+          - 7, 6, 5, 4, 3 2, 1, P: 56
+          - 7, 5, 3, 1, P: 32
+          - 3, 2, 1, P: 12
+          - 1, P: 2
+          - 4: 4
           Ad inizio partita il mazzo viene mescolato. Ogni giocatore riceve una mano iniziale di tre carte.
           Viene deciso in modo casuale il giocatore che inizia per primo. In caso di partite successive ci si
           alterna ad iniziare per primi.
@@ -55,8 +54,8 @@
           Il secondo giocatore gioca il suo turno allo stesso modo.
           Il gioco finisce immediatamente quando l'ultima carta dal mazzo coperto è stata pescata.
           Sono possibili le seguenti modalità di gioco:
-          - Contro un bot (AI) sullo stesso elaboratore
-          - Contro un altro giocatore in rete locale</article>
+          - Contro un giocatore artificiale
+          - Contro un giocatore umano</article>
       </div>
     </div>
   </section>
