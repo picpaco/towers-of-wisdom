@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.primas.angularspringbootdemo.entity.Giocatore;
 import com.primas.angularspringbootdemo.entity.Partita;
 
-//@Repository
-public interface RepositoryPartita /*extends CrudRepository<Partita, Long> */{
+@Repository
+public interface RepositoryPartita extends CrudRepository<Partita, Long> {
 }

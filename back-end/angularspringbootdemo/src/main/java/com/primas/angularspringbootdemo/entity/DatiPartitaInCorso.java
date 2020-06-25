@@ -147,6 +147,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 
 		}
 		// System.out.println("\r" + cartaJson + "Carta da giocare ricreata");
+		
 		return new Carta(valore, simbolo);
 
 	}

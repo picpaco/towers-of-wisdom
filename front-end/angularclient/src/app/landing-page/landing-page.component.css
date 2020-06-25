@@ -1,8 +1,9 @@
 .sfondo_landing {
-  background-image: URL("./assets/images/sfondosea.jpg");
+  background-image: url("../../assets/images/sfondosea.jpg");
+  overflow: auto;
   background-size: cover;
   height: 100%;
-  position: relative;
+  position: fixed;
 }
 
 @font-face {
@@ -204,4 +205,19 @@
     -1px -1px 3px #266ee2, 2px 2px 3px #266ee2, -2px 2px 3px #266ee2,
     2px -2px 3px #266ee2, -2px -2px 3px #266ee2;
   transition-duration: 0.4s;
+}
+
+span.fa {
+  font-size: 9.5mm;
+  color: #61d5ea;
+  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+    -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
+    2px -2px 3px #1871f5, -2px -2px 3px #1871f5;
+}
+
+span.fa:hover {
+  color: #0a3aa2;
+  text-shadow: 1px 1px 3px #6ac4ea, -1px 1px 3px #6ac4ea, 1px -1px 3px #6ac4ea,
+    -1px -1px 3px #6ac4ea, 2px 2px 3px #6ac4ea, -2px 2px 3px #6ac4ea,
+    2px -2px 3px #6ac4ea, -2px -2px 3px #6ac4ea;
 }

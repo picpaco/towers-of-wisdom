@@ -16,45 +16,18 @@ import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-<<<<<<< HEAD
-public class PartitaController implements ApplicationContextAware{
-//	private final RepositoryPartita repositoryPartita;
-=======
 public class PartitaController implements ApplicationContextAware {
 	//private final RepositoryPartita repositoryPartita;
->>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
 	private ApplicationContext context;
 
-<<<<<<< HEAD
-	public  PartitaController() {
-	
-=======
 //	public PartitaController(RepositoryPartita repo) {
 //		this.repositoryPartita = repo;
 //	}
 	
 	public  PartitaController() {
 		
->>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
-	}
-	
-//	public PartitaController(RepositoryPartita repo) {
-//		this.repositoryPartita = repo;
-//	}
-
-<<<<<<< HEAD
-	@GetMapping("/giocatori")
-	public List<Partita> getGiocatori() {
-//		return (List<Partita>) repositoryPartita.findAll();
-		return new ArrayList<Partita>();
-		//serve per visualizzare la leaderbord 
 	}
 
-	@PostMapping("/giocatori")
-	public void addUser(@RequestBody Partita partita) {
-//		repositoryPartita.save(partita);
-		//quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
-=======
 //	@GetMapping("/giocatori")
 //	public List<Partita> getGiocatori() {
 //		return (List<Partita>) repositoryPartita.findAll();
@@ -74,7 +47,6 @@ public class PartitaController implements ApplicationContextAware {
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		dati.inizializzaPartita();		
 		return dati;
->>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
 	}
 	
 	@GetMapping("/giocaBot")

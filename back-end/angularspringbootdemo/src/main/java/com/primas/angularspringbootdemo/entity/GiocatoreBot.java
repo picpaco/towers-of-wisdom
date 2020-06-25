@@ -113,4 +113,10 @@ public class GiocatoreBot extends Giocatore  {
 		return cartaGiocata;
 	}
 
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		context = applicationContext;
+
+	}
+
 }
