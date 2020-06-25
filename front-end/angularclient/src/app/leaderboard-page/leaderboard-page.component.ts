@@ -3,6 +3,7 @@ import { Giocatore } from "../model/giocatore";
 import { GiocatoreService } from "../service/giocatore-service.service";
 import { EmailValidator } from "@angular/forms";
 import { getMaxListeners } from "process";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-leaderboard-page",
@@ -16,7 +17,9 @@ export class LeaderboardPageComponent implements OnInit {
 
   public show :Boolean;
 
-  constructor(private giocatoreService: GiocatoreService) {}
+  constructor(private giocatoreService: GiocatoreService, private activatedRoute: ActivatedRoute,) {
+
+  }
 
   ngOnInit(): void {
     this.giocatoreService.findAll().subscribe((data) => {
@@ -57,6 +60,7 @@ export class LeaderboardPageComponent implements OnInit {
       giocatore.percentualeVittorie=((giocatore.partiteVinte/giocatore.partiteGiocate)*100).toFixed()+"%";
     });
     */
-  }
+  //}
   
+}
 }

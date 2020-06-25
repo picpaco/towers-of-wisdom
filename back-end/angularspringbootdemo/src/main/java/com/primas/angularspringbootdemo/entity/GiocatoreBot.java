@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 public class GiocatoreBot extends Giocatore  {
 
 	private ApplicationContext context;
+	DatiPartitaInCorso datiPartita;
 
 //	public GiocatoreBot(String nome) {
 //		super(nome);
@@ -49,7 +50,7 @@ public class GiocatoreBot extends Giocatore  {
 				return mano.get(i);
 			}
 		}
-		assert(1>2):"Non deve ritornare un carta null!!!";
+		
 		return null;
 	}
 
@@ -57,11 +58,17 @@ public class GiocatoreBot extends Giocatore  {
 	public void pescaCarta(MazzoCoperto mazzoCoperto, MazzoScarti mazzoScarti) {
 		assert (getMano().size() == 3) : "La mano prima di giocare deve avere 3 carte";
 
+	    datiPartita=(DatiPartitaInCorso) context.getBean("getDatiPartita");
+		
+		Carta cartaPescata=null;
 		boolean cartaTrovataInMazzoScarti = false;
 		if (mazzoScarti.isVuoto()) {
-			System.out.println("\r carte mano prima di pescare: " + getMano());
-			getMano().add(mazzoCoperto.pescaCarta());
-			System.out.println("\r carte mano dopo aver pescato: " + getMano());
+			//System.out.println("\r BOT prima di pescare dal mazzo coperto: " + getMano());
+			cartaPescata=mazzoCoperto.pescaCarta();
+			getMano().add(cartaPescata);
+			datiPartita.setIlBotHaPescatoDalMazzoCoperto(true);
+			System.out.println("\r BOT ha pescato dal mazzo coperto la carta: "+cartaPescata);
+			//System.out.println("\r BOT dopo aver pescato dal mazzo coperto:" + getMano());
 		} else {
 			Carta c = null;
 			for (int i = 0; i < mazzoScarti.dimensione(); i++) {
@@ -69,14 +76,19 @@ public class GiocatoreBot extends Giocatore  {
 				if (isGiocabile(c)) {
 					mazzoScarti.pescaCarta(c);
 					getMano().add(c);
-					System.out.println("\r carta presa da mazzo degli scarti: " + c);
+					System.out.println("\r BOT ha pescato dal mazzo scarti: " + c);
 					cartaTrovataInMazzoScarti = true;
+					datiPartita.setIlBotHaPescatoDalMazzoCoperto(false);
 					break;
 				}
 			}
 			if (!(cartaTrovataInMazzoScarti)) {
-				getMano().add(mazzoCoperto.pescaCarta());
-				System.out.println("\r carte mano: " + getMano());
+				//System.out.println("\r BOT prima di pescare dal mazzo coperto: " + getMano());
+				cartaPescata=mazzoCoperto.pescaCarta();
+				getMano().add(cartaPescata);
+				datiPartita.setIlBotHaPescatoDalMazzoCoperto(true);
+				System.out.println("\r BOT ha pescato dal mazzo coperto la carta: "+cartaPescata);
+				//System.out.println("\r BOT dopo aver pescato dal mazzo coperto:" + getMano());
 			}
 		}
 		assert (getMano().size() == 4) : "La mano deve essere di 4 carte";
@@ -85,27 +97,29 @@ public class GiocatoreBot extends Giocatore  {
 	@Override
 	public Carta giocaCarta(MazzoScarti mazzoScarti) {
 		assert (getMano().size() == 4) : "La mano prima di giocare deve avere 4 carte";
-		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		
 //		System.out.println("torri giocatore: " + getInsTorri2());
 
 		Carta cartaDaGiocare = decidiCartaDaGiocare(getMano());
-		Carta cartaGiocata = null;// nuovo
+		Carta cartaGiocata = null;
 		
 
-		System.out.println("\r carta scelta: " + cartaDaGiocare);
+		
 		if (cartaDaGiocare == null) {
 			cartaGiocata = scartaCarta(mazzoScarti);
-			dati.setCartaAvversarioGiocataSuScarti(true);
-			dati.setCartaAvversarioGiocataSuTorre(false);
+			datiPartita.setCartaAvversarioGiocataSuScarti(true);
+			datiPartita.setCartaAvversarioGiocataSuTorre(false);
 
 		} else {
 			cartaGiocata = cartaDaGiocare;
 			aggiungiCartaATorre(cartaDaGiocare);
 			getMano().remove(cartaDaGiocare);
-			dati.setCartaAvversarioGiocataSuScarti(false);
-			dati.setCartaAvversarioGiocataSuTorre(true);
+			datiPartita.setCartaAvversarioGiocataSuScarti(false);
+			datiPartita.setCartaAvversarioGiocataSuTorre(true);
 		}
-		dati.setCartaGiocataBot(cartaGiocata);// nuovo
+		
+		System.out.println("\r carta scelta: " + cartaGiocata);
+		datiPartita.setCartaGiocataBot(cartaGiocata);
 
 
 		
@@ -115,8 +129,8 @@ public class GiocatoreBot extends Giocatore  {
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		context = applicationContext;
-
+		context=applicationContext;
+		
 	}
 
 }

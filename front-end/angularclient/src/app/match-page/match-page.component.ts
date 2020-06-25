@@ -66,6 +66,7 @@ export class MatchPageComponent implements OnInit {
       cartaGiocataBot = this.cartaAdapter.adapt(
         testoJson["datiPartita"]["cartaGiocataBot"]
       );
+      this.carteRimanentiDaPescare -= 1;
       console.log("Il bot ha giocato la carta:");
       console.log(cartaGiocataBot);
       console.log("-------------------");
@@ -85,8 +86,6 @@ export class MatchPageComponent implements OnInit {
     this.mano = manoJson.map((item) => this.cartaAdapter.adapt(item));
     this.mostraMazzoScarti();
   }
-
-
 
   giocaCartaTorriAvversario(cartaGiocataBot: Carta) {
     let torreDaGiocare = this.getNumeroDellaTorre(cartaGiocataBot.getSymbol());
@@ -389,26 +388,21 @@ export class MatchPageComponent implements OnInit {
     }
   }
 
-
   private async BotGiocaLaSuaMossa() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     let testoJson: any;
 
     let func = () => {
-
-      let cartaGiocataBot = undefined;
+      let cartaGiocataBot: Carta = undefined;
 
       console.log("Il bot gioca la sua mossa...");
       if (testoJson.turnoBot === true) {
-        cartaGiocataBot = this.cartaAdapter.adapt(
-          testoJson["cartaGiocataBot"]
-        );
+        cartaGiocataBot = this.cartaAdapter.adapt(testoJson["cartaGiocataBot"]);
         console.log("Carta giocata dal bot:");
         console.log(cartaGiocataBot);
         if (testoJson["cartaAvversarioGiocataSuTorre"] === true) {
           console.log("---Il bot ha giocato su una torre!---");
           this.giocaCartaTorriAvversario(cartaGiocataBot);
-          this.carteRimanentiDaPescare -= 1;
         } else {
           console.log("---Il bot ha giocato sul mazzo scarti!---");
           if (this.mazzoScarti === undefined) {
@@ -417,23 +411,39 @@ export class MatchPageComponent implements OnInit {
             this.mazzoScarti.push(cartaGiocataBot);
           }
         }
+
+        if (testoJson["ilBotHaPescatoDalMazzoCoperto"] === true) {
+          this.carteRimanentiDaPescare -= 1;
+        } else {
+          console.log("Il bot ha pescato dal mazzo scarti!");
+          let copiaMazzoScarti: Carta[];
+          this.mazzoScarti.forEach((carta) => {
+            if (
+              carta.getSymbol() !== cartaGiocataBot.getSymbol() &&
+              carta.getValue() !== cartaGiocataBot.getValue()
+            ) {
+              if (copiaMazzoScarti === undefined) {
+                copiaMazzoScarti = [carta];
+              } else {
+                copiaMazzoScarti.push(carta);
+              }
+            }
+          });
+          this.mazzoScarti = undefined;
+          this.mazzoScarti = copiaMazzoScarti;
+        }
       }
-      //console.log(testoJson);
+      console.log(testoJson);
       this.mostraTorriAvversario();
-      //this.mostraMazzoScarti();
       this.mostraCarteScartate();
     };
 
     this.datiPartita.giocaBot().subscribe((data) => {
-      testoJson = data
+      testoJson = data;
     });
 
     asyncScheduler.schedule(func, 1000);
-
-
-
   }
-
 
   public scartaOppurePescaDalMazzoScarti() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
@@ -649,7 +659,6 @@ export class MatchPageComponent implements OnInit {
       /* nessuna carta è stata selezionata mostra un messaggio...*/
       this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
     }
-
   }
 
   private isSelectedUnaCartaDalMazzo(): boolean {

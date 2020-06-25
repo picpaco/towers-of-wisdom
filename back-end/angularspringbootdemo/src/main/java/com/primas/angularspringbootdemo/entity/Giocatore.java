@@ -10,10 +10,9 @@ import javax.persistence.Id;
 import org.springframework.context.ApplicationContextAware;
 
 
-
-
 @Entity
 public abstract class Giocatore implements ApplicationContextAware{  
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -160,11 +159,11 @@ public abstract class Giocatore implements ApplicationContextAware{
 		
 		for(int i = 0; i < mano.size(); i++) {
 			if(!(isGiocabile(mano.get(i)))) {
-				mazzoScarti.aggiungiCarta(mano.get(i));
-			     cartaScartata =mano.get(i);
-				System.out.println("carta scartata: "+mano.get(i));
-				 mano.remove(mano.get(i));
-			
+				cartaScartata =mano.get(i);
+				mazzoScarti.aggiungiCarta(cartaScartata);
+				System.out.println("\r carta scartata: "+mano.get(i));
+				 mano.remove(cartaScartata);
+				 break;
 			}
 		}
 		assert (mano.size() == 3): "La mano deve essere di 3 carte";
@@ -186,13 +185,15 @@ public abstract class Giocatore implements ApplicationContextAware{
 		return getPunteggioTotale();
 	}
 
-	@Override
-	public String toString() {
-		return "Giocatore [nome=" + nome + "]";
-	}
+
 
 	public void decidiCartaDaGiocareSeMazzoNonVuoto(ArrayList<Carta> mano, MazzoCoperto mazzoCoperto,
 			MazzoScarti mazzoScarti) {
+	}
+
+	@Override
+	public String toString() {
+		return "Giocatore [id=" + id + "\r nome=" + nome + "\r insTorri2=" + insTorri2 + "\r mano=" + mano + "]\r";
 	}
 
 }
