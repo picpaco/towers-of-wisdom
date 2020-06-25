@@ -22,11 +22,20 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 	private ArrayList<Carta> manoAvversario = new ArrayList<Carta>();
 	private boolean isCartaAvversarioGiocataSuTorre;
 	private boolean isCartaAvversarioGiocataSuScarti;
+	private boolean ilBotHaPescatoDalMazzoCoperto;
 	private boolean isTurnoBot;
 	private TorriDiSaggezza tow;
 
 	public DatiPartitaInCorso() {
 
+	}
+
+	public boolean isIlBotHaPescatoDalMazzoCoperto() {
+		return ilBotHaPescatoDalMazzoCoperto;
+	}
+
+	public void setIlBotHaPescatoDalMazzoCoperto(boolean ilBotHaPescatoDalMazzoCoperto) {
+		this.ilBotHaPescatoDalMazzoCoperto = ilBotHaPescatoDalMazzoCoperto;
 	}
 
 	public Carta getCartaGiocataBot() {
@@ -57,13 +66,16 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 
 		assert (tow.getGiocatori()[0].getMano().size() == 3) : "La mano del giocatore deve avere 3 carte in mano";
 
-		System.out.println(
-				"\r Mano del giocatore prima che lui peschi dal mazzo coperto" + tow.getGiocatori()[0].getMano());
+//		System.out.println(
+//				"\r Mano del giocatore prima che lui peschi dal mazzo coperto" + tow.getGiocatori()[0].getMano());
 		MazzoCoperto mc = tow.getMazzoCoperto();
 		Carta cartaPescata = mc.pescaCarta();
 		tow.getGiocatori()[0].getMano().add(cartaPescata);
 
-		System.out.println("\r Mano del giocatore dopo che lui ha pescato " + tow.getGiocatori()[0].getMano());
+//		System.out.println("\r Mano del giocatore dopo che lui ha pescato " + tow.getGiocatori()[0].getMano());
+		
+		System.out.println("\r BOT:" + tow.getGiocatori()[1] + "\r Umano" + tow.getGiocatori()[0]
+				+ "\r Lunghezza del mazzo coperto: " + tow.getMazzoCoperto().dimensione());
 		assert (tow.getGiocatori()[0].getMano()
 				.size() == 4) : "La mano del giocatore ora deve essere di 4 carte dopo aver pescato dal mazzo coperto";
 
@@ -86,7 +98,9 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		tow.getGiocatori()[0].getMano().remove(carta);
 		assert (tow.getGiocatori()[0].getMano()
 				.size() == 3) : "La mano del giocatore ora deve essere di 3 carte dopo aver scartato la carta dalla mano";
-		System.out.println("\r Mano del giocatore dopo che lui ha scartato " + tow.getGiocatori()[0].getMano());
+
+		System.out.println("\r BOT:" + tow.getGiocatori()[1] + "\r Umano" + tow.getGiocatori()[0]
+				+ "\r Lunghezza del mazzo coperto: " + tow.getMazzoCoperto().dimensione());
 
 		System.out.println("\r Mazzo scarti contiene: " + tow.getMazzoScarti());
 
@@ -182,7 +196,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		manoGiocatore = tow.getGiocatori()[0].getMano();
 		manoAvversario = tow.getGiocatori()[1].getMano();
 		iniziaTurno();
-
+		System.out.println("\r BOT:" + tow.getGiocatori()[1] + "\r Umano" + tow.getGiocatori()[0]);
 	}
 
 	void iniziaTurno() {
@@ -203,7 +217,9 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 			isCartaAvversarioGiocataSuScarti = false;
 			isCartaAvversarioGiocataSuTorre = false;
 			cartaGiocataBot = null;
+			ilBotHaPescatoDalMazzoCoperto=false;
 		}
+		System.out.println("\r Mazzo scarti contiene: " + tow.getMazzoScarti());
 	}
 
 	public void giocaBot() {
@@ -211,11 +227,17 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		isCartaAvversarioGiocataSuScarti = false;
 		isCartaAvversarioGiocataSuTorre = false;
 		cartaGiocataBot = null;
-		//int turnoCorrente = turnoSuccessivo(tow.getIndiceGiocatorePrimoTurno());
-		System.out.println("\r Il turno passa al " + tow.getGiocatori()[1].getNome());
+		ilBotHaPescatoDalMazzoCoperto=false;
+		// int turnoCorrente = turnoSuccessivo(tow.getIndiceGiocatorePrimoTurno());
+		System.out.println("\r ----Il turno passa al " + tow.getGiocatori()[1].getNome()+"----");
+
+		tow.getGiocatori()[1].giocaTurno(tow.getMazzoCoperto(), tow.getMazzoScarti());
 		
-			tow.getGiocatori()[1].giocaTurno(tow.getMazzoCoperto(), tow.getMazzoScarti());
+		System.out.println("\r BOT:" + tow.getGiocatori()[1] + "\r Umano" + tow.getGiocatori()[0]
+				+ "\r Lunghezza del mazzo coperto: " + tow.getMazzoCoperto().dimensione());
+		System.out.println("\r Mazzo scarti contiene: " + tow.getMazzoScarti());
 		
+		System.out.println("\r ----Terminato il turno del bot----");
 	}
 
 	public boolean isTurnoBot() {
@@ -237,8 +259,13 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		if (tow.getMazzoScarti().contiene(carta)) {
 			tow.getGiocatori()[0].getMano().add(tow.getMazzoScarti().pescaCarta(carta));
 		}
-		System.out.println("\r Il mazzo Scarti è :" + tow.getMazzoScarti());
-		System.out.println("\r La mano del giocatore è composta da: " + tow.getGiocatori()[0].getMano());
+		// System.out.println("\r Il mazzo Scarti è :" + tow.getMazzoScarti());
+		// System.out.println("\r La mano del giocatore è composta da: " +
+		// tow.getGiocatori()[0].getMano());
+
+		System.out.println("\r BOT:" + tow.getGiocatori()[1] + "\r Umano" + tow.getGiocatori()[0]);
+		
+		System.out.println("\r Mazzo scarti contiene: " + tow.getMazzoScarti());
 
 		assert (tow.getGiocatori()[0].getMano()
 				.size() == 4) : "Dopo aver pescato dal mazzo degli scarti la mano deve contenere una carta in più!";
@@ -251,8 +278,12 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 				.size() == 4) : "La mano del giocatore deve avere 4 carte prima di giocare!";
 		tow.getGiocatori()[0].aggiungiCartaATorre(cartaGiocata);
 		tow.getGiocatori()[0].getMano().remove(cartaGiocata);
-		System.out.println("\r Mano del giocatore: " + tow.getGiocatori()[0].getMano());
-		System.out.println("\r InsiemeDiTorri: " + tow.getGiocatori()[0].getInsTorri2());
+		// System.out.println("\r Mano del giocatore: " +
+		// tow.getGiocatori()[0].getMano());
+		// System.out.println("\r InsiemeDiTorri: " +
+		// tow.getGiocatori()[0].getInsTorri2());
+		System.out.println("\r BOT:" + tow.getGiocatori()[1] + "\r Umano" + tow.getGiocatori()[0]
+				+ "\r Lunghezza del mazzo coperto: " + tow.getMazzoCoperto().dimensione());
 	}
 
 	public String getNomeGiocatore() {

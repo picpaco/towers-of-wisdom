@@ -1,7 +1,5 @@
 package com.primas.angularspringbootdemo.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -30,6 +28,19 @@ public class PartitaController implements ApplicationContextAware {
 
 //	@GetMapping("/giocatori")
 //	public List<Partita> getGiocatori() {
+////		return (List<Partita>) repositoryPartita.findAll();
+//		return new ArrayList<Partita>();
+//		//serve per visualizzare la leaderbord 
+//	}
+
+
+//	@PostMapping("/giocatori")
+//	public void addUser(@RequestBody Partita partita) {
+//		repositoryPartita.save(partita);
+		//quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
+
+//	@GetMapping("/giocatori")
+//	public List<Partita> getGiocatori() {
 //		return (List<Partita>) repositoryPartita.findAll();
 //		// serve per visualizzare la leaderbord
 //	}
@@ -42,6 +53,7 @@ public class PartitaController implements ApplicationContextAware {
 //	}
 
 	//TODO: Cambiare l'uri in /partitaConBot e cambiare il nome del metodo in gestisciMossaGiocatore
+
 	@GetMapping("/partitaConBot")
 	public DatiPartitaInCorso gestisciMossaGiocatore() {
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
@@ -57,12 +69,9 @@ public class PartitaController implements ApplicationContextAware {
 		return dati;
 	}
 	
-	
-	
-
-	// deve restituire una carta
 	@GetMapping("/pescaDalMazzoCopertoUmano")
 	public Carta pescaUmano() {
+		System.out.println("\r Giocatore pesca dal mazzo coperto!");
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaPescata = dati.pescaMazzoCoperto();
 		return cartaPescata;
@@ -87,7 +96,7 @@ public class PartitaController implements ApplicationContextAware {
 
 	@PostMapping(path = "/scartaCarta")
 	public void cartaDaScartareDallaMano(@RequestBody String carta) {
-		System.out.println("\r viene scartata la seguente carta dalla mano" + carta);
+		System.out.println("\r viene scartata la seguente carta dalla mano del giocatore" + carta);
 		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaDaScartare = datiPartita.creaCartaDaJson(carta);
 		datiPartita.aggiungiCartaAlMazzoScarti(cartaDaScartare);
@@ -96,7 +105,7 @@ public class PartitaController implements ApplicationContextAware {
 
 	@PostMapping(path = "/selezionaDalMazzoScarti")
 	public void selezionaCartaDalMazzoScarti(@RequestBody String carta) {
-		System.out.println("\r viene pescata una carta dal mazzo scarti ed e' " + carta);
+		System.out.println("\r viene pescata una carta dal mazzo scarti dal giocatore ed e'" + carta);
 		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaDaPescare = datiPartita.creaCartaDaJson(carta);
 		datiPartita.pescaMazzoScarti(cartaDaPescare);
