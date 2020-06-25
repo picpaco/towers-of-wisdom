@@ -10,15 +10,9 @@ import javax.persistence.Id;
 import org.springframework.context.ApplicationContextAware;
 
 
-
-
-<<<<<<< HEAD
-//@Entity
-public abstract class Giocatore {  
-=======
 @Entity
 public abstract class Giocatore implements ApplicationContextAware{  
->>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
