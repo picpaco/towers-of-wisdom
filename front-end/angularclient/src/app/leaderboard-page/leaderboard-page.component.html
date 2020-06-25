@@ -28,47 +28,53 @@
     <div class="container">
       <div class="row">
         <div class="col-lg justify-content-center">
-          <div *ngIf="show" >
+          <!--<div *ngIf="show" >-->
           <table class="table table-lg ">
             <div class="scroll">
             <tr>
-              <th scope="col">Nome</th>
-              <th scope="col" >Vittorie</th>
-              <th scope="col">Sconfitte</th>
-              <th scope="col">Percentuale Vittorie</th>
-              <th scope="col"  style="border-right: 2px solid rgb(108, 205, 250);">Punteggio Totale</th>
+              <th scope="col"> </th>
+              <th scope="col"> Nome </th>
+              <th scope="col"> Partite giocate </th>
+              <th scope="col"> Percentuale vittorie </th>
             </tr>
             <tbody>
-              <tr *ngFor="let giocatore of classifica" class="content">
-                <td scope="row">{{ giocatore.nome }}</td>
-                <td scope="row">{{ giocatore.partiteVinte }}</td>
-                <td scope="row">
-                  {{ giocatore.partitePerse }}
-                </td>
-                <td scope="row">
-                  {{ giocatore.percentualeVittorie }}
-                </td>
-                <td scope="row" style="border-right: 2px solid rgb(108, 205, 250);"> 
-                  {{ giocatore.punteggioTotale }}
-                </td>
+              <!--<tr *ngFor="let giocatore of classifica" class="content">-->
+                <tr class="content">
+                <td scope="row"> Maurizio </td>
+                <td scope="row">47</td>
+                <td scope="row"> 30% </td> 
+                <td scope="row"> john1234567 </td>
+                <td scope="row"> 210 </td>
+                <td scope="row"> 86% </td>
+                <td scope="row"> Marco </td>
+                <td scope="row"> 2 </td>
+                <td scope="row"> 50% </td>
+                <td scope="row"> Come osi </td>
+                <td scope="row"> dire che </td>
+                <td scope="row"> non ho messo le immagini!!! </td>
+               <!-- <td scope="row">{{ giocatore.nome }}</td>
+                <td scope="row">{{ giocatore.partiteGiocate }}</td>
+                <td scope="row">{{ giocatore.percentualeVittorie }}</td>-->
+                
               </tr>
             </tbody>
           </div>
           </table>
-          </div>
+          <!--</div>-->
           
-          <div *ngIf="!(show)" class="p-2"> 
+          <!--<div *ngIf="(show)" class="p-2"> 
             <h1>
               Spiacente non ci sono giocatori registrati al momento 
               <i class="fas fa-frown p-2"></i>
             </h1>
-          </div>
+          </div>-->
           
-        </div>
+        <!--</div>-->
       </div>
     </div>
+    </div>
 
-    <div class="d-flex p-2 justify-content-center">
+    <!--<div class="d-flex p-2 justify-content-center">
       <div class="p-2">
         <button routerLink="/menu-di-gioco">
           Torna al menu
@@ -79,6 +85,6 @@
           Disconnettiti
         </button>
       </div>
-    </div>
+    </div>-->
   </body>
 </html>

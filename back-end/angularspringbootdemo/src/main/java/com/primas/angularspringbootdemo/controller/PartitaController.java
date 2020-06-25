@@ -27,12 +27,47 @@ public class PartitaController implements ApplicationContextAware {
 	public  PartitaController() {
 		
 	}
+	
+//	public PartitaController(RepositoryPartita repo) {
+//		this.repositoryPartita = repo;
+//	}
 
+<<<<<<< HEAD
+	@GetMapping("/giocatori")
+	public List<Partita> getGiocatori() {
+//		return (List<Partita>) repositoryPartita.findAll();
+		return new ArrayList<Partita>();
+		//serve per visualizzare la leaderbord 
+	}
+
+<<<<<<< HEAD
+=======
+	@PostMapping("/giocatori")
+	public void addUser(@RequestBody Partita partita) {
+//		repositoryPartita.save(partita);
+		//quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
+=======
+//	@GetMapping("/giocatori")
+//	public List<Partita> getGiocatori() {
+//		return (List<Partita>) repositoryPartita.findAll();
+//		// serve per visualizzare la leaderbord
+//	}
+//
+//	@PostMapping("/giocatori")
+//	public void addUser(@RequestBody Partita partita) {
+//		repositoryPartita.save(partita);
+//		// quando il front-end effettua un post mi passa come parametro un giocatore da
+//		// aggiungere al database
+//	}
+
+	//TODO: Cambiare l'uri in /partitaConBot e cambiare il nome del metodo in gestisciMossaGiocatore
+>>>>>>> 8770148e98efdb00ae9ddc33883abded7d5eadf8
 	@GetMapping("/partitaConBot")
 	public DatiPartitaInCorso gestisciMossaGiocatore() {
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		dati.inizializzaPartita();		
 		return dati;
+>>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
 	}
 	
 	@GetMapping("/giocaBot")
