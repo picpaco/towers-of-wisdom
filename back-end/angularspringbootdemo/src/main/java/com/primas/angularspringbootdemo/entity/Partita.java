@@ -15,6 +15,7 @@ public class Partita {
 	private String nomeGiocatore2;
 	private int punteggio1;
 	private int punteggio2;
+	private String risultato;
 	
 	public Partita() {
 		
@@ -31,6 +32,16 @@ public class Partita {
 
 	public String getGiocatore2() {
 		return nomeGiocatore2;
+	}
+
+	public String getRisultato() {
+		return risultato;
+	}
+
+	public void setRisultato(String risultato) {
+		assert(risultato.equals("1-0") || risultato.equals("0-1") || risultato.equals("1/2")): "Il risultato deve essere uguale a 1-0 o 0-1 o pari";
+		
+		this.risultato = risultato;
 	}
 
 	public void setPunteggio1(int punteggio1) {

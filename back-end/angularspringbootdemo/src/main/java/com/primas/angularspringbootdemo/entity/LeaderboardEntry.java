@@ -9,17 +9,23 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "leaderboard")
-public class Leaderboard {
+public class LeaderboardEntry {
 	
 	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
 	private String nome;
-	private int punteggioTotale;
 	private int numeroPartiteTotali;
 	private int numeroVittorie;
+	private int punteggioTotale;
+	
+	public LeaderboardEntry(String nome, int numeroPartiteTotali, int numeroVittorie) {
+		this.nome = nome;
+		this.numeroPartiteTotali  = numeroPartiteTotali;
+		this.numeroVittorie = numeroVittorie;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -35,8 +41,8 @@ public class Leaderboard {
 	public int getPunteggioTotale() {
 		return punteggioTotale;
 	}
-	public void setPunteggioTotale(int punteggioTotale) {
-		this.punteggioTotale = punteggioTotale;
+	public void aggiornaPunteggioTotale(int puntiPartita) {
+		this.punteggioTotale += puntiPartita;
 	}
 	public int getNumeroPartiteTotali() {
 		return numeroPartiteTotali;
@@ -47,10 +53,8 @@ public class Leaderboard {
 	public int getNumeroVittorie() {
 		return numeroVittorie;
 	}
-	public void setNumeroVittorie(int numeroVittorie) {
-		this.numeroVittorie = numeroVittorie;
+	public void aggiornaNumeroVittorie() {
+		this.numeroVittorie++;
 	}
 	
-	
-
 }

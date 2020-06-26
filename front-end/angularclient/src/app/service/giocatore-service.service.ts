@@ -31,4 +31,8 @@ export class GiocatoreService {
   public save(giocatore: Giocatore) {
     return this.http.post<Giocatore>(this.giocatoriUrl, giocatore);
   }
+
+  public risultatiPartite() {
+    return this.http.get<any>('http://localhost:8080/classifica');
+  }
 }

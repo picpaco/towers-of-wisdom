@@ -12,6 +12,7 @@ export class User {
 export class AuthenticationService {
 
  private headers = new HttpHeaders({'Access-Control-Allow-Origin' : '*'});
+ 
 
   constructor(private httpClient: HttpClient) {}
   // Provide username and password for authentication, and once authentication is successful,

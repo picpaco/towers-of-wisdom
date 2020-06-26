@@ -1,10 +1,10 @@
 /*ctrl+k+0 per chiudere tutte le classi*/
-body {
+.sfondo_landing {
   background-image: url("../../assets/Stile-della-partita/Pictures/caverna-marina.jpg");
-  background-repeat: no-repeat;
+  overflow: auto;
   background-size: cover;
-  background-position: top;
-  height: 980px;
+  height: 100%;
+  position: fixed;
 }
 
 html {
