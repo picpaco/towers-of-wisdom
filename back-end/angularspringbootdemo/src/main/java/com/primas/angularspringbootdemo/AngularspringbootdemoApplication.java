@@ -28,24 +28,24 @@ public class AngularspringbootdemoApplication implements ApplicationContextAware
 	
 	@Bean
 	CommandLineRunner init(RepositoryUser userRepository) {
-		return args -> {
-<<<<<<< HEAD
+
 			//Partita partita = new Partita("Marco", "Tizio");
 			
 //			partitaRepository.save(partita);
 //			partitaRepository.findAll().forEach(System.out::println);//i giocaotri vanno salvati a partire dall'interfaccia
 			User ut = userRepository.getUserByUsername("john");
 			System.out.println("sto dentro il command liner che stampa " +  ut);
-=======
+
 //			Partita partita = new Partita("Marco", "Tizio");
 //			
 //			partitaRepository.save(partita);
 //			partitaRepository.findAll().forEach(System.out::println);//i giocaotri vanno salvati a partire dall'interfaccia 
->>>>>>> f41992863c4efda20d2c06d4e932ab74784b85f5
+
 		};
+
 		
 		
-	}
+	
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
