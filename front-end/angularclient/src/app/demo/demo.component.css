@@ -1,8 +1,9 @@
-.sfondo_demo{
+.sfondo_landing {
     background-image:URL("../../assets/images/soft-face-gradation-blur-wallpaper-preview.jpg");
-    background-size:cover;
+    overflow: auto;
+    background-size: cover;
     height: 100%;
-    position: relative;
+    position: fixed;
 }
 
 .button{

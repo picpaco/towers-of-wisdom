@@ -4,7 +4,6 @@ import { ListagiocatoriComponent } from "./listagiocatori/listagiocatori.compone
 
 import { LoginPageComponent } from "../app/login-page/login-page.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-
 import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { DemoComponent } from "./demo/demo.component";
 import { RegoleGiocoComponent } from "./regole-gioco/regole-gioco.component";
@@ -18,7 +17,6 @@ import { ManoResolverService } from "./service/manoResolver.service";
 import { AuthGaurdService } from "./service/auth-gaurd.service";
 import { LogoutComponent } from "./logout/logout.component";
 import { componentFactoryName } from '@angular/compiler';
-//import { ClassificaComponent } from './classifica/classifica/classifica.component';
 import { DatiPartitaResolverService } from './service/Dati-partita.service';
 
 const routes: Routes = [
