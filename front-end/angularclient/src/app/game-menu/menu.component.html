@@ -1,103 +1,112 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
 
-<head>
-  <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link href="menu.component.css" type="text/css" rel="stylesheet" />
 
-  <link href="menu.component.css" type="text/css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  </head>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-</head>
+  <body id="background">
+    <div class="container-fluid sfondo_landing">
+      <div class="row-md-10">
+        <div class="col-md-12">
+          <p class="text-right p-2 my-0" id="indice_benvenuto">
+            Benvenuto {{ getNomeGiocatore() }}
+          </p>
 
-
-<body id="background">
-
-  <div class="row-md-10">
-    <div class="col-md-12">
-
-      <p class=" text-right p-2 my-0" id="indice_benvenuto">
-        Benvenuto {{ getNomeGiocatore() }} 
-      </p>
-
-      <p class=" text-right mx-2" id="indice_benvenuto">
-        nel menu di gioco
-      </p>
-    </div>
-  </div>
-  <script>
-    System.import('app/main.js').catch(function(err){ console.error(err); });
-  </script>
-  <script>
-    function play() {
-      var audio = document.getElementById("glug");
-      audio.play();
-    }
-  </script>
-  <audio id="glug" src="assets/music/glug.wav"></audio>
-  <audio id="glug" src="assets/music/glug.ogg"></audio>
-
-  <div class="d-flex p-2 justify-content-center" style="position: relative; top: 15mm;">
-    <div class="d-flex p-2 flex-column">
-      <div class="p-2">
-        <p id="indice_modalita">
-          Scegli una modalità per iniziare una partita!
-        </p>
-      </div>
-      
-      
-  
-      <div class="d-flex p-2 flex-row justify-content-center">
-        <div class="p-2" style="position: relative; right: 20px;">
-          <button onclick="javascript: document.getElementById('glug').play();" id="bot" routerLink="/match">
-            Gioca con <i style="position: relative; left: 5px;" class="fas fa-robot"></i>
-          </button>
-        </div>
-
-
-        <div class="p-2" style="position: relative; left: 20px;">
-          <button onclick="javascript: document.getElementById('glug').play();" id="friend">
-            Gioca con <i style="position: relative; left: 5px;" class="fas fa-user"></i>
-          </button>
+          <p class="text-right mx-2" id="indice_benvenuto"></p>
         </div>
       </div>
+      <script>
+        System.import("app/main.js").catch(function (err) {
+          console.error(err);
+        });
+      </script>
+      <script>
+        function play() {
+          var audio = document.getElementById("glug");
+          audio.play();
+        }
+      </script>
+      <audio id="glug" src="assets/music/glug.wav"></audio>
+      <audio id="glug" src="assets/music/glug.ogg"></audio>
 
+      <div
+        class="d-flex p-2 justify-content-center"
+        style="position: relative; top: 15mm;"
+      >
+        <div class="d-flex p-2 flex-column">
+          <div class="p-2">
+            <p id="indice_modalita">
+              Scegli una modalità per iniziare una partita!
+            </p>
+          </div>
 
+          <div class="d-flex p-2 flex-row justify-content-center">
+            <div class="p-2" style="position: relative; left: -80px;">
+              <button
+                onclick="javascript: document.getElementById('glug').play();"
+                id="bot"
+                routerLink="/match"
+              >
+                Gioca con
+                <i
+                  style="position: relative; left: 5px;"
+                  class="fas fa-robot"
+                ></i>
+              </button>
+            </div>
+
+            <div class="p-2" style="position: relative; left: -60px;">
+              <button
+                onclick="javascript: document.getElementById('glug').play();"
+                id="friend"
+              >
+                Gioca con
+                <i
+                  style="position: relative; left: 5px;"
+                  class="fas fa-user"
+                ></i>
+              </button>
+            </div>
+
+            <div class="p-2" style="position: relative; left: -40px;">
+              <button
+                onclick="javascript: document.getElementById('glug').play();"
+                id="classifica"
+                routerLink="/classifica"
+              >
+                Classifica
+                <i
+                  style="position: relative; left: 5px;"
+                  class="fas fa-list-alt"
+                ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="container-fluid" style="
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        position: relative;
-        top: 40mm;
-      ">
-    <div class="p-2">
-      <a><span class="fa fa-facebook"></span></a>
-    </div>
-
-    <div class="p-2">
-      <a><span class="fa fa-twitter"></span></a>
-    </div>
-
-    <div class="p-2">
-      <a><span class="fa fa-youtube"></span></a>
-    </div>
-
-    <div class="p-2">
-      <a><span class="fa fa-instagram"></span></a>
-    </div>
-  </div>
-
-</body>
-
+  </body>
 </html>
