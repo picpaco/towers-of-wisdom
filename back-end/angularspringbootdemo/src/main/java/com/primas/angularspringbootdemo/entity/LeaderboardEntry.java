@@ -10,22 +10,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "leaderboard")
 public class LeaderboardEntry {
-	
+
 	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(name = "nomeGiocatore")
 	private String nome;
+	@Column(name = "partiteTotali")
 	private int numeroPartiteTotali;
+	@Column(name = "numeroPartiteVinte")
 	private int numeroVittorie;
-	private int punteggioTotale;
-	
+	@Column(name = "percentualeVittorie")
+	private int percentualeVittorie;
+
 	public LeaderboardEntry(String nome, int numeroPartiteTotali, int numeroVittorie) {
 		this.nome = nome;
 		this.numeroPartiteTotali  = numeroPartiteTotali;
 		this.numeroVittorie = numeroVittorie;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -39,10 +43,10 @@ public class LeaderboardEntry {
 		this.nome = nome;
 	}
 	public int getPunteggioTotale() {
-		return punteggioTotale;
+		return percentualeVittorie;
 	}
 	public void aggiornaPunteggioTotale(int puntiPartita) {
-		this.punteggioTotale += puntiPartita;
+		this.percentualeVittorie += puntiPartita;
 	}
 	public int getNumeroPartiteTotali() {
 		return numeroPartiteTotali;
@@ -56,5 +60,5 @@ public class LeaderboardEntry {
 	public void aggiornaNumeroVittorie() {
 		this.numeroVittorie++;
 	}
-	
+
 }

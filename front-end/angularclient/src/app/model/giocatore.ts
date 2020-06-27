@@ -40,7 +40,6 @@ import { Injectable } from '@angular/core';
       public getPercentualeVittorie(): string {
         return ((this.numeroVittorie*100)/this.numeroPartiteTotali).toFixed()+"%";
       }
-
  }
 
 
