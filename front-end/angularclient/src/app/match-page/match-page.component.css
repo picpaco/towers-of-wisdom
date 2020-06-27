@@ -88,7 +88,7 @@ span {
     -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
 }
 
-.ambienti >div {
+.ambienti > div {
   /*settaggi comuni a tutte le 4 colonne in un colpo solo*/
   width: 55mm;
   height: inherit;
@@ -224,7 +224,8 @@ span {
   );
 }
 
-.pannello-coperte,.pannello-scarti{
+.pannello-coperte,
+.pannello-scarti {
   justify-content: center;
   padding: 1mm;
   padding-top: 5mm;
@@ -233,17 +234,17 @@ span {
   margin: auto;
   border: 1px solid rgb(0, 255, 213);
   box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
-  -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
-  2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
-  -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
-  3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
-  -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
+    -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
+    2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
+    -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
+    3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
+    -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
 }
 
 .pannello-coperte {
   position: relative;
   bottom: 204.9mm;
-  left:126.3mm;
+  left: 126.3mm;
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
   background-image: linear-gradient(
@@ -252,19 +253,18 @@ span {
     rgb(61, 194, 255),
     rgb(24, 118, 241)
   );
-
 }
 
 .pannello-coperte .mazzo-coperte,
 .pannello-scarti .mazzo-scarti {
   /*definisce la forma dei due sottopannelli in comune*/
   width: 23mm;
-  height: 34mm; 
+  height: 34mm;
   /* border: 1px solid rgb(255, 255, 255);  */
   background: transparent;
   position: relative;
   left: 3mm;
-  top:4mm;
+  top: 4mm;
   outline: none;
 }
 
@@ -313,8 +313,8 @@ span {
   width: 60mm;
   height: 95mm;
   right: 143mm;
-  margin:auto;
-  bottom:200mm;
+  margin: auto;
+  bottom: 200mm;
   border: transparent;
   border-radius: 2mm;
   background-image: linear-gradient(
@@ -346,7 +346,6 @@ span {
     -1px -1px 2px white;
 }
 
-
 .mazzo-coperte div {
   /*gestione delle carte del mazzo coperto*/
   position: relative;
@@ -355,7 +354,7 @@ span {
 }
 
 .carte-delle-torri {
-   /* border:2px solid white;  */
+  /* border:2px solid white;  */
   width: 53mm;
   height: 66mm;
   bottom: 4.5mm;
@@ -379,7 +378,7 @@ span {
 }
 
 .carte-delle-torri-avversario {
-    /* border:2px solid red;    */
+  /* border:2px solid red;    */
   width: 53mm;
   height: 66mm;
   padding-left: 2mm;
@@ -408,30 +407,30 @@ span {
 .messaggioDiAvviso {
   /*messaggio di errore che appare quando si tenta di pescare una carta dal mazzo coperto,quando nel
   mazzo si hanno ancora 4 carte*/
-  font-size: 7mm;
+  font-size: 8mm;
   font-family: "friendly_school", cursive;
-  color: #50d9f1;
+  color: #40e0fc;
   text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
     -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
     2px -2px 3px #1871f5, -2px -2px 3px #1871f5;
   line-height: 1;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.01em;
   text-align: center;
   padding-top: 5mm;
   width: 58mm;
   height: 30mm;
   position: absolute;
-
+  left: 1.5mm;
+  bottom: 2mm;
 }
-.pannello-del-messaggio-di-avviso{
+.pannello-del-messaggio-di-avviso {
   /* border:solid 2px white; */
   position: relative;
   width: 50mm;
-  height:30mm;
+  height: 30mm;
   right: 76mm;
   top: 3mm;
   margin: auto;
-
 }
 
 .mazzo {
@@ -463,8 +462,7 @@ span {
 }
 
 .Quadrato {
-  background-image:
-  linear-gradient(
+  background-image: linear-gradient(
     to bottom,
     rgb(212, 198, 0),
     rgb(253, 255, 108),
@@ -505,10 +503,10 @@ span {
 
 .Carta-misteriosa {
   background-image: linear-gradient(
-    rgba(196, 186, 104, 0.438),
-    rgba(173, 166, 101, 0.438)
-  ),
-  url("../../assets/images/cartaback.jpg");
+      rgba(196, 186, 104, 0.438),
+      rgba(173, 166, 101, 0.438)
+    ),
+    url("../../assets/images/cartaback.jpg");
   position: relative;
 }
 
@@ -597,7 +595,7 @@ span {
   border-radius: 5mm;
   background-image: inherit;
 }
-.mus{
+.mus {
   padding-right: 0.5cm;
 }
 
@@ -624,4 +622,35 @@ span {
   position: relative;
   width: 60px;
   height: 50px;
+}
+
+.punteggio-totale-giocatore ,.punteggio-totale-avversario{
+  border-radius: 1.5mm;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(24, 118, 241),
+    rgb(61, 194, 255),
+    rgb(160, 255, 255)
+  );
+  width: 20mm;
+  height: 12mm;
+  font-family: "friendly_school", cursive;
+  color: white;
+  font-size: 8mm;
+  border: transparent;
+  text-align: center;
+  position: relative;
+  box-shadow: 1px 1px 1px rgb(81, 200, 247), 1px -1px 1px rgb(81, 200, 247),
+    -1px 1px 1px rgb(81, 200, 247), -1px -1px 1px rgb(81, 200, 247);
+  border: 1px solid rgb(0, 255, 213);
+  margin: auto;
+}
+.punteggio-totale-avversario {
+  bottom:410mm;
+  left:75mm;
+
+}
+.punteggio-totale-giocatore{
+  bottom:405mm;
+  left:75mm;
 }
