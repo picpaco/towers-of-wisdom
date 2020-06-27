@@ -111,4 +111,6 @@ export class CartaAdapter implements Adapter<Carta> {
     
     return new Carta(simbol, value);
   }
+
+  
 }

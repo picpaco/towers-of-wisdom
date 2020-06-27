@@ -192,6 +192,8 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		tow.getGiocatori()[0].distribuisciCarte(tow.getMazzoCoperto());
 		tow.getGiocatori()[1].distribuisciCarte(tow.getMazzoCoperto());
 		tow.stabilisciPrimoTurno();
+		
+		System.out.println("\r Mazzo coperto prima di essere distribuite "+tow.getMazzoCoperto().getListaCarte());
 
 		manoGiocatore = tow.getGiocatori()[0].getMano();
 		manoAvversario = tow.getGiocatori()[1].getMano();

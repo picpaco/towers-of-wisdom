@@ -2,6 +2,13 @@
     text-align: center;
 }
 
+.sfondo_landing {
+  overflow: auto;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+}
+
 .label_font{
     font-weight: bolder;
 }

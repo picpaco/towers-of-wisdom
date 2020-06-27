@@ -4,15 +4,15 @@ table {
   /*stile tabella*/
   background-image: linear-gradient(
     to top left,
-    rgba(53, 184, 224, 0.644),
-    rgba(118, 206, 247, 0.644),
-    rgba(53, 184, 224, 0.644)
+    rgba(25, 132, 165, 0.644),
+    rgba(143, 158, 165, 0.644),
+    rgba(29, 123, 151, 0.644)
   );
   border-radius: 3mm;
   display: flex;
   flex-direction: column;
   transition: 0.6s;
-  box-shadow: -1px -1px 3px rgb(126, 243, 247), -1px 1px 3px rgb(126, 243, 247),
+  box-shadow: -1px -1px 3px rgb(56, 160, 163), -1px 1px 3px rgb(82, 164, 167),
     1px 1px 3px rgb(126, 243, 247), 1px -1px 3px rgb(126, 243, 247);
   width: auto;
   height: 87mm;
@@ -42,9 +42,11 @@ th {
 .title {
   font-size: 15mm;
   font-family: "Coda Caption", cursive;
-  color: #61d5ea;
-  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
-    -1px -1px 3px #1871f5;
+  color: #2a99da;
+  text-shadow: 1px 1px 3px rgb(41, 120, 238), 1px -1px 3px rgb(41, 120, 238),
+    -1px 1px 3px rgb(41, 120, 238), -1px -1px 3px rgb(41, 120, 238),
+    2px 2px 3px rgb(41, 120, 238), 2px -2px 3px rgb(41, 120, 238),
+    -2px 2px 3px rgb(41, 120, 238), -2px -2px 3px rgb(41, 120, 238);
   line-height: 1;
   letter-spacing: 0.1em;
   transform: perspective(350px) scaleY(1.5) rotateX(-30deg);
