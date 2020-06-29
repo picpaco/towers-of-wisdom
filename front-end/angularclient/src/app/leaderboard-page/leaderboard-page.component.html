@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <meta charset="utf-8" />
@@ -15,7 +14,6 @@
       rel="stylesheet"
     />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
   </head>
 
   <body>
@@ -36,9 +34,8 @@
                   <th scope="col"></th>
                   <th scope="col">Nome</th>
                   <th scope="col">Partite giocate</th>
-                  <th scope="col">
-                    Percentuale vittorie
-                    <i class="fas fa-sort"></i>
+                  <th onclick="sorting()" scope="col">
+                    Percentuale vittorie <i class="fas fa-sort"></i>
                   </th>
                 </tr>
                 <tbody>
@@ -59,5 +56,14 @@
     <div style="bottom: 50px; right: 20px; position: absolute;" class="p-2">
       <button routerLink="/menu-di-gioco">Torna al menu</button>
     </div>
+    <script>
+      function sorting() {
+        td = document.getElementsByTagName("td");
+        sorted = [];
+        for (x = 0; x < td.length; x++) sorted[x] = Number(td[x].innerHTML);
+        sorted.sort().reverse();
+        for (x = 0; x < sorted.length; x++) td[x].innerHTML = sorted[x];
+      }
+    </script>
   </body>
 </html>

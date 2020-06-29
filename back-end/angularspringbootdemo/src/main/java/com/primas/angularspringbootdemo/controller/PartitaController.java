@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,12 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 import com.primas.angularspringbootdemo.entity.LeaderboardEntry;
+import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
+import com.primas.angularspringbootdemo.repository.ClassificaRepository;
 
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class PartitaController implements ApplicationContextAware {
-	//private final RepositoryPartita repositoryPartita;
+	
+	@Autowired
+	private ClassificaRepository repositoryClassifica;
 	private ApplicationContext context;
 
 	
@@ -29,30 +36,39 @@ public class PartitaController implements ApplicationContextAware {
 //	}
 	
 	public  PartitaController() {
-		
+	
 	}
 
 	
 	
 	@GetMapping("/classifica")
 	public List<LeaderboardEntry> getClassifica() {
-		List<LeaderboardEntry> risultatoMockDatiPartita = new ArrayList<>();
+//		List<LeaderboardEntry> risultatoMockDatiPartita = new ArrayList<>();
+//		
+//		LeaderboardEntry maurizio = new LeaderboardEntry("Maurizio", 13, 7);
+//		LeaderboardEntry gennara = new LeaderboardEntry("Gennara", 4, 2);
+//		LeaderboardEntry john = new LeaderboardEntry("John", 17, 0);
+//		LeaderboardEntry marco = new LeaderboardEntry("Marco", 1, 1);
+//		LeaderboardEntry antonio = new LeaderboardEntry("Antonio", 15, 9);
+//		
+//		risultatoMockDatiPartita.add(maurizio);
+//		risultatoMockDatiPartita.add(gennara);
+//		risultatoMockDatiPartita.add(john);
+//		risultatoMockDatiPartita.add(marco);
+//		risultatoMockDatiPartita.add(antonio);
 		
-		LeaderboardEntry maurizio = new LeaderboardEntry("Maurizio", 13, 7);
-		LeaderboardEntry gennara = new LeaderboardEntry("Gennara", 4, 2);
-		LeaderboardEntry john = new LeaderboardEntry("John", 17, 0);
-		LeaderboardEntry marco = new LeaderboardEntry("Marco", 1, 1);
-		LeaderboardEntry antonio = new LeaderboardEntry("Antonio", 15, 9);
+//		System.out.println("risultato: "+risultatoMockDatiPartita);
+//		return risultatoMockDatiPartita;
 		
-		risultatoMockDatiPartita.add(maurizio);
-		risultatoMockDatiPartita.add(gennara);
-		risultatoMockDatiPartita.add(john);
-		risultatoMockDatiPartita.add(marco);
-		risultatoMockDatiPartita.add(antonio);
-		
-		System.out.println("risultato: "+risultatoMockDatiPartita);
-		return risultatoMockDatiPartita;
+		 return (List<LeaderboardEntry>) repositoryClassifica.findAll();
 	}
+	
+//	@GetMapping(path = {"/{id}"})
+//	public ResponseEntity<LeaderboardEntry> findById(@PathVariable long id){
+//	  return repositoryClassifica.findById(id)
+//	          .map(record -> ResponseEntity.ok().body(record))
+//	          .orElse(ResponseEntity.notFound().build());
+//	}
 	
 //	@GetMapping("/giocatori")
 //	public List<Partita> getGiocatori() {
@@ -102,6 +118,16 @@ public class PartitaController implements ApplicationContextAware {
 		System.out.println("\r Giocatore pesca dal mazzo coperto!");
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaPescata = dati.pescaMazzoCoperto();
+		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("tow");
+		if(tow.getMazzoCoperto().isVuoto()) {
+			//TODO: per ogni giocatoreUmano salvare(insert) o aggiornare(update) una riga della tabella "leaderboard"
+			//serve: nome, vincitore(aggiorna partiteGiocate e partiteVinte), se perdente aggiorna solo partite giocate
+			//se il nome non esiste inserire dati
+			
+			repositoryClassifica.save(new LeaderboardEntry("Maurizio", 1, 1));
+			
+		cartaPescata.setUltima(true);
+		}	
 		return cartaPescata;
 	}
 	

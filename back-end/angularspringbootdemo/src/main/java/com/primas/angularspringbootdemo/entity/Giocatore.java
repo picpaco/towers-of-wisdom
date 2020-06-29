@@ -10,12 +10,11 @@ import javax.persistence.Id;
 import org.springframework.context.ApplicationContextAware;
 
 
-@Entity
+
 public abstract class Giocatore implements ApplicationContextAware{  
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private long id;
 	private String nome;
 	private ArrayList<Torre> insTorri2 = new ArrayList<>();
