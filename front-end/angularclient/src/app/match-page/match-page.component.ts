@@ -43,7 +43,7 @@ export class MatchPageComponent implements OnInit {
     private cartaAdapter: CartaAdapter,
     private autenticazione: AuthenticationService,
     private datiPartita: DatiPartitaService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.riceviDatiPartita();
@@ -261,12 +261,21 @@ export class MatchPageComponent implements OnInit {
 
   private mostraTorri() {
     //questa funzione serve per calcolare il punteggio di ogni torre,gestire i markers e visualizzare la torre.
-    this.calcolaPuntaggio();
+    this.calcolaPunteggio();
     this.gestisciMarkers();
     this.mostraTorriGiocatore();
   }
 
   private mostraTorriGiocatore() {
+    // let quadrato=[new Carta("Triangolo","7"),new Carta("Triangolo","6"),new Carta("Triangolo","5"),
+    // new Carta("Triangolo","4"),new Carta("Triangolo","3"),new Carta("Triangolo","2"),new Carta("Triangolo","1"),
+    // new Carta("Triangolo","P")]
+    // this.torriGiocatore[1]=quadrato;
+    // let cerchio=[new Carta("Cerchio","7"),new Carta("Cerchio","6"),new Carta("Cerchio","5"),
+    // new Carta("Cerchio","4"),new Carta("Cerchio","3"),new Carta("Cerchio","2"),new Carta("Cerchio","1"),
+    // new Carta("Cerchio","P")]
+    // this.torriGiocatore[2]=cerchio;
+
     this.torriGiocatore.forEach((torre, indexTorre) => {
       if (torre != undefined) {
         torre.forEach((carta, index) => {
@@ -287,31 +296,52 @@ export class MatchPageComponent implements OnInit {
     });
   }
 
-  private calcolaPuntaggio() {
-    for (
-      let indexTorre = 0;
-      indexTorre < this.torriGiocatore.length;
-      indexTorre++
-    ) {
-      if (this.torriGiocatore[indexTorre] != undefined) {
-        let punti = 0;
-        for (
-          let indexCarta = 0;
-          indexCarta < this.torriGiocatore[indexTorre].length;
-          indexCarta++
-        ) {
-          if (this.torriGiocatore[indexTorre][indexCarta].getValue() === "P") {
-            punti = punti * 2;
+  private calcolaPunteggio() {
+    let punteggioTotaleGio:number=0;
+    this.torriGiocatore.forEach((torre, indexTorre = 0) => {
+      if (torre != undefined) {
+        let puntiTorre = 0;
+        torre.forEach((carta) => {
+          if (carta.getValue() === "P") {
+            puntiTorre = puntiTorre * 2;
           } else {
-            punti += +this.torriGiocatore[indexTorre][indexCarta].getValue();
+            puntiTorre += +carta.getValue();
           }
-        }
+        });
+        punteggioTotaleGio+=puntiTorre;
         $(document).ready(function () {
-          $("#" + indexTorre + ".punteggio").html("<div><div></div></div>");
-          $("#" + indexTorre + ".punteggio").text(punti);
+          $("#" + indexTorre + ".punteggio")
+            .text(puntiTorre);
         });
       }
-    }
+    });
+    $(document).ready(function () {
+      $(".punteggio-totale-giocatore")
+        .text("Tu "+punteggioTotaleGio);
+    });
+
+    let punteggioTotaleAvv:number=0;
+    this.torriAvversario.forEach((torre, indexTorre = 0) => {
+      if (torre != undefined) {
+        let puntiTorre = 0;
+        torre.forEach((carta) => {
+          if (carta.getValue() === "P") {
+            puntiTorre = puntiTorre * 2;
+          } else {
+            puntiTorre += +carta.getValue();
+          }
+        });
+    punteggioTotaleAvv+=puntiTorre;
+
+        $(document).ready(function () {
+          $("#av" + indexTorre + ".punteggio").text(puntiTorre);
+        });
+      }
+    });
+    $(document).ready(function () {
+      $(".punteggio-totale-avversario")
+        .text("Bot "+punteggioTotaleAvv);
+    });
   }
 
   private gestisciMarkers() {
@@ -331,9 +361,9 @@ export class MatchPageComponent implements OnInit {
   public mostraChat() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     //viene invocato quando il tasto con l'icona del messaggio viene premuto
-    $(document).ready(function () {
-      $(".chat").toggle();
-    });
+    // $(document).ready(function () {
+    //   $(".chat").toggle();
+    // });
   }
 
   public nascondiChat() {
@@ -762,6 +792,15 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraTorriAvversario() {
+    //  let cerchio=[new Carta("Cerchio","7"),new Carta("Cerchio","6"),new Carta("Cerchio","5"),
+    //  new Carta("Cerchio","4"),new Carta("Cerchio","3"),new Carta("Cerchio","2"),new Carta("Cerchio","1"),
+    //  new Carta("Cerchio","P")]
+    //  this.torriAvversario[2]=cerchio;
+    //  let triangolo=[new Carta("Triangolo","7"),new Carta("Triangolo","6"),new Carta("Triangolo","5"),
+    //  new Carta("Triangolo","4"),new Carta("Triangolo","3"),new Carta("Triangolo","2"),new Carta("Triangolo","1"),
+    //  new Carta("Triangolo","P")]
+    //  this.torriAvversario[1]=triangolo;
+
     this.torriAvversario.forEach((torre, indexTorre = 0) => {
       if (torre != undefined) {
         torre.forEach((carta, index = 0) => {
@@ -769,17 +808,30 @@ export class MatchPageComponent implements OnInit {
           let valore = carta.getValue();
           let image = carta.getImage();
           $(document).ready(function () {
-            $(".carte-delle-torri-avversario:eq(" + indexTorre + ") div:eq(" + index + ")")
+            $(
+              ".carte-delle-torri-avversario:eq(" +
+                indexTorre +
+                ") div:eq(" +
+                index +
+                ")"
+            )
               .css({ border: "1px solid white" })
               .addClass(classe)
               .text(valore);
-            $(".carte-delle-torri-avversario:eq(" + indexTorre + ") img:eq(" + index + ")")
+            $(
+              ".carte-delle-torri-avversario:eq(" +
+                indexTorre +
+                ") img:eq(" +
+                index +
+                ")"
+            )
               .attr("src", "../../assets/images/" + image + ".png")
               .css({ visibility: "visible" });
           });
         });
       }
     });
-  }
 
+    this.calcolaPunteggio();
+  }
 }

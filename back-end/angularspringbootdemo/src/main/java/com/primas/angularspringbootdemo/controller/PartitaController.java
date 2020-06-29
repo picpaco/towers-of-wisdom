@@ -1,5 +1,8 @@
 package com.primas.angularspringbootdemo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
+import com.primas.angularspringbootdemo.entity.LeaderboardEntry;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -18,6 +23,7 @@ public class PartitaController implements ApplicationContextAware {
 	//private final RepositoryPartita repositoryPartita;
 	private ApplicationContext context;
 
+	
 //	public PartitaController(RepositoryPartita repo) {
 //		this.repositoryPartita = repo;
 //	}
@@ -26,6 +32,28 @@ public class PartitaController implements ApplicationContextAware {
 		
 	}
 
+	
+	
+	@GetMapping("/classifica")
+	public List<LeaderboardEntry> getClassifica() {
+		List<LeaderboardEntry> risultatoMockDatiPartita = new ArrayList<>();
+		
+		LeaderboardEntry maurizio = new LeaderboardEntry("Maurizio", 13, 7);
+		LeaderboardEntry gennara = new LeaderboardEntry("Gennara", 4, 2);
+		LeaderboardEntry john = new LeaderboardEntry("John", 17, 0);
+		LeaderboardEntry marco = new LeaderboardEntry("Marco", 1, 1);
+		LeaderboardEntry antonio = new LeaderboardEntry("Antonio", 15, 9);
+		
+		risultatoMockDatiPartita.add(maurizio);
+		risultatoMockDatiPartita.add(gennara);
+		risultatoMockDatiPartita.add(john);
+		risultatoMockDatiPartita.add(marco);
+		risultatoMockDatiPartita.add(antonio);
+		
+		System.out.println("risultato: "+risultatoMockDatiPartita);
+		return risultatoMockDatiPartita;
+	}
+	
 //	@GetMapping("/giocatori")
 //	public List<Partita> getGiocatori() {
 ////		return (List<Partita>) repositoryPartita.findAll();

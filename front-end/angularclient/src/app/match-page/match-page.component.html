@@ -14,11 +14,17 @@
     <div id="music">
       <audio id="water" autoplay>
         <source src="../../assets/music/water.wav" type="audio/mp3" />
-        <source src="../../assets/music/water.ogg" type="audio/ogg" />
       </audio>
       <audio id="audio" autoplay loop>
+<<<<<<< HEAD
         <source src="../../assets/music/underwater-music.mp3" type="audio/mp3" />
         <source src="../../assets/music/underwater-music.ogg" type="audio/ogg" />
+=======
+        <source
+          src="../../assets/music/underwater-music.mp3"
+          type="audio/mp3"
+        />
+>>>>>>> 8928037bba54fc56675aeaabc343acde8d461298
       </audio>
       <div align="right">
         <img class="mus" src="../../assets/images/octomus.png"
@@ -29,8 +35,10 @@
     <p class="title">{{nomeGiocatore}} <span>vs</span> Bot</p>
 
     <div class="panelli">
+
       <div class="ambienti">
         <div class="distese-di-sabbia">
+         
           <div class="carte-delle-torri-avversario">
             <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img
               style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class="cartatorre">
@@ -177,6 +185,7 @@
         </div>
 
         <div class="caverne-luminose">
+        
           <div class="carte-delle-torri-avversario">
             <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img
               style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class="cartatorre">
@@ -270,7 +279,6 @@
         }
       </script>
       <audio id="card" src="../../assets/music/card.wav"></audio>
-      <audio id="card" src="../../assets/music/card.ogg"></audio>
 
       <div class="pannello-delle-carte">
         <div class="pannello-del-messaggio-di-avviso">
@@ -296,7 +304,6 @@
         }
       </script>
       <audio id="btn" src="../../assets/music/glug.wav"></audio>
-      <audio id="btn" src="../../assets/music/glug.ogg"></audio>
       <div class="pannello-dei-tasti">
         <button onclick="javascript: document.getElementById('btn').play();" data-tooltip="Scrivi messaggio"
           type="button" style="border-top-right-radius: 2mm;" (click)="mostraChat()">
@@ -347,6 +354,32 @@
           </div>
         </div>
       </div>
+      <div id="av3" class="punteggio" style="left: 100mm; bottom: 490mm;">
+        0
+        <div class="bolla">
+          <div><div></div></div>
+        </div>
+      </div>
+      <div id="av2" class="punteggio" style="left: 45mm; bottom: 500mm;">
+        0
+        <div class="bolla">
+          <div><div></div></div>
+        </div>
+      </div>
+      <div id="av0" class="punteggio" style="right: 65mm; bottom: 510mm;">
+        0
+        <div class="bolla">
+          <div><div></div></div>
+        </div>
+      </div>
+      <div id="av1" class="punteggio" style="right: 10mm; bottom: 520mm;">
+        0     <div class="bolla">
+          <div><div></div></div>
+        </div>
+      </div>
+      <div class="punteggio-totale-avversario">Bot 100</div>
+      <div class="punteggio-totale-giocatore">Tu 0</div>
+      
     </div>
 
     <div class="chat">
