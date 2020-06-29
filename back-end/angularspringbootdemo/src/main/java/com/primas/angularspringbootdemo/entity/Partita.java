@@ -5,11 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+
 public class Partita {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private long id;
 	private String nomeGiocatore1;
 	private String nomeGiocatore2;
