@@ -1,8 +1,10 @@
-.sfondo_rules{
-    background-image:URL("../../assets/images/sfondo-blu.jpg");
-    background-size:cover;
+.sfondo_landing {
+    background-image: url("../../assets/images/sfondosea.jpg");
+    overflow: auto;
+    background-size: cover;
     height: 100%;
-}
+    position: fixed;
+  }
 
 @font-face{
     font-family: 'goiabada';
@@ -16,7 +18,9 @@
     text-align: center;
     padding: 0px;
     color:#1407cc;
-    text-shadow: 3px 3px  #ffa4f7;
+ 
+    text-shadow: 3px 3px 3px #ffa4f7, -3px 3px 3px #ffa4f7, 3px -3px 3px #ffa4f7,
+    -3px -3px 3px #ffa4f7;
 }
 
 .font_istruzioni{
@@ -24,7 +28,10 @@
     text-justify: auto;
     font-size: 22px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color:#ffa4f7;
+    color:#f5a850;
+    text-shadow: 1px 1px 1px #1338af, -1px 1px 1px #1338af, 1px -1px 1px #1338af,
+    -1px -1px 1px #1338af;
+    
 }
 
 .button{
@@ -34,3 +41,73 @@
     box-shadow: 3px 3px 3px #000000;
     border: solid 3px #0076a3;
 }
+
+.carte-delle-torri{
+  /* border:2px solid red;    */
+margin-left:40mm;
+width: 53mm;
+height: 66mm;
+padding-left: 2mm;
+position: relative;
+cursor: default;
+}
+
+.carte-delle-torri div {
+  position: absolute;
+  right: 10mm;
+  width: 12mm;
+  height: 21mm;
+  border-radius: 1mm;
+  font-size: 8mm;
+  text-align: center;
+  color: white;
+  font-family: "friendly_school", cursive;
+  /* border: 1px solid red;  */
+}
+
+.cartatorre {
+  height: 30px;
+  width: 40px;
+  position: relative;
+  margin: auto;
+  visibility: hidden;
+}
+
+.Quadrato {
+  background-image:
+  linear-gradient(
+    to bottom,
+    rgb(212, 198, 0),
+    rgb(253, 255, 108),
+    rgb(212, 198, 0)
+  );
+}
+
+
+.Triangolo {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(30, 135, 255),
+    rgb(117, 238, 247),
+    rgb(30, 135, 255)
+  );
+}
+
+.Cerchio {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(248, 97, 223),
+    rgb(247, 158, 247),
+    rgb(248, 97, 223)
+  );
+}
+
+.Ancora {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 153, 57),
+    rgb(240, 224, 138),
+    rgb(255, 153, 57)
+  );
+}
+

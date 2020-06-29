@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link href="match-page.component.css" type="text/css" rel="stylesheet" />
-  </head>
+<head>
+  <meta charset="utf-8" />
 
-  <body>   
-    <div class="container-fluid sfondo_landing">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="match-page.component.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container-fluid sfondo_landing">
     <br>
     <div id="music">
       <audio id="water" autoplay>
@@ -19,21 +17,12 @@
         <source src="../../assets/music/water.ogg" type="audio/ogg" />
       </audio>
       <audio id="audio" autoplay loop>
-        <source
-          src="../../assets/music/underwater-music.mp3"
-          type="audio/mp3"
-        />
-        <source
-          src="../../assets/music/underwater-music.ogg"
-          type="audio/ogg"
-        />
+        <source src="../../assets/music/underwater-music.mp3" type="audio/mp3" />
+        <source src="../../assets/music/underwater-music.ogg" type="audio/ogg" />
       </audio>
       <div align="right">
-        <img
-          class="mus"
-          src="../../assets/images/octomus.png"
-          onclick="document.getElementById('audio').muted=!document.getElementById('audio').muted"
-        />
+        <img class="mus" src="../../assets/images/octomus.png"
+          onclick="document.getElementById('audio').muted=!document.getElementById('audio').muted" />
       </div>
     </div>
 
@@ -43,163 +32,207 @@
       <div class="ambienti">
         <div class="distese-di-sabbia">
           <div class="carte-delle-torri-avversario">
-            <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="right: 30mm; top: 6mm; transform: rotate(-3deg);"></div><img style="left: -0.5mm; bottom:-17mm; transform: rotate(-3deg);" class = "cartatorre">
-            <div style="right: 22mm; top: 10mm; transform: rotate(5deg);"></div><img style="left: -3.4mm; bottom:-21mm; transform: rotate(5deg);" class = "cartatorre">
-            <div style="right: 14mm; top: 20mm; transform: rotate(2deg);"></div><img style="left: -6.5mm; bottom:-30.4mm; transform: rotate(2deg);" class = "cartatorre">
-            <div style="right: 16mm; top: 30mm; transform: rotate(-6deg);"></div><img style="left: 23.4mm; bottom:-32.5mm; transform: rotate(-6deg)" class = "cartatorre">
-            <div style="right: 24mm; top: 34mm; transform: rotate(-9deg);"></div><img style="left: 5mm; bottom:-36.8mm; transform: rotate(-9deg)" class = "cartatorre">
-            <div style="right: 32mm; top: 38mm; transform: rotate(-4deg);"></div><img style="left: -13mm; bottom:-41mm; transform: rotate(-4deg);" class = "cartatorre">
-            <div style="right: 40mm; top: 42mm; transform: rotate(-2deg);"></div><img style="left: -32.4mm; bottom:-45mm; transform: rotate(-2deg);" class = "cartatorre">
+            <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img
+              style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="right: 30mm; top: 6mm; transform: rotate(-3deg);"></div><img
+              style="left: -0.5mm; bottom:-17mm; transform: rotate(-3deg);" class="cartatorre">
+            <div style="right: 22mm; top: 10mm; transform: rotate(5deg);"></div><img
+              style="left: -3.4mm; bottom:-21mm; transform: rotate(5deg);" class="cartatorre">
+            <div style="right: 14mm; top: 20mm; transform: rotate(2deg);"></div><img
+              style="left: -6.5mm; bottom:-30.4mm; transform: rotate(2deg);" class="cartatorre">
+            <div style="right: 16mm; top: 30mm; transform: rotate(-6deg);"></div><img
+              style="left: 23.4mm; bottom:-32.5mm; transform: rotate(-6deg)" class="cartatorre">
+            <div style="right: 24mm; top: 34mm; transform: rotate(-9deg);"></div><img
+              style="left: 5mm; bottom:-36.8mm; transform: rotate(-9deg)" class="cartatorre">
+            <div style="right: 32mm; top: 38mm; transform: rotate(-4deg);"></div><img
+              style="left: -13mm; bottom:-41mm; transform: rotate(-4deg);" class="cartatorre">
+            <div style="right: 40mm; top: 42mm; transform: rotate(-2deg);"></div><img
+              style="left: -32.4mm; bottom:-45mm; transform: rotate(-2deg);" class="cartatorre">
           </div>
 
-          <div
-            class="carte-delle-torri"
-            (click)="giocatoreGiocaSullaTorre('Quadrato')"
-          >
-            <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img style="left: 36mm; top: 54mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div><img style="right: 1mm; top: 45mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 15mm; top: 24mm; transform: rotate(4deg);"></div><img style="left: -19mm; top: 35mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 23mm; top: 12mm; transform: rotate(2deg);"></div><img style="left: 21mm; top: 15mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 31mm; top: 8mm; transform: rotate(4deg);"></div><img style="left: 19mm; top: 12mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 39mm; top: 10mm; transform: rotate(4deg);"></div><img style="left: 16mm; top: 14mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 35mm; top: 24mm; transform: rotate(-45deg);"></div><img style="left: 5mm; top: 25mm; transform: rotate(-45deg);" class = "cartatorre">
-            <div
-              style="
+          <div class="carte-delle-torri" (click)="giocatoreGiocaSullaTorre('Quadrato')">
+            <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img
+              style="left: 36mm; top: 54mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img
+              style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div><img
+              style="right: 1mm; top: 45mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 15mm; top: 24mm; transform: rotate(4deg);"></div><img
+              style="left: -19mm; top: 35mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 23mm; top: 12mm; transform: rotate(2deg);"></div><img
+              style="left: 21mm; top: 15mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 31mm; top: 8mm; transform: rotate(4deg);"></div><img
+              style="left: 19mm; top: 12mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 39mm; top: 10mm; transform: rotate(4deg);"></div><img
+              style="left: 16mm; top: 14mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 35mm; top: 24mm; transform: rotate(-45deg);"></div><img
+              style="left: 5mm; top: 25mm; transform: rotate(-45deg);" class="cartatorre">
+            <div style="
                 left: 27mm;
                 top: 34mm;
                 transform: rotate(-2deg);
                 border: 2px dashed white;
                 width: 15mm;
                 height: 24mm;
-              "
-            >
-            
-          </div><img class = "imgcolonna" src="../../assets/images/octo-quadrato.png" style="left: 65px; bottom: 50px;">
-        </div>
+              ">
+
+            </div><img class="imgcolonna" src="../../assets/images/octo-quadrato.png" style="left: 65px; bottom: 50px;">
+          </div>
         </div>
         <div class="funghi-del-mare">
           <div class="carte-delle-torri-avversario">
-            <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="right: 30mm; top: 6mm; transform: rotate(-3deg);"></div><img style="left: -0.5mm; bottom:-17mm; transform: rotate(-3deg);" class = "cartatorre">
-            <div style="right: 22mm; top: 10mm; transform: rotate(5deg);"></div><img style="left: -3.4mm; bottom:-21mm; transform: rotate(5deg);" class = "cartatorre">
-            <div style="right: 14mm; top: 20mm; transform: rotate(2deg);"></div><img style="left: -6.5mm; bottom:-30.4mm; transform: rotate(2deg);" class = "cartatorre">
-            <div style="right: 16mm; top: 30mm; transform: rotate(-6deg);"></div><img style="left: 23.4mm; bottom:-32.5mm; transform: rotate(-6deg)" class = "cartatorre">
-            <div style="right: 24mm; top: 34mm; transform: rotate(-9deg);"></div><img style="left: 5mm; bottom:-36.8mm; transform: rotate(-9deg)" class = "cartatorre">
-            <div style="right: 32mm; top: 38mm; transform: rotate(-4deg);"></div><img style="left: -13mm; bottom:-41mm; transform: rotate(-4deg);" class = "cartatorre">
-            <div style="right: 40mm; top: 42mm; transform: rotate(-2deg);"></div><img style="left: -32.4mm; bottom:-45mm; transform: rotate(-2deg);" class = "cartatorre">
+            <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img
+              style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="right: 30mm; top: 6mm; transform: rotate(-3deg);"></div><img
+              style="left: -0.5mm; bottom:-17mm; transform: rotate(-3deg);" class="cartatorre">
+            <div style="right: 22mm; top: 10mm; transform: rotate(5deg);"></div><img
+              style="left: -3.4mm; bottom:-21mm; transform: rotate(5deg);" class="cartatorre">
+            <div style="right: 14mm; top: 20mm; transform: rotate(2deg);"></div><img
+              style="left: -6.5mm; bottom:-30.4mm; transform: rotate(2deg);" class="cartatorre">
+            <div style="right: 16mm; top: 30mm; transform: rotate(-6deg);"></div><img
+              style="left: 23.4mm; bottom:-32.5mm; transform: rotate(-6deg)" class="cartatorre">
+            <div style="right: 24mm; top: 34mm; transform: rotate(-9deg);"></div><img
+              style="left: 5mm; bottom:-36.8mm; transform: rotate(-9deg)" class="cartatorre">
+            <div style="right: 32mm; top: 38mm; transform: rotate(-4deg);"></div><img
+              style="left: -13mm; bottom:-41mm; transform: rotate(-4deg);" class="cartatorre">
+            <div style="right: 40mm; top: 42mm; transform: rotate(-2deg);"></div><img
+              style="left: -32.4mm; bottom:-45mm; transform: rotate(-2deg);" class="cartatorre">
           </div>
 
-          <div
-            class="carte-delle-torri"
-            (click)="giocatoreGiocaSullaTorre('Triangolo')"
-          >
-            <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div><img style="right: 1mm; top: 45mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 15mm; top: 24mm; transform: rotate(4deg);"></div><img style="left: -19mm; top: 35mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 23mm; top: 12mm; transform: rotate(2deg);"></div><img style="left: 21mm; top: 15mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 31mm; top: 8mm; transform: rotate(4deg);"></div><img style="left: 19mm; top: 12mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 39mm; top: 10mm; transform: rotate(4deg);"></div><img style="left: 16mm; top: 14mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 35mm; top: 24mm; transform: rotate(-45deg);"></div><img style="left: 5mm; top: 25mm; transform: rotate(-45deg);" class = "cartatorre">
-            <div
-              style="
+          <div class="carte-delle-torri" (click)="giocatoreGiocaSullaTorre('Triangolo')">
+            <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img
+              style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img
+              style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div><img
+              style="right: 1mm; top: 45mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 15mm; top: 24mm; transform: rotate(4deg);"></div><img
+              style="left: -19mm; top: 35mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 23mm; top: 12mm; transform: rotate(2deg);"></div><img
+              style="left: 21mm; top: 15mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 31mm; top: 8mm; transform: rotate(4deg);"></div><img
+              style="left: 19mm; top: 12mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 39mm; top: 10mm; transform: rotate(4deg);"></div><img
+              style="left: 16mm; top: 14mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 35mm; top: 24mm; transform: rotate(-45deg);"></div><img
+              style="left: 5mm; top: 25mm; transform: rotate(-45deg);" class="cartatorre">
+            <div style="
                 left: 27mm;
                 top: 34mm;
                 transform: rotate(-2deg);
                 border: 2px dashed white;
                 width: 15mm;
                 height: 24mm;
-              "
-            ></div><img class = "imgcolonna" src="../../assets/images/stella-triangolo.png" style="left: 65px; bottom: 50px;">
+              "></div><img class="imgcolonna" src="../../assets/images/stella-triangolo.png"
+              style="left: 65px; bottom: 50px;">
           </div>
         </div>
 
         <div class="fondali-vulcanici">
           <div class="carte-delle-torri-avversario">
-            <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="right: 30mm; top: 6mm; transform: rotate(-3deg);"></div><img style="left: -0.5mm; bottom:-17mm; transform: rotate(-3deg);" class = "cartatorre">
-            <div style="right: 22mm; top: 10mm; transform: rotate(5deg);"></div><img style="left: -3.4mm; bottom:-21mm; transform: rotate(5deg);" class = "cartatorre">
-            <div style="right: 14mm; top: 20mm; transform: rotate(2deg);"></div><img style="left: -6.5mm; bottom:-30.4mm; transform: rotate(2deg);" class = "cartatorre">
-            <div style="right: 16mm; top: 30mm; transform: rotate(-6deg);"></div><img style="left: 23.4mm; bottom:-32.5mm; transform: rotate(-6deg)" class = "cartatorre">
-            <div style="right: 24mm; top: 34mm; transform: rotate(-9deg);"></div><img style="left: 5mm; bottom:-36.8mm; transform: rotate(-9deg)" class = "cartatorre">
-            <div style="right: 32mm; top: 38mm; transform: rotate(-4deg);"></div><img style="left: -13mm; bottom:-41mm; transform: rotate(-4deg);" class = "cartatorre">
-            <div style="right: 40mm; top: 42mm; transform: rotate(-2deg);"></div><img style="left: -32.4mm; bottom:-45mm; transform: rotate(-2deg);" class = "cartatorre">
+            <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img
+              style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="right: 30mm; top: 6mm; transform: rotate(-3deg);"></div><img
+              style="left: -0.5mm; bottom:-17mm; transform: rotate(-3deg);" class="cartatorre">
+            <div style="right: 22mm; top: 10mm; transform: rotate(5deg);"></div><img
+              style="left: -3.4mm; bottom:-21mm; transform: rotate(5deg);" class="cartatorre">
+            <div style="right: 14mm; top: 20mm; transform: rotate(2deg);"></div><img
+              style="left: -6.5mm; bottom:-30.4mm; transform: rotate(2deg);" class="cartatorre">
+            <div style="right: 16mm; top: 30mm; transform: rotate(-6deg);"></div><img
+              style="left: 23.4mm; bottom:-32.5mm; transform: rotate(-6deg)" class="cartatorre">
+            <div style="right: 24mm; top: 34mm; transform: rotate(-9deg);"></div><img
+              style="left: 5mm; bottom:-36.8mm; transform: rotate(-9deg)" class="cartatorre">
+            <div style="right: 32mm; top: 38mm; transform: rotate(-4deg);"></div><img
+              style="left: -13mm; bottom:-41mm; transform: rotate(-4deg);" class="cartatorre">
+            <div style="right: 40mm; top: 42mm; transform: rotate(-2deg);"></div><img
+              style="left: -32.4mm; bottom:-45mm; transform: rotate(-2deg);" class="cartatorre">
           </div>
-          <div
-            class="carte-delle-torri"
-            (click)="giocatoreGiocaSullaTorre('Cerchio')"
-          >
-            <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div><img style="right: 1mm; top: 45mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 15mm; top: 24mm; transform: rotate(4deg);"></div><img style="left: -19mm; top: 35mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 23mm; top: 12mm; transform: rotate(2deg);"></div><img style="left: 21mm; top: 15mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 31mm; top: 8mm; transform: rotate(4deg);"></div><img style="left: 19mm; top: 12mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 39mm; top: 10mm; transform: rotate(4deg);"></div><img style="left: 16mm; top: 14mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 35mm; top: 24mm; transform: rotate(-45deg);"></div><img style="left: 5mm; top: 25mm; transform: rotate(-45deg);" class = "cartatorre">
-            <div
-              style="
+          <div class="carte-delle-torri" (click)="giocatoreGiocaSullaTorre('Cerchio')">
+            <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img
+              style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img
+              style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div><img
+              style="right: 1mm; top: 45mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 15mm; top: 24mm; transform: rotate(4deg);"></div><img
+              style="left: -19mm; top: 35mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 23mm; top: 12mm; transform: rotate(2deg);"></div><img
+              style="left: 21mm; top: 15mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 31mm; top: 8mm; transform: rotate(4deg);"></div><img
+              style="left: 19mm; top: 12mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 39mm; top: 10mm; transform: rotate(4deg);"></div><img
+              style="left: 16mm; top: 14mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 35mm; top: 24mm; transform: rotate(-45deg);"></div><img
+              style="left: 5mm; top: 25mm; transform: rotate(-45deg);" class="cartatorre">
+            <div style="
                 left: 27mm;
                 top: 34mm;
                 transform: rotate(-2deg);
                 border: 2px dashed white;
                 width: 15mm;
                 height: 24mm;
-              "
-            ></div><img class = "imgcolonna" src="../../assets/images/fish-cerchio.png" style="left: 65px; bottom: 50px;">
+              "></div><img class="imgcolonna" src="../../assets/images/fish-cerchio.png"
+              style="left: 65px; bottom: 50px;">
           </div>
         </div>
 
         <div class="caverne-luminose">
           <div class="carte-delle-torri-avversario">
-            <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="right: 30mm; top: 6mm; transform: rotate(-3deg);"></div><img style="left: -0.5mm; bottom:-17mm; transform: rotate(-3deg);" class = "cartatorre">
-            <div style="right: 22mm; top: 10mm; transform: rotate(5deg);"></div><img style="left: -3.4mm; bottom:-21mm; transform: rotate(5deg);" class = "cartatorre">
-            <div style="right: 14mm; top: 20mm; transform: rotate(2deg);"></div><img style="left: -6.5mm; bottom:-30.4mm; transform: rotate(2deg);" class = "cartatorre">
-            <div style="right: 16mm; top: 30mm; transform: rotate(-6deg);"></div><img style="left: 23.4mm; bottom:-32.5mm; transform: rotate(-6deg)" class = "cartatorre">
-            <div style="right: 24mm; top: 34mm; transform: rotate(-9deg);"></div><img style="left: 5mm; bottom:-36.8mm; transform: rotate(-9deg)" class = "cartatorre">
-            <div style="right: 32mm; top: 38mm; transform: rotate(-4deg);"></div><img style="left: -13mm; bottom:-41mm; transform: rotate(-4deg);" class = "cartatorre">
-            <div style="right: 40mm; top: 42mm; transform: rotate(-2deg);"></div><img style="left: -32.4mm; bottom:-45mm; transform: rotate(-2deg);" class = "cartatorre">
+            <div style="right: 39mm; top: 2mm; transform: rotate(-2deg);"></div><img
+              style="left: 0.5mm; top: 13mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="right: 30mm; top: 6mm; transform: rotate(-3deg);"></div><img
+              style="left: -0.5mm; bottom:-17mm; transform: rotate(-3deg);" class="cartatorre">
+            <div style="right: 22mm; top: 10mm; transform: rotate(5deg);"></div><img
+              style="left: -3.4mm; bottom:-21mm; transform: rotate(5deg);" class="cartatorre">
+            <div style="right: 14mm; top: 20mm; transform: rotate(2deg);"></div><img
+              style="left: -6.5mm; bottom:-30.4mm; transform: rotate(2deg);" class="cartatorre">
+            <div style="right: 16mm; top: 30mm; transform: rotate(-6deg);"></div><img
+              style="left: 23.4mm; bottom:-32.5mm; transform: rotate(-6deg)" class="cartatorre">
+            <div style="right: 24mm; top: 34mm; transform: rotate(-9deg);"></div><img
+              style="left: 5mm; bottom:-36.8mm; transform: rotate(-9deg)" class="cartatorre">
+            <div style="right: 32mm; top: 38mm; transform: rotate(-4deg);"></div><img
+              style="left: -13mm; bottom:-41mm; transform: rotate(-4deg);" class="cartatorre">
+            <div style="right: 40mm; top: 42mm; transform: rotate(-2deg);"></div><img
+              style="left: -32.4mm; bottom:-45mm; transform: rotate(-2deg);" class="cartatorre">
           </div>
-          
-          <div
-            class="carte-delle-torri"
-            (click)="giocatoreGiocaSullaTorre('Ancora')"
-          >
-            <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div><img style="right: 1mm; top: 45mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 15mm; top: 24mm; transform: rotate(4deg);"></div><img style="left: -19mm; top: 35mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 23mm; top: 12mm; transform: rotate(2deg);"></div><img style="left: 21mm; top: 15mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 31mm; top: 8mm; transform: rotate(4deg);"></div><img style="left: 19mm; top: 12mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 39mm; top: 10mm; transform: rotate(4deg);"></div><img style="left: 16mm; top: 14mm; transform: rotate(-2deg);" class = "cartatorre">
-            <div style="left: 35mm; top: 24mm; transform: rotate(-45deg);"></div><img style="left: 5mm; top: 25mm; transform: rotate(-45deg);" class = "cartatorre">
-            <div
-              style="
+
+          <div class="carte-delle-torri" (click)="giocatoreGiocaSullaTorre('Ancora')">
+            <div style="left: 38mm; top: 42mm; transform: rotate(2deg);"></div><img
+              style="left: 37mm; top: 53mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 30mm; top: 38mm; transform: rotate(-2deg);"></div><img
+              style="left: 18mm; top: 50mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 22mm; top: 34mm; transform: rotate(4deg);"></div><img
+              style="right: 1mm; top: 45mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 15mm; top: 24mm; transform: rotate(4deg);"></div><img
+              style="left: -19mm; top: 35mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 23mm; top: 12mm; transform: rotate(2deg);"></div><img
+              style="left: 21mm; top: 15mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 31mm; top: 8mm; transform: rotate(4deg);"></div><img
+              style="left: 19mm; top: 12mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 39mm; top: 10mm; transform: rotate(4deg);"></div><img
+              style="left: 16mm; top: 14mm; transform: rotate(-2deg);" class="cartatorre">
+            <div style="left: 35mm; top: 24mm; transform: rotate(-45deg);"></div><img
+              style="left: 5mm; top: 25mm; transform: rotate(-45deg);" class="cartatorre">
+            <div style="
                 left: 27mm;
                 top: 34mm;
                 transform: rotate(-2deg);
                 border: 2px dashed white;
                 width: 15mm;
                 height: 24mm;
-              "
-            ></div><img class = "imgcolonna" src="../../assets/images/anchor-ancora.png" style="left: 65px; bottom: 50px;">
+              "></div><img class="imgcolonna" src="../../assets/images/anchor-ancora.png"
+              style="left: 65px; bottom: 50px;">
           </div>
         </div>
       </div>
 
       <div class="pannello-scarti">
-        <div
-          class="mazzo-scarti"
-          (click)="scartaOppurePescaDalMazzoScarti()"
-          onclick="javascript: document.getElementById('card').play();"
-        >
+        <div class="mazzo-scarti" (click)="scartaOppurePescaDalMazzoScarti()"
+          onclick="javascript: document.getElementById('card').play();">
           <div>
             <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
               {{ mazzoScarti[0].getValue() }}
-              <img class = "imgcarta">
+              <img class="imgcarta">
             </div>
           </div>
         </div>
@@ -208,32 +241,17 @@
       <div class="pannello-coperte">
         <div class="carte-rimaste">{{ this.carteRimanentiDaPescare }}
         </div>
-        <div
-          class="mazzo-coperte"
-          (click)="giocatorePescaDalMazzoCoperto()"
-          onclick="javascript: document.getElementById('card').play();"
-        >
+        <div class="mazzo-coperte" (click)="giocatorePescaDalMazzoCoperto()"
+          onclick="javascript: document.getElementById('card').play();">
           <div *ngIf="this.carteRimanentiDaPescare > 0" class="Carta-misteriosa">
-            <div
-              *ngIf="this.carteRimanentiDaPescare > 1"
-              class="Carta-misteriosa"
-              style="position: relative; top: 1mm; left: 1mm;"
-            >
-              <div
-                *ngIf="this.carteRimanentiDaPescare > 2"
-                class="Carta-misteriosa"
-                style="position: relative; top: 1mm; left: 1mm;"
-              >
-                <div
-                  *ngIf="this.carteRimanentiDaPescare > 3"
-                  class="Carta-misteriosa"
-                  style="position: relative; top: 1mm; left: 1mm;"
-                >
-                  <div
-                    *ngIf="this.carteRimanentiDaPescare > 4"
-                    class="Carta-misteriosa"
-                    style="position: relative; top: 1mm; left: 1mm;"
-                  ></div>
+            <div *ngIf="this.carteRimanentiDaPescare > 1" class="Carta-misteriosa"
+              style="position: relative; top: 1mm; left: 1mm;">
+              <div *ngIf="this.carteRimanentiDaPescare > 2" class="Carta-misteriosa"
+                style="position: relative; top: 1mm; left: 1mm;">
+                <div *ngIf="this.carteRimanentiDaPescare > 3" class="Carta-misteriosa"
+                  style="position: relative; top: 1mm; left: 1mm;">
+                  <div *ngIf="this.carteRimanentiDaPescare > 4" class="Carta-misteriosa"
+                    style="position: relative; top: 1mm; left: 1mm;"></div>
                 </div>
               </div>
             </div>
@@ -242,12 +260,9 @@
       </div>
 
       <div class="pannello-degli-scarti">
-        
-        <div 
-          *ngFor="let item of this.mazzoScarti"
-          (click)="selezionaEPescaCartaDalMazzoScarti(item.getId())"
-        ></div>
-        </div>
+
+        <div *ngFor="let item of this.mazzoScarti" (click)="selezionaEPescaCartaDalMazzoScarti(item.getId())"></div>
+      </div>
       <script>
         function play() {
           var audio = document.getElementById("card");
@@ -264,15 +279,13 @@
           </div>
         </div>
         <div class="mazzo">
-          <div 
-            *ngFor="let carta of this.mano"
-            (click)="selezionaCarta(carta.getId())"
+          <div *ngFor="let carta of this.mano" (click)="selezionaCarta(carta.getId())"
             onclick="javascript: document.getElementById('card').play();">
             <p>{{ carta.getValue() }}
-              <img class = "imgcarta">
+              <img class="imgcarta">
             </p>
           </div>
-          
+
 
         </div>
       </div>
@@ -285,36 +298,20 @@
       <audio id="btn" src="../../assets/music/glug.wav"></audio>
       <audio id="btn" src="../../assets/music/glug.ogg"></audio>
       <div class="pannello-dei-tasti">
-        <button
-          onclick="javascript: document.getElementById('btn').play();"
-          data-tooltip="Scrivi messaggio"
-          type="button"
-          style="border-top-right-radius: 2mm;"
-          (click)="mostraChat()"
-        >
+        <button onclick="javascript: document.getElementById('btn').play();" data-tooltip="Scrivi messaggio"
+          type="button" style="border-top-right-radius: 2mm;" (click)="mostraChat()">
           <i class="fas fa-comment-dots p-2" style="font-size: 10mm;"></i>
         </button>
 
-        <button
-          onclick="javascript: document.getElementById('btn').play();"
-          data-tooltip="Regole di gioco"
-          type="button"
-        >
+        <button onclick="javascript: document.getElementById('btn').play();" data-tooltip="Regole di gioco"
+          type="button">
           <i class="fas fa-book p-2" style="font-size: 10mm;"></i>
         </button>
-        <button
-          onclick="javascript: document.getElementById('btn').play();"
-          data-tooltip="Opzioni"
-          type="button"
-        >
+        <button onclick="javascript: document.getElementById('btn').play();" data-tooltip="Opzioni" type="button">
           <i class="fas fa-cog p-2" style="font-size: 10mm;"></i>
         </button>
-        <button
-          onclick="javascript: document.getElementById('btn').play();"
-          data-tooltip="Abbandona partita"
-          type="button"
-          style="border-bottom-right-radius: 2mm;"
-        >
+        <button onclick="javascript: document.getElementById('btn').play();" data-tooltip="Abbandona partita"
+          type="button" style="border-bottom-right-radius: 2mm;">
           <i class="fas fa-door-open p-2" style="font-size: 10mm;"></i>
         </button>
       </div>
@@ -322,24 +319,32 @@
       <div id="0" class="punteggio" style="right: 100mm;">
         0
         <div class="bolla">
-          <div><div></div></div>
+          <div>
+            <div></div>
+          </div>
         </div>
       </div>
       <div id="1" class="punteggio" style="right: 45mm; bottom: 360mm;">
         0
         <div class="bolla">
-          <div><div></div></div>
+          <div>
+            <div></div>
+          </div>
         </div>
       </div>
       <div id="2" class="punteggio" style="left: 10mm; bottom: 370mm;">
         0
         <div class="bolla">
-          <div><div></div></div>
+          <div>
+            <div></div>
+          </div>
         </div>
       </div>
       <div id="3" class="punteggio" style="left: 65mm; bottom: 380mm;">
-        0     <div class="bolla">
-          <div><div></div></div>
+        0 <div class="bolla">
+          <div>
+            <div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -349,8 +354,9 @@
         <i class="fas fa-times-circle"></i>
       </button>
     </div>
-    </div>
-  </body>
+  </div>
+</body>
+
 </html>
 
 <!-- <div class="card my-5">
