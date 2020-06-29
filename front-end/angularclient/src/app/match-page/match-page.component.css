@@ -144,7 +144,7 @@ span {
   height: 35mm;
   margin: auto;
   position: relative;
-  bottom: 219.7mm;
+  bottom: 209.7mm;
   left: 0.1mm;
   border-top: 4px solid rgb(83, 232, 243);
   border-top-left-radius: 75mm;
@@ -159,7 +159,7 @@ span {
   );
 }
 
-.panelli .pannello-dei-tasti {
+.pannello-dei-tasti {
   /*pannello principale che contiene i tasti*/
   background-color: aqua;
   color: aliceblue;
@@ -168,7 +168,7 @@ span {
   margin: auto;
   position: relative;
   left: 128.8mm;
-  bottom: 333.1mm;
+  bottom: 323.1mm;
   border: 1px solid rgb(0, 255, 213);
   border-top-right-radius: 3mm;
   border-bottom-right-radius: 3mm;
@@ -224,8 +224,7 @@ span {
   );
 }
 
-.pannello-coperte,
-.pannello-scarti {
+.pannello-coperte{
   justify-content: center;
   padding: 1mm;
   padding-top: 5mm;
@@ -239,20 +238,17 @@ span {
     -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
     3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
     -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
-}
-
-.pannello-coperte {
-  position: relative;
-  bottom: 204.9mm;
-  left: 126.3mm;
-  border-top-right-radius: 3mm;
-  border-bottom-right-radius: 3mm;
-  background-image: linear-gradient(
-    to top left,
-    rgb(160, 255, 255),
-    rgb(61, 194, 255),
-    rgb(24, 118, 241)
-  );
+    position: relative;
+    bottom: 159.9mm;
+    left: 126.3mm;
+    border-top-right-radius: 3mm;
+    border-bottom-right-radius: 3mm;
+    background-image: linear-gradient(
+      to top left,
+      rgb(160, 255, 255),
+      rgb(61, 194, 255),
+      rgb(24, 118, 241)
+    );
 }
 
 .pannello-coperte .mazzo-coperte,
@@ -311,21 +307,28 @@ span {
 .pannello-degli-scarti {
   position: relative;
   width: 60mm;
-  height: 95mm;
-  right: 143mm;
+  height: 130mm;
+  right: 142mm;
   margin: auto;
-  bottom: 200mm;
-  border: transparent;
-  border-radius: 2mm;
+  bottom: 205mm;
+  border-radius: 3mm;
+  border-top-right-radius: 1mm;
+  border-bottom-right-radius: 1mm;
   background-image: linear-gradient(
     to bottom right,
     rgb(24, 118, 241),
     rgb(61, 194, 255),
     rgb(160, 255, 255)
   );
+  border: 1px solid rgb(0, 255, 213);
+  box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
+    -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
+    2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
+    -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
+    3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
+    -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
   display: grid;
   grid-template-columns: 8mm 8mm 8mm 8mm 8mm 8mm;
-  visibility: hidden;
   padding-top: 3mm;
   padding-left: 2mm;
 }
@@ -423,6 +426,7 @@ span {
   left: 1.5mm;
   bottom: 2mm;
 }
+
 .pannello-del-messaggio-di-avviso {
   /* border:solid 2px white; */
   position: relative;
@@ -545,7 +549,7 @@ span {
   position: relative;
   width: 11mm;
   height: 10mm;
-  bottom: 349mm;
+  bottom: 339mm;
   border-top-left-radius: 4.2mm;
   border-top-right-radius: 5mm;
   border-bottom-left-radius: 5mm;
@@ -625,6 +629,7 @@ span {
 }
 
 .punteggio-totale-giocatore ,.punteggio-totale-avversario{
+  cursor: default;
   border-radius: 1.5mm;
   background-image: linear-gradient(
     to bottom right,
@@ -646,11 +651,30 @@ span {
   margin: auto;
 }
 .punteggio-totale-avversario {
-  bottom:410mm;
+  bottom:400mm;
   left:75mm;
 
 }
 .punteggio-totale-giocatore{
-  bottom:405mm;
+  bottom:395mm;
   left:75mm;
+}
+.consiglio-sui-scarti{
+  cursor: default;
+  font-size: 8mm;
+  font-family: "friendly_school", cursive;
+  color: #40e0fc;
+  text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+    -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
+    2px -2px 3px #1871f5, -2px -2px 3px #1871f5;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-align: center;
+  padding-top: 5mm;
+  width: 58mm;
+  height: 30mm;
+  position: relative;
+  right: 141mm;
+  bottom: 2mm;
+  margin: auto;
 }

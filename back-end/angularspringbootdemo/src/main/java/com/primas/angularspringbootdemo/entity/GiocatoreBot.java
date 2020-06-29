@@ -46,7 +46,7 @@ public class GiocatoreBot extends Giocatore  {
 
 		for (int i = 0; i < mano.size(); i++) {
 			if (isGiocabile(mano.get(i))) {
-				System.out.println("carta che verrà giocata: " + mano.get(i));
+				System.out.println("\r carta che verrà giocata: " + mano.get(i));
 				return mano.get(i);
 			}
 		}
@@ -79,6 +79,7 @@ public class GiocatoreBot extends Giocatore  {
 					System.out.println("\r BOT ha pescato dal mazzo scarti: " + c);
 					cartaTrovataInMazzoScarti = true;
 					datiPartita.setIlBotHaPescatoDalMazzoCoperto(false);
+					datiPartita.setCartaPescataDaMazzoScartiBot(c);
 					break;
 				}
 			}

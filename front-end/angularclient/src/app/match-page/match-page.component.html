@@ -183,25 +183,15 @@
                 width: 15mm;
                 height: 24mm;
               "
-            ></div><img class = "imgcolonna" src="../../assets/images/anchor-ancora.png" style="left: 65px; bottom: 50px;">
+            ></div>
+            <img class = "imgcolonna" src="../../assets/images/anchor-ancora.png" style="left: 65px; bottom: 50px;">
+
           </div>
+
         </div>
       </div>
 
-      <div class="pannello-scarti">
-        <div
-          class="mazzo-scarti"
-          (click)="scartaOppurePescaDalMazzoScarti()"
-          onclick="javascript: document.getElementById('card').play();"
-        >
-          <div>
-            <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
-              {{ mazzoScarti[0].getValue() }}
-              <img class = "imgcarta">
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       <div class="pannello-coperte">
         <div class="carte-rimaste">{{ this.carteRimanentiDaPescare }}
@@ -238,9 +228,7 @@
           </div>
         </div>
       </div>
-
-      <div class="pannello-degli-scarti">
-        
+      <div class="pannello-degli-scarti" (click)="scartaUnaCartaSulMazzoScarti()"  >
         <div 
           *ngFor="let item of this.mazzoScarti"
           (click)="selezionaEPescaCartaDalMazzoScarti(item.getId())"
@@ -321,50 +309,67 @@
           <div><div></div></div>
         </div>
       </div>
-      <div id="1" class="punteggio" style="right: 45mm; bottom: 360mm;">
+      <div id="1" class="punteggio" style="right: 45mm; bottom: 350mm;">
         0
         <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div id="2" class="punteggio" style="left: 10mm; bottom: 370mm;">
+      <div id="2" class="punteggio" style="left: 10mm; bottom: 360mm;">
         0
         <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div id="3" class="punteggio" style="left: 65mm; bottom: 380mm;">
+      <div id="3" class="punteggio" style="left: 65mm; bottom: 370mm;">
         0     <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div id="av3" class="punteggio" style="left: 100mm; bottom: 490mm;">
+      <div id="av3" class="punteggio" style="left: 100mm; bottom: 480mm;">
         0
         <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div id="av2" class="punteggio" style="left: 45mm; bottom: 500mm;">
+      <div id="av2" class="punteggio" style="left: 45mm; bottom: 490mm;">
         0
         <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div id="av0" class="punteggio" style="right: 65mm; bottom: 510mm;">
+      <div id="av0" class="punteggio" style="right: 65mm; bottom: 500mm;">
         0
         <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div id="av1" class="punteggio" style="right: 10mm; bottom: 520mm;">
+      <div id="av1" class="punteggio" style="right: 10mm; bottom: 510mm;">
         0     <div class="bolla">
           <div><div></div></div>
         </div>
       </div>
-      <div class="punteggio-totale-avversario">Bot 100</div>
+      <div class="punteggio-totale-avversario">Bot 0</div>
       <div class="punteggio-totale-giocatore">Tu 0</div>
       
     </div>
+    <div class="consiglio-sui-scarti">
+      Puoi scartare qui la tua carta!
+    </div>
+    <div (click)="scartaUnaCartaSulMazzoScarti() " id="markerScarti"
+    style="
+      position: relative;
+      right: 142mm;
+      bottom: 5mm;
+      border-radius: 1mm;
+      border: 2px dashed white;
+      width: 15mm;
+      height: 24mm;
+      margin: auto;
+    "
+  >
+
+</div>
 
     <div class="chat">
       <button class="close-chat" (click)="nascondiChat()">
@@ -375,7 +380,26 @@
   </body>
 </html>
 
-<!-- <div class="card my-5">
+<!-- 
+        <div class="pannello-scarti">
+        <div
+          class="mazzo-scarti"
+          (click)="scartaOppurePescaDalMazzoScarti()"
+          onclick="javascript: document.getElementById('card').play();"
+        >
+          <div>
+            <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
+              {{ mazzoScarti[0].getValue() }}
+              <img class = "imgcarta">
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+  
+  <div class="card my-5">
   <div class="card-body">
     <table class="table table-bordered table-striped">
         

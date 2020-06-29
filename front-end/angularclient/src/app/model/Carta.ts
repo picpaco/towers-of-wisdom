@@ -8,7 +8,6 @@ export class Carta {
   private symbol: string;
   private value: string;
   private id: number;
-  private image: string;
 
 
   public constructor(symbol: string, value: string) {
