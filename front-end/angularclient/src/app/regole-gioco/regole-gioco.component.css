@@ -1,18 +1,10 @@
 .sfondo_landing {
-<<<<<<< HEAD
     background-image: url("../../assets/images/sfondosea.jpg");
-=======
-    background-image:URL("../../assets/images/sfondo-blu.jpg");
->>>>>>> 8928037bba54fc56675aeaabc343acde8d461298
     overflow: auto;
     background-size: cover;
     height: 100%;
     position: fixed;
-<<<<<<< HEAD
   }
-=======
-}
->>>>>>> 8928037bba54fc56675aeaabc343acde8d461298
 
 @font-face{
     font-family: 'goiabada';
