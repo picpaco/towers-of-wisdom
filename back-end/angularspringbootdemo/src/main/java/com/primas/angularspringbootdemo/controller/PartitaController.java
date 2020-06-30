@@ -2,6 +2,7 @@ package com.primas.angularspringbootdemo.controller;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +19,6 @@ import com.primas.angularspringbootdemo.entity.LeaderboardEntry;
 import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
 import com.primas.angularspringbootdemo.repository.ClassificaRepository;
 
-
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class PartitaController implements ApplicationContextAware {
@@ -27,79 +27,78 @@ public class PartitaController implements ApplicationContextAware {
 	private ClassificaRepository repositoryClassifica;
 	private ApplicationContext context;
 
+	// public PartitaController(RepositoryPartita repo) {
+	// this.repositoryPartita = repo;
+	// }
 
-	//	public PartitaController(RepositoryPartita repo) {
-	//		this.repositoryPartita = repo;
-	//	}
-
-	public  PartitaController() {
+	public PartitaController() {
 
 	}
 
-
-
 	@GetMapping("/classifica")
 	public List<LeaderboardEntry> getClassifica() {
-		//		List<LeaderboardEntry> risultatoMockDatiPartita = new ArrayList<>();
-		//		
-		//		LeaderboardEntry maurizio = new LeaderboardEntry("Maurizio", 13, 7);
-		//		LeaderboardEntry gennara = new LeaderboardEntry("Gennara", 4, 2);
-		//		LeaderboardEntry john = new LeaderboardEntry("John", 17, 0);
-		//		LeaderboardEntry marco = new LeaderboardEntry("Marco", 1, 1);
-		//		LeaderboardEntry antonio = new LeaderboardEntry("Antonio", 15, 9);
-		//		
-		//		risultatoMockDatiPartita.add(maurizio);
-		//		risultatoMockDatiPartita.add(gennara);
-		//		risultatoMockDatiPartita.add(john);
-		//		risultatoMockDatiPartita.add(marco);
-		//		risultatoMockDatiPartita.add(antonio);
+		// List<LeaderboardEntry> risultatoMockDatiPartita = new ArrayList<>();
+		//
+		// LeaderboardEntry maurizio = new LeaderboardEntry("Maurizio", 13, 7);
+		// LeaderboardEntry gennara = new LeaderboardEntry("Gennara", 4, 2);
+		// LeaderboardEntry john = new LeaderboardEntry("John", 17, 0);
+		// LeaderboardEntry marco = new LeaderboardEntry("Marco", 1, 1);
+		// LeaderboardEntry antonio = new LeaderboardEntry("Antonio", 15, 9);
+		//
+		// risultatoMockDatiPartita.add(maurizio);
+		// risultatoMockDatiPartita.add(gennara);
+		// risultatoMockDatiPartita.add(john);
+		// risultatoMockDatiPartita.add(marco);
+		// risultatoMockDatiPartita.add(antonio);
 
-		//		System.out.println("risultato: "+risultatoMockDatiPartita);
-		//		return risultatoMockDatiPartita;
+		// System.out.println("risultato: "+risultatoMockDatiPartita);
+		// return risultatoMockDatiPartita;
 
 		return (List<LeaderboardEntry>) repositoryClassifica.findAll();
 	}
 
-	//	@GetMapping("/giocatori")
-	//	public List<Partita> getGiocatori() {
-	////		return (List<Partita>) repositoryPartita.findAll();
-	//		return new ArrayList<Partita>();
-	//		//serve per visualizzare la leaderbord 
-	//	}
+	// @GetMapping("/giocatori")
+	// public List<Partita> getGiocatori() {
+	//// return (List<Partita>) repositoryPartita.findAll();
+	// return new ArrayList<Partita>();
+	// //serve per visualizzare la leaderbord
+	// }
 
+	// @PostMapping("/giocatori")
+	// public void addUser(@RequestBody Partita partita) {
+	// repositoryPartita.save(partita);
+	// quando il front-end effettua un post mi passa come parametro un giocatore da
+	// aggiungere al database
 
-	//	@PostMapping("/giocatori")
-	//	public void addUser(@RequestBody Partita partita) {
-	//		repositoryPartita.save(partita);
-	//quando il front-end effettua un post mi passa come parametro un giocatore da aggiungere al database
-
-	//	@GetMapping("/giocatori")
-	//	public List<Partita> getGiocatori() {
-	//		return (List<Partita>) repositoryPartita.findAll();
-	//		// serve per visualizzare la leaderbord
-	//	}
+	// @GetMapping("/giocatori")
+	// public List<Partita> getGiocatori() {
+	// return (List<Partita>) repositoryPartita.findAll();
+	// // serve per visualizzare la leaderbord
+	// }
 	//
-	//	@PostMapping("/giocatori")
-	//	public void addUser(@RequestBody Partita partita) {
-	//		repositoryPartita.save(partita);
-	//		// quando il front-end effettua un post mi passa come parametro un giocatore da
-	//		// aggiungere al database
-	//	}
+	// @PostMapping("/giocatori")
+	// public void addUser(@RequestBody Partita partita) {
+	// repositoryPartita.save(partita);
+	// // quando il front-end effettua un post mi passa come parametro un giocatore
+	// da
+	// // aggiungere al database
+	// }
 
-	//TODO: Cambiare l'uri in /partitaConBot e cambiare il nome del metodo in gestisciMossaGiocatore
+	// TODO: Cambiare l'uri in /partitaConBot e cambiare il nome del metodo in
+	// gestisciMossaGiocatore
 
 	@GetMapping("/partitaConBot")
 	public DatiPartitaInCorso gestisciMossaGiocatore() {
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
-		dati.inizializzaPartita();		
+		dati.inizializzaPartita();
 		return dati;
 	}
 
 	@GetMapping("/giocaBot")
 	public DatiPartitaInCorso giocaBot() {
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
-		dati.giocaBot();		
-		
+		dati.giocaBot();
+
 		return dati;
 	}
 
@@ -109,20 +108,19 @@ public class PartitaController implements ApplicationContextAware {
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaPescata = dati.pescaMazzoCoperto();
 		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("tow");
-		if(tow.getMazzoCoperto().isVuoto()) {
-			//TODO: per ogni giocatoreUmano salvare(insert e update sono gestiti automaticamente) una riga della tabella "leaderboard"
-			//serve: nome, vincitore(aggiorna partiteGiocate e partiteVinte), se perdente aggiorna solo partite giocate
-			//se il nome non esiste inserire dati
+		if (tow.getMazzoCoperto().isVuoto()) {
+			// TODO: per ogni giocatoreUmano salvare(insert e update sono gestiti
+			// automaticamente) una riga della tabella "leaderboard"
+			// serve: nome, vincitore(aggiorna partiteGiocate e partiteVinte), se perdente
+			// aggiorna solo partite giocate
+			// se il nome non esiste inserire dati
 
 			repositoryClassifica.save(new LeaderboardEntry("Maurizio", 1, 1));
 
 			cartaPescata.setUltima(true);
-		}	
+		}
 		return cartaPescata;
 	}
-	
-	
-	
 	@PostMapping(path = "/giocaSuTorre")
 	public String cartaGiocataSuTorre(@RequestBody String carta) {
 		System.out.println("\r Il giocatore ha giocato una carta!");
@@ -149,8 +147,22 @@ public class PartitaController implements ApplicationContextAware {
 		datiPartita.pescaMazzoScarti(cartaDaPescare);
 	}
 
+	@PostMapping(path = "/finePartita")
+	public void finePartita(@RequestBody String finePartita) {
+		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		System.out.println("\r ----é terminata la partita -----" + finePartita);
 
+		JSONObject oggettoDTO = new JSONObject(finePartita);
+		String nomePrimoGiocatore = oggettoDTO.getString("giocatore");
+		String nomeSecondoGiocatore = oggettoDTO.getString("avversario");
+		String risultato = oggettoDTO.getString("risultato");
+		System.out.println("\r " + nomePrimoGiocatore + " " + nomeSecondoGiocatore + " " + risultato);
+		System.out.println("Il giocatore sta a: " + risultato.substring(0, 1) + "\r Il avverssario sta a: "
+				+ risultato.substring(2));
+		datiPartita.salvaRisultatiPartita(nomePrimoGiocatore, risultato.substring(0, 1));
+		datiPartita.salvaRisultatiPartita(nomeSecondoGiocatore, risultato.substring(2));
 
+	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

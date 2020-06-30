@@ -18,6 +18,8 @@ export class MatchPageComponent implements OnInit {
   public carteRimanentiDaPescare: number = 26;
   public mazzoScarti: Carta[];
   public isTurnoGiocatore: boolean = false;
+  public punteggioTotaleGiocatore:number;
+  public punteggioTotaleAvversario:number;
 
   public torriAvversario: Array<Carta[]> = [
     undefined,
@@ -289,6 +291,7 @@ export class MatchPageComponent implements OnInit {
         });
       }
     });
+    this.punteggioTotaleGiocatore=punteggioTotaleGio;
     $(document).ready(function () {
       $(".punteggio-totale-giocatore").text("Tu " + punteggioTotaleGio);
     });
@@ -311,6 +314,7 @@ export class MatchPageComponent implements OnInit {
         });
       }
     });
+    this.punteggioTotaleAvversario=punteggioTotaleAvv;
     $(document).ready(function () {
       $(".punteggio-totale-avversario").text("Bot " + punteggioTotaleAvv);
     });
@@ -370,11 +374,12 @@ export class MatchPageComponent implements OnInit {
   public async giocatorePescaDalMazzoCoperto() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     let cartaPescata: Carta;
-
+    let testoJson:any;
     if (this.mano.length === 3) {
       this.datiPartita.pescaDalMazzoCoperto().subscribe((data) => {
         cartaPescata = this.cartaAdapter.adapt(data);
-        console.log(cartaPescata);
+        testoJson=data;
+        console.log(testoJson);
       });
       let func = () => {
         console.log("carta pescata dal mazzo coperto: ");
@@ -382,6 +387,9 @@ export class MatchPageComponent implements OnInit {
 
         this.mano.push(cartaPescata);
         this.carteRimanentiDaPescare -= 1;
+        if(testoJson["ultima"]===true){
+          this.terminaPartitaDTO();
+        }
         this.mostraMano();
       };
       asyncScheduler.schedule(func, 500);
@@ -390,7 +398,33 @@ export class MatchPageComponent implements OnInit {
     }
     this.deselezionaLaCartaSelezionata();
   }
+  private elaboraRisultatoFinePartita(): string {
+    if(this.punteggioTotaleGiocatore<this.punteggioTotaleAvversario){
+      return "0-1";
+    }else if(this.punteggioTotaleGiocatore===this.punteggioTotaleAvversario){
+      return "1-1";
+    }else if(this.punteggioTotaleGiocatore>this.punteggioTotaleAvversario){
+      return "1-0";
+    }
+  }
+  private terminaPartitaDTO(){
+ 
+    let risultatoFinale:string;
+    let oggettoDTO:any;
+    risultatoFinale=this.elaboraRisultatoFinePartita();
 
+    oggettoDTO={
+      giocatore:this.autenticazione.getNomeGiocatore(),
+      avversario:"Bot",
+      risultato:risultatoFinale
+    }
+    console.log("-----Fine-partia----");
+    console.log(oggettoDTO);
+
+    this.datiPartita.finePartita(oggettoDTO).subscribe();
+  }
+
+ 
   private async BotGiocaLaSuaMossa() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     let testoJson: any;
@@ -406,6 +440,9 @@ export class MatchPageComponent implements OnInit {
 
         if (testoJson["ilBotHaPescatoDalMazzoCoperto"] === true) {
           this.carteRimanentiDaPescare -= 1;
+          if(testoJson["cartaGiocataBot"]["ultima"]===true){
+            this.terminaPartitaDTO();
+          }
         } else {
           console.log("Il bot ha pescato dal mazzo scarti!");
 
