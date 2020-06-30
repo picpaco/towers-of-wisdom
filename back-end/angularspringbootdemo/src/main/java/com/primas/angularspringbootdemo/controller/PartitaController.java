@@ -121,6 +121,8 @@ public class PartitaController implements ApplicationContextAware {
 		return cartaPescata;
 	}
 	
+	
+	
 	@PostMapping(path = "/giocaSuTorre")
 	public String cartaGiocataSuTorre(@RequestBody String carta) {
 		System.out.println("\r Il giocatore ha giocato una carta!");
