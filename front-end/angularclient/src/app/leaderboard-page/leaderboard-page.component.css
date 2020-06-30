@@ -15,7 +15,7 @@ table {
   box-shadow: -1px -1px 3px rgb(56, 160, 163), -1px 1px 3px rgb(82, 164, 167),
     1px 1px 3px rgb(126, 243, 247), 1px -1px 3px rgb(126, 243, 247);
   width: auto;
-  height: 87mm;
+  height: 150mm;
 }
 .content,
 th {
@@ -97,6 +97,7 @@ button:hover {
 
 th {
   font-size: 7mm;
+  cursor: pointer;
 }
 
 td {
@@ -258,3 +259,4 @@ h1 {
 ::-webkit-scrollbar-corner {
   background-color: transparent;
 }
+

@@ -4,6 +4,7 @@ public class Carta {
 	
 	private Simbolo simbolo;
 	private Valore valore;
+	private boolean isUltima;
 
 	public Carta(Valore valore, Simbolo simbolo) {
 		this.simbolo = simbolo;
@@ -17,6 +18,14 @@ public class Carta {
 
 	public Valore getValore() {
 		return valore;
+	}
+
+	public boolean isUltima() {
+		return isUltima;
+	}
+
+	public void setUltima(boolean isUltima) {
+		this.isUltima = isUltima;
 	}
 
 	@Override

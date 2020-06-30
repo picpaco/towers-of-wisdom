@@ -46,7 +46,7 @@ public class GiocatoreBot extends Giocatore  {
 
 		for (int i = 0; i < mano.size(); i++) {
 			if (isGiocabile(mano.get(i))) {
-				System.out.println("carta che verrà giocata: " + mano.get(i));
+				System.out.println("\r carta che verrà giocata: " + mano.get(i));
 				return mano.get(i);
 			}
 		}
@@ -66,6 +66,9 @@ public class GiocatoreBot extends Giocatore  {
 			//System.out.println("\r BOT prima di pescare dal mazzo coperto: " + getMano());
 			cartaPescata=mazzoCoperto.pescaCarta();
 			getMano().add(cartaPescata);
+			if(mazzoCoperto.isVuoto()) {
+				cartaPescata.setUltima(true);
+			}
 			datiPartita.setIlBotHaPescatoDalMazzoCoperto(true);
 			System.out.println("\r BOT ha pescato dal mazzo coperto la carta: "+cartaPescata);
 			//System.out.println("\r BOT dopo aver pescato dal mazzo coperto:" + getMano());
@@ -79,6 +82,7 @@ public class GiocatoreBot extends Giocatore  {
 					System.out.println("\r BOT ha pescato dal mazzo scarti: " + c);
 					cartaTrovataInMazzoScarti = true;
 					datiPartita.setIlBotHaPescatoDalMazzoCoperto(false);
+					datiPartita.setCartaPescataDaMazzoScartiBot(c);
 					break;
 				}
 			}
@@ -86,6 +90,9 @@ public class GiocatoreBot extends Giocatore  {
 				//System.out.println("\r BOT prima di pescare dal mazzo coperto: " + getMano());
 				cartaPescata=mazzoCoperto.pescaCarta();
 				getMano().add(cartaPescata);
+				if(mazzoCoperto.isVuoto()) {
+					cartaPescata.setUltima(true);
+				}
 				datiPartita.setIlBotHaPescatoDalMazzoCoperto(true);
 				System.out.println("\r BOT ha pescato dal mazzo coperto la carta: "+cartaPescata);
 				//System.out.println("\r BOT dopo aver pescato dal mazzo coperto:" + getMano());
