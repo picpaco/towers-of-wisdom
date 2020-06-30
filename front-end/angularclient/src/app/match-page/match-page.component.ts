@@ -1,13 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
-import { Giocatore } from "../model/giocatore";
 import { Carta, CartaAdapter } from "../model/Carta";
 import { ActivatedRoute } from "@angular/router";
-import {
-  MazzoCopertoService,
-  ManoService,
-  MazzoScartiService,
-} from "../service/mano.service";
 import { asyncScheduler } from "rxjs";
 import { AuthenticationService } from "../service/authentication.service";
 import { DatiPartitaService } from "../service/Dati-partita.service";
@@ -48,7 +42,7 @@ export class MatchPageComponent implements OnInit {
   ngOnInit() {
     this.riceviDatiPartita();
     this.mostraTorriAvversario();
-    this.inizializzaMazzoScarti();
+    this.mostraCarteScartate();
     this.mostraMano();
   }
   private riceviDatiPartita() {
@@ -234,29 +228,19 @@ export class MatchPageComponent implements OnInit {
 
   public giocatoreGiocaSuTorre_Back_End(carta: Carta): void {
     //si fa un post per aggiornare il backend
-    let func = () => {
-      console.log(carta);
-      this.datiPartita.giocatoreGiocaCartaSuTorre(carta).subscribe();
-    };
-    asyncScheduler.schedule(func, 150);
+
+    console.log(carta);
+    this.datiPartita.giocatoreGiocaCartaSuTorre(carta).subscribe();
   }
 
   public giocatoreScartaSuScarti_Back_End(carta: Carta): void {
-    let func = () => {
-      console.log(carta);
-      this.datiPartita.giocatoreScartaCartaSuScarti(carta).subscribe();
-    };
-    asyncScheduler.schedule(func, 150);
+    console.log(carta);
+    this.datiPartita.giocatoreScartaCartaSuScarti(carta).subscribe();
   }
 
   public giocatorePescaDaMazzoScarti_Back_End(carta: Carta): void {
-    let func = () => {
-      console.log(carta);
-      this.datiPartita
-        .selezionaLaCartaDaPescareDalMazzoScarti(carta)
-        .subscribe();
-    };
-    asyncScheduler.schedule(func, 150);
+    console.log(carta);
+    this.datiPartita.selezionaLaCartaDaPescareDalMazzoScarti(carta).subscribe();
   }
 
   private mostraTorri() {
@@ -267,15 +251,6 @@ export class MatchPageComponent implements OnInit {
   }
 
   private mostraTorriGiocatore() {
-    // let quadrato=[new Carta("Triangolo","7"),new Carta("Triangolo","6"),new Carta("Triangolo","5"),
-    // new Carta("Triangolo","4"),new Carta("Triangolo","3"),new Carta("Triangolo","2"),new Carta("Triangolo","1"),
-    // new Carta("Triangolo","P")]
-    // this.torriGiocatore[1]=quadrato;
-    // let cerchio=[new Carta("Cerchio","7"),new Carta("Cerchio","6"),new Carta("Cerchio","5"),
-    // new Carta("Cerchio","4"),new Carta("Cerchio","3"),new Carta("Cerchio","2"),new Carta("Cerchio","1"),
-    // new Carta("Cerchio","P")]
-    // this.torriGiocatore[2]=cerchio;
-
     this.torriGiocatore.forEach((torre, indexTorre) => {
       if (torre != undefined) {
         torre.forEach((carta, index) => {
@@ -297,7 +272,7 @@ export class MatchPageComponent implements OnInit {
   }
 
   private calcolaPunteggio() {
-    let punteggioTotaleGio:number=0;
+    let punteggioTotaleGio: number = 0;
     this.torriGiocatore.forEach((torre, indexTorre = 0) => {
       if (torre != undefined) {
         let puntiTorre = 0;
@@ -308,19 +283,17 @@ export class MatchPageComponent implements OnInit {
             puntiTorre += +carta.getValue();
           }
         });
-        punteggioTotaleGio+=puntiTorre;
+        punteggioTotaleGio += puntiTorre;
         $(document).ready(function () {
-          $("#" + indexTorre + ".punteggio")
-            .text(puntiTorre);
+          $("#" + indexTorre + ".punteggio").text(puntiTorre);
         });
       }
     });
     $(document).ready(function () {
-      $(".punteggio-totale-giocatore")
-        .text("Tu "+punteggioTotaleGio);
+      $(".punteggio-totale-giocatore").text("Tu " + punteggioTotaleGio);
     });
 
-    let punteggioTotaleAvv:number=0;
+    let punteggioTotaleAvv: number = 0;
     this.torriAvversario.forEach((torre, indexTorre = 0) => {
       if (torre != undefined) {
         let puntiTorre = 0;
@@ -331,7 +304,7 @@ export class MatchPageComponent implements OnInit {
             puntiTorre += +carta.getValue();
           }
         });
-    punteggioTotaleAvv+=puntiTorre;
+        punteggioTotaleAvv += puntiTorre;
 
         $(document).ready(function () {
           $("#av" + indexTorre + ".punteggio").text(puntiTorre);
@@ -339,8 +312,7 @@ export class MatchPageComponent implements OnInit {
       }
     });
     $(document).ready(function () {
-      $(".punteggio-totale-avversario")
-        .text("Bot "+punteggioTotaleAvv);
+      $(".punteggio-totale-avversario").text("Bot " + punteggioTotaleAvv);
     });
   }
 
@@ -416,6 +388,7 @@ export class MatchPageComponent implements OnInit {
     } else {
       this.mostraMessaggioDiAvviso("Devi giocare la tua carta");
     }
+    this.deselezionaLaCartaSelezionata();
   }
 
   private async BotGiocaLaSuaMossa() {
@@ -430,6 +403,35 @@ export class MatchPageComponent implements OnInit {
         cartaGiocataBot = this.cartaAdapter.adapt(testoJson["cartaGiocataBot"]);
         console.log("Carta giocata dal bot:");
         console.log(cartaGiocataBot);
+
+        if (testoJson["ilBotHaPescatoDalMazzoCoperto"] === true) {
+          this.carteRimanentiDaPescare -= 1;
+        } else {
+          console.log("Il bot ha pescato dal mazzo scarti!");
+
+          let copiaMazzoScarti: Carta[]; //conterrà tutte quelle carte che il bot non ha pescato
+          let cartaPescataDaMazzoScarti = this.cartaAdapter.adapt(
+            testoJson["cartaPescataDaMazzoScartiBot"]
+          );
+          console.log(cartaPescataDaMazzoScarti);
+          this.mazzoScarti.forEach((carta) => {
+            //ciclo nel mazzo scarti e mi prendo tutte quelle carte che sono diverse dalla carta pescata dal mazzo scarti
+            if (
+              carta.getSymbol() === cartaPescataDaMazzoScarti.getSymbol() &&
+              carta.getValue() === cartaPescataDaMazzoScarti.getValue()
+            ) {
+            } else {
+              if (copiaMazzoScarti === undefined) {
+                copiaMazzoScarti = [carta];
+              } else {
+                copiaMazzoScarti.push(carta);
+              }
+            }
+          });
+          this.mazzoScarti = undefined;
+          this.mazzoScarti = copiaMazzoScarti;
+        }
+
         if (testoJson["cartaAvversarioGiocataSuTorre"] === true) {
           console.log("---Il bot ha giocato su una torre!---");
           this.giocaCartaTorriAvversario(cartaGiocataBot);
@@ -440,27 +442,6 @@ export class MatchPageComponent implements OnInit {
           } else {
             this.mazzoScarti.push(cartaGiocataBot);
           }
-        }
-
-        if (testoJson["ilBotHaPescatoDalMazzoCoperto"] === true) {
-          this.carteRimanentiDaPescare -= 1;
-        } else {
-          console.log("Il bot ha pescato dal mazzo scarti!");
-          let copiaMazzoScarti: Carta[];
-          this.mazzoScarti.forEach((carta) => {
-            if (
-              carta.getSymbol() !== cartaGiocataBot.getSymbol() &&
-              carta.getValue() !== cartaGiocataBot.getValue()
-            ) {
-              if (copiaMazzoScarti === undefined) {
-                copiaMazzoScarti = [carta];
-              } else {
-                copiaMazzoScarti.push(carta);
-              }
-            }
-          });
-          this.mazzoScarti = undefined;
-          this.mazzoScarti = copiaMazzoScarti;
         }
       }
       console.log(testoJson);
@@ -475,35 +456,17 @@ export class MatchPageComponent implements OnInit {
     asyncScheduler.schedule(func, 1000);
   }
 
-  public scartaOppurePescaDalMazzoScarti() {
+  public scartaUnaCartaSulMazzoScarti() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     /*funzione che viene invocata quando si cerca di scartare una carta selezionata 
     dal mazzo oppure quando si vuole pescare dal mazzo scarti */
 
-    this.nascondiMessaggioDiAvviso();
-
-    if (this.mano.length === 3) {
-      /*se nel mazzo ci sono 3 carte
-      vuol dire che il giocatore vuole pescare una carta scartata,
-      e il giocatore non dovrebbe aver selezionato una carta quando la 
-      si pesca dal mazzo scarti.*/
-      if (this.isSelectedUnaCartaDalMazzo()) {
-        this.mostraMessaggioDiAvviso("Non puoi scartare con tre carte!");
-        this.deselezionaLaCartaSelezionata();
-      } else {
-        this.pescaCartaScartata();
-      }
-    }
-
-    if (this.mano.length === 4) {
+    if (this.mano.length === 4 && this.mazzoScarti === undefined) {
       /*se il mazzo é uguale a 4 vuol dire che il giocatore vuole scartare una carta selezionata.*/
-      if (this.isSelectedUnaCartaDalMazzo()) {
-        this.scartaLaCarta();
-        this.BotGiocaLaSuaMossa();
-      } else {
-        this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
-        this.deselezionaLaCartaSelezionata();
-      }
+      this.scartaLaCarta();
+    } else if (this.mano.length === 3 && this.mazzoScarti === undefined) {
+      this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
+      this.deselezionaLaCartaSelezionata();
     }
 
     this.mostraMano();
@@ -513,50 +476,41 @@ export class MatchPageComponent implements OnInit {
   private mostraCarteScartate() {
     /*funzione che mostra corretamente le ultime carte scartate nel pannello*/
     if (this.mazzoScarti != undefined) {
-      if (this.mazzoScarti.length > 1) {
-        //il pannello viene mostrato quando ci sono almeno due carte scartate
-        this.mostraInPrimoPianoUltimaCartaScartata();
+      console.log("Metodo mostraCarteScartate il mazzo scarti è composto di:");
+      console.log(this.mazzoScarti);
+      if (this.mazzoScarti.length > 0) {
+        //se ci sono carte scarta da mostrare si leva il marker e il consiglio
         $(document).ready(function () {
-          $(".pannello-degli-scarti").css({ visibility: "visible" });
+          $("#markerScarti").css({ visibility: "hidden" });
+          $(".consiglio-sui-scarti").css({ visibility: "hidden" });
         });
         this.mostraMazzoScarti();
+      } else {
+        //se sono state pescate tutte le carte scartate riappare il marke ed il consiglio
+        $("#markerScarti").css({ visibility: "visible" });
+        $(".consiglio-sui-scarti").css({ visibility: "visible" });
       }
-      if (this.mazzoScarti.length === 1) {
-        //se c'è solo una carta scartata il pannello si nasconde
-        let classe = this.mazzoScarti[0].getSymbol();
-        let image = this.mazzoScarti[0].getImage();
-        $(document).ready(function () {
-          $(".mazzo-scarti >div:eq(0)").css({ border: "transparent" });
-          $(".mazzo-scarti div div").addClass(classe);
-          $(".pannello-degli-scarti").css({ visibility: "hidden" });
-          $(".mazzo-scarti div div img").attr(
-            "src",
-            "../../assets/images/" + image + ".png"
-          );
-        });
-      }
-      if (this.mazzoScarti.length === 0) {
-        //in caso vengono pescate tutte le carta scartate riappare il tratteggio
-        this.inizializzaMazzoScarti();
-      }
+    } else {
+      $("#markerScarti").css({ visibility: "visible" });
+      $(".consiglio-sui-scarti").css({ visibility: "visible" });
     }
   }
 
   public selezionaEPescaCartaDalMazzoScarti(cartaId: string) {
+    this.nascondiMessaggioDiAvviso();
+    console.log("Carta selezionata nel mazzo scarti");
+    console.log(cartaId);
+
     if (this.mano.length === 3) {
-      if (this.isSelectedUnaCartaDalMazzo()) {
-        //controlla se nella mano è presente una carta selezionata
-        this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
-        this.deselezionaLaCartaSelezionata();
-      } else {
+      if (!this.isSelectedUnaCartaDalMazzo()) {
         let copiaManoScarti: [Carta];
         //una copia per tenere tutte le carte scartate che non sono state selezionate
         this.mazzoScarti.forEach((carta) => {
           //si cicla nel mazzo scarti per cercare la carta selezionata tramite Id
           if (carta.getId() === cartaId) {
+            this.nascondiMessaggioDiAvviso();
             this.mano.push(carta);
             this.giocatorePescaDaMazzoScarti_Back_End(carta);
-            //this.salvaCartaSulMazzoScartiBackEnd(this.mazzoScarti[index]);
           } else {
             if (copiaManoScarti === undefined) {
               copiaManoScarti = [carta];
@@ -567,31 +521,16 @@ export class MatchPageComponent implements OnInit {
         });
         this.mazzoScarti = undefined;
         this.mazzoScarti = copiaManoScarti;
-
-        this.mostraMano();
-        this.mostraMazzoScarti();
-
-        if (this.mazzoScarti.length === 1) {
-          $(document).ready(function () {
-            $(".pannello-degli-scarti").css({ visibility: "hidden" });
-          });
-        }
-        if (this.mazzoScarti.length === 0) {
-          this.inizializzaMazzoScarti();
-        }
-        let classe = this.mazzoScarti[0].getSymbol();
-        $(document).ready(function () {
-          $(".mazzo-scarti div div").removeClass(
-            "Quadrato Triangolo Cerchio Ancora Punta"
-          );
-          $(".mazzo-scarti div div").addClass(classe);
-        });
       }
     } else {
-      this.mostraMessaggioDiAvviso("Gioca una carta");
-      this.deselezionaLaCartaSelezionata();
+      this.nascondiMessaggioDiAvviso();
+      this.scartaLaCarta();
     }
+
+    this.mostraMano();
+    this.mostraCarteScartate();
   }
+
   private mostraMazzoScarti() {
     if (this.mazzoScarti != undefined) {
       let m = this.mazzoScarti.length - 1;
@@ -599,6 +538,7 @@ export class MatchPageComponent implements OnInit {
         let classe = this.mazzoScarti[index].getSymbol();
         let valore = this.mazzoScarti[index].getValue();
         let image = this.mazzoScarti[index].getImage();
+        this.mazzoScarti[index].setId(index);
 
         $(document).ready(function () {
           $(".pannello-degli-scarti div:eq(" + index + ")")
@@ -623,34 +563,16 @@ export class MatchPageComponent implements OnInit {
     }
   }
 
-  private inizializzaMazzoScarti(): void {
-    $(document).ready(function () {
-      $(".mazzo-scarti div").css({ border: "2px dashed white" });
-    });
-  }
-
-  private mostraInPrimoPianoUltimaCartaScartata(): void {
-    let classePrec = this.mazzoScarti[1].getSymbol();
-    let classe = this.mazzoScarti[0].getSymbol();
-    let image = this.mazzoScarti[0].getImage();
-    $(document).ready(function () {
-      $(".mazzo-scarti div div").removeClass(classePrec);
-      $(".mazzo-scarti div div").addClass(classe);
-      $(".mazzo-scarti div div img").attr(
-        "src",
-        "../../assets/images/" + image + ".png"
-      );
-    });
-  }
-
   private scartaLaCarta(): void {
     let copiaMano: [Carta];
+
     //si ha una copia per prendere tutte le carte che non sono state selezionate
     if (this.isSelectedUnaCartaDalMazzo()) {
       //controlla se una carta dalla mano è stata selezionata
       for (let index = 0; index < this.mano.length; index++) {
         //si cicla per trovare la carta da scartare nella mano
         if (this.mano[index].isSelected()) {
+          this.BotGiocaLaSuaMossa();
           //se questa carta è selezionata viene scartata
           this.mano[index].setSelected(false);
           this.giocatoreScartaSuScarti_Back_End(this.mano[index]);
@@ -687,6 +609,7 @@ export class MatchPageComponent implements OnInit {
       console.log(this.mazzoScarti);
     } else {
       /* nessuna carta è stata selezionata mostra un messaggio...*/
+
       this.mostraMessaggioDiAvviso("Nessuna carta selezionata!");
     }
   }
@@ -709,43 +632,6 @@ export class MatchPageComponent implements OnInit {
       $(document).ready(function () {
         $(".mazzo > div:eq(" + index + ")").css({ "box-shadow": "none" });
       });
-    }
-  }
-
-  private pescaCartaScartata(): void {
-    //il primo elemento in mazzo scarti viene sempre visualizzato per primo
-    //nel mazzo scarti non nel pannello degli scarti !
-    if (this.mazzoScarti != undefined && this.mazzoScarti.length > 0) {
-      if (this.mazzoScarti.length > 1) {
-        let classePrec = this.mazzoScarti[1].getSymbol();
-        let classe = this.mazzoScarti[0].getSymbol();
-        $(document).ready(function () {
-          $(".mazzo-scarti div div").removeClass(classe);
-          $(".mazzo-scarti div div").addClass(classePrec);
-        });
-      }
-
-      let carta = this.mazzoScarti.shift();
-      carta.setSelected(false);
-      this.mano.push(carta);
-      console.log("é stata pescata una carta dal mazzo scarti!");
-      this.giocatorePescaDaMazzoScarti_Back_End(carta);
-      console.log(this.mazzoScarti);
-    } else {
-      let causa = false;
-      causa = this.isSelectedUnaCartaDalMazzo();
-      if (causa) {
-        if (this.mazzoScarti != undefined && this.mazzoScarti.length > 0) {
-          this.mostraMessaggioDiAvviso(
-            "Pesca dal mazzo coperto o dal mazzo degli scarti!"
-          );
-        } else {
-          this.mostraMessaggioDiAvviso("Pesca dal mazzo coperto!");
-        }
-      } else {
-        this.mostraMessaggioDiAvviso("Non c'è nessuna carta da pescare!");
-      }
-      this.deselezionaLaCartaSelezionata();
     }
   }
 
@@ -784,7 +670,7 @@ export class MatchPageComponent implements OnInit {
           "../../assets/images/" + image + ".png"
         );
       });
-      this.mano[index].setId(index);
+      carta.setId(index);
     });
 
     /* console.log("Il mio mazzo:");

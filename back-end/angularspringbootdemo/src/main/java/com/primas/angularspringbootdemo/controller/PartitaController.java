@@ -99,7 +99,7 @@ public class PartitaController implements ApplicationContextAware {
 	public DatiPartitaInCorso giocaBot() {
 		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		dati.giocaBot();		
-		System.out.println("\r"+dati);
+		
 		return dati;
 	}
 
@@ -120,15 +120,7 @@ public class PartitaController implements ApplicationContextAware {
 		}	
 		return cartaPescata;
 	}
-
-	//	@GetMapping("/pescaDalMazzoCopertoBot")
-	//	public ArrayList<Carta> pescaBot() {
-	//		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
-	//		return dati.pescaMazzoCoperto();// resituisce la mano del giocatore assieme alla carta pescata dal mazzo coperto
-	//	}
-
-
-
+	
 	@PostMapping(path = "/giocaSuTorre")
 	public String cartaGiocataSuTorre(@RequestBody String carta) {
 		System.out.println("\r Il giocatore ha giocato una carta!");
@@ -140,7 +132,7 @@ public class PartitaController implements ApplicationContextAware {
 
 	@PostMapping(path = "/scartaCarta")
 	public void cartaDaScartareDallaMano(@RequestBody String carta) {
-		System.out.println("\r viene scartata la seguente carta dalla mano del giocatore" + carta);
+		System.out.println("\r Viene scartata la seguente carta dalla mano del giocatore" + carta);
 		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaDaScartare = datiPartita.creaCartaDaJson(carta);
 		datiPartita.aggiungiCartaAlMazzoScarti(cartaDaScartare);
