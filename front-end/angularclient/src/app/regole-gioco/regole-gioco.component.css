@@ -11,26 +11,36 @@
     src: url('../../assets/fonts/GOIABADA.TTF') format('truetype');
   }
 
+  @font-face {
+    font-family: "friendly_school";
+    src: url("../../assets/Stile-della-partita/Fonts/friendly_schoolmates_regular_font_by_situjuh_7ntypes-webfont.woff2")
+        format("woff2"),
+      url("../../assets/Stile-della-partita/Fonts/friendly_schoolmates_regular_font_by_situjuh_7ntypes-webfont.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
 
 .title {
     font-size: 70px;
     font-family: 'goiabada';
     text-align: center;
     padding: 0px;
-    color:#1407cc;
+    color:#000000;
  
-    text-shadow: 3px 3px 3px #ffa4f7, -3px 3px 3px #ffa4f7, 3px -3px 3px #ffa4f7,
-    -3px -3px 3px #ffa4f7;
+    text-shadow: 5px 5px 5px #ffa4f7, -5px 5px 5px #ffa4f7, 5px -5px 5px #ffa4f7,
+    -5px -5px 5px #ffa4f7;
 }
 
 .font_istruzioni{
     margin-top: 80px;
     text-justify: auto;
     font-size: 22px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color:#f5a850;
-    text-shadow: 1px 1px 1px #1338af, -1px 1px 1px #1338af, 1px -1px 1px #1338af,
-    -1px -1px 1px #1338af;
+    font-family:"friendly_school";
+    color:#ffa4f7;
+    text-shadow: 1px 1px 1px #5c6868, -1px 1px 1px #5c6868, 1px -1px 1px #5c6868,
+    -1px -1px 1px #5c6868;
     
 }
 

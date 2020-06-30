@@ -28,16 +28,19 @@ export class Carta {
     return this.symbol.slice(0, 1);
   }
 
+ 
   public getImage(): string {
     let img = "";
-    if(this.getInitial() == "Q"){
+    if(this.value=="P"){
+      img = "ostrica-cima";
+    } else if(this.getInitial() == "Q") {
       img = "octo-quadrato";
-    } else if(this.getInitial() == "C") {
-        img = "fish-cerchio";
     } else if(this.getInitial() == "A") {
         img = "anchor-ancora";
-    } else { 
+    } else if(this.getInitial() == "T") { 
         img = "stella-triangolo";
+    } else if(this.getInitial() == "C") {
+      img="fish-cerchio";
     }
     return img;
   }
