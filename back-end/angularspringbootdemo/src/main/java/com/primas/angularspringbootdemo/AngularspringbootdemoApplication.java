@@ -32,36 +32,36 @@ public class AngularspringbootdemoApplication implements ApplicationContextAware
 		return args -> {
 			
 			//---------dati dal front-end:
-			String nomePrimoGiocatore="Maurizio";
-			String nomeSecondoGiocatore = "Gennara";
-			String risultato = "1-0";
-			//---------
-			int numeroPartiteGiocatePrimoGiocatore=0;
-			int numeroPartiteVintePrimoGiocatore=0;
-			LeaderboardEntry leaderboardEntryAggiornata = null;
-			boolean trovato=false;
-			
-			
-			Iterable<LeaderboardEntry> righe = repositoryClassifica.findAll();
-			for(LeaderboardEntry riga : righe) {
-				if(riga.getNome().equals(nomePrimoGiocatore)) {
-					trovato=true;
-					numeroPartiteGiocatePrimoGiocatore = riga.getNumeroPartiteTotali()+1;
-					numeroPartiteVintePrimoGiocatore = riga.getNumeroVittorie();
-					if(risultato.equals("1-0")) {
-						numeroPartiteVintePrimoGiocatore++;
-					}
-					leaderboardEntryAggiornata = new LeaderboardEntry(nomePrimoGiocatore, numeroPartiteGiocatePrimoGiocatore, numeroPartiteVintePrimoGiocatore);
-					
-				} 
-			}
-			if(!trovato) {
-				if(risultato.equals("1-0")) {
-					numeroPartiteVintePrimoGiocatore++;
-				}
-				leaderboardEntryAggiornata = new LeaderboardEntry(nomePrimoGiocatore, 1, numeroPartiteVintePrimoGiocatore);
-			}
-			repositoryClassifica.save(leaderboardEntryAggiornata);
+//			String nomePrimoGiocatore="Maurizio";
+//			String nomeSecondoGiocatore = "Gennara";
+//			String risultato = "1-0";
+//			//---------
+//			int numeroPartiteGiocatePrimoGiocatore=0;
+//			int numeroPartiteVintePrimoGiocatore=0;
+//			LeaderboardEntry leaderboardEntryAggiornata = null;
+//			boolean trovato=false;
+//			
+//			
+//			Iterable<LeaderboardEntry> righe = repositoryClassifica.findAll();
+//			for(LeaderboardEntry riga : righe) {
+//				if(riga.getNome().equals(nomePrimoGiocatore)) {
+//					trovato=true;
+//					numeroPartiteGiocatePrimoGiocatore = riga.getNumeroPartiteTotali()+1;
+//					numeroPartiteVintePrimoGiocatore = riga.getNumeroVittorie();
+//					if(risultato.equals("1-0")) {
+//						numeroPartiteVintePrimoGiocatore++;
+//					}
+//					leaderboardEntryAggiornata = new LeaderboardEntry(nomePrimoGiocatore, numeroPartiteGiocatePrimoGiocatore, numeroPartiteVintePrimoGiocatore);
+//					
+//				} 
+//			}
+//			if(!trovato) {
+//				if(risultato.equals("1-0")) {
+//					numeroPartiteVintePrimoGiocatore++;
+//				}
+//				leaderboardEntryAggiornata = new LeaderboardEntry(nomePrimoGiocatore, 1, numeroPartiteVintePrimoGiocatore);
+//			}
+//			repositoryClassifica.save(leaderboardEntryAggiornata);
 			
 //			String nome2 = "Maurizio";
 //			

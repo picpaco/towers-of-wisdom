@@ -10,12 +10,18 @@ import { Carta } from '../model/Carta';
 })
 export class DatiPartitaService {
 
+
   username = "stefano89";
   password = "stefanorusso";
 
   headers = new HttpHeaders({ Authorization: "Basic " + btoa(this.username + ":" + this.password) });
 
   constructor(private http: HttpClient) { }
+
+
+  public finePartita(oggettoDTO: any) {
+    return this.http.post<Carta>("http://localhost:8080/finePartita", JSON.stringify(oggettoDTO),);
+  }
 
   public iniziaPartitaConBot(){
     return this.http.get<any>("http://localhost:8080/partitaConBot" );
