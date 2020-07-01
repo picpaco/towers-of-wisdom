@@ -33,14 +33,20 @@
     -5px -5px 5px #ffa4f7;
 }
 
+.sfondo_istruzioni{
+  background: url("../../assets/images/mappaVecc.jpg");
+  border-radius: 40px;
+}
+
 .font_istruzioni{
     margin-top: 80px;
     text-justify: auto;
-    font-size: 22px;
-    font-family:"friendly_school";
-    color:#ffa4f7;
-    text-shadow: 1px 1px 1px #5c6868, -1px 1px 1px #5c6868, 1px -1px 1px #5c6868,
-    -1px -1px 1px #5c6868;
+    font-size: 30px;
+    font-family:Adobe Heiti Std R;
+    color:#1946ad;
+    text-shadow: 1px 1px 1px black,  1px -1px 1px black
+  
+    
     
 }
 
