@@ -1,19 +1,11 @@
 package com.primas.angularspringbootdemo;
 
 
-import javax.websocket.Session;
-
-import org.hibernate.SharedSessionContract;
 import org.springframework.beans.BeansException;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Bean;
-
-import com.primas.angularspringbootdemo.entity.LeaderboardEntry;
-import com.primas.angularspringbootdemo.repository.ClassificaRepository;
 
 @SpringBootApplication
 public class AngularspringbootdemoApplication implements ApplicationContextAware{
@@ -27,9 +19,9 @@ public class AngularspringbootdemoApplication implements ApplicationContextAware
 	}    
 
 
-	@Bean
-	CommandLineRunner init(ClassificaRepository repositoryClassifica) {
-		return args -> {
+//	@Bean
+//	CommandLineRunner init(ClassificaRepository repositoryClassifica) {
+//		return args -> {
 			
 			//---------dati dal front-end:
 //			String nomePrimoGiocatore="Maurizio";
@@ -88,8 +80,8 @@ public class AngularspringbootdemoApplication implements ApplicationContextAware
 //				leaderboardEntryAggiornata2 = new LeaderboardEntry(nome2, 1, isVincitore2?1:0);
 //			}
 //			repositoryClassifica.save(leaderboardEntryAggiornata2);
-		};
-	}
+//		};
+//	}
 	
 	//
 	//			//Partita partita = new Partita("Marco", "Tizio");
