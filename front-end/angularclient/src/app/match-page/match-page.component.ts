@@ -20,6 +20,7 @@ export class MatchPageComponent implements OnInit {
   public isTurnoGiocatore: boolean = false;
   public punteggioTotaleGiocatore:number;
   public punteggioTotaleAvversario:number;
+  public messaggioDiTesto:string;
 
   public torriAvversario: Array<Carta[]> = [
     undefined,
@@ -403,20 +404,18 @@ export class MatchPageComponent implements OnInit {
   }
   private elaboraRisultatoFinePartita(): string {
     let result:string;
-    let messaggioDiTesto:string;
     if(this.punteggioTotaleGiocatore<this.punteggioTotaleAvversario){
       result= "0-1";
-      messaggioDiTesto="Ha vinto il Bot! con un punteggio di "+this.punteggioTotaleAvversario+" punti!";
+      this.messaggioDiTesto="Ha vinto il Bot! con un punteggio di "+this.punteggioTotaleAvversario+" punti!";
       
     }else if(this.punteggioTotaleGiocatore===this.punteggioTotaleAvversario){
       result= "1/2";
-      messaggioDiTesto="Paregggio ! con un punteggio di "+this.punteggioTotaleAvversario+" punti!";
+      this.messaggioDiTesto="Paregggio ! con un punteggio di "+this.punteggioTotaleAvversario+" punti!";
       
     }else if(this.punteggioTotaleGiocatore>this.punteggioTotaleAvversario){
       result= "1-0";
-      messaggioDiTesto="Ha vinto "+this.autenticazione.getNomeGiocatore()+"! con un punteggio di "+this.punteggioTotaleGiocatore+" punti!";
+      this.messaggioDiTesto="Ha vinto "+this.autenticazione.getNomeGiocatore()+"! con un punteggio di "+this.punteggioTotaleGiocatore+" punti!";
     }
-    alert(messaggioDiTesto);
     
     return result;
   }
@@ -433,9 +432,14 @@ export class MatchPageComponent implements OnInit {
     }
     console.log("-----Fine-partita----");
     console.log(oggettoDTO);
-
+    let func = () => {
+      alert(this.messaggioDiTesto);
+        }
+        
+    asyncScheduler.schedule(func, 500);
     this.datiPartita.finePartita(oggettoDTO).subscribe();
-
+    
+    
   }
 
  
@@ -453,7 +457,7 @@ export class MatchPageComponent implements OnInit {
         console.log(cartaGiocataBot);
 
         if (testoJson["ilBotHaPescatoDalMazzoCoperto"] === true) {
-          this.carteRimanentiDaPescare -= 1;
+          //this.carteRimanentiDaPescare -= 1;
           if(testoJson["cartaGiocataBot"]["ultima"]===true){
             this.terminaPartitaDTO();
           }
@@ -516,6 +520,9 @@ export class MatchPageComponent implements OnInit {
     };
     this.datiPartita.giocaBot().subscribe((data) => {
       testoJson = data;
+      if(data["ilBotHaPescatoDalMazzoCoperto"]===true){
+        this.carteRimanentiDaPescare-=1;
+      }
     });
 
     asyncScheduler.schedule(func, 500);
