@@ -16,7 +16,6 @@ export class Carta {
     }
 
   public getValue(): string {
-
     return this.value;
   }
 
