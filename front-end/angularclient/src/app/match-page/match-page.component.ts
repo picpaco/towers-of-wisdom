@@ -431,7 +431,7 @@ export class MatchPageComponent implements OnInit {
       avversario:"Bot",
       risultato:risultatoFinale
     }
-    console.log("-----Fine-partia----");
+    console.log("-----Fine-partita----");
     console.log(oggettoDTO);
 
     this.datiPartita.finePartita(oggettoDTO).subscribe();

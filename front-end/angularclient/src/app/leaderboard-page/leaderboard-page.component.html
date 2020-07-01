@@ -40,7 +40,7 @@
                   <tr *ngFor="let item of giocatori; index as i" class="tizi">
                     <td scope="row">{{ i + 1 }}</td>
                     <td scope="row">{{ item.getNome() }}</td>
-                    <td scope="row">{{ item.getNumeroVittorie() }}</td>
+                    <td scope="row">{{ item.getNumeroPartiteTotali() }}</td>
                     <td scope="row">{{ item.getPercentualeVittorie() }}</td>
                   </tr>
                 </tbody>

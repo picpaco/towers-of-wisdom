@@ -33,7 +33,7 @@ export class RegoleGiocoComponent implements OnInit {
       new Carta("Quadrato","3"),
       new Carta("Quadrato","2"),
       new Carta("Quadrato","1"),
-      new Carta("Quadrato","P"),
+      new Carta("Quadrato","X2"),
   ]
 
   let esempioTorre2:Carta[]=[
@@ -41,19 +41,19 @@ export class RegoleGiocoComponent implements OnInit {
     new Carta("Triangolo","5"),
     new Carta("Triangolo","3"),
     new Carta("Triangolo","1"),
-    new Carta("Triangolo","P"),
+    new Carta("Triangolo","X2"),
 ]
 
 let esempioTorre3:Carta[]=[
   new Carta("Cerchio","3"),
   new Carta("Cerchio","2"),
   new Carta("Cerchio","1"),
-  new Carta("Cerchio","P"),
+  new Carta("Cerchio","X2"),
 ]
 
 let esempioTorre4:Carta[]=[
   new Carta("Ancora","1"),
-  new Carta("Ancora","P"),
+  new Carta("Ancora","X2"),
 ]
 
 let esempioTorre5:Carta[]=[
