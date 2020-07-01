@@ -28,7 +28,7 @@ public class MazzoCoperto extends Mazzo {
 		
 		int vecchiaDimensione = getListaCarte().size();
 		Carta cartaPescata = getListaCarte().remove(0);
-		
+
 		assert (getListaCarte().size() == vecchiaDimensione-1): "Il mazzo deve avere una carta in meno";
 		return cartaPescata;
 	}

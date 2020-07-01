@@ -6,6 +6,8 @@ import { getMaxListeners } from "process";
 import { ActivatedRoute } from "@angular/router";
 import { asyncScheduler } from "rxjs";
 import { strict } from "assert";
+import * as $ from "jquery";
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: "app-leaderboard-page",
@@ -52,4 +54,10 @@ export class LeaderboardPageComponent implements OnInit {
     });
     asyncScheduler.schedule(func, 1000);
   }
+
+  public sort() {
+    this.giocatori.reverse();
+    console.log("sono dentro sort: " + this.giocatori);
+  }
+  
 }

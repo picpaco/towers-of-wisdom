@@ -31,12 +31,10 @@
             <table class="table table-lg" id="classifica">
               <div class="scroll">
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Nome</th>
-                  <th scope="col">Partite giocate</th>
-                  <th onclick="sorting()" scope="col">
-                    Percentuale vittorie <i class="fas fa-sort"></i>
-                  </th>
+                  <th scope="col"> </th>
+                  <th scope="col"> Nome <i (click) = sort() class="fas fa-sort"></i></th>
+                  <th scope="col"> Partite giocate <i (click) = sort() class="fas fa-sort"></i></th>
+                  <th scope="col"> Percentuale vittorie <i (click) = sort() class="fas fa-sort"></i></th>
                 </tr>
                 <tbody>
                   <tr *ngFor="let item of giocatori; index as i" class="tizi">
@@ -56,14 +54,6 @@
     <div style="bottom: 50px; right: 20px; position: absolute;" class="p-2">
       <button routerLink="/menu-di-gioco">Torna al menu</button>
     </div>
-    <script>
-      function sorting() {
-        td = document.getElementsByTagName("td");
-        sorted = [];
-        for (x = 0; x < td.length; x++) sorted[x] = Number(td[x].innerHTML);
-        sorted.sort().reverse();
-        for (x = 0; x < sorted.length; x++) td[x].innerHTML = sorted[x];
-      }
-    </script>
+
   </body>
 </html>

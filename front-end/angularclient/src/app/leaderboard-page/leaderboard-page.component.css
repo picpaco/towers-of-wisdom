@@ -1,27 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Coda+Caption:800");
 
-#classifica{
-  background-image: url("../../assets/images/mappaVecc.jpg"); 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 table {
   /*stile tabella*/
-  /* linear-gradient(
+  background-image: 
+  linear-gradient(
     to top left,
-    rgba(25, 132, 165, 0.644),
-    rgba(143, 158, 165, 0.644),
-    rgba(29, 123, 151, 0.644)
-  ); */
+    rgba(77, 161, 187, 0.644),
+    rgba(144, 155, 160, 0.644),
+    rgba(47, 136, 163, 0.644)
+  );
   border: 0;
   border-radius: 3mm;
   display: flex;
   flex-direction: column;
   transition: 0.6s;
-  /* box-shadow: -1px -1px 3px rgb(56, 160, 163), -1px 1px 3px rgb(82, 164, 167),
-    1px 1px 3px rgb(126, 243, 247), 1px -1px 3px rgb(126, 243, 247); */
+  box-shadow: -1px -1px 3px rgb(56, 160, 163), -1px 1px 3px rgb(82, 164, 167),
+    1px 1px 3px rgb(126, 243, 247), 1px -1px 3px rgb(126, 243, 247);
   width: auto;
   height: 150mm;
 }
