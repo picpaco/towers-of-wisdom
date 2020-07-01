@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
+import com.primas.angularspringbootdemo.repository.ClassificaRepository;
 
 public class DatiPartitaInCorso implements ApplicationContextAware {
 
@@ -14,6 +16,8 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 //	mano del giocatore umano (3 carte), 
 //	se turno Bot: carta giocata dal Bot e dove è stata giocata 
 
+	@Autowired
+	private ClassificaRepository repositoryClassifica;
 	private ApplicationContext context;
 	private String nomeGiocatore;
 	private String nomeAvversario;
@@ -78,11 +82,14 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 //		System.out.println(
 //				"\r Mano del giocatore prima che lui peschi dal mazzo coperto" + tow.getGiocatori()[0].getMano());
 		MazzoCoperto mc = tow.getMazzoCoperto();
+
 		Carta cartaPescata = mc.pescaCarta();
+		if(tow.getMazzoCoperto().isVuoto()) {
+			cartaPescata.setUltima(true);
+		}
 		System.out.println("\r Il giocatore ha pescato un: " + cartaPescata);
 		tow.getGiocatori()[0].getMano().add(cartaPescata);
 
-		
 		System.out.println("\r Carte rimaste nel mazzo coperto: " + tow.getMazzoCoperto().dimensione());
 		System.out.println("\r Carte presenti nel mazzo scarti: " + tow.getMazzoScarti().getListaCarte()
 				+ "\r Numero carte scartate: " + tow.getMazzoScarti().dimensione());
@@ -102,19 +109,17 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 				.contains(carta)) : "La mano del giocatore deve contenere la carta da scartare";
 
 		MazzoScarti ms = tow.getMazzoScarti();
-	
-		boolean tr=tow.getGiocatori()[0].getMano().remove(carta);
-		System.out.println("\r  Ha riosso la carta: "+tr);
+
+		boolean tr = tow.getGiocatori()[0].getMano().remove(carta);
+		System.out.println("\r  Ha riosso la carta: " + tr);
 		ms.aggiungiCarta(carta);
 		int dimensioneDopoAverScartatoLaCarta = tow.getMazzoScarti().dimensione();
 
-		
-		
 		System.out.println("\r Carte rimaste nel mazzo coperto: " + tow.getMazzoCoperto().dimensione());
 		System.out.println("\r Carte presenti nel mazzo scarti: " + tow.getMazzoScarti().getListaCarte()
 				+ "\r Numero carte scartate: " + tow.getMazzoScarti().dimensione());
 		System.out.println("\r Mano del giocatore: " + manoGiocatore);
-		
+
 		assert (tow.getGiocatori()[0].getMano()
 				.size() == 3) : "La mano del giocatore ora deve essere di 3 carte dopo aver scartato la carta dalla mano";
 
@@ -148,7 +153,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 			break;
 		}
 		switch (jsonCarta.getString("value")) {
-		case "P":
+		case "X2":
 			valore = Valore.CIMA;
 			break;
 		case "7":
@@ -245,7 +250,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		isCartaAvversarioGiocataSuScarti = false;
 		isCartaAvversarioGiocataSuTorre = false;
 		cartaGiocataBot = null;
-		cartaPescataDaMazzoScartiBot=null;
+		cartaPescataDaMazzoScartiBot = null;
 		ilBotHaPescatoDalMazzoCoperto = false;
 		// int turnoCorrente = turnoSuccessivo(tow.getIndiceGiocatorePrimoTurno());
 		System.out.println("\r ----Il turno passa al " + tow.getGiocatori()[1].getNome() + "----");
@@ -256,7 +261,6 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		System.out.println("\r Carte presenti nel mazzo scarti: " + tow.getMazzoScarti().getListaCarte()
 				+ "\r Numero carte scartate: " + tow.getMazzoScarti().dimensione());
 		System.out.println("\r Mano del bot: " + manoAvversario);
-		
 
 		System.out.println("\r ----Terminato il turno del bot----");
 	}
@@ -299,6 +303,43 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 				+ "\r Numero carte scartate: " + tow.getMazzoScarti().dimensione());
 		System.out.println("\r Mano del giocatore: " + manoGiocatore);
 
+	}
+
+	public void salvaRisultatiPartita(String nome, String result) {
+
+		int numeroPartiteGiocate = 0;
+		int numeroPartiteVinte = 0;
+		LeaderboardEntry leaderboardEntryAggiornata = null;
+		boolean trovato = false;
+
+		Iterable<LeaderboardEntry> righe = repositoryClassifica.findAll();
+
+		for (LeaderboardEntry riga : righe) {
+			if (riga.getNome().equals(nome)) {
+				trovato = true;
+				numeroPartiteGiocate = riga.getNumeroPartiteTotali() + 1;
+				numeroPartiteVinte = riga.getNumeroVittorie();
+
+				if (result.substring(0, 1).equals("1") && !result.equals("1/2")) {
+					numeroPartiteVinte++;
+				}
+
+				leaderboardEntryAggiornata = new LeaderboardEntry(nome, numeroPartiteGiocate, numeroPartiteVinte);
+				System.out.println("\r Nome: "+
+						leaderboardEntryAggiornata.getNome() +"\r PartiteTotali: "+ leaderboardEntryAggiornata.getNumeroPartiteTotali()
+								+"\r Vittorie: "+ leaderboardEntryAggiornata.getNumeroVittorie());
+			}
+		}
+		if (!trovato) {
+			if (result.substring(0, 1).equals("1") && !result.equals("1/2")) {
+				numeroPartiteVinte++;
+			}
+			leaderboardEntryAggiornata = new LeaderboardEntry(nome, 1, numeroPartiteVinte);
+			System.out.println("\r Nome: "+
+					leaderboardEntryAggiornata.getNome() +"\r PartiteTotali: "+ leaderboardEntryAggiornata.getNumeroPartiteTotali()
+							+"\r Vittorie: "+ leaderboardEntryAggiornata.getNumeroVittorie());
+		}
+		repositoryClassifica.save(leaderboardEntryAggiornata);
 	}
 
 	public String getNomeGiocatore() {

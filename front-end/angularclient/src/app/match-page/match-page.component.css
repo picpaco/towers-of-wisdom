@@ -678,3 +678,38 @@ span {
   bottom: 2mm;
   margin: auto;
 }
+
+.pannello-del-Vincitore{
+  visibility: hidden;
+  position: relative;
+  width: 90mm;
+  height: 50mm;
+  margin: auto;
+  bottom: 115mm;
+  right:140mm;
+  border-radius: 3mm;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(24, 118, 241),
+    rgb(61, 194, 255),
+    rgb(160, 255, 255)
+  );
+  border: 1px solid rgb(0, 255, 213);
+  box-shadow: 1px 1px 3px rgb(81, 200, 247), 1px -1px 3px rgb(81, 200, 247),
+    -1px 1px 3px rgb(81, 200, 247), -1px -1px 3px rgb(81, 200, 247),
+    2px 1px 3px rgba(25, 93, 240, 0.856), 2px -2px 3px rgba(0, 77, 243),
+    -2px 2px 3px rgba(0, 77, 243), -2px -2px 3px rgba(0, 77, 243),
+    3px 3px 3px rgb(81, 200, 247), 3px -3px 3px rgb(81, 200, 247),
+    -3px 3px 3px rgb(81, 200, 247), -3px -3px 3px rgb(81, 200, 247);
+    font-size: 8mm;
+    font-family: "friendly_school", cursive;
+    color: #50d9f1;
+    text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
+      -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
+      2px -2px 3px #1871f5, -2px -2px 3px #1871f5;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-align: left;
+    padding-top: 5mm;
+    padding-left: 5mm;
+}

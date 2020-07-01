@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Adapter } from "./Adapter";
-import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 
 export class Carta {
@@ -17,6 +16,7 @@ export class Carta {
     }
 
   public getValue(): string {
+
     return this.value;
   }
 
@@ -31,7 +31,7 @@ export class Carta {
  
   public getImage(): string {
     let img = "";
-    if(this.value=="P"){
+    if(this.value=="X2"){
       img = "ostrica-cima";
     } else if(this.getInitial() == "Q") {
       img = "octo-quadrato";
@@ -106,7 +106,7 @@ export class CartaAdapter implements Adapter<Carta> {
         value = "7";
         break;
         case "CIMA":
-        value = "P";
+        value = "X2";
         break;
     }
 
