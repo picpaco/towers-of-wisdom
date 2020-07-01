@@ -122,13 +122,13 @@ export class MatchPageComponent implements OnInit {
     if (torreCopia === undefined) {
       /*se la torreCopia è vuota vuol dire che la torre che mi serve non esiste ancora,
       e che quindi si può inserisce qualsiasi carta che non sia una Punta*/
-      if (carta.getValue() !== "P") {
+      if (carta.getValue() !== "X2") {
         sicuro = true;
       }
     } else {
       /*se la torreCopia ha dei valori vuol dire che la torre esiste e bisogna controllare l'ordine delle carte*/
 
-      if (carta.getValue() === "P") {
+      if (carta.getValue() === "X2") {
         if (+torreCopia[torreCopia.length - 1].getValue() === 1) {
           sicuro = true;
         }
@@ -156,7 +156,7 @@ export class MatchPageComponent implements OnInit {
             //si controlla se la carta è selezionata
             if (
               this.mano[indexI].getSymbol() === torre ||
-              this.mano[indexI].getSymbol() === "Punta"
+              this.mano[indexI].getValue() === "X2"
             ) {
               //si controlla se la carta corrisponde alla sua corrispettiva torre o una Punta
               if (
@@ -279,7 +279,7 @@ export class MatchPageComponent implements OnInit {
       if (torre != undefined) {
         let puntiTorre = 0;
         torre.forEach((carta) => {
-          if (carta.getValue() === "P") {
+          if (carta.getValue() === "X2") {
             puntiTorre = puntiTorre * 2;
           } else {
             puntiTorre += +carta.getValue();
@@ -301,7 +301,7 @@ export class MatchPageComponent implements OnInit {
       if (torre != undefined) {
         let puntiTorre = 0;
         torre.forEach((carta) => {
-          if (carta.getValue() === "P") {
+          if (carta.getValue() === "X2") {
             puntiTorre = puntiTorre * 2;
           } else {
             puntiTorre += +carta.getValue();
@@ -374,6 +374,18 @@ export class MatchPageComponent implements OnInit {
   public async giocatorePescaDalMazzoCoperto() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     let cartaPescata: Carta;
+    let func = () => {
+      console.log("carta pescata dal mazzo coperto: ");
+      // console.log(manoNuovaJson);
+      if (this.mano.length === 3) {
+      this.mano.push(cartaPescata);
+      this.carteRimanentiDaPescare -= 1;
+      if(testoJson["ultima"]===true){
+        this.terminaPartitaDTO();
+      }
+      }
+      this.mostraMano();
+    };
     let testoJson:any;
     if (this.mano.length === 3) {
       this.datiPartita.pescaDalMazzoCoperto().subscribe((data) => {
@@ -381,31 +393,32 @@ export class MatchPageComponent implements OnInit {
         testoJson=data;
         console.log(testoJson);
       });
-      let func = () => {
-        console.log("carta pescata dal mazzo coperto: ");
-        // console.log(manoNuovaJson);
-
-        this.mano.push(cartaPescata);
-        this.carteRimanentiDaPescare -= 1;
-        if(testoJson["ultima"]===true){
-          this.terminaPartitaDTO();
-        }
-        this.mostraMano();
-      };
       asyncScheduler.schedule(func, 500);
-    } else {
+    }else{
       this.mostraMessaggioDiAvviso("Devi giocare la tua carta");
     }
+      
+    
     this.deselezionaLaCartaSelezionata();
   }
   private elaboraRisultatoFinePartita(): string {
+    let result:string;
+    let messaggioDiTesto:string;
     if(this.punteggioTotaleGiocatore<this.punteggioTotaleAvversario){
-      return "0-1";
+      result= "0-1";
+      messaggioDiTesto="Ha vinto il Bot! con un punteggio di "+this.punteggioTotaleAvversario+" punti!";
+      
     }else if(this.punteggioTotaleGiocatore===this.punteggioTotaleAvversario){
-      return "1-1";
+      result= "1/2";
+      messaggioDiTesto="Paregggio ! con un punteggio di "+this.punteggioTotaleAvversario+" punti!";
+      
     }else if(this.punteggioTotaleGiocatore>this.punteggioTotaleAvversario){
-      return "1-0";
+      result= "1-0";
+      messaggioDiTesto="Ha vinto "+this.autenticazione.getNomeGiocatore()+"! con un punteggio di "+this.punteggioTotaleGiocatore+" punti!";
     }
+    alert(messaggioDiTesto);
+    
+    return result;
   }
   private terminaPartitaDTO(){
  
@@ -422,6 +435,7 @@ export class MatchPageComponent implements OnInit {
     console.log(oggettoDTO);
 
     this.datiPartita.finePartita(oggettoDTO).subscribe();
+
   }
 
  
@@ -443,6 +457,21 @@ export class MatchPageComponent implements OnInit {
           if(testoJson["cartaGiocataBot"]["ultima"]===true){
             this.terminaPartitaDTO();
           }
+            if(testoJson["manoAvversario"]["0"]["ultima"]===true){
+              this.terminaPartitaDTO();
+            }else if(testoJson["manoAvversario"]["1"]["ultima"]===true){
+              this.terminaPartitaDTO();
+            }else if(testoJson["manoAvversario"]["2"]["ultima"]===true){
+              this.terminaPartitaDTO();
+            }
+          // for(let index=0;testoJson["manoAvversario"]["length"];index++){
+          
+          //   cartaJson=testoJson["manoAvversario"][+index];
+          //   console.log(cartaJson);
+          //   if(cartaJson[""]===true){
+          //     this.terminaPartitaDTO();
+          //   }
+          // }
         } else {
           console.log("Il bot ha pescato dal mazzo scarti!");
 
@@ -485,12 +514,11 @@ export class MatchPageComponent implements OnInit {
       this.mostraTorriAvversario();
       this.mostraCarteScartate();
     };
-
     this.datiPartita.giocaBot().subscribe((data) => {
       testoJson = data;
     });
 
-    asyncScheduler.schedule(func, 1000);
+    asyncScheduler.schedule(func, 500);
   }
 
   public scartaUnaCartaSulMazzoScarti() {

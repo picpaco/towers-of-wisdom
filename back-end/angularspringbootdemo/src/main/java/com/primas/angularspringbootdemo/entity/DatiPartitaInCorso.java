@@ -82,7 +82,11 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 //		System.out.println(
 //				"\r Mano del giocatore prima che lui peschi dal mazzo coperto" + tow.getGiocatori()[0].getMano());
 		MazzoCoperto mc = tow.getMazzoCoperto();
+
 		Carta cartaPescata = mc.pescaCarta();
+		if(tow.getMazzoCoperto().isVuoto()) {
+			cartaPescata.setUltima(true);
+		}
 		System.out.println("\r Il giocatore ha pescato un: " + cartaPescata);
 		tow.getGiocatori()[0].getMano().add(cartaPescata);
 
@@ -149,7 +153,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 			break;
 		}
 		switch (jsonCarta.getString("value")) {
-		case "P":
+		case "X2":
 			valore = Valore.CIMA;
 			break;
 		case "7":
@@ -303,33 +307,37 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 
 	public void salvaRisultatiPartita(String nome, String result) {
 
-		String nomePrimoGiocatore = nome;
-		String risultato = result;
-
-		int numeroPartiteGiocatePrimoGiocatore = 0;
-		int numeroPartiteVintePrimoGiocatore = 0;
+		int numeroPartiteGiocate = 0;
+		int numeroPartiteVinte = 0;
 		LeaderboardEntry leaderboardEntryAggiornata = null;
 		boolean trovato = false;
 
 		Iterable<LeaderboardEntry> righe = repositoryClassifica.findAll();
-		for (LeaderboardEntry riga : righe) {
-			if (riga.getNome().equals(nomePrimoGiocatore)) {
-				trovato = true;
-				numeroPartiteGiocatePrimoGiocatore = riga.getNumeroPartiteTotali() + 1;
-				numeroPartiteVintePrimoGiocatore = riga.getNumeroVittorie();
-				if (risultato.equals("1")) {
-					numeroPartiteVintePrimoGiocatore++;
-				}
-				leaderboardEntryAggiornata = new LeaderboardEntry(nomePrimoGiocatore,
-						numeroPartiteGiocatePrimoGiocatore, numeroPartiteVintePrimoGiocatore);
 
+		for (LeaderboardEntry riga : righe) {
+			if (riga.getNome().equals(nome)) {
+				trovato = true;
+				numeroPartiteGiocate = riga.getNumeroPartiteTotali() + 1;
+				numeroPartiteVinte = riga.getNumeroVittorie();
+
+				if (result.substring(0, 1).equals("1") && !result.equals("1/2")) {
+					numeroPartiteVinte++;
+				}
+
+				leaderboardEntryAggiornata = new LeaderboardEntry(nome, numeroPartiteGiocate, numeroPartiteVinte);
+				System.out.println("\r Nome: "+
+						leaderboardEntryAggiornata.getNome() +"\r PartiteTotali: "+ leaderboardEntryAggiornata.getNumeroPartiteTotali()
+								+"\r Vittorie: "+ leaderboardEntryAggiornata.getNumeroVittorie());
 			}
 		}
 		if (!trovato) {
-			if (risultato.equals("1")) {
-				numeroPartiteVintePrimoGiocatore++;
+			if (result.substring(0, 1).equals("1") && !result.equals("1/2")) {
+				numeroPartiteVinte++;
 			}
-			leaderboardEntryAggiornata = new LeaderboardEntry(nomePrimoGiocatore, 1, numeroPartiteVintePrimoGiocatore);
+			leaderboardEntryAggiornata = new LeaderboardEntry(nome, 1, numeroPartiteVinte);
+			System.out.println("\r Nome: "+
+					leaderboardEntryAggiornata.getNome() +"\r PartiteTotali: "+ leaderboardEntryAggiornata.getNumeroPartiteTotali()
+							+"\r Vittorie: "+ leaderboardEntryAggiornata.getNumeroVittorie());
 		}
 		repositoryClassifica.save(leaderboardEntryAggiornata);
 	}

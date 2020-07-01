@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 import com.primas.angularspringbootdemo.entity.LeaderboardEntry;
-import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
 import com.primas.angularspringbootdemo.repository.ClassificaRepository;
 
 @RestController
@@ -26,6 +25,7 @@ public class PartitaController implements ApplicationContextAware {
 	@Autowired
 	private ClassificaRepository repositoryClassifica;
 	private ApplicationContext context;
+	private DatiPartitaInCorso datiPartita;
 
 	// public PartitaController(RepositoryPartita repo) {
 	// this.repositoryPartita = repo;
@@ -70,62 +70,30 @@ public class PartitaController implements ApplicationContextAware {
 	// quando il front-end effettua un post mi passa come parametro un giocatore da
 	// aggiungere al database
 
-	// @GetMapping("/giocatori")
-	// public List<Partita> getGiocatori() {
-	// return (List<Partita>) repositoryPartita.findAll();
-	// // serve per visualizzare la leaderbord
-	// }
-	//
-	// @PostMapping("/giocatori")
-	// public void addUser(@RequestBody Partita partita) {
-	// repositoryPartita.save(partita);
-	// // quando il front-end effettua un post mi passa come parametro un giocatore
-	// da
-	// // aggiungere al database
-	// }
-
-	// TODO: Cambiare l'uri in /partitaConBot e cambiare il nome del metodo in
-	// gestisciMossaGiocatore
-
 	@GetMapping("/partitaConBot")
 	public DatiPartitaInCorso gestisciMossaGiocatore() {
-		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
-		dati.inizializzaPartita();
-		return dati;
+		datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		datiPartita.inizializzaPartita();
+		return datiPartita;
 	}
 
 	@GetMapping("/giocaBot")
 	public DatiPartitaInCorso giocaBot() {
-		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
-		dati.giocaBot();
+		datiPartita.giocaBot();
 
-		return dati;
+		return datiPartita;
 	}
 
 	@GetMapping("/pescaDalMazzoCopertoUmano")
 	public Carta pescaUmano() {
 		System.out.println("\r Giocatore pesca dal mazzo coperto!");
-		DatiPartitaInCorso dati = (DatiPartitaInCorso) context.getBean("getDatiPartita");
-		Carta cartaPescata = dati.pescaMazzoCoperto();
-		TorriDiSaggezza tow = (TorriDiSaggezza) context.getBean("tow");
-		if (tow.getMazzoCoperto().isVuoto()) {
-			// TODO: per ogni giocatoreUmano salvare(insert e update sono gestiti
-			// automaticamente) una riga della tabella "leaderboard"
-			// serve: nome, vincitore(aggiorna partiteGiocate e partiteVinte), se perdente
-			// aggiorna solo partite giocate
-			// se il nome non esiste inserire dati
-
-			repositoryClassifica.save(new LeaderboardEntry("Maurizio", 1, 1));
-
-			cartaPescata.setUltima(true);
-		}
+		Carta cartaPescata = datiPartita.pescaMazzoCoperto();
 		return cartaPescata;
 	}
 
 	@PostMapping(path = "/giocaSuTorre")
 	public String cartaGiocataSuTorre(@RequestBody String carta) {
 		System.out.println("\r Il giocatore ha giocato una carta!");
-		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaGiocata = datiPartita.creaCartaDaJson(carta);
 		datiPartita.giocatoreGiocaSuTorre(cartaGiocata);
 		return carta;
@@ -134,7 +102,6 @@ public class PartitaController implements ApplicationContextAware {
 	@PostMapping(path = "/scartaCarta")
 	public void cartaDaScartareDallaMano(@RequestBody String carta) {
 		System.out.println("\r Viene scartata la seguente carta dalla mano del giocatore" + carta);
-		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaDaScartare = datiPartita.creaCartaDaJson(carta);
 		datiPartita.aggiungiCartaAlMazzoScarti(cartaDaScartare);
 
@@ -143,25 +110,30 @@ public class PartitaController implements ApplicationContextAware {
 	@PostMapping(path = "/selezionaDalMazzoScarti")
 	public void selezionaCartaDalMazzoScarti(@RequestBody String carta) {
 		System.out.println("\r viene pescata una carta dal mazzo scarti dal giocatore ed e'" + carta);
-		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		Carta cartaDaPescare = datiPartita.creaCartaDaJson(carta);
 		datiPartita.pescaMazzoScarti(cartaDaPescare);
 	}
 
 	@PostMapping(path = "/finePartita")
 	public void finePartita(@RequestBody String finePartita) {
-		DatiPartitaInCorso datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		System.out.println("\r ----é terminata la partita -----" + finePartita);
 
 		JSONObject oggettoDTO = new JSONObject(finePartita);
 		String nomePrimoGiocatore = oggettoDTO.getString("giocatore");
 		String nomeSecondoGiocatore = oggettoDTO.getString("avversario");
 		String risultato = oggettoDTO.getString("risultato");
-		System.out.println("\r " + nomePrimoGiocatore + " " + nomeSecondoGiocatore + " " + risultato);
-		System.out.println("Il giocatore sta a: " + risultato.substring(0, 1) + "\r Il avverssario sta a: "
-				+ risultato.substring(2));
-		datiPartita.salvaRisultatiPartita(nomePrimoGiocatore, risultato.substring(0, 1));
-		datiPartita.salvaRisultatiPartita(nomeSecondoGiocatore, risultato.substring(2));
+		
+		
+		if(!risultato.equals("1/2")) {
+			datiPartita.salvaRisultatiPartita(nomePrimoGiocatore, risultato.substring(0, 1));
+			datiPartita.salvaRisultatiPartita(nomeSecondoGiocatore, risultato.substring(2));
+		}else {
+			datiPartita.salvaRisultatiPartita(nomePrimoGiocatore, risultato);
+			datiPartita.salvaRisultatiPartita(nomeSecondoGiocatore, risultato);
+		}
+		
+		
+
 
 	}
 
