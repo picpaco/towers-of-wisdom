@@ -1,0 +1,53 @@
+PRIORITA ALTA:
+
+Arcadie:
+- nel gioco la pop up di fine gioco va migliorata graficamente ||Arcadie
+- aggiustare il bug di fine partita ||Arcadie
+
+Gabriele:
+- girare un video di una partita commentata e aggiornare la pagina demo ||Gabriele
+- test unitari per back-end ||Gabriele
+
+Lara:
+- la pagina demo va formattata e uniformata alle altre pagine ||Lara
+- test unitari per front-end ||Lara
+
+Stefano:
+- migliorare e correggere pagina regole di gioco ||Stefano
+- completare la registrazione e il login con l'accesso al DB
+
+PRIORITA MEDIA:
+
+Arcadie:
+- deployment su server remoto ||Arcadie
+- refactoring del codice per front-end ||Arcadie
+- messaggio "tocca a te" e "ha giocato il bot" ||Arcadie
+
+Gabriele:
+
+- uniformare i bottoni nelle varie pagine (mettere bolle) ||Gabriele
+- refactoring del codice per back-end ||Gabriele
+
+Lara:
+- implementare opzioni(volume, suono on-off) ||Lara
+- pulsante regole di gioco aprire tab a parte ||Lara
+
+Stefano:
+- ingrandire l'icona della perla nelle regole di gioco ||Stefano
+- aggiungere pulsante per andare alla pagina classifica alla match-page ||Stefano
+
+PRIORITA BASSA:
+
+Arcadie:
+- implementare diversi bot (diversi livelli di intelligenza) ||Arcadie
+
+Gabriele:
+- provare a cambiare X2 con x2 ||Gabriele
+- implementare pvp ||Gabriele
+
+Lara:
+- implementare chat ||Lara
+- aggiungere a leaderboard numero partite vinte e perse ||Lara
+
+Stefano:
+- tratteggiamento carta anche su bot ||Stefano
