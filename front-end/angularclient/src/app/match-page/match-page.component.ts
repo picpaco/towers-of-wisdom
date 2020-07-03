@@ -406,18 +406,18 @@ export class MatchPageComponent implements OnInit {
     let vincitore: string;
     if (this.punteggioTotaleGiocatore < this.punteggioTotaleAvversario) {
       result = "0-1";
-      messaggioDiVittoria = "Ha vinto il Bot!";
+      messaggioDiVittoria = "Ha vinto il Bot";
       vincitore = "Bot";
     } else if (
       this.punteggioTotaleGiocatore === this.punteggioTotaleAvversario
     ) {
       result = "1/2";
-      messaggioDiVittoria = "Paregggio!";
+      messaggioDiVittoria = "La partita è finita in parità";
       vincitore = "Nessuno";
     } else if (this.punteggioTotaleGiocatore > this.punteggioTotaleAvversario) {
       result = "1-0";
       messaggioDiVittoria =
-        "Ha vinto " + this.autenticazione.getNomeGiocatore() + "!";
+        "Ha vinto " + this.autenticazione.getNomeGiocatore();
       vincitore = this.autenticazione.getNomeGiocatore();
     }
 
@@ -455,13 +455,8 @@ export class MatchPageComponent implements OnInit {
         ).css({ width: "15mm",
           height: "15mm"});
         $(".pannello-del-Vincitore p:eq(2)").text(
-          "Totalizzando " + punteggioTotale + " punti! "
-        ).append("<img/>");
-        $(".pannello-del-Vincitore p:eq(2) img").attr(
-          "src",
-          "../../assets/Stile-della-partita/Images,icons_of_Victory panel/Victory-coin.png"
-        ).css({ width: "10mm",
-        height: "10mm"});
+          "con un punteggio di " + punteggioTotale + " punti!");
+   
       });
     };
 

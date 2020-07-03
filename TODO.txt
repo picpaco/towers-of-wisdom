@@ -1,53 +1,53 @@
 PRIORITA ALTA:
 
 Arcadie:
-- nel gioco la pop up di fine gioco va migliorata graficamente ||Arcadie
-- aggiustare il bug di fine partita ||Arcadie
+- nel gioco la pop up di fine gioco va migliorata graficamente - FATTO!
+- aggiustare il bug di fine partita 
 
 Gabriele:
-- girare un video di una partita commentata e aggiornare la pagina demo ||Gabriele
-- test unitari per back-end ||Gabriele
+- girare un video di una partita commentata e aggiornare la pagina demo 
+- test unitari per back-end 
 
 Lara:
-- la pagina demo va formattata e uniformata alle altre pagine ||Lara
-- test unitari per front-end ||Lara
+- la pagina demo va formattata e uniformata alle altre pagine
+- test unitari per front-end 
 
 Stefano:
-- migliorare e correggere pagina regole di gioco ||Stefano
+- migliorare e correggere pagina regole di gioco 
 - completare la registrazione e il login con l'accesso al DB
 
 PRIORITA MEDIA:
 
 Arcadie:
-- deployment su server remoto ||Arcadie
-- refactoring del codice per front-end ||Arcadie
-- messaggio "tocca a te" e "ha giocato il bot" ||Arcadie
+- deployment su server remoto 
+- refactoring del codice per front-end 
+- messaggio "tocca a te" e "ha giocato il bot" 
 
 Gabriele:
 
-- uniformare i bottoni nelle varie pagine (mettere bolle) ||Gabriele
-- refactoring del codice per back-end ||Gabriele
+- uniformare i bottoni nelle varie pagine (mettere bolle) 
+- refactoring del codice per back-end 
 
 Lara:
-- implementare opzioni(volume, suono on-off) ||Lara
-- pulsante regole di gioco aprire tab a parte ||Lara
+- implementare opzioni(volume, suono on-off) 
+- pulsante regole di gioco aprire tab a parte 
 
 Stefano:
-- ingrandire l'icona della perla nelle regole di gioco ||Stefano
-- aggiungere pulsante per andare alla pagina classifica alla match-page ||Stefano
+- ingrandire l'icona della perla nelle regole di gioco 
+- aggiungere pulsante per andare alla pagina classifica dalla match-page 
 
 PRIORITA BASSA:
 
 Arcadie:
-- implementare diversi bot (diversi livelli di intelligenza) ||Arcadie
+- implementare diversi bot (diversi livelli di intelligenza) 
 
 Gabriele:
-- provare a cambiare X2 con x2 ||Gabriele
-- implementare pvp ||Gabriele
+- provare a cambiare X2 con x2 
+- implementare pvp
 
 Lara:
-- implementare chat ||Lara
-- aggiungere a leaderboard numero partite vinte e perse ||Lara
+- implementare chat 
+- aggiungere a leaderboard numero partite vinte e perse
 
 Stefano:
 - tratteggiamento carta anche su bot ||Stefano
