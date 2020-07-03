@@ -9,7 +9,7 @@ Gabriele:
 - test unitari per back-end 
 
 Lara:
-- la pagina demo va formattata e uniformata alle altre pagine
+- la pagina demo va formattata e uniformata alle altre pagine - FATTO!
 - test unitari per front-end 
 
 Stefano:
