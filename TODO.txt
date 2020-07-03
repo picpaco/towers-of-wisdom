@@ -30,7 +30,7 @@ Gabriele:
 
 Lara:
 - implementare opzioni(volume, suono on-off) 
-- pulsante regole di gioco aprire tab a parte 
+- pulsante regole di gioco aprire tab a parte - FATTO!
 
 Stefano:
 - ingrandire l'icona della perla nelle regole di gioco 
