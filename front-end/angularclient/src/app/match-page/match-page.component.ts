@@ -18,9 +18,8 @@ export class MatchPageComponent implements OnInit {
   public carteRimanentiDaPescare: number = 26;
   public mazzoScarti: Carta[];
   public isTurnoGiocatore: boolean = false;
-  public punteggioTotaleGiocatore:number;
-  public punteggioTotaleAvversario:number;
-  public messaggioDiTesto:string;
+  public punteggioTotaleGiocatore: number;
+  public punteggioTotaleAvversario: number;
 
   public torriAvversario: Array<Carta[]> = [
     undefined,
@@ -292,7 +291,7 @@ export class MatchPageComponent implements OnInit {
         });
       }
     });
-    this.punteggioTotaleGiocatore=punteggioTotaleGio;
+    this.punteggioTotaleGiocatore = punteggioTotaleGio;
     $(document).ready(function () {
       $(".punteggio-totale-giocatore").text("Tu " + punteggioTotaleGio);
     });
@@ -315,7 +314,7 @@ export class MatchPageComponent implements OnInit {
         });
       }
     });
-    this.punteggioTotaleAvversario=punteggioTotaleAvv;
+    this.punteggioTotaleAvversario = punteggioTotaleAvv;
     $(document).ready(function () {
       $(".punteggio-totale-avversario").text("Bot " + punteggioTotaleAvv);
     });
@@ -379,70 +378,97 @@ export class MatchPageComponent implements OnInit {
       console.log("carta pescata dal mazzo coperto: ");
       // console.log(manoNuovaJson);
       if (this.mano.length === 3) {
-      this.mano.push(cartaPescata);
-      this.carteRimanentiDaPescare -= 1;
-      if(testoJson["ultima"]===true){
-        this.terminaPartitaDTO();
-      }
+        this.mano.push(cartaPescata);
+        this.carteRimanentiDaPescare -= 1;
+        if (testoJson["ultima"] === true) {
+          this.terminaPartitaDTO();
+        }
       }
       this.mostraMano();
     };
-    let testoJson:any;
+    let testoJson: any;
     if (this.mano.length === 3) {
       this.datiPartita.pescaDalMazzoCoperto().subscribe((data) => {
         cartaPescata = this.cartaAdapter.adapt(data);
-        testoJson=data;
+        testoJson = data;
         console.log(testoJson);
       });
       asyncScheduler.schedule(func, 500);
-    }else{
+    } else {
       this.mostraMessaggioDiAvviso("Devi giocare la tua carta");
     }
-      
-    
+
     this.deselezionaLaCartaSelezionata();
   }
-  private elaboraRisultatoFinePartita(): string {
-    let result:string;
-    if(this.punteggioTotaleGiocatore<this.punteggioTotaleAvversario){
-      result= "0-1";
-      this.messaggioDiTesto="Ha vinto il Bot! con un punteggio di "+this.punteggioTotaleAvversario+" punti!";
-      
-    }else if(this.punteggioTotaleGiocatore===this.punteggioTotaleAvversario){
-      result= "1/2";
-      this.messaggioDiTesto="Paregggio ! con un punteggio di "+this.punteggioTotaleAvversario+" punti!";
-      
-    }else if(this.punteggioTotaleGiocatore>this.punteggioTotaleAvversario){
-      result= "1-0";
-      this.messaggioDiTesto="Ha vinto "+this.autenticazione.getNomeGiocatore()+"! con un punteggio di "+this.punteggioTotaleGiocatore+" punti!";
+  private elaboraRisultatoFinePartita(): any {
+    let result: string;
+    let messaggioDiVittoria: string;
+    let vincitore: string;
+    if (this.punteggioTotaleGiocatore < this.punteggioTotaleAvversario) {
+      result = "0-1";
+      messaggioDiVittoria = "Ha vinto il Bot!";
+      vincitore = "Bot";
+    } else if (
+      this.punteggioTotaleGiocatore === this.punteggioTotaleAvversario
+    ) {
+      result = "1/2";
+      messaggioDiVittoria = "Paregggio!";
+      vincitore = "Nessuno";
+    } else if (this.punteggioTotaleGiocatore > this.punteggioTotaleAvversario) {
+      result = "1-0";
+      messaggioDiVittoria =
+        "Ha vinto " + this.autenticazione.getNomeGiocatore() + "!";
+      vincitore = this.autenticazione.getNomeGiocatore();
     }
-    
-    return result;
-  }
-  private terminaPartitaDTO(){
- 
-    let risultatoFinale:string;
-    let oggettoDTO:any;
-    risultatoFinale=this.elaboraRisultatoFinePartita();
 
-    oggettoDTO={
-      giocatore:this.autenticazione.getNomeGiocatore(),
-      avversario:"Bot",
-      risultato:risultatoFinale
-    }
+    return {
+      messaggio: messaggioDiVittoria,
+      risultato: result,
+      vincitore: vincitore,
+    };
+  }
+  private terminaPartitaDTO() {
+    let risultatoFinale: any;
+    let oggettoDTO: any;
+    risultatoFinale = this.elaboraRisultatoFinePartita();
+    console.log(risultatoFinale);
+
+    oggettoDTO = {
+      giocatore: this.autenticazione.getNomeGiocatore(),
+      avversario: "Bot",
+      risultato: risultatoFinale.risultato,
+    };
     console.log("-----Fine-partita----");
     console.log(oggettoDTO);
-    let func = () => {
-      alert(this.messaggioDiTesto);
-        }
-        
-    asyncScheduler.schedule(func, 500);
+
+    let mostraIlVincitore = () => {
+      let punteggioTotale = this.punteggioTotaleGiocatore;
+      if (risultatoFinale.vincitore === "Bot") {
+        punteggioTotale = this.punteggioTotaleAvversario;
+      }
+      $(document).ready(function () {
+        $(".pannello-del-Vincitore").css({ visibility: "visible" });
+        $(".pannello-del-Vincitore p:eq(1)").text(risultatoFinale.messaggio).append("<img/>");
+        $(".pannello-del-Vincitore p:eq(1) img").attr(
+          "src",
+          "../../assets/Stile-della-partita/Images,icons_of_Victory panel/trophy-of-victory.png"
+        ).css({ width: "15mm",
+          height: "15mm"});
+        $(".pannello-del-Vincitore p:eq(2)").text(
+          "Totalizzando " + punteggioTotale + " punti! "
+        ).append("<img/>");
+        $(".pannello-del-Vincitore p:eq(2) img").attr(
+          "src",
+          "../../assets/Stile-della-partita/Images,icons_of_Victory panel/Victory-coin.png"
+        ).css({ width: "10mm",
+        height: "10mm"});
+      });
+    };
+
+    asyncScheduler.schedule(mostraIlVincitore, 500);
     this.datiPartita.finePartita(oggettoDTO).subscribe();
-    
-    
   }
 
- 
   private async BotGiocaLaSuaMossa() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     let testoJson: any;
@@ -458,18 +484,17 @@ export class MatchPageComponent implements OnInit {
 
         if (testoJson["ilBotHaPescatoDalMazzoCoperto"] === true) {
           //this.carteRimanentiDaPescare -= 1;
-          if(testoJson["cartaGiocataBot"]["ultima"]===true){
-            this.terminaPartitaDTO();
-          }
-            if(testoJson["manoAvversario"]["0"]["ultima"]===true){
-              this.terminaPartitaDTO();
-            }else if(testoJson["manoAvversario"]["1"]["ultima"]===true){
-              this.terminaPartitaDTO();
-            }else if(testoJson["manoAvversario"]["2"]["ultima"]===true){
-              this.terminaPartitaDTO();
-            }
+          // if (testoJson["cartaGiocataBot"]["ultima"] === true) {
+          //   this.terminaPartitaDTO();
+          // }
+          // if (testoJson["manoAvversario"]["0"]["ultima"] === true) {
+          //   this.terminaPartitaDTO();
+          // } else if (testoJson["manoAvversario"]["1"]["ultima"] === true) {
+          //   this.terminaPartitaDTO();
+          // } else if (testoJson["manoAvversario"]["2"]["ultima"] === true) {
+          //   this.terminaPartitaDTO();
+          // }
           // for(let index=0;testoJson["manoAvversario"]["length"];index++){
-          
           //   cartaJson=testoJson["manoAvversario"][+index];
           //   console.log(cartaJson);
           //   if(cartaJson[""]===true){
@@ -513,6 +538,16 @@ export class MatchPageComponent implements OnInit {
             this.mazzoScarti.push(cartaGiocataBot);
           }
         }
+        if (testoJson["cartaGiocataBot"]["ultima"] === true) {
+          this.terminaPartitaDTO();
+        }
+        if (testoJson["manoAvversario"]["0"]["ultima"] === true) {
+          this.terminaPartitaDTO();
+        } else if (testoJson["manoAvversario"]["1"]["ultima"] === true) {
+          this.terminaPartitaDTO();
+        } else if (testoJson["manoAvversario"]["2"]["ultima"] === true) {
+          this.terminaPartitaDTO();
+        }
       }
       console.log(testoJson);
       this.mostraTorriAvversario();
@@ -520,8 +555,8 @@ export class MatchPageComponent implements OnInit {
     };
     this.datiPartita.giocaBot().subscribe((data) => {
       testoJson = data;
-      if(data["ilBotHaPescatoDalMazzoCoperto"]===true){
-        this.carteRimanentiDaPescare-=1;
+      if (data["ilBotHaPescatoDalMazzoCoperto"] === true) {
+        this.carteRimanentiDaPescare -= 1;
       }
     });
 
