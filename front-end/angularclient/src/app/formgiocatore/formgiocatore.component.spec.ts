@@ -19,7 +19,4 @@ describe('FormgiocatoreComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
 });

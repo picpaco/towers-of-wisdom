@@ -22,14 +22,12 @@ describe('MatchPageComponent', () => {
     fixture.detectChanges();
   });
 
-  //  it('should create', () => {
-  //    expect(component).toBeTruthy();
-  //  });
-
   // it('le torri dovrebbero essere tutte undefined quandi si carica la pagina!', () => {
   //   expect(component.torriGiocatore[0]).toBeUndefined;
   //   expect(component.torriGiocatore[1]).toBeUndefined;
   //   expect(component.torriGiocatore[2]).toBeUndefined;
   //   expect(component.torriGiocatore[3]).toBeUndefined;
   // });
+
+  
 });

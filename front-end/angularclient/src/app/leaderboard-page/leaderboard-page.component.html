@@ -34,14 +34,18 @@
                   <th scope="col"> </th>
                   <th scope="col"> Nome <i (click) = sort() class="fas fa-sort"></i></th>
                   <th scope="col"> Partite giocate <i (click) = sort() class="fas fa-sort"></i></th>
+                  <th scope="col"> Partite vinte <i (click) = sort() class="fas fa-sort"></i></th>
                   <th scope="col"> Percentuale vittorie <i (click) = sort() class="fas fa-sort"></i></th>
+                  <th scope="col"> Partite perse <i (click) = sort() class="fas fa-sort"></i></th>
                 </tr>
                 <tbody>
                   <tr *ngFor="let item of giocatori; index as i" class="tizi">
                     <td scope="row">{{ i + 1 }}</td>
                     <td scope="row">{{ item.getNome() }}</td>
                     <td scope="row">{{ item.getNumeroPartiteTotali() }}</td>
+                    <td scope="row">{{ item.getNumeroVittorie() }}</td>
                     <td scope="row">{{ item.getPercentualeVittorie() }}</td>
+                    <td scope="row">{{ item.getNumeroSconfitte() }}</td>
                   </tr>
                 </tbody>
               </div>

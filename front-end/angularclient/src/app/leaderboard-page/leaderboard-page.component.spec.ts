@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LeaderboardPageComponent } from './leaderboard-page.component';
+import { GiocatoreService } from '../service/giocatore-service.service';
 
 describe('LeaderboardPageComponent', () => {
   let component: LeaderboardPageComponent;
@@ -19,7 +20,5 @@ describe('LeaderboardPageComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+ 
 });

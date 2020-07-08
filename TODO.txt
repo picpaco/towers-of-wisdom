@@ -10,6 +10,8 @@ Gabriele:
 
 Lara:
 - la pagina demo va formattata e uniformata alle altre pagine - FATTO!
+
+Lara, Manuel, Mattia, Oder:
 - test unitari per front-end 
 
 Stefano:
@@ -24,12 +26,11 @@ Arcadie:
 - messaggio "tocca a te" e "ha giocato il bot" 
 
 Gabriele:
-
 - uniformare i bottoni nelle varie pagine (mettere bolle) 
 - refactoring del codice per back-end 
 
 Lara:
-- implementare opzioni(volume, suono on-off) 
+- implementare opzioni(volume, suono on-off) - FATTO!
 - pulsante regole di gioco aprire tab a parte - FATTO!
 
 Stefano:
@@ -47,7 +48,11 @@ Gabriele:
 
 Lara:
 - implementare chat 
-- aggiungere a leaderboard numero partite vinte e perse
+- aggiungere a leaderboard numero partite vinte e perse - FATTO!
+- mettere prima partite vinte, percentuale vittorie, partite perse
 
 Stefano:
-- tratteggiamento carta anche su bot ||Stefano
+- tratteggiamento carta anche su bot
+
+Oder:
+- rendere l'applicazione responsive rispetto alle dimensioni dello schermo 

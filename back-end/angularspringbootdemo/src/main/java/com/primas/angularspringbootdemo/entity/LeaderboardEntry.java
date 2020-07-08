@@ -17,15 +17,16 @@ public class LeaderboardEntry {
 	private String nome;
 	private int numeroPartiteTotali;
 	private int numeroVittorie;
-
+	private int numeroSconfitte;
 	
 	public LeaderboardEntry() {
 	}
 
-	public LeaderboardEntry(String nome, int numeroPartiteTotali, int numeroVittorie) {
+	public LeaderboardEntry(String nome, int numeroPartiteTotali, int numeroVittorie, int numeroSconfitte) {
 		this.nome = nome;
 		this.numeroPartiteTotali = numeroPartiteTotali;
 		this.numeroVittorie = numeroVittorie;
+		this.numeroSconfitte = numeroSconfitte;
 	}
 
 	public String getNome() {
@@ -40,4 +41,8 @@ public class LeaderboardEntry {
 		return numeroVittorie;
 	}
 
+	public int getNumeroSconfitte() {
+		return numeroSconfitte;
+	}
+	
 }

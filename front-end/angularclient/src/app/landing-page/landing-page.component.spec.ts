@@ -35,6 +35,7 @@ describe('LandingPageComponent', () => {
     expect(component.bottoneLanding).toEqual(true);
     
   });
+  
   it('il tag h2 deve contenere l"attributo intro', () => {
     fixture.detectChanges();
     let compiled = fixture.debugElement.nativeElement;
@@ -52,6 +53,5 @@ describe('LandingPageComponent', () => {
      );
    
    });
-
 
 });

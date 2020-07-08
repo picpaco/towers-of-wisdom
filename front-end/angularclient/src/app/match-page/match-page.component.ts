@@ -337,9 +337,9 @@ export class MatchPageComponent implements OnInit {
   public mostraChat() {
     /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
     //viene invocato quando il tasto con l'icona del messaggio viene premuto
-    // $(document).ready(function () {
-    //   $(".chat").toggle();
-    // });
+    $(document).ready(function () {
+      $(".chat").toggle();
+    });
   }
 
   public nascondiChat() {
@@ -347,6 +347,22 @@ export class MatchPageComponent implements OnInit {
     //viene invocato quando il tasto con l'icona della x viene premuto nel pannello del messaggio
     $(document).ready(function () {
       $(".chat").hide();
+    });
+  }
+
+  public mostraOpzioni() {
+    /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
+    //viene invocato quando il tasto con l'icona del messaggio viene premuto
+    $(document).ready(function () {
+      $(".opzioni").toggle();
+    });
+  }
+
+  public nascondiOpzioni() {
+    /*questo metodo viene richiamata nel template attraverso l'attributo (click)  */
+    //viene invocato quando il tasto con l'icona della x viene premuto nel pannello del messaggio
+    $(document).ready(function () {
+      $(".opzioni").hide();
     });
   }
 
@@ -448,15 +464,18 @@ export class MatchPageComponent implements OnInit {
       }
       $(document).ready(function () {
         $(".pannello-del-Vincitore").css({ visibility: "visible" });
-        $(".pannello-del-Vincitore p:eq(1)").text(risultatoFinale.messaggio).append("<img/>");
-        $(".pannello-del-Vincitore p:eq(1) img").attr(
-          "src",
-          "../../assets/Stile-della-partita/Images,icons_of_Victory panel/trophy-of-victory.png"
-        ).css({ width: "15mm",
-          height: "15mm"});
+        $(".pannello-del-Vincitore p:eq(1)")
+          .text(risultatoFinale.messaggio)
+          .append("<img/>");
+        $(".pannello-del-Vincitore p:eq(1) img")
+          .attr(
+            "src",
+            "../../assets/Stile-della-partita/Images,icons_of_Victory panel/trophy-of-victory.png"
+          )
+          .css({ width: "15mm", height: "15mm" });
         $(".pannello-del-Vincitore p:eq(2)").text(
-          "con un punteggio di " + punteggioTotale + " punti!");
-   
+          "con un punteggio di " + punteggioTotale + " punti!"
+        );
       });
     };
 
@@ -822,4 +841,9 @@ export class MatchPageComponent implements OnInit {
 
     this.calcolaPunteggio();
   }
+
+  public replay(){
+    location.reload();
+  }
+  
 }

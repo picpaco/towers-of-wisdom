@@ -7,15 +7,18 @@ export class Giocatore {
   numeroVittorie: number;
   posizione: number;
   mano: any;
+  numeroSconfitte: number;
 
   public constructor(
     nome: string,
     numeroPartiteTotali: number,
-    numeroVittorie: number
+    numeroVittorie: number,
+    numeroSconfitte: number
   ) {
     this.nome = nome;
     this.numeroPartiteTotali = numeroPartiteTotali;
     this.numeroVittorie = numeroVittorie;
+    this.numeroSconfitte = numeroSconfitte;
   }
 
   public getPosizione(): number {
@@ -39,6 +42,10 @@ export class Giocatore {
       ((this.numeroVittorie * 100) / this.numeroPartiteTotali).toFixed() + "%"
     );
   }
+
+  public getNumeroSconfitte(): number {
+    return this.numeroSconfitte;
+  }
 }
 
 @Injectable({
@@ -49,7 +56,8 @@ export class GiocatoreAdapter implements Adapter<Giocatore> {
     return new Giocatore(
       item.nome,
       item.numeroPartiteTotali,
-      item.numeroVittorie
+      item.numeroVittorie,
+      item.numeroSconfitte
     );
   }
 }
