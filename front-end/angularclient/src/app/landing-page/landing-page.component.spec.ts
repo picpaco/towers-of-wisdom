@@ -54,4 +54,25 @@ describe('LandingPageComponent', () => {
    
    });
 
+it('Il primo bottone dovrebbe essere il bottone Entra', () => {
+  const linkDes = fixture.debugElement
+  .queryAll(By.css('Button'));
+  const nativeButton: HTMLButtonElement = linkDes[0].nativeElement;
+  expect(nativeButton.textContent).toBe('Entra');
+});
+
+it('Il secondo bottone dovrebbe essere il bottone Regole del gioco', () => {
+  const linkDes = fixture.debugElement
+  .queryAll(By.css('Button'));
+  const nativeButton: HTMLButtonElement = linkDes[1].nativeElement;
+  expect(nativeButton.textContent).toBe('Regoledel gioco');
+});
+
+it('Il terzo bottone dovrebbe essere il bottone Demo', () => {
+  const linkDes = fixture.debugElement
+  .queryAll(By.css('Button'));
+  const nativeButton: HTMLButtonElement = linkDes[2].nativeElement;
+  expect(nativeButton.textContent).toBe('Demo');
+});
+
 });

@@ -920,20 +920,19 @@ span {
 
   .chat-area {
     position: relative; 
-    top: 245px; 
+    top: 235px; 
     left: 60px;
   }
 
   .replay {
     border: transparent;
-    color: rgb(15, 67, 110);
+    color: rgb(231, 169, 55);
     outline: none;
     background-image: linear-gradient(
-    to bottom right,
-    rgba(24, 118, 241, 0.904),
-    rgb(61, 194, 255,0.904),
-    rgb(160, 255, 255,0.904)
-  );
+      to top left,
+      rgb(56, 158, 218),
+      rgb(47, 85, 211)
+    );
     text-shadow: 1px 1px 3px rgb(55, 127, 194), 1px -1px 3px rgb(55, 127, 194),
       -1px -1px 3px rgb(55, 127, 194), -1px 1px 3px rgb(55, 127, 194);
       background: transparent;

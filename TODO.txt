@@ -49,7 +49,7 @@ Gabriele:
 Lara:
 - implementare chat 
 - aggiungere a leaderboard numero partite vinte e perse - FATTO!
-- mettere prima partite vinte, percentuale vittorie, partite perse
+- mettere prima partite vinte, percentuale vittorie, partite perse - FATTO!
 
 Stefano:
 - tratteggiamento carta anche su bot
