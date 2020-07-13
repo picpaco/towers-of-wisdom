@@ -22,5 +22,15 @@ describe('LoginPageComponent', () => {
     fixture.detectChanges();
   });
 
+  it('dovrebbe creare il componente', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('Il bottone dovrebbe essere accedi', () => {
+    const linkDes = fixture.debugElement
+    .queryAll(By.css('Button'));
+    const nativeButton: HTMLButtonElement = linkDes[0].nativeElement;
+    expect(nativeButton.textContent).toBe('');
+  });
 
 });
