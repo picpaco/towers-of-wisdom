@@ -1,7 +1,7 @@
 <html>
   <div class="container-fluid sfondo_landing">
     <div>
-  <form>
+    <form [formGroup]="loginForm" >
     <div class="form">
       <div class="d-flex justify-content-center h-100">
         <div class="card w-48 form_login">
@@ -10,6 +10,7 @@
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
             <input
+            type="text" formControlName="username" class="form-control"
               matInput
               placeholder="Username"
               [(ngModel)]="username"
@@ -22,6 +23,7 @@
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
             <input
+            type="password" formControlName="password" class="form-control"
               matInput
               placeholder="Password"
               [(ngModel)]="password"

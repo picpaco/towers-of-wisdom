@@ -1,5 +1,5 @@
 import { AppRoutingModule, routingComponents } from "./app-routing.module";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule,HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { GiocatoreService } from "./service/giocatore-service.service";
@@ -8,9 +8,10 @@ import { NgModule } from "@angular/core";
 import { DataService } from "./landing-page/data.service";
 import { BasicAuthHtppInterceptorService } from "./service/basic-auth-interceptor.service";
 
+
 @NgModule({
   declarations: [AppComponent, routingComponents],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule,FormsModule],
   providers: [
     GiocatoreService,
     BasicAuthHtppInterceptorService,
