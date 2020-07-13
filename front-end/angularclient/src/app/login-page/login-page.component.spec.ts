@@ -8,16 +8,15 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { FormBuilder } from '@angular/forms';
 import { DataService } from '../landing-page/data.service';
 
-const loginServiceSpy = jasmine.createSpyObj('AuthenticationService', ['navigateByUrl']);
-const routerSpy = jasmine.createSpyObj('Router', ['login']);
-const dataSpy = jasmine.createSpyObj('DataService', ['login']);
+const loginServiceSpy = jasmine.createSpyObj('AuthenticationService', ['login']);
+const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
   let fixture: ComponentFixture<LoginPageComponent>;
 
   beforeEach(async(() => {
-    component = new LoginPageComponent(dataSpy, loginServiceSpy, routerSpy);
+    component = new LoginPageComponent(routerSpy,new FormBuilder(), loginServiceSpy);
     TestBed.configureTestingModule({
       declarations: [ LoginPageComponent ],
       imports:[HttpClientModule,
