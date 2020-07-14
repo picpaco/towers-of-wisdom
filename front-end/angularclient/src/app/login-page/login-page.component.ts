@@ -16,8 +16,9 @@ export class LoginPageComponent implements OnInit {
   strongRegex = new RegExp("^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.{8,15})");
   loginForm: FormGroup;
   returnUrl: string;
-
+  submitted: boolean;
   @Input() error: string | null;
+  
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,11 +29,11 @@ export class LoginPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],//Validators.minLength(5),Validators.maxLength(15)],
-      password: ['', Validators.required]//Validators.pattern(this.strongRegex)]
-    });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // this.loginForm = this.formBuilder.group({
+    //   username: ['', Validators.required],//Validators.minLength(5),Validators.maxLength(15)],
+    //   password: ['', Validators.required]//Validators.pattern(this.strongRegex)]
+    // });
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   private playAudio() {
     let audio = new Audio();
@@ -52,6 +53,8 @@ export class LoginPageComponent implements OnInit {
 
   checkLogin() {
     //this.CheckLoginFrontEnd();
+    console.log("in checkLogin(): " + this.username + " " + this.password );
+    
     this.loginservice.authenticate(this.username, this.password).subscribe(
       (data) => {
         this.router.navigate(["menu-di-gioco"]);
@@ -65,6 +68,12 @@ export class LoginPageComponent implements OnInit {
     );
   }
 
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+  }
   updateData(bottoneLanding: boolean) {
     this.data.updateData(bottoneLanding);
     this.aggiornaStringa("Gioco di carte strategico per due persone");

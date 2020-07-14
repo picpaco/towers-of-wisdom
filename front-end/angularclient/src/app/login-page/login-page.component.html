@@ -1,7 +1,7 @@
 <html>
   <div class="container-fluid sfondo_landing">
     <div>
-    <form [formGroup]="loginForm" >
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
     <div class="form">
       <div class="d-flex justify-content-center h-100">
         <div class="card w-48 form_login">
@@ -10,27 +10,53 @@
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
             <input
+            type="text" 
+            id="username"
+            class="form-control"
+            ngModel
+            placeholder="Username"
+            name="username"
+            required
+                      
+            />
+            <!-- <input
             type="text" formControlName="username" class="form-control"
+              ngModel
               matInput
               placeholder="Username"
               [(ngModel)]="username"
               name="username"
               required
-            />
+              minlength="5"
+            maxlength="15"
+            /> -->
           </div>
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
             <input
-            type="password" formControlName="password" class="form-control"
-              matInput
-              placeholder="Password"
-              [(ngModel)]="password"
-              type="password"
-              name="password"
-              required
+            type="password" 
+            id="password"
+            class="form-control"
+            ngModel
+            placeholder="Password"
+            type="password"
+            name="password"
+            required
+            
             />
+            <!-- <input
+            type="password" 
+            formControlName="password" 
+            class="form-control"
+            placeholder="Password"
+            [(ngModel)]="password"
+            type="password"
+            name="password"
+            required
+            pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.{8,15})"
+            /> -->
           </div>
 
           <script>
