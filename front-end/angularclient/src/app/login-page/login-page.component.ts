@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { DataService } from "../landing-page/data.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "src/app/service/authentication.service";
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: "app-login-page",
@@ -12,17 +13,26 @@ export class LoginPageComponent implements OnInit {
   username = "";
   password = "";
   invalidLogin = false;
+  strongRegex = new RegExp("^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.{8,15})");
+  loginForm: FormGroup;
+  returnUrl: string;
 
   @Input() error: string | null;
 
   constructor(
+    private formBuilder: FormBuilder,
     private data: DataService,
+    private route: ActivatedRoute,
     private loginservice: AuthenticationService,
     private router: Router
   ) {}
 
   ngOnInit() {
-
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],//Validators.minLength(5),Validators.maxLength(15)],
+      password: ['', Validators.required]//Validators.pattern(this.strongRegex)]
+    });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   private playAudio() {
     let audio = new Audio();
@@ -31,22 +41,17 @@ export class LoginPageComponent implements OnInit {
     audio.play();
   }
 
-  checkLoginFrontEnd() {
-    /*pagina di login:
-nome utente: minimo 5, massimo 15 caratteri liberi
-password: almeno un carattere minuscolo, almeno un carattere maiuscolo, deve essere lunga almeno 8 caratteri e massimo 15 caratteri
-ci deve essere almeno una cifra.*/
-
-    if(this.username.length < 5 || this.username.length > 15) { 
-      //errore
-    }
-    if(this.password.length < 8 || this.password.length > 15){
-      //errore
-    }
-  }
+  /*CheckLoginFrontEnd(){
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],//,Validators.minLength(5),Validators.maxLength(15)],
+      password: ['', Validators.required],//,Validators.pattern(this.strongRegex)]
+      
+  });
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }*/
 
   checkLogin() {
-    this.checkLoginFrontEnd();
+    //this.CheckLoginFrontEnd();
     this.loginservice.authenticate(this.username, this.password).subscribe(
       (data) => {
         this.router.navigate(["menu-di-gioco"]);
@@ -69,4 +74,6 @@ ci deve essere almeno una cifra.*/
   
     this.data.aggiornaStringa(intro);
   }
+  
+
 }

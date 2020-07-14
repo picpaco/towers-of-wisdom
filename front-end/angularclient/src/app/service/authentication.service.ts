@@ -28,9 +28,11 @@ export class AuthenticationService {
       .pipe(
         map((userData) => {
           sessionStorage.setItem("username", username);
-          let tokenStr = userData.token;
-          console.log(tokenStr);
-          sessionStorage.setItem("token", tokenStr);
+          sessionStorage.setItem("password", password);
+
+         // let tokenStr = userData.token;
+          //console.log(tokenStr);
+          //sessionStorage.setItem("token", tokenStr);
           return userData;
         })
       );
