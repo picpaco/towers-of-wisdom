@@ -1,16 +1,21 @@
 <html>
 <div class="container-fluid sfondo_landing">
   <div>
-    <form (ngSubmit)="onSubmit()" #f="ngForm">
-      <div class="form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+      <div class="form-group">
         <div class="d-flex justify-content-center h-100">
           <div class="card w-48 form_login">
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
               </div>
-              <input type="text" id="username" class="form-control" ngModel placeholder="Username" name="username"
-                required />
+              <input type="text" formControlName="username" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+              </div>
+              <!-- <input type="text" id="username" class="form-control" ngModel placeholder="Username" name="username"
+                required /> -->
               <!-- <input
             type="text" formControlName="username" class="form-control"
               ngModel
@@ -27,8 +32,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
               </div>
-              <input type="password" id="password" class="form-control" ngModel placeholder="Password" type="password"
-                name="password" required />
+
+              <input type="password" formControlName="password" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+              </div>
+
+              <!-- <input type="password" id="password" class="form-control" ngModel placeholder="Password" type="password"
+                name="password" required /> -->
               <!-- <input
             type="password" 
             formControlName="password" 
