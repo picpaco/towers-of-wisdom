@@ -9,7 +9,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
               </div>
-              <input type="text" id="username" class="form-control" ngModel placeholder="Username" name="username"
+              <input type="text" id="username" class="form-control" [(ngModel)]="username" placeholder="Username" name="username"
                 required />
               <!-- <input
             type="text" formControlName="username" class="form-control"
@@ -27,7 +27,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
               </div>
-              <input type="password" id="password" class="form-control" ngModel placeholder="Password" type="password"
+              <input type="password" id="password" class="form-control" ngModel placeholder="Password" [(ngModel)]="password" type="password"
                 name="password" required />
               <!-- <input
             type="password" 
