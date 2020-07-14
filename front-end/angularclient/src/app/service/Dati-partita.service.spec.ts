@@ -10,7 +10,4 @@ describe('Service: DatiPartita', () => {
     });
   });
 
-  it('should ...', inject([DatiPartitaService], (service: DatiPartitaService) => {
-    expect(service).toBeTruthy();
-  }));
 });

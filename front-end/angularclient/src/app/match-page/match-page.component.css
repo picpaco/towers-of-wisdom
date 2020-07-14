@@ -517,10 +517,11 @@ span {
 .chat {
   display: none; /*al caricamento della pagina non verrà mostrata questo elemento e i suoi sottoelementi*/
   width: 100mm;
-  height: 50mm;
-  position: absolute;
-  left: 256mm;
-  top: 90mm;
+  height: 96mm;
+  position: relative;
+  z-index: 2;
+  left: 1110px;
+  bottom: 730px;
   border: transparent;
   background-image: linear-gradient(to top right, #0a87e0, #38d2da, #8ef0f5);
   border-top-right-radius: 20mm;
@@ -542,6 +543,44 @@ span {
 
 .chat button.close-chat:hover {
   color: #003cd6;
+}
+
+.opzioni {
+  display: none; /*al caricamento della pagina non verrà mostrata questo elemento e i suoi sottoelementi*/
+  width: 100mm;
+  height: 50mm;
+  position: absolute;
+  left: 295mm;
+  top: 80mm;
+  z-index: 2;
+  border: transparent;
+  background-image: linear-gradient(to top right, #0a87e0, #38d2da, #8ef0f5);
+  border-top-right-radius: 20mm;
+  border-bottom-left-radius: 20mm;
+  border-top-left-radius: 8mm;
+  border-bottom-right-radius: 8mm;
+  font-family: "friendly_school", cursive;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px #2d64b8, -1px 1px 3px #375581, 1px -1px 3px #4067a0,
+    -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
+    2px -2px 3px #1871f5, -2px -2px 3px #1871f5;
+  font-size: 24px;
+  text-align: justify;
+}
+
+.opzioni button.close-opzioni {
+  font-size: 8mm;
+  color: #006ed6;
+  background: transparent;
+  position: relative;
+  width: 10mm;
+  height: 10mm;
+  border: transparent;
+  outline: none;
+}
+
+.opzioni button.close-opzioni:hover {
+  color: #1c73c5;
 }
 
 .punteggio {
@@ -708,10 +747,207 @@ span {
     text-shadow: 1px 1px 3px #1871f5, -1px 1px 3px #1871f5, 1px -1px 3px #1871f5,
       -1px -1px 3px #1871f5, 2px 2px 3px #1871f5, -2px 2px 3px #1871f5,
       2px -2px 3px #1871f5, -2px -2px 3px #1871f5;
-  
-
 }
 
 .pannello-del-Vincitore p button{
   width: 15mm;
 }
+
+.onoffswitch {
+  position: relative; 
+  width: 90px;
+  top: -70px;
+  left: 80px;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+
+}
+.onoffswitch-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.onoffswitch-label {
+  display: block; overflow: hidden; cursor: pointer;
+  border: 2px solid #999999; border-radius: 33px;
+}
+.onoffswitch-inner {
+  display: block; width: 200%; margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  display: block; float: left; width: 50%; height: 26px; padding: 0; line-height: 26px;
+  font-size: 18px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+  box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+  content: "ON";
+  padding-left: 10px;
+  background-color: #084475; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+  content: "OFF";
+  padding-right: 10px;
+  background-color: #2e73a5; color: #FFFFFF;
+  text-align: right;
+}
+.onoffswitch-switch {
+  display: block; width: 28px; margin: -1px;
+  background: #FFFFFF;
+  position: absolute; top: 0; bottom: 0;
+  right: 60px;
+  border: 2px solid #999999; border-radius: 33px;
+  transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0px; 
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 15px;
+  border-radius: 5px;  
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  position: relative;
+  top: -70px;
+  left: 80px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #054d77;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #054d77;
+  cursor: pointer;
+}
+
+.opz-text{
+  position: relative;
+  top: 20px;
+  left: 30px;
+}
+
+
+
+.onoffswitch2 {
+  position: relative; 
+  width: 90px;
+  top: -70px;
+  left: 80px;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+
+}
+.onoffswitch-checkbox2 {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.onoffswitch-label2 {
+  display: block; overflow: hidden; cursor: pointer;
+  border: 2px solid #999999; border-radius: 33px;
+}
+.onoffswitch-inner2 {
+  display: block; width: 200%; margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner2:before, .onoffswitch-inner2:after {
+  display: block; float: left; width: 50%; height: 26px; padding: 0; line-height: 26px;
+  font-size: 18px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+  box-sizing: border-box;
+}
+.onoffswitch-inner2:before {
+  content: "ON";
+  padding-left: 10px;
+  background-color: #084475; color: #FFFFFF;
+}
+.onoffswitch-inner2:after {
+  content: "OFF";
+  padding-right: 10px;
+  background-color: #2e73a5; color: #FFFFFF;
+  text-align: right;
+}
+.onoffswitch-switch2 {
+  display: block; width: 28px; margin: -1px;
+  background: #FFFFFF;
+  position: absolute; top: 0; bottom: 0;
+  right: 60px;
+  border: 2px solid #999999; border-radius: 33px;
+  transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox2:checked + .onoffswitch-label2 .onoffswitch-inner2 {
+  margin-left: 0;
+}
+.onoffswitch-checkbox2:checked + .onoffswitch-label2 .onoffswitch-switch2 {
+  right: 0px; 
+}
+
+.chat-textarea {
+  background-image: linear-gradient(to top right, #d4eff3d7, #bdd2df, rgb(187, 205, 221));
+  border-radius: 15px;
+  outline: none;
+  font-family: "friendly_school", cursive;
+}
+
+.chat-btn {
+  background-image: linear-gradient(to top right, #105da5d7, #3294d4, #12707571);
+  border-top-right-radius: 20mm;
+  border-bottom-left-radius: 20mm;
+  border-top-left-radius: 8mm;
+  border-bottom-right-radius: 8mm;
+  outline: none;
+  color: #ffffff;
+  font-family: "friendly_school", cursive;
+  width: 50px;
+  height: 30px;
+}
+
+  .chat-area {
+    position: relative; 
+    top: 235px; 
+    left: 60px;
+  }
+
+  .replay {
+    border: transparent;
+    color: rgb(231, 169, 55);
+    outline: none;
+    background-image: linear-gradient(
+      to top left,
+      rgb(56, 158, 218),
+      rgb(47, 85, 211)
+    );
+    text-shadow: 1px 1px 3px rgb(55, 127, 194), 1px -1px 3px rgb(55, 127, 194),
+      -1px -1px 3px rgb(55, 127, 194), -1px 1px 3px rgb(55, 127, 194);
+      background: transparent;
+      position: relative;
+      top: 150px;
+      left: 210px;
+  }
+  
+  .replay:hover {
+    /*stile ed effetto per i tasti all'interno del pannello dei tasti*/
+    color: white;
+    background-image: linear-gradient(
+      to top left,
+      rgb(56, 158, 218),
+      rgb(47, 85, 211)
+    );
+    background: transparent;
+  }

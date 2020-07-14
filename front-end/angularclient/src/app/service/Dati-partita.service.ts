@@ -10,12 +10,6 @@ import { Carta } from '../model/Carta';
 })
 export class DatiPartitaService {
 
-
-  username = "stefano89";
-  password = "stefanorusso";
-
-  headers = new HttpHeaders({ Authorization: "Basic " + btoa(this.username + ":" + this.password) });
-
   constructor(private http: HttpClient) { }
 
 

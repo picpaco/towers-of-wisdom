@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.primas.angularspringbootdemo.entity.Carta;
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 import com.primas.angularspringbootdemo.entity.LeaderboardEntry;
+import com.primas.angularspringbootdemo.entity.MazzoCoperto;
 import com.primas.angularspringbootdemo.repository.ClassificaRepository;
 
 @RestController

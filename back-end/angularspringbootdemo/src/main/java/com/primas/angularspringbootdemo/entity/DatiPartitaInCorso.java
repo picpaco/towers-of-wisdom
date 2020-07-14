@@ -77,6 +77,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 
 	public Carta pescaMazzoCoperto() {
 
+		
 		assert (tow.getGiocatori()[0].getMano().size() == 3) : "La mano del giocatore deve avere 3 carte in mano";
 
 //		System.out.println(
@@ -309,6 +310,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 
 		int numeroPartiteGiocate = 0;
 		int numeroPartiteVinte = 0;
+		int numeroPartitePerse = 0;
 		LeaderboardEntry leaderboardEntryAggiornata = null;
 		boolean trovato = false;
 
@@ -320,25 +322,33 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 				trovato = true;
 				numeroPartiteGiocate = riga.getNumeroPartiteTotali() + 1;
 				numeroPartiteVinte = riga.getNumeroVittorie();
+				numeroPartitePerse = riga.getNumeroSconfitte();
 
 				if (result.substring(0, 1).equals("1") && !result.equals("1/2")) {
 					numeroPartiteVinte++;
+				} 
+				if(result.substring(0, 1).equals("0")) {
+					numeroPartitePerse++;
 				}
 
-				leaderboardEntryAggiornata = new LeaderboardEntry(nome, numeroPartiteGiocate, numeroPartiteVinte);
+				leaderboardEntryAggiornata = new LeaderboardEntry(nome, numeroPartiteGiocate, numeroPartiteVinte, numeroPartitePerse);
 				System.out.println("\r Nome: "+
 						leaderboardEntryAggiornata.getNome() +"\r PartiteTotali: "+ leaderboardEntryAggiornata.getNumeroPartiteTotali()
-								+"\r Vittorie: "+ leaderboardEntryAggiornata.getNumeroVittorie());
+								+"\r Vittorie: "+ leaderboardEntryAggiornata.getNumeroVittorie()+ "\r Sconfitte: " + leaderboardEntryAggiornata.getNumeroSconfitte());
 			}
 		}
 		if (!trovato) {
 			if (result.substring(0, 1).equals("1") && !result.equals("1/2")) {
 				numeroPartiteVinte++;
+			} 
+			if(result.substring(0, 1).equals("0")) {
+				numeroPartitePerse++;
 			}
-			leaderboardEntryAggiornata = new LeaderboardEntry(nome, 1, numeroPartiteVinte);
+			
+			leaderboardEntryAggiornata = new LeaderboardEntry(nome, 1, numeroPartiteVinte, numeroPartitePerse);
 			System.out.println("\r Nome: "+
 					leaderboardEntryAggiornata.getNome() +"\r PartiteTotali: "+ leaderboardEntryAggiornata.getNumeroPartiteTotali()
-							+"\r Vittorie: "+ leaderboardEntryAggiornata.getNumeroVittorie());
+							+"\r Vittorie: "+ leaderboardEntryAggiornata.getNumeroVittorie() + "\r Sconfitte: " + leaderboardEntryAggiornata.getNumeroSconfitte());
 		}
 		repositoryClassifica.save(leaderboardEntryAggiornata);
 	}

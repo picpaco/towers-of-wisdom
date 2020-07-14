@@ -9,12 +9,15 @@ Gabriele:
 - test unitari per back-end 
 
 Lara:
-- la pagina demo va formattata e uniformata alle altre pagine
+- la pagina demo va formattata e uniformata alle altre pagine - FATTO!
+
+Lara, Manuel, Mattia, Oder, Stefano:
 - test unitari per front-end 
+- completare la registrazione e il login con l'accesso al DB
 
 Stefano:
 - migliorare e correggere pagina regole di gioco 
-- completare la registrazione e il login con l'accesso al DB
+
 
 PRIORITA MEDIA:
 
@@ -24,13 +27,12 @@ Arcadie:
 - messaggio "tocca a te" e "ha giocato il bot" 
 
 Gabriele:
-
 - uniformare i bottoni nelle varie pagine (mettere bolle) 
 - refactoring del codice per back-end 
 
 Lara:
-- implementare opzioni(volume, suono on-off) 
-- pulsante regole di gioco aprire tab a parte 
+- implementare opzioni(volume, suono on-off) - FATTO!
+- pulsante regole di gioco aprire tab a parte - FATTO!
 
 Stefano:
 - ingrandire l'icona della perla nelle regole di gioco 
@@ -47,7 +49,11 @@ Gabriele:
 
 Lara:
 - implementare chat 
-- aggiungere a leaderboard numero partite vinte e perse
+- aggiungere a leaderboard numero partite vinte e perse - FATTO!
+- mettere prima partite vinte, percentuale vittorie, partite perse - FATTO!
 
 Stefano:
-- tratteggiamento carta anche su bot ||Stefano
+- tratteggiamento carta anche su bot
+
+Oder:
+- rendere l'applicazione responsive rispetto alle dimensioni dello schermo 

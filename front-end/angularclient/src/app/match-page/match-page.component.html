@@ -23,13 +23,6 @@
             type="audio/mp3"
           />
         </audio>
-        <div align="right">
-          <img
-            class="mus"
-            src="../../assets/images/octomus.png"
-            onclick="document.getElementById('audio').muted=!document.getElementById('audio').muted"
-          />
-        </div>
       </div>
 
       <p class="title">{{ nomeGiocatore }} <span>vs</span> Bot</p>
@@ -674,14 +667,15 @@
             onclick="javascript: document.getElementById('btn').play();"
             data-tooltip="Regole di gioco"
             type="button"
-            routerLink="/regole"
+            onclick="window.open('/regole'); return false"
           >
             <i class="fas fa-book p-2" style="font-size: 10mm;"></i>
           </button>
           <button
             onclick="javascript: document.getElementById('btn').play();"
-            data-tooltip="Opzioni"
+            data-tooltip="Impostazioni"
             type="button"
+            (click)="mostraOpzioni()"
           >
             <i class="fas fa-cog p-2" style="font-size: 10mm;"></i>
           </button>
@@ -793,11 +787,8 @@
             letter-spacing: 0.1rem;
           "
         >
-        
-          <p style="font-size: 8mm;">
-      </p>
-          <p style="font-size: 8mm;">
-          </p>
+          <p style="font-size: 8mm;"></p>
+          <p style="font-size: 8mm;"></p>
         </div>
         <img
           src="../../assets/Stile-della-partita/Images,icons_of_Victory panel/backdrob-with-corals.png"
@@ -836,58 +827,78 @@
           "
           src="../../assets/Stile-della-partita/Images,icons_of_Victory panel/Red-Coral-Painted.png"
         />
+        <br>
+        <button class="replay"
+        data-tooltip="Gioca di nuovo"
+          type="button"
+        >
+        <i class="fas fa-redo" onclick="javascript: document.getElementById('btn').play();"
+          (click)= "replay();" style="font-size: 40px;"></i>
+      </button>
       </div>
 
       <div class="chat">
         <button class="close-chat" (click)="nascondiChat()">
           <i class="fas fa-times-circle"></i>
         </button>
+        <ul id="messageArea"></ul>
+        <div class="chat-area">
+          
+          <textarea
+            id="message"
+            class="chat-textarea"
+            placeholder="Ciao!"
+            name="msg"
+            required
+            style="width: 250px;"
+          ></textarea>
+          <button type="submit" class="chat-btn">Invia</button>
+        </div>
       </div>
-    </div>
 
-    <br /><br />
-  </body>
-</html>
+      <div class="opzioni">
+        <button class="close-opzioni" (click)="nascondiOpzioni()">
+          <i class="fas fa-times-circle"></i>
+        </button>
+        <div class="opz-text" align="left">
+          Musica
+          <br />
+          Suoni
+          <div class="onoffswitch">
+            <input
+              onclick="document.getElementById('audio').muted=!document.getElementById('audio').muted"
+              type="checkbox"
+              name="onoffswitch"
+              class="onoffswitch-checkbox"
+              id="myonoffswitch"
+              tabindex="0"
+              checked
+            />
+            <label class="onoffswitch-label" for="myonoffswitch">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
 
-<!-- 
-        <div class="pannello-scarti">
-        <div
-          class="mazzo-scarti"
-          (click)="scartaOppurePescaDalMazzoScarti()"
-          onclick="javascript: document.getElementById('card').play();"
-        >
-          <div>
-            <div *ngIf="mazzoScarti !== undefined && mazzoScarti.length > 0">
-              {{ mazzoScarti[0].getValue() }}
-              <img class = "imgcarta">
-            </div>
+          <div class="onoffswitch2">
+            <input
+              onclick="document.getElementById('btn').muted=!document.getElementById('btn').muted
+            document.getElementById('card').muted=!document.getElementById('card').muted"
+              type="checkbox"
+              name="onoffswitch2"
+              class="onoffswitch-checkbox2"
+              id="myonoffswitch2"
+              tabindex="0"
+              checked
+            />
+            <label class="onoffswitch-label2" for="myonoffswitch2">
+              <span class="onoffswitch-inner2"></span>
+              <span class="onoffswitch-switch2"></span>
+            </label>
           </div>
         </div>
       </div>
-  
-  
-  
-  
-  <div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-        
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">simbolo</th>
-          <th scope="col">valore</th>
-        </tr>
-      </thead>
+    </div>
 
-      <tbody>
-        <tr *ngFor="let carta of manoProva">
-         
-          <td>{{ carta.simbolo }}</td>
-          <td>{{ carta.valore }}</td>
-          
-        </tr>
-      </tbody>
-
-    </table>
-  </div>
-</div> -->
+  </body>
+</html>
