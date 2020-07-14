@@ -53,8 +53,28 @@ export class LoginPageComponent implements OnInit {
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }*/
 
-  checkLogin() {
-    //this.CheckLoginFrontEnd();
+  // checkLogin() {
+  //   //this.CheckLoginFrontEnd();
+  //   console.log("in checkLogin(): " + this.username + " " + this.password);
+
+  //   this.loginservice.authenticate(this.username, this.password).subscribe(
+  //     (data) => {
+  //       this.router.navigate(["menu-di-gioco"]);
+  //       this.invalidLogin = false;
+  //     },
+  //     (error) => {
+  //       this.invalidLogin = true;
+  //       this.error = error.message;
+  //       console.log(this.error);
+  //     }
+  //   );
+  // }
+  
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
     console.log("in checkLogin(): " + this.username + " " + this.password);
 
     this.loginservice.authenticate(this.username, this.password).subscribe(
@@ -68,13 +88,6 @@ export class LoginPageComponent implements OnInit {
         console.log(this.error);
       }
     );
-  }
-  
-  onSubmit() {
-    this.submitted = true;
-    if (this.loginForm.invalid) {
-      return;
-    }
   }
 
 
