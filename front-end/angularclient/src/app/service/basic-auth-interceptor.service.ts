@@ -11,7 +11,7 @@ import {
   providedIn: "root",
 })
 export class BasicAuthHtppInterceptorService implements HttpInterceptor {
-  constructor() {}
+  constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     console.log("Intercept service");

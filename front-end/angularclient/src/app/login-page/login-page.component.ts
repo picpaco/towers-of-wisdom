@@ -15,21 +15,21 @@ export class LoginPageComponent implements OnInit {
 
   @Input() error: string | null;
 
-  constructor(
-    private data: DataService,
-    private loginservice: AuthenticationService,
-    private router: Router
-  ) {}
+  constructor( private data: DataService, private loginservice: AuthenticationService, private router: Router) { 
+    
+  }
 
   ngOnInit() {
 
   }
-  private playAudio() {
-    let audio = new Audio();
-    audio.src = "../../assets/music/glug.wav";
-    audio.load();
-    audio.play();
-  }
+
+
+  // private playAudio() {
+  //   let audio = new Audio();
+  //   audio.src = "../../assets/music/glug.wav";
+  //   audio.load();
+  //   audio.play();
+  // }
 
   checkLogin() {
     this.loginservice.authenticate(this.username, this.password).subscribe(
@@ -51,7 +51,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   aggiornaStringa(intro: string) {
-  
+
     this.data.aggiornaStringa(intro);
   }
 }

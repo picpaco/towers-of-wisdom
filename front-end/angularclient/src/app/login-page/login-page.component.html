@@ -1,81 +1,56 @@
 <html>
-  <div class="container-fluid sfondo_landing">
-    <div>
-  <form>
-    <div class="form">
-      <div class="d-flex justify-content-center h-100">
-        <div class="card w-48 form_login">
-          <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
+<div class="container-fluid sfondo_landing">
+  <div>
+    <form>
+      <div class="form">
+        <div class="d-flex justify-content-center h-100">
+          <div class="card w-48 form_login">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required />
             </div>
-            <input
-              matInput
-              placeholder="Username"
-              [(ngModel)]="username"
-              name="username"
-              required
-            />
-          </div>
-          <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required />
             </div>
-            <input
-              matInput
-              placeholder="Password"
-              [(ngModel)]="password"
-              type="password"
-              name="password"
-              required
-            />
-          </div>
 
-          <script>
-            function play() {
-              var audio = document.getElementById("glug");
-              audio.play();
-            }
-          </script>
-          <audio id="glug" src="assets/music/glug.wav"></audio>
+            <script>
+              function play() {
+                var audio = document.getElementById("glug");
+                audio.play();
+              }
+            </script>
+            <audio id="glug" src="assets/music/glug.wav"></audio>
 
-          <div class="input-group form-group justify-content-center">
-            <button
-              onclick="javascript: document.getElementById('glug').play();"
-              type="button"
-              class="btn btn-info button_accedi"
-              (click)="checkLogin()"
-            >
-              Accedi
-            </button>
+            <div class="input-group form-group justify-content-center">
+              <button onclick="javascript: document.getElementById('glug').play();" type="button"
+                class="btn btn-info button_accedi" (click)="checkLogin()">
+                Accedi
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-</div>
-
-<div class="text-center">
-  <div class="text-center">
-    <div *ngIf="invalidLogin">
-      <label class="alert alert-danger">
-        Attenzione! Il nome utente o la password sono errati</label
-      >
-    </div>
+    </form>
   </div>
 
-  <label>Non hai un account?</label
-  ><a
-    onclick="javascript: document.getElementById('glug').play();"
-    type="link"
-    routerLink="/registrazione"
-    href="/registrazione"
-    (click)="aggiornaStringa('Effettua la registrazione')"
-    style="color: #140d79;"
-    >Registrati</a
-  >
+  <div class="text-center">
+    <div class="text-center">
+      <div *ngIf="invalidLogin">
+        <label class="alert alert-danger">
+          Attenzione! Il nome utente o la password sono errati</label>
+      </div>
+    </div>
 
-  <!-- <div class="row">
+    <label>Non hai un account?</label><a onclick="javascript: document.getElementById('glug').play();" type="link"
+      routerLink="/registrazione" href="/registrazione" (click)="aggiornaStringa('Effettua la registrazione')"
+      style="color: #140d79;">Registrati</a>
+
+    <!-- <div class="row">
     <div class="col-md-12">
       <div class="text-right">
         <button
@@ -90,6 +65,7 @@
       </div>
     </div>
   </div> -->
+  </div>
 </div>
-</div>
+
 </html>

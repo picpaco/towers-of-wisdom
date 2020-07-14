@@ -1,4 +1,4 @@
-package com.primas.angularspringbootdemo.entity;
+	package com.primas.angularspringbootdemo.entity;
 
 import javax.persistence.Column;
 

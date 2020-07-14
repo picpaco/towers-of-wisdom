@@ -313,6 +313,7 @@ public class DatiPartitaInCorso implements ApplicationContextAware {
 		boolean trovato = false;
 
 		Iterable<LeaderboardEntry> righe = repositoryClassifica.findAll();
+		repositoryClassifica.findAll();
 
 		for (LeaderboardEntry riga : righe) {
 			if (riga.getNome().equals(nome)) {
