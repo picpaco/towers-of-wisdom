@@ -31,7 +31,22 @@ export class LoginPageComponent implements OnInit {
     audio.play();
   }
 
+  checkLoginFrontEnd() {
+    /*pagina di login:
+nome utente: minimo 5, massimo 15 caratteri liberi
+password: almeno un carattere minuscolo, almeno un carattere maiuscolo, deve essere lunga almeno 8 caratteri e massimo 15 caratteri
+ci deve essere almeno una cifra.*/
+
+    if(this.username.length < 5 || this.username.length > 15) { 
+      //errore
+    }
+    if(this.password.length < 8 || this.password.length > 15){
+      //errore
+    }
+  }
+
   checkLogin() {
+    this.checkLoginFrontEnd();
     this.loginservice.authenticate(this.username, this.password).subscribe(
       (data) => {
         this.router.navigate(["menu-di-gioco"]);

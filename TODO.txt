@@ -11,12 +11,13 @@ Gabriele:
 Lara:
 - la pagina demo va formattata e uniformata alle altre pagine - FATTO!
 
-Lara, Manuel, Mattia, Oder:
+Lara, Manuel, Mattia, Oder, Stefano:
 - test unitari per front-end 
+- completare la registrazione e il login con l'accesso al DB
 
 Stefano:
 - migliorare e correggere pagina regole di gioco 
-- completare la registrazione e il login con l'accesso al DB
+
 
 PRIORITA MEDIA:
 

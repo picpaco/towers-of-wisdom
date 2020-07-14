@@ -30,7 +30,7 @@ describe('LandingPageComponent', () => {
   });
 
 
-  it('il bottone dovrebbe essere a true', () => {
+  it('il bottone dovrebbe esistere', () => { 
     expect(component.bottoneLanding).toEqual(true);
     
   });

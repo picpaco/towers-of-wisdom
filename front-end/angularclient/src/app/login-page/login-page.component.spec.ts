@@ -39,11 +39,11 @@ describe('LoginPageComponent', () => {
     const nativeButton: HTMLButtonElement = linkDes[0].nativeElement;
     expect(nativeButton.textContent).toBe(' Accedi ');
   });
-  it('Component successfully created', () => {
+  it('La componente dovrebbe essere stata creata correttamente', () => {
     expect(component).toBeTruthy();
   });
 
-  it('component initial state', () => {
+  it('lo stato iniziale della componente dovrebbe essere consistente', () => {
     expect(component.invalidLogin).toBeFalsy();
     expect(component.checkLogin).toBeDefined();
     expect(component.updateData).toBeDefined();
