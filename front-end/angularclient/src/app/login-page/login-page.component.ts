@@ -37,12 +37,12 @@ export class LoginPageComponent implements OnInit {
   }
 
 
-  // private playAudio() {
-  //   let audio = new Audio();
-  //   audio.src = "../../assets/music/glug.wav";
-  //   audio.load();
-  //   audio.play();
-  // }
+  private playAudio() {
+    let audio = new Audio();
+    audio.src = "../../assets/music/glug.wav";
+    audio.load();
+    audio.play();
+  }
 
   /*CheckLoginFrontEnd(){
     this.loginForm = this.formBuilder.group({
@@ -69,7 +69,7 @@ export class LoginPageComponent implements OnInit {
       }
     );
   }
-
+  
   onSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
