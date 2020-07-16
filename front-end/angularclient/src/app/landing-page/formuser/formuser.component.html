@@ -43,9 +43,13 @@
             </div>
 
              <div class="form-group ">
-                <label for="repassword" class="text-center w-50">Conferma Password<input type="password"
-                        [(ngModel)]="utente.comparePassword"   name="comparePassword"
-                        placeholder="Inserisci di nuovo la password" required #comparePassword="ngModel"/></label>
+                <!-- <label for="repassword" class="text-center w-50">Conferma Password<input type="password"
+                        [(ngModel)]="utente.comparePassword" class="form-control" id="comparePassword" name="comparePassword"
+                        placeholder="Inserisci di nuovo la password" required #comparePassword="ngModel"/></label> -->
+
+                        <label for="repassword" class="text-center w-50">Conferma Password<input type="password"
+                             class="form-control" id="comparePassword" 
+                            placeholder="Inserisci di nuovo la password"/></label>
 
                 <!-- <div>
                     <label [hidden]="!comparePassword.pristine" class="alert alert-danger">
