@@ -65,5 +65,10 @@ PRIORITA BASSA:
 
 ------------------------------------------------------------------------------------------------
 
+PIANO DI AZIONE:
+-implementare il campo sul front-end del conferma Password
+-migliorare il comparto grafico degli input
+-aggiungere i controlli ai campi username e password
+-comunicazione dei dati front-end back-end(Macro Problema)
 
 
