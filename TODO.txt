@@ -1,30 +1,21 @@
 PRIORITA ALTA:
 
-Arcadie:
-- nel gioco la pop up di fine gioco va migliorata graficamente - FATTO!
-- aggiustare il bug di fine partita 
-
 Gabriele:
 - girare un video di una partita commentata e aggiornare la pagina demo 
-- test unitari per back-end 
+- test unitari per back-end - IN CORSO
 
 Lara:
 - la pagina demo va formattata e uniformata alle altre pagine - FATTO!
 
 Lara, Manuel, Mattia, Oder, Stefano:
+- completare la registrazione e il login con l'accesso al DB - IN CORSO
 - test unitari per front-end 
-- completare la registrazione e il login con l'accesso al DB
 
 Stefano:
-- migliorare e correggere pagina regole di gioco 
+- migliorare e correggere pagina regole di gioco - FATTO!
 
 
 PRIORITA MEDIA:
-
-Arcadie:
-- deployment su server remoto 
-- refactoring del codice per front-end 
-- messaggio "tocca a te" e "ha giocato il bot" 
 
 Gabriele:
 - uniformare i bottoni nelle varie pagine (mettere bolle) 
@@ -40,9 +31,6 @@ Stefano:
 
 PRIORITA BASSA:
 
-Arcadie:
-- implementare diversi bot (diversi livelli di intelligenza) 
-
 Gabriele:
 - provare a cambiare X2 con x2 
 - implementare pvp
@@ -57,3 +45,25 @@ Stefano:
 
 Oder:
 - rendere l'applicazione responsive rispetto alle dimensioni dello schermo 
+
+-----------------------------------------------------------------------------------------------
+DA ASSEGNARE:
+
+
+PRIORITA ALTA:
+- aggiustare il bug di fine partita 
+- Se il nome utente e la password non sono presenti nel database l'utente deve 
+prima registrarsi e poi effettuare l'accesso
+
+PRIORITA MEDIA:
+- deployment su server remoto 
+- refactoring del codice per front-end 
+- messaggio "tocca a te" e "ha giocato il bot" 
+
+PRIORITA BASSA:
+- implementare diversi bot (diversi livelli di intelligenza) 
+
+------------------------------------------------------------------------------------------------
+
+
+
