@@ -1,24 +1,36 @@
 <html>
-<div class="container-fluid sfondo_landing">
-  <div>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
-      <div class="form-group">
-        <div class="d-flex justify-content-center h-100">
-          <div class="card w-48 form_login">
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-              </div>
-              <input type="text" [(ngModel)]="username" formControlName="username" class="form-control" 
-                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" minlength="5"
-                maxlength="15"
-              />
-              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                <div *ngIf="f.username.errors.required">Username is required</div>
-              </div>
-              <!-- <input type="text" id="username" class="form-control" ngModel placeholder="Username" name="username"
+  <div class="container-fluid sfondo_landing">
+    <div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div class="d-flex justify-content-center h-100">
+            <div class="card w-48 form_login">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-user"></i
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  [(ngModel)]="username"
+                  formControlName="username"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                  minlength="5"
+                  maxlength="15"
+                />
+                <div
+                  *ngIf="submitted && f.username.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f.username.errors.required">
+                    Username is required
+                  </div>
+                </div>
+                <!-- <input type="text" id="username" class="form-control" ngModel placeholder="Username" name="username"
                 required /> -->
-              <!-- <input
+                <!-- <input
             type="text" formControlName="username" class="form-control"
               ngModel
               matInput
@@ -29,22 +41,35 @@
               minlength="5"
             maxlength="15"
             /> -->
-            </div>
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
               </div>
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-key"></i
+                  ></span>
+                </div>
 
-              <input type="password" formControlName="password" class="form-control" [(ngModel)]="password"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" 
-              />
-              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-              </div>
+                <input
+                  type="password"
+                  formControlName="password"
+                  class="form-control"
+                  [(ngModel)]="password"
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}"
+                  
+                />
+                <div
+                  *ngIf="submitted && f.password.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f.password.errors.required">
+                    Password is required
+                  </div>
+                </div>
 
-              <!-- <input type="password" id="password" class="form-control" ngModel placeholder="Password" type="password"
+                <!-- <input type="password" id="password" class="form-control" ngModel placeholder="Password" type="password"
                 name="password" required /> -->
-              <!-- <input
+                <!-- <input
             type="password" 
             formControlName="password" 
             class="form-control"
@@ -53,43 +78,55 @@
             type="password"
             name="password"
             required
-            pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.{8,15})"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}"
             /> -->
-            </div>
+              </div>
 
-            <script>
-              function play() {
-                var audio = document.getElementById("glug");
-                audio.play();
-              }
-            </script>
-            <audio id="glug" src="assets/music/glug.wav"></audio>
+              <script>
+                function play() {
+                  var audio = document.getElementById("glug");
+                  audio.play();
+                }
+              </script>
+              <audio id="glug" src="assets/music/glug.wav"></audio>
 
-            <div class="input-group form-group justify-content-center">
-              <button onclick="javascript: document.getElementById('glug').play();" type="button"
-                class="btn btn-info button_accedi" (click)="onSubmit()">
-                Accedi
-              </button>
+              <div class="input-group form-group justify-content-center">
+                <button
+                  onclick="javascript: document.getElementById('glug').play();"
+                  type="button"
+                  class="btn btn-info button_accedi"
+                  (click)="onSubmit()"
+                >
+                  Accedi
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  </div>
-
-  <div class="text-center">
-    <div class="text-center">
-      <div *ngIf="invalidLogin">
-        <label class="alert alert-danger">
-          Attenzione! Il nome utente o la password sono errati</label>
-      </div>
+      </form>
     </div>
 
-    <label>Non hai un account?</label><a onclick="javascript: document.getElementById('glug').play();" type="link"
-      routerLink="/registrazione" href="/registrazione" (click)="aggiornaStringa('Effettua la registrazione')"
-      style="color: #140d79;">Registrati</a>
+    <div class="text-center">
+      <div class="text-center">
+        <div *ngIf="invalidLogin">
+          <label class="alert alert-danger">
+            Attenzione! Il nome utente o la password sono errati</label
+          >
+        </div>
+      </div>
 
-    <!-- <div class="row">
+      <label>Non hai un account?</label
+      ><a
+        onclick="javascript: document.getElementById('glug').play();"
+        type="link"
+        routerLink="/registrazione"
+        href="/registrazione"
+        (click)="aggiornaStringa('Effettua la registrazione')"
+        style="color: #140d79;"
+        >Registrati</a
+      >
+
+      <!-- <div class="row">
     <div class="col-md-12">
       <div class="text-right">
         <button
@@ -104,7 +141,6 @@
       </div>
     </div>
   </div> -->
+    </div>
   </div>
-</div>
-
 </html>
