@@ -112,7 +112,9 @@ class TestDiSaggezza {
 	@Test
 	void pescaDaMazzoCopertoConMAzzoScartiVuoto() {
 		giocatorebot.distribuisciCarte(coperto);
-		giocatorebot.giocaTurno(coperto, scarti);
+		giocatorebot.getMano().add(coperto.pescaCarta());
+		assertEquals(4, giocatorebot.getMano().size(), "la mano dovrebbe avere 4 carte");
+		giocatorebot.giocaCarta(scarti);
 		assertEquals(28, coperto.dimensione(), "il mazzo coperto dovrebbe contenere 28 carte");
 	}
 
@@ -190,10 +192,12 @@ class TestDiSaggezza {
 	@Test
 	void controlloCalcoloDelValoreTorreTConCima() {
 		torreT.aggiungiCartaInCima(cartaT);
+		torreT.aggiungiCartaInCima(cartaUnoT);
 		torreT.aggiungiCartaInCima(cartaCimaT);
 		torreT.aggiornaValore(cartaT.getValore().getVal());
+		torreT.aggiornaValore(cartaUnoT.getValore().getVal());
 		torreT.aggiornaValore(cartaCimaT.getValore().getVal());
-		assertEquals(12, torreT.getValoreTorre(), "il punteggio delle torreA dovrebbe essere 8");
+		assertEquals(14, torreT.getValoreTorre(), "il punteggio delle torreA dovrebbe essere 14");
 	}
 
 	@Test
