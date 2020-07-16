@@ -2,7 +2,13 @@ import { Component, OnInit, Input } from "@angular/core";
 import { DataService } from "../landing-page/data.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "src/app/service/authentication.service";
-import { FormGroup, FormBuilder, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+  ReactiveFormsModule,
+} from "@angular/forms";
 
 @Component({
   selector: "app-login-page",
@@ -10,8 +16,8 @@ import { FormGroup, FormBuilder, Validators, FormControl, ReactiveFormsModule } 
   styleUrls: ["./login-page.component.css"],
 })
 export class LoginPageComponent implements OnInit {
-  username :string;
-  password :string;
+  username: string;
+  password: string;
   invalidLogin = false;
   strongRegex = new RegExp("^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.{8,15})");
   loginForm: FormGroup;
@@ -19,23 +25,21 @@ export class LoginPageComponent implements OnInit {
   submitted: boolean;
   @Input() error: string | null;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private data: DataService,
     private route: ActivatedRoute,
     private loginservice: AuthenticationService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],//Validators.minLength(5),Validators.maxLength(15)],
-      password: ['', Validators.required]//Validators.pattern(this.strongRegex)]
+      username: ["", Validators.required], //Validators.minLength(5),Validators.maxLength(15)],
+      password: ["", Validators.required], //Validators.pattern(this.strongRegex)]
     });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
-
 
   private playAudio() {
     let audio = new Audio();
@@ -69,7 +73,7 @@ export class LoginPageComponent implements OnInit {
   //     }
   //   );
   // }
-  
+
   onSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
@@ -90,7 +94,6 @@ export class LoginPageComponent implements OnInit {
     );
   }
 
-
   // convenience getter for easy access to form fields
   get f() {
     return this.loginForm.controls;
@@ -102,9 +105,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   aggiornaStringa(intro: string) {
-
     this.data.aggiornaStringa(intro);
   }
-
-
 }
