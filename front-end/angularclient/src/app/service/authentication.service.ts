@@ -20,16 +20,19 @@ export class AuthenticationService {
   }
 
   authenticate(username, password) {
+    console.log("in authenticate(): " + username + " " + password);
     return this.httpClient
       .post<any>("http://localhost:8080/authenticate", { username, password })
       .pipe(
         map((userData) => {
           sessionStorage.setItem("username", username);
           sessionStorage.setItem("password", password);
+          
+          
 
-         // let tokenStr = userData.token;
-          //console.log(tokenStr);
-          //sessionStorage.setItem("token", tokenStr);
+          let tokenStr = userData.token;
+          console.log(tokenStr);
+          sessionStorage.setItem("token", tokenStr);
           return userData;
         })
       );
