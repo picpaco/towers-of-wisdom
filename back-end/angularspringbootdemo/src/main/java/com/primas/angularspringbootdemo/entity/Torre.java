@@ -26,7 +26,7 @@ public class Torre {
 
 	public void aggiornaValore(int valoreDaAggiungere) {
 		if(guardaLaCartaInCima().getValore().equals(Valore.CIMA)) {
-			valoreTotale= valoreTotale*2;
+			valoreTotale = valoreTotale*2;
 		} else {
 			valoreTotale += valoreDaAggiungere;
 		}	

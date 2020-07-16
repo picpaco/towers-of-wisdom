@@ -76,7 +76,7 @@ public class GiocatoreBot extends Giocatore  {
 			Carta c = null;
 			for (int i = 0; i < mazzoScarti.dimensione(); i++) {
 				c = mazzoScarti.getListaCarte().get(i);
-				if (isGiocabile(c)) {
+				if(isGiocabile(c)) {
 					mazzoScarti.pescaCarta(c);
 					getMano().add(c);
 					System.out.println("\r BOT ha pescato dal mazzo scarti: " + c);
@@ -88,7 +88,7 @@ public class GiocatoreBot extends Giocatore  {
 			}
 			if (!(cartaTrovataInMazzoScarti)) {
 				//System.out.println("\r BOT prima di pescare dal mazzo coperto: " + getMano());
-				cartaPescata=mazzoCoperto.pescaCarta();
+				cartaPescata = mazzoCoperto.pescaCarta();
 				getMano().add(cartaPescata);
 				if(mazzoCoperto.isVuoto()) {
 					cartaPescata.setUltima(true);
@@ -110,13 +110,10 @@ public class GiocatoreBot extends Giocatore  {
 		Carta cartaDaGiocare = decidiCartaDaGiocare(getMano());
 		Carta cartaGiocata = null;
 		
-
-		
 		if (cartaDaGiocare == null) {
 			cartaGiocata = scartaCarta(mazzoScarti);
 			datiPartita.setCartaAvversarioGiocataSuScarti(true);
 			datiPartita.setCartaAvversarioGiocataSuTorre(false);
-
 		} else {
 			cartaGiocata = cartaDaGiocare;
 			aggiungiCartaATorre(cartaDaGiocare);
