@@ -1,83 +1,106 @@
 <form (ngSubmit)="onSubmit()" #utenteform="ngForm">
-    <div class="row">
-        <div class="col-6 text-right">
-            <div class="form-group">
+  <div class="row">
+    <div class="col-6 text-right">
+      <div class="form-group">
+        <label for="nome" class="text-center w-50"
+          >Nome Utente<input
+            type="text"
+            [(ngModel)]="user.nomeutente"
+            class="form-control"
+            id="nomeutente"
+            name="nomeutente"
+            placeholder="Inserisci il nome utente"
+            required
+            #name="ngModel"
+        /></label>
 
-                <label for="nome" class="text-center w-50">Nome Utente<input type="text" [(ngModel)]="utente.nomeutente"
-                        class="form-control" id="nomeutente" name="nomeutente" placeholder="Inserisci il nome utente"
-                        required #name="ngModel" /></label>
-
-                <div>
-                    <label [hidden]="!name.pristine" class="alert alert-danger">E' richiesto l'inserimento del nome
-                        utente</label>
-                </div>
-            </div>
-
-
-            <div class="form-group ">
-                <label for="email" class="text-center w-50">Email<input type="text" [(ngModel)]="utente.email"
-                        class="form-control" id="email" name="email" placeholder="Inserisci l'indirizzo email" required
-                        #email="ngModel" /></label>
-
-                <div>
-                    <label [hidden]="!email.pristine" class="alert alert-danger">
-                        E' richiesto l'inserimento della email
-                    </label>
-                </div>
-
-            </div>
+        <div>
+          <label [hidden]="!name.pristine" class="alert alert-danger"
+            >E' richiesto l'inserimento del nome utente</label
+          >
         </div>
+      </div>
 
-        <div class="col-6 text-left">
-            <div class="form-group ">
-                <label for="password" class="text-center w-50">Password<input type="password"
-                        [(ngModel)]="utente.password" class="form-control" id="password" name="password"
-                        placeholder="Inserisci la password" required #password="ngModel" /></label>
+      <div class="form-group">
+        <label for="email" class="text-center w-50"
+          >Email<input
+            type="text"
+            [(ngModel)]="user.email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Inserisci l'indirizzo email"
+            required
+            #email="ngModel"
+        /></label>
 
-                <div>
-                    <label [hidden]="!password.pristine" class="alert alert-danger">
-                        E' richiesto l'inserimento della password
-                    </label>
-                </div>
-
-            </div>
-            
-            <label>
-                Confirm Password
-              </label>
-        
-              <input
-                type="password"
-                ngValidateEqual="password"
-                #ConfirmPassword="ngModel"
-                name="confirmPassword"
-                [(ngModel)]="utente.confirmPassword"
-                placeholder="Confirm Password"
-              />
-        
-              <div
-                *ngIf="
-                  (ConfirmPassword.dirty || ConfirmPassword.touched) &&
-                  ConfirmPassword.invalid
-                "
-              >
-                <p
-                  class="warning-text"
-                  *ngIf="ConfirmPassword.hasError('notEqual') && password.valid"
-                >
-                  Passwords Don't Match
-                </p>
-              </div>
-            
-
+        <div>
+          <label [hidden]="!email.pristine" class="alert alert-danger">
+            E' richiesto l'inserimento della email
+          </label>
         </div>
+      </div>
     </div>
 
+    <div class="col-6 text-left">
+      <div class="form-group">
+        <label for="password" class="text-center w-50"
+          >Password<input
+            type="password"
+            [(ngModel)]="user.password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Inserisci la password"
+            required
+            #password="ngModel"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}"
+        /></label>
 
-
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <button type="submit" [disabled]="!utenteform.form.valid" class="btn btn-info">Registra</button>
+        <div>
+          <label [hidden]="!password.pristine" class="alert alert-danger">
+            E' richiesto l'inserimento della password
+          </label>
         </div>
+      </div>
+
+      <label>
+        Conferma Password
+      </label>
+
+      <input
+        type="password"
+        ngValidateEqual="password"
+        #ConfirmPassword="ngModel"
+        name="confermaPassword"
+        [(ngModel)]="user.confermaPassword"
+        placeholder="Conferma Password"
+      />
+
+      <div
+        *ngIf="
+          ( confermaPassword.dirty || confermaPassword.touched &&
+            confermaPassword.invalid)"
+      >
+        <p
+          class="warning-text"
+          *ngIf="confermaPassword.hasError('notEqual') && password.valid"
+        >
+          Passwords Don't Match
+        </p>
+      </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button
+        type="submit"
+        [disabled]="!utenteform.form.valid"
+        class="btn btn-info"
+      >
+        Registra
+      </button>
+    </div>
+  </div>
 </form>

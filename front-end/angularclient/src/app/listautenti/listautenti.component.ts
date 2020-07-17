@@ -13,7 +13,7 @@ export class ListautentiComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.findAll().subscribe(data => {this.utenti = data;});
+    this.userService.getAll().subscribe(data => {this.utenti = data;});
     
   }
 
