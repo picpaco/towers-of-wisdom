@@ -7,10 +7,9 @@
                         class="form-control" id="nomeutente" name="nomeutente" placeholder="Inserisci il nome utente"
                         required #nome="ngModel" /></label>
 
-                        <div
-                        *ngIf="(nome.dirty || nome.touched) && nome.invalid" >
-                        <p class="warning-text">Il nome utente non è valido
-                        </p>
+                        <div class="form-group" *ngIf="(nome.dirty || nome.touched) && nome.invalid" >
+                        <span class="warning-text alert-danger"  style="color: #d61e3d">Il nome utente non è valido
+                        </span>
                       </div>
             </div>
 
@@ -20,10 +19,10 @@
                         class="form-control" id="email" name="email" placeholder="Inserisci l'indirizzo email" required
                         #email="ngModel" /></label>
 
-                        <div
-                        *ngIf="(email.dirty || email.touched) && email.invalid" >
-                        <p class="warning-text">L'email non è valida
-                        </p>
+                        <div class="form-group" *ngIf="(email.dirty || email.touched) && email.invalid" >
+                         <span class="warning-text alert-danger"  style="color: #d61e3d">L'email non è valida
+                        </span>
+
                       </div>
 
             </div>
@@ -35,10 +34,9 @@
                         [(ngModel)]="utente.password" class="form-control" id="password" name="password"
                         placeholder="Inserisci la password" required #password="ngModel" /></label>
 
-                        <div
-                        *ngIf="(password.dirty || password.touched) && password.invalid" >
-                        <p class="warning-text">La password non è valida
-                        </p>
+                        <div class="form-group" *ngIf="(password.dirty || password.touched) && password.invalid" >
+                        <span class="warning-text alert-danger"  style="color: #d61e3d">La password non è valida
+                        </span>
                       </div>
 
             </div>
@@ -47,16 +45,16 @@
               <input type="password" ngValidateEqual="password" class="form-control" #ConfirmPassword="ngModel" name="confirmPassword"
                 [(ngModel)]="utente.confirmPassword" placeholder="Conferma password"/></label>
             </div>
-              <div
-                *ngIf="(ConfirmPassword.dirty || ConfirmPassword.touched) && ConfirmPassword.invalid">
-                <p class="warning-text" *ngIf="ConfirmPassword.hasError('notEqual') && password.valid"
-                >Le password non corrispondono
-                </p>
-              </div>
             
+            <div class="form-group" *ngIf="(ConfirmPassword.dirty || ConfirmPassword.touched) && ConfirmPassword.invalid">
+                <span class="warning-text alert-danger"  style="color: #d61e3d"
+                *ngIf="ConfirmPassword.hasError('notEqual') && password.valid">Le password non corrispondono
+                </span>
+            </div>
+         </div>
 
-        </div>
     </div>
+
 
 
 
