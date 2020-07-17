@@ -1,71 +1,56 @@
 <form (ngSubmit)="onSubmit()" #utenteform="ngForm">
     <div class="row">
-        <div class="col-6 text-right">
+        <div class="col-12 text-center">
             <div class="form-group">
 
-                <label for="nome" class="text-center w-50">Nome Utente<input type="text" [(ngModel)]="utente.nomeutente"
+                <label for="nome" class="text-center w-25">Nome Utente<input type="text" [(ngModel)]="utente.nomeutente"
                         class="form-control" id="nomeutente" name="nomeutente" placeholder="Inserisci il nome utente"
-                        required #name="ngModel" /></label>
+                        required #nome="ngModel" /></label>
 
-                <div>
-                    <label [hidden]="!name.pristine" class="alert alert-danger">E' richiesto l'inserimento del nome
-                        utente</label>
-                </div>
+                        <div
+                        *ngIf="(nome.dirty || nome.touched) && nome.invalid" >
+                        <p class="warning-text">Il nome utente non è valido
+                        </p>
+                      </div>
             </div>
 
 
             <div class="form-group ">
-                <label for="email" class="text-center w-50">Email<input type="text" [(ngModel)]="utente.email"
+                <label for="email" class="text-center w-25">Email<input type="text" [(ngModel)]="utente.email"
                         class="form-control" id="email" name="email" placeholder="Inserisci l'indirizzo email" required
                         #email="ngModel" /></label>
 
-                <div>
-                    <label [hidden]="!email.pristine" class="alert alert-danger">
-                        E' richiesto l'inserimento della email
-                    </label>
-                </div>
+                        <div
+                        *ngIf="(email.dirty || email.touched) && email.invalid" >
+                        <p class="warning-text">L'email non è valida
+                        </p>
+                      </div>
 
             </div>
         </div>
 
-        <div class="col-6 text-left">
+        <div class="col-12 text-center">
             <div class="form-group ">
-                <label for="password" class="text-center w-50">Password<input type="password"
+                <label for="password" class="text-center w-25">Password<input type="password"
                         [(ngModel)]="utente.password" class="form-control" id="password" name="password"
                         placeholder="Inserisci la password" required #password="ngModel" /></label>
 
-                <div>
-                    <label [hidden]="!password.pristine" class="alert alert-danger">
-                        E' richiesto l'inserimento della password
-                    </label>
-                </div>
+                        <div
+                        *ngIf="(password.dirty || password.touched) && password.invalid" >
+                        <p class="warning-text">La password non è valida
+                        </p>
+                      </div>
 
             </div>
-            
-            <label>
-                Confirm Password
-              </label>
-        
-              <input
-                type="password"
-                ngValidateEqual="password"
-                #ConfirmPassword="ngModel"
-                name="confirmPassword"
-                [(ngModel)]="utente.confirmPassword"
-                placeholder="Confirm Password"
-              />
-        
+            <div class="form-group ">
+            <label for="password" class="text-center w-25">Conferma Password
+              <input type="password" ngValidateEqual="password" class="form-control" #ConfirmPassword="ngModel" name="confirmPassword"
+                [(ngModel)]="utente.confirmPassword" placeholder="Conferma password"/></label>
+            </div>
               <div
-                *ngIf="
-                  (ConfirmPassword.dirty || ConfirmPassword.touched) &&
-                  ConfirmPassword.invalid
-                "
-              >
-                <p
-                  class="warning-text"
-                  *ngIf="ConfirmPassword.hasError('notEqual') && password.valid"
-                >
-                  Passwords Don't Match
+                *ngIf="(ConfirmPassword.dirty || ConfirmPassword.touched) && ConfirmPassword.invalid">
+                <p class="warning-text" *ngIf="ConfirmPassword.hasError('notEqual') && password.valid"
+                >Le password non corrispondono
                 </p>
               </div>
             

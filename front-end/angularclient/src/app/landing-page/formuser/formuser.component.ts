@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
+import { DataService } from '../data.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class FormuserComponent {
   utente: User;
   passwordConfermata:boolean=false;
   
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService,private data: DataService) {
+    
    this.utente = new User();
   }
 
@@ -28,6 +30,4 @@ export class FormuserComponent {
   gotoLogin() {
     this.router.navigate(['/listautenti']);
   }
-
-
 }
