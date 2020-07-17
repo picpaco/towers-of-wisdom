@@ -14,12 +14,15 @@
             #name="ngModel"
         /></label>
 
-        <div>
-          <label [hidden]="!name.pristine" class="alert alert-danger"
-            >E' richiesto l'inserimento del nome utente</label
-          >
-        </div>
-      </div>
+                <label for="nome" class="text-center w-25">Nome Utente<input type="text" [(ngModel)]="utente.nomeutente"
+                        class="form-control" id="nomeutente" name="nomeutente" placeholder="Inserisci il nome utente"
+                        required #nome="ngModel" /></label>
+
+                        <div class="form-group" *ngIf="(nome.dirty || nome.touched) && nome.invalid" >
+                        <span class="warning-text alert-danger"  style="color: #d61e3d">Il nome utente non è valido
+                        </span>
+                      </div>
+            </div>
 
       <div class="form-group">
         <label for="email" class="text-center w-50"
@@ -42,20 +45,11 @@
       </div>
     </div>
 
-    <div class="col-6 text-left">
-      <div class="form-group">
-        <label for="password" class="text-center w-50"
-          >Password<input
-            type="password"
-            [(ngModel)]="user.password"
-            class="form-control"
-            id="password"
-            name="password"
-            placeholder="Inserisci la password"
-            required
-            #password="ngModel"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}"
-        /></label>
+                        <div class="form-group" *ngIf="(email.dirty || email.touched) && email.invalid" >
+                         <span class="warning-text alert-danger"  style="color: #d61e3d">L'email non è valida
+                        </span>
+
+                      </div>
 
         <div>
           <label [hidden]="!password.pristine" class="alert alert-danger">
@@ -64,43 +58,41 @@
         </div>
       </div>
 
-      <label>
-        Conferma Password
-      </label>
+        <div class="col-12 text-center">
+            <div class="form-group ">
+                <label for="password" class="text-center w-25">Password<input type="password"
+                        [(ngModel)]="utente.password" class="form-control" id="password" name="password"
+                        placeholder="Inserisci la password" required #password="ngModel" /></label>
 
-      <input
-        type="password"
-        ngValidateEqual="password"
-        #ConfirmPassword="ngModel"
-        name="confermaPassword"
-        [(ngModel)]="user.confermaPassword"
-        placeholder="Conferma Password"
-      />
+                        <div class="form-group" *ngIf="(password.dirty || password.touched) && password.invalid" >
+                        <span class="warning-text alert-danger"  style="color: #d61e3d">La password non è valida
+                        </span>
+                      </div>
 
-      <div
-        *ngIf="
-          ( confermaPassword.dirty || confermaPassword.touched &&
-            confermaPassword.invalid)"
-      >
-        <p
-          class="warning-text"
-          *ngIf="confermaPassword.hasError('notEqual') && password.valid"
-        >
-          Passwords Don't Match
-        </p>
-      </div>
+            </div>
+            <div class="form-group ">
+            <label for="password" class="text-center w-25">Conferma Password
+              <input type="password" ngValidateEqual="password" class="form-control" #ConfirmPassword="ngModel" name="confirmPassword"
+                [(ngModel)]="utente.confirmPassword" placeholder="Conferma password"/></label>
+            </div>
+            
+            <div class="form-group" *ngIf="(ConfirmPassword.dirty || ConfirmPassword.touched) && ConfirmPassword.invalid">
+                <span class="warning-text alert-danger"  style="color: #d61e3d"
+                *ngIf="ConfirmPassword.hasError('notEqual') && password.valid">Le password non corrispondono
+                </span>
+            </div>
+         </div>
+
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <button
-        type="submit"
-        [disabled]="!utenteform.form.valid"
-        class="btn btn-info"
-      >
-        Registra
-      </button>
+
+
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" [disabled]="!utenteform.form.valid" class="btn btn-info">Registra</button>
+        </div>
     </div>
   </div>
 </form>

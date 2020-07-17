@@ -49,11 +49,11 @@ Oder:
 -----------------------------------------------------------------------------------------------
 DA ASSEGNARE:
 
-
 PRIORITA ALTA:
+- gestione del backstack
 - aggiustare il bug di fine partita 
 - Se il nome utente e la password non sono presenti nel database l'utente deve 
-prima registrarsi e poi effettuare l'accesso
+  prima registrarsi e poi effettuare l'accesso
 
 PRIORITA MEDIA:
 - deployment su server remoto 
