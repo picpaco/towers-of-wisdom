@@ -7,11 +7,12 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { DataService } from "./landing-page/data.service";
 import { BasicAuthHtppInterceptorService } from "./service/basic-auth-interceptor.service";
+import { ValidateEqualModule } from 'ng-validate-equal';
 
 
 @NgModule({
   declarations: [AppComponent, routingComponents],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule,FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule,FormsModule,ValidateEqualModule],
   providers: [
     GiocatoreService,
     BasicAuthHtppInterceptorService,
