@@ -42,7 +42,7 @@ export class FormuserComponent implements OnInit {
 
     onSubmit() {
        
-        console.log("Dentro il registerForm c'è: " + this.registerForm.toString());
+        
         this.submitted = true;
 
         // reset alerts on submit

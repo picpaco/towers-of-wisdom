@@ -1,4 +1,6 @@
 package com.primas.angularspringbootdemo.entity;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,13 +16,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-         User user = userRepository.getUserByUsername(username);
+         Optional<User> user = userRepository.findById(username);
          
-        if (user == null) {
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("Could not find user");
         }
          
-        return new MyUserDetails(user);
+		com.primas.angularspringbootdemo.entity.User existentUser = user.get(); 
+        return new MyUserDetails(existentUser);
     }
  
 }

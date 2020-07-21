@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/model/user';
+import { ɵangular_packages_platform_browser_platform_browser_d } from '@angular/platform-browser';
 
 //Implementazione metodi user service
 @Injectable({ providedIn: 'root' })
@@ -12,7 +13,8 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post("http://localhost:8080/utenti/users/register", user);
+      console.log("Dentro il metodo register c'è: " + user.username + " " + user.password);
+      return this.http.post("http://localhost:8080/utenti/users/register", user);
     }
 
     delete(id: number) {

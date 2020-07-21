@@ -9,7 +9,7 @@ import com.primas.angularspringbootdemo.entity.User;
 
 
 @Repository
-public interface RepositoryUser extends CrudRepository<User, Long> {
-	@Query("SELECT u FROM User u WHERE u.username = :username ")
-    public User getUserByUsername(@Param("username") String username);
+public interface RepositoryUser extends CrudRepository<User, String> {
+	//@Query("SELECT u FROM User u WHERE u.username = :username ")
+    //public User getUserByUsername(@Param("username") String username);
 }
