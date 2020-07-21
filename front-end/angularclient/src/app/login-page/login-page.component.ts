@@ -9,7 +9,6 @@ import {
   FormControl,
   ReactiveFormsModule,
 } from "@angular/forms";
-
 @Component({
   selector: "app-login-page",
   templateUrl: "./login-page.component.html",
@@ -19,7 +18,7 @@ export class LoginPageComponent implements OnInit {
   username: string;
   password: string;
   invalidLogin = false;
-  strongRegex = new RegExp("^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.{8,15})");
+  strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}$");
   loginForm: FormGroup;
   returnUrl: string;
   submitted: boolean;

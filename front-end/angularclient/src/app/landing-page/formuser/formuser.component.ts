@@ -5,9 +5,12 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { UserService} from'src/app/service/user.service';
 import { AlertService} from'src/app/service/alert.service';
+import { User } from 'src/app/model/user';
 
 @Component({ templateUrl: 'formuser.component.html' })
 export class FormuserComponent implements OnInit {
+    user = new User;
+    strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}');
     registerForm: FormGroup;
     loading = false;
     submitted = false;
@@ -27,9 +30,9 @@ export class FormuserComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            email:    ['', [Validators.required,Validators.email]],
-            nomeutente: ['', Validators.required],
-            password: ['', Validators.required],
+            username: ['', Validators.required],
+            email:   ['', [Validators.required,Validators.email]],
+            password: ['', [Validators.required,Validators.pattern(this.strongRegex)]],
             confermaPassword: ['',Validators.required]
         });
     }
@@ -38,6 +41,8 @@ export class FormuserComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
+       
+        console.log("Dentro il registerForm c'è: " + this.registerForm.toString());
         this.submitted = true;
 
         // reset alerts on submit

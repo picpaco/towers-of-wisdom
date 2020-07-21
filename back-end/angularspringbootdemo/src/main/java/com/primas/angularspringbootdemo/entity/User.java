@@ -1,5 +1,7 @@
 package com.primas.angularspringbootdemo.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,26 +11,49 @@ import javax.persistence.Table;
  
 @Entity
 @Table(name = "users")
-public class User {
+public class User{
  
-    @Id
+   /* @Id
     @Column(name = "userId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
- 
+    private Long id;*/
+    @Id
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "role")
     private String role;
-    private boolean enabled;
+    private String email;
+    private String token;
+
+    public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	private boolean enabled;
     
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
 	public String getUsername() {
 		return username;
+	}
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", role=" + role + ", email=" + email
+				+ ", token=" + token + ", enabled=" + enabled + "]";
 	}
 	public void setUsername(String username) {
 		this.username = username;

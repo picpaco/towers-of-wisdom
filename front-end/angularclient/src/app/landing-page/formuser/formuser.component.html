@@ -1,11 +1,13 @@
-<form (ngSubmit)="onSubmit()" #utenteform="ngForm">
+<!--<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="row">
-    <div class="col-6 text-right">
+
+    <div class="col-12 text-center">
       <div class="form-group">
-        <label for="nome" class="text-center w-50"
+
+        <label for="nome" class="text-center w-25"
           >Nome Utente<input
             type="text"
-            [(ngModel)]="user.nomeutente"
+            [ngModel]="nomeutente"
             class="form-control"
             id="nomeutente"
             name="nomeutente"
@@ -14,21 +16,23 @@
             #name="ngModel"
         /></label>
 
-                <label for="nome" class="text-center w-25">Nome Utente<input type="text" [(ngModel)]="utente.nomeutente"
-                        class="form-control" id="nomeutente" name="nomeutente" placeholder="Inserisci il nome utente"
-                        required #nome="ngModel" /></label>
 
-                        <div class="form-group" *ngIf="(nome.dirty || nome.touched) && nome.invalid" >
-                        <span class="warning-text alert-danger"  style="color: #d61e3d">Il nome utente non è valido
-                        </span>
-                      </div>
-            </div>
+      <div
+          class="form-group"
+          *ngIf="(nomeutente.dirty || nomeutente.touched) && nomeutente.invalid"
+        > 
+          <span class="warning-text alert-danger" style="color: #d61e3d;"
+            >Il nome utente non è valido
+          </span>
+        </div>
+      </div>
 
       <div class="form-group">
-        <label for="email" class="text-center w-50"
-          >Email<input
+        <label for="email" class="text-center w-25"
+          >Email
+          <input
             type="text"
-            [(ngModel)]="user.email"
+            [ngModel]="email"
             class="form-control"
             id="email"
             name="email"
@@ -36,63 +40,140 @@
             required
             #email="ngModel"
         /></label>
+        <div
+          class="form-group"
+          *ngIf="(email.dirty || email.touched) "
+        >
+          <span class="warning-text alert-danger" style="color: #d61e3d;"
+            >L'email non è valida
+          </span>
+        </div>
 
-        <div>
-          <label [hidden]="!email.pristine" class="alert alert-danger">
-            E' richiesto l'inserimento della email
-          </label>
+        
+
+      <div class="col-12 text-center">
+        <div class="form-group">
+          <label for="password" class="text-center w-25">Password
+          <input
+            type="password"
+            [ngModel]="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Inserisci la password"
+            required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}"
+            #password="ngModel"
+          /></label>
+          
+        </div>
+
+        <div
+            class="form-group"
+            *ngIf="(password.dirty || password.touched) && password.invalid"
+          >
+            <span class="warning-text alert-danger" style="color: #d61e3d;"
+              >La password non è valida
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="text-center w-25"
+            >Conferma Password
+            <input
+              type="password"
+              ngValidateEqual="password"
+              class="form-control"
+              #confermaPassword="ngModel"
+              name="confermaPassword"
+              [ngModel]="confermaPassword"
+              placeholder="Conferma password"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}"
+          /></label>
+        </div>
+
+       <div
+          class="form-group"
+          *ngIf="
+            (confermaPassword.dirty || confermaPassword.touched) &&
+            confermaPassword.invalid
+          "
+        >
+          <span
+            class="warning-text alert-danger"
+            style="color: #d61e3d;"
+            *ngIf="confermaPassword.hasError('notEqual') && password.valid"
+            >Le password non corrispondono
+          </span>
         </div>
       </div>
-    </div>
 
-                        <div class="form-group" *ngIf="(email.dirty || email.touched) && email.invalid" >
-                         <span class="warning-text alert-danger"  style="color: #d61e3d">L'email non è valida
-                        </span>
-
-                      </div>
-
-        <div>
-          <label [hidden]="!password.pristine" class="alert alert-danger">
-            E' richiesto l'inserimento della password
-          </label>
-        </div>
-      </div>
-
-        <div class="col-12 text-center">
-            <div class="form-group ">
-                <label for="password" class="text-center w-25">Password<input type="password"
-                        [(ngModel)]="utente.password" class="form-control" id="password" name="password"
-                        placeholder="Inserisci la password" required #password="ngModel" /></label>
-
-                        <div class="form-group" *ngIf="(password.dirty || password.touched) && password.invalid" >
-                        <span class="warning-text alert-danger"  style="color: #d61e3d">La password non è valida
-                        </span>
-                      </div>
-
-            </div>
-            <div class="form-group ">
-            <label for="password" class="text-center w-25">Conferma Password
-              <input type="password" ngValidateEqual="password" class="form-control" #ConfirmPassword="ngModel" name="confirmPassword"
-                [(ngModel)]="utente.confirmPassword" placeholder="Conferma password"/></label>
-            </div>
-            
-            <div class="form-group" *ngIf="(ConfirmPassword.dirty || ConfirmPassword.touched) && ConfirmPassword.invalid">
-                <span class="warning-text alert-danger"  style="color: #d61e3d"
-                *ngIf="ConfirmPassword.hasError('notEqual') && password.valid">Le password non corrispondono
-                </span>
-            </div>
-         </div>
-
-    </div>
-  </div>
-
-
-
-
-    <div class="row">
+      <div class="row">
         <div class="col-md-12 text-center">
-            <button type="submit" [disabled]="!utenteform.form.valid" class="btn btn-info">Registra</button>
+          <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Register
+            </button>
+            <a routerLink="/login" class="btn btn-link">Cancel</a>
         </div>
+        </div>
+      </div>
     </div>
   </div>
+</form>-->
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-12 text-center">
+    <div class="form-group">
+        <label class="text-center w-25" for="username">Username
+        <input 
+        type="text" 
+        formControlName="username" 
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div 
+        *ngIf="submitted && f.username.errors" 
+        class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">username is required</div>
+        </div></label>
+    </div>
+    <div class="form-group">
+        <label class="text-center w-25" for="email">E-mail
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">E-mail is required</div>
+            <div *ngIf="f.email.errors.email">E-mail not valid</div>
+        </div></label>
+    </div>
+    <div class="form-group">
+        <label class="text-center w-25" for="password">Password
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.pattern">Invalid Password</div>
+        </div></label>
+    </div>
+    <div class="form-group">
+        <label class="text-center w-25" for="confermaPassword">Conferma Password
+        <input 
+        type="password" 
+        formControlName="confermaPassword" 
+        class="form-control" 
+        [ngClass]="{ 'is-invalid': submitted && f.confermaPassword.errors }" 
+        ngValidateEqual="password"/>
+        <div *ngIf="submitted && f.confermaPassword.errors" class="invalid-feedback">
+            <div *ngIf="f.confermaPassword.errors.required">Password is required</div>
+            <div *ngIf="f.confermaPassword.hasError('notEqual')">Le password non corrispondono</div>
+        </div></label>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Register
+        </button>
+        <a routerLink="/login" class="btn btn-link">Cancel</a>
+    </div>
+    </div>
+    </div>
 </form>

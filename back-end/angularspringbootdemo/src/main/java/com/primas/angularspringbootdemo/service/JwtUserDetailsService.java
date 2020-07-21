@@ -10,17 +10,21 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.primas.angularspringbootdemo.repository.RepositoryUser;
+
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 	
-	private String encodedPassword;
+	//private HashMap<String,String> mappaNomi = new HashMap<>();
+	private RepositoryUser repoUs;
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		HashMap<String,String> mappaNomi = new HashMap<>();
-		mappaNomi.put("stefano", "Password1");
-		mappaNomi.put("marco", "Password2");
-		for(String password: mappaNomi.values()) {
+		com.primas.angularspringbootdemo.entity.User user = repoUs.getUserByUsername(username);
+		//User user = user.getUsername(repoUs.getUserByUsername(username));
+		
+		/*for(String password: mappaNomi.values()) {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12); // Strength set as 12
 			encodedPassword = encoder.encode(password);
 		}
@@ -30,7 +34,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 					new ArrayList<>());
 		} else {
 			throw new UsernameNotFoundException("User not found with username: " + username);
-		}
+		}*/
+		return new User(user.getUsername(), user.getPassword(),
+				new ArrayList<>());
 	}
 	
 	
