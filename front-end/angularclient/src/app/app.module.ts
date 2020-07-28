@@ -10,6 +10,8 @@ import { BasicAuthHtppInterceptorService } from "./service/basic-auth-intercepto
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { UserService } from './service/user.service';
+import { AuthenticationService } from './service/authentication.service';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     BasicAuthHtppInterceptorService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    UserService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent],
 })

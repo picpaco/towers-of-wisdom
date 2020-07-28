@@ -16,13 +16,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-         Optional<User> user = userRepository.findById(username);
+         Optional<DAOUser> user = userRepository.findById(username);
          
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("Could not find user");
         }
          
-		com.primas.angularspringbootdemo.entity.User existentUser = user.get(); 
+		com.primas.angularspringbootdemo.entity.DAOUser existentUser = user.get(); 
         return new MyUserDetails(existentUser);
     }
  

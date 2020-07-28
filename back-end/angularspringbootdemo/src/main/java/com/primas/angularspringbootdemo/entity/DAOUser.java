@@ -11,7 +11,7 @@ import javax.persistence.Table;
  
 @Entity
 @Table(name = "users")
-public class User{
+public class DAOUser{
  
    /* @Id
     @Column(name = "userId")

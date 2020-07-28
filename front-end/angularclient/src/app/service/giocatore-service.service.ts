@@ -22,8 +22,8 @@ export class GiocatoreService {
   }
 
   public findAll(): Observable<Giocatore[]> {
-    let username = "stefano89";
-    let password = "stefanorusso";
+    let username ;
+    let password ;
     const headers = new HttpHeaders({Authorization: "Basic " + btoa(username + ":" + password)});
     return this.http.get<Giocatore[]>('http://localhost:8080/menu-di-gioco',{headers});
   }

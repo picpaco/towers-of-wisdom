@@ -23,7 +23,7 @@ export class FormuserComponent implements OnInit {
         private alertService: AlertService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) {
+        if (this.authenticationService.userValue) {
             this.router.navigate(['/']);
         }
     }

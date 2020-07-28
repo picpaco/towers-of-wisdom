@@ -6,7 +6,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,11 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import com.primas.angularspringbootdemo.service.JwtUserDetailsService;
-
 import io.jsonwebtoken.ExpiredJwtException;
-
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -32,20 +28,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 
-//		 final String requestTokenHeader = request.getHeader("Authorization");
-//		 System.out.println("richiesta header: "+requestTokenHeader);
-
-		 
-		UserDetails user = jwtUserDetailsService.loadUserByUsername("stefano");
-		String tokenCreato = jwtTokenUtil.generateToken(user);
-		
-		//System.out.println("\r token creato DalUsername nel doFilterInternal: " + tokenCreato);
+		final String requestTokenHeader = request.getHeader("Authorization");
+		System.out.println("requestTokenHeader: " + requestTokenHeader);
 
 		String username = null;
 		String jwtToken = null;
-
-		if (tokenCreato != null) {
-			jwtToken = tokenCreato;
+		// JWT Token is in the form "Bearer token". Remove Bearer word and get
+		// only the Token
+		if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
+			jwtToken = requestTokenHeader.substring(7);
+			System.out.println("Il jwtToken è: " +jwtToken);
 			try {
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 			} catch (IllegalArgumentException e) {
@@ -62,7 +54,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 			UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
 
-			// if token is valid configure Spring Security to manually set authentication
+			// if token is valid configure Spring Security to manually set
+			// authentication
 			if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
 
 				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
@@ -70,8 +63,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 				usernamePasswordAuthenticationToken
 						.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				// After setting the Authentication in the context, we specify
-				// that the current user is authenticated. So it passes the Spring Security
-				// Configurations successfully.
+				// that the current user is authenticated. So it passes the
+				// Spring Security Configurations successfully.
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 			}
 		}

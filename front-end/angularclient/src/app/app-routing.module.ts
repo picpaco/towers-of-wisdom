@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ListagiocatoriComponent } from "./listagiocatori/listagiocatori.component";
-
 import { LoginPageComponent } from "../app/login-page/login-page.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";

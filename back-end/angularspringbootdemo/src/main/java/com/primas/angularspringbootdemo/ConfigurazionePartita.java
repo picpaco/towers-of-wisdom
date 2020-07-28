@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 import com.primas.angularspringbootdemo.entity.TorriDiSaggezza;
-import com.primas.angularspringbootdemo.entity.User;
+import com.primas.angularspringbootdemo.entity.DAOUser;
 
 
 @Configuration
@@ -13,7 +13,7 @@ public class ConfigurazionePartita {
 
 	
 	private TorriDiSaggezza tow = new TorriDiSaggezza();
-	private User user = new User();
+	private DAOUser user = new DAOUser();
 	private DatiPartitaInCorso dati= new DatiPartitaInCorso();
 	
 //	MazzoCoperto coperto = new MazzoCoperto();
@@ -38,7 +38,7 @@ public class ConfigurazionePartita {
 	}
 	
 	@Bean(name = "utente")
-	public User getUser() {
+	public DAOUser getUser() {
 		return user;
 	}
 	

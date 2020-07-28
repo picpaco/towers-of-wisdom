@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { BehaviorSubject, Observable, config } from 'rxjs';
 import { User } from 'src/app/model/user'
+import { Router } from '@angular/router';
 
 
 
@@ -10,25 +11,56 @@ import { User } from 'src/app/model/user'
   providedIn: "root",
 })
 export class AuthenticationService {
+  private userSubject: BehaviorSubject<User>;
+  public user: Observable<User>;
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
-
-  constructor(private httpClient: HttpClient) {
-      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-      this.currentUser = this.currentUserSubject.asObservable();
+  constructor(
+      private router: Router,
+      private http: HttpClient
+  ) {
+      this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+      this.user = this.userSubject.asObservable();
   }
-  
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
-}
 
+  
+
+  public get userValue(): User {
+      return this.userSubject.value;
+  }
+
+  login(username,password): Observable<any> {
+      return this.http.post<User>("http://localhost:8080/authenticate",{
+          username,
+          password
+      })
+          .pipe(map(user => {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('user', JSON.stringify(user));
+              this.userSubject.next(user);
+              return user;
+          }));
+  }
 
   public getNomeGiocatore() {
     return sessionStorage.getItem("username");
   }
 
-  authenticate(username, password) {
+  
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem("currentUser");
+    console.log("è autenticato l'utente? "+!(user === null));
+    return !(user === null);
+  }
+
+  logOut() {
+    sessionStorage.removeItem("currentUser");
+    this.userSubject.next(null);
+  }
+}
+
+
+
+/*authenticate(username, password) {
     console.log("in authenticate(): " + username + " " + password);
     return this.httpClient
       .post<any>("http://localhost:8080/authenticate", { username, password })
@@ -42,16 +74,4 @@ export class AuthenticationService {
           return user;
         })
       );
-  }
-
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem("currentUser");
-    console.log("è autenticato l'utente? "+!(user === null));
-    return !(user === null);
-  }
-
-  logOut() {
-    sessionStorage.removeItem("currentUser");
-    this.currentUserSubject.next(null);
-  }
-}
+  }*/

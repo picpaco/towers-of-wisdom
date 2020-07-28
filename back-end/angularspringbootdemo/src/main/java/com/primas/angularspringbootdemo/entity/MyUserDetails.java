@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
  
 public class MyUserDetails implements UserDetails {
  
-    private User user;
+    private DAOUser user;
      
-    public MyUserDetails(User user) {
+    public MyUserDetails(DAOUser user) {
         this.user = user;
     }
  

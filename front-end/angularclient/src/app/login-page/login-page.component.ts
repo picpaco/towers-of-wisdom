@@ -80,7 +80,7 @@ export class LoginPageComponent implements OnInit {
     }
     console.log("in checkLogin(): " + this.username + " " + this.password);
 
-    this.loginservice.authenticate(this.username, this.password).subscribe(
+    this.loginservice.login(this.username, this.password).subscribe(
       (data) => {
         this.router.navigate(["menu-di-gioco"]);
         this.invalidLogin = false;

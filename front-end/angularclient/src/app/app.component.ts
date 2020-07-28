@@ -12,7 +12,16 @@ import { User } from 'src/app/model/user';
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-    currentUser: User;
+  user: User;
+
+  constructor(private authenticationService: AuthenticationService) {
+      this.authenticationService.user.subscribe(x => this.user = x);
+  }
+
+  logout() {
+      this.authenticationService.logOut();
+  }
+   /* currentUser: User;
 
     constructor(
         private router: Router,
@@ -24,7 +33,7 @@ export class AppComponent {
     logout() {
         this.authenticationService.logOut();
         this.router.navigate(['/login']);
-    }
+    }*/
 }
 
 /*import { Component, OnInit } from "@angular/core";
