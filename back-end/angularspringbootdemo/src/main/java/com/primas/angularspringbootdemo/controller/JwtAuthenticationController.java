@@ -45,6 +45,8 @@ public class JwtAuthenticationController {
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+		System.out.println("Sono nel metodo authenticate");
+		System.out.println("l'authentication request contiene: " + authenticationRequest.getUsername() + " " + authenticationRequest.getPassword());
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
@@ -64,6 +66,7 @@ public class JwtAuthenticationController {
 	}
 
 	private Authentication authenticate(String username, String password) throws Exception {
+		System.out.println("lo username e la password sono: "+ username + " " + password);
 		Objects.requireNonNull(username);
 		Objects.requireNonNull(password);
 		Authentication aUt = null;

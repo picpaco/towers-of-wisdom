@@ -23,6 +23,7 @@ export class DataService {
     }
 
     aggiornaStringa(intro: string){
+        console.log("sto aggiornando la stringa chiamando il form " + intro);
         this.contentString.next(intro);
     }
 

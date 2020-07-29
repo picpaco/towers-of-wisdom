@@ -7,6 +7,7 @@ import { UserService} from'src/app/service/user.service';
 import { AlertService} from'src/app/service/alert.service';
 import { User } from 'src/app/model/user';
 
+
 @Component({ templateUrl: 'formuser.component.html' })
 export class FormuserComponent implements OnInit {
     user = new User;
@@ -41,15 +42,13 @@ export class FormuserComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
-       
-        
+        console.log("sono dentro l'onsubmit di form user");
         this.submitted = true;
-
         // reset alerts on submit
         this.alertService.clear();
-
         // stop here if form is invalid
         if (this.registerForm.invalid) {
+            console.log("registration form non valido");
             return;
         }
 
@@ -59,6 +58,7 @@ export class FormuserComponent implements OnInit {
             .subscribe(
                 data => {
                     this.alertService.success('Registration successful', true);
+                    console.log("registrazione avvenuta con successo");
                     this.router.navigate(['/login']);
                 },
                 error => {

@@ -25,15 +25,12 @@ const routes: Routes = [
 
     children: [
       { path: "login", component: LoginPageComponent },
-
-      { path: "registrazione", component: FormuserComponent },
+      { path: "registrazione", component: FormuserComponent }
     ],
   },
 
   { path: "aggiungigiocatore", component: FormgiocatoreComponent },
-
   { path: "giocatori", component: ListagiocatoriComponent },
-
   { path: "listautenti", component: ListautentiComponent },
 
   { path: "demo", component: DemoComponent },

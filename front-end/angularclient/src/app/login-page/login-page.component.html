@@ -13,12 +13,8 @@
                 </div>
                 <input
                   type="text"
-                  [(ngModel)]="username"
                   formControlName="username"
                   class="form-control"
-                  [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-                  minlength="5"
-                  maxlength="15"
                 />
                 <div
                   *ngIf="submitted && f.username.errors"
@@ -52,11 +48,7 @@
                 <input
                   type="password"
                   formControlName="password"
-                  class="form-control"
-                  [(ngModel)]="password"
-                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}"
-                  
+                  class="form-control"                  
                 />
                 <div
                   *ngIf="submitted && f.password.errors"
