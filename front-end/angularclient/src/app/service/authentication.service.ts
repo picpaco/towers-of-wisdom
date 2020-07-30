@@ -46,15 +46,16 @@ export class AuthenticationService {
   }
 
   
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem("currentUser");
+  /*isUserLoggedIn() {
+    let user = sessionStorage.getItem("user");
     console.log("è autenticato l'utente? "+!(user === null));
     return !(user === null);
-  }
+  }*/
 
   logOut() {
-    sessionStorage.removeItem("currentUser");
+    sessionStorage.removeItem("user");
     this.userSubject.next(null);
+    this.router.navigate(['/']);
   }
 }
 

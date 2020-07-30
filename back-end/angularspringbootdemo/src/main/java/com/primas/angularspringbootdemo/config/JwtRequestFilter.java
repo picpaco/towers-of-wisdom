@@ -1,7 +1,6 @@
 package com.primas.angularspringbootdemo.config;
 
 import java.io.IOException;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import com.primas.angularspringbootdemo.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
+
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 

@@ -126,78 +126,84 @@
 
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="row">
-      <div class="col-12 text-center">
-        <div class="form-group">
-          <label class="text-center w-25" for="username"
-            >Username
-            <input
-              type="text"
-              formControlName="username"
-              class="form-control"
-            />
-            <div
-              *ngIf="submitted && f.username.errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.username.errors.required">username is required</div>
-            </div></label
+    <div class="col-12 text-center">
+      <div class="form-group">
+        <label class="text-center w-25" for="username"
+          >Username
+          <input
+            type="text"
+            formControlName="username"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+          />
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">username is required</div>
+          </div></label
+        >
+      </div>
+      <div class="form-group">
+        <label class="text-center w-25" for="email"
+          >E-mail
+          <input
+            type="text"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+          />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">E-mail is required</div>
+            <div *ngIf="f.email.errors.email">E-mail not valid</div>
+          </div></label
+        >
+      </div>
+      <div class="form-group">
+        <label class="text-center w-25" for="password"
+          >Password
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+          />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.pattern">Invalid Password</div>
+          </div></label
+        >
+      </div>
+      <div class="form-group">
+        <label class="text-center w-25" for="confermaPassword"
+          >Conferma Password
+          <input
+            type="password"
+            formControlName="confermaPassword"
+            class="form-control"
+            ngValidateEqual="password"
+            [ngClass]="{ 'is-invalid': submitted && f.confermaPassword.errors }"
+          />
+          <div
+            *ngIf="submitted && f.confermaPassword.errors"
+            class="invalid-feedback"
           >
-        </div>
-        <div class="form-group">
-          <label class="text-center w-25" for="email"
-            >E-mail
-            <input type="text" formControlName="email" class="form-control" />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">E-mail is required</div>
-              <div *ngIf="f.email.errors.email">E-mail not valid</div>
-            </div></label
-          >
-        </div>
-        <div class="form-group">
-          <label class="text-center w-25" for="password"
-            >Password
-            <input
-              type="password"
-              formControlName="password"
-              class="form-control"
-            />
-            <div
-              *ngIf="submitted && f.password.errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.password.errors.required">Password is required</div>
-              <div *ngIf="f.password.errors.pattern">Invalid Password</div>
-            </div></label
-          >
-        </div>
-        <div class="form-group">
-          <label class="text-center w-25" for="confermaPassword"
-            >Conferma Password
-            <input
-              type="password"
-              formControlName="confermaPassword"
-              class="form-control"
-            />
-            <div
-              *ngIf="submitted && f.confermaPassword.errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.confermaPassword.errors.required">
-                Password is required
-              </div>
-            </div></label
-          >
-        </div>
-        <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">
-            <span
-              *ngIf="loading"
-              class="spinner-border spinner-border-sm mr-1"
-            ></span>
-            Register
-          </button>
-          <a routerLink="/utenti/users/register" class="btn btn-link">Cancel</a>
-        </div>
+            <div *ngIf="f.confermaPassword.errors.required">
+              Password is required
+            </div>
+            <div *ngIf="f.confermaPassword.hasError('notEqual')">
+              password doesn't match
+            </div>
+          </div></label
+        >
+      </div>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Register
+        </button>
+        <a routerLink="/utenti/users/register" class="btn btn-link">Cancel</a>
       </div>
     </div>
+  </div>
 </form>

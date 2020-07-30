@@ -10,12 +10,16 @@ export class AuthGaurdService implements CanActivate {
   constructor(private router: Router, private authService: AuthenticationService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.isUserLoggedIn())
-      return true;
+    const user = this.authService.userValue;
+        if (user) {
+            // authorised so return true
+            return true;
+        }
 
-    this.router.navigate(['login']);
-    return false;
+        // not logged in so redirect to login page with the return url
+        this.router.navigate(['/account/login'], { queryParams: { returnUrl: state.url }});
+        return false;
+    }
 
   }
 
-}
