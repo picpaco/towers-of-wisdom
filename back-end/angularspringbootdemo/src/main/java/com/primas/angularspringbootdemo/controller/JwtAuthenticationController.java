@@ -62,7 +62,7 @@ public class JwtAuthenticationController {
 	}
 	
 	
-	@PostMapping("/utenti/users/register")
+	@PostMapping("/register")
 	public ResponseEntity<?> save(@RequestBody DAOUser user) throws Exception {
 		System.out.println("Il contenuto di Utente è: " + user.toString());
 		return ResponseEntity.ok(userDetailsService.save(user));

@@ -7,13 +7,16 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.primas.angularspringbootdemo.entity.Carta;
+import com.primas.angularspringbootdemo.entity.DAOUser;
 import com.primas.angularspringbootdemo.entity.DatiPartitaInCorso;
 import com.primas.angularspringbootdemo.entity.LeaderboardEntry;
 import com.primas.angularspringbootdemo.entity.MazzoCoperto;
@@ -72,11 +75,18 @@ public class PartitaController implements ApplicationContextAware {
 	// aggiungere al database
 
 	@GetMapping("/partitaConBot")
-	public DatiPartitaInCorso gestisciMossaGiocatore() {
+	public ResponseEntity<?> gestisciMossaGiocatore(@RequestHeader String header) throws Exception {
+		System.out.println("Il contenuto di header è: " + header);
+		datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
+		datiPartita.inizializzaPartita();
+		return ResponseEntity.ok(datiPartita);
+	}
+		//return ResponseEntity.ok(userDetailsService.save(user));
+	/*public DatiPartitaInCorso gestisciMossaGiocatore(String token) {
 		datiPartita = (DatiPartitaInCorso) context.getBean("getDatiPartita");
 		datiPartita.inizializzaPartita();
 		return datiPartita;
-	}
+	}*/
 
 	@GetMapping("/giocaBot")
 	public DatiPartitaInCorso giocaBot() {

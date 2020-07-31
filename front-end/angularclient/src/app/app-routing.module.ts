@@ -16,7 +16,9 @@ import { ManoResolverService } from "./service/manoResolver.service";
 import { AuthGaurdService } from "./service/auth-gaurd.service";
 import { LogoutComponent } from "./logout/logout.component";
 import { componentFactoryName } from '@angular/compiler';
-import { DatiPartitaResolverService } from './service/Dati-partita.service';
+import { DatiPartitaResolverService, DatiPartitaService } from './service/Dati-partita.service';
+import { UserService } from './service/user.service';
+import { AuthenticationService } from './service/authentication.service';
 
 const routes: Routes = [
   {
@@ -70,7 +72,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [DatiPartitaResolverService],
+  providers: [DatiPartitaResolverService,UserService,DatiPartitaService,AuthenticationService],
 })
 export class AppRoutingModule {}
 export const routingComponents = [

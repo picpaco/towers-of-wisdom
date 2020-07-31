@@ -2,11 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/model/user';
 import { ɵangular_packages_platform_browser_platform_browser_d } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 //Implementazione metodi user service
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    constructor(private http: HttpClient) { }
+  private userSubject: BehaviorSubject<User>;
+  public user: Observable<User>;
+  constructor(
+    private router: Router,
+    private http: HttpClient
+) {
+    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+    this.user = this.userSubject.asObservable();
+}
+
+public get userValue(): User {
+  return this.userSubject.value;
+}
 
     getAll() {
         return this.http.get<User[]>("http://localhost:8080/utenti");
@@ -14,7 +29,7 @@ export class UserService {
 
     register(user: User) {
       console.log("Dentro il metodo register c'è: " + user.username + " " + user.password);
-      return this.http.post("http://localhost:8080/utenti/users/register", user);
+      return this.http.post<User>("http://localhost:8080/register", user)
     }
 
     delete(id: number) {
